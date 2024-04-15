@@ -202,9 +202,9 @@ function NavbarClient({
                                   key={index2}
                                   className="cursor-pointer text-white group/link"
                                   href={linkReal2}
-                                  // onClick={() => {
-                                  //   router.push(linkReal2);
-                                  // }}
+                                  onClick={(e) => {
+                                    e.stopPropagation();
+                                  }}
                                 >
                                   <p>{l.testo}</p>
                                   <div
@@ -359,6 +359,9 @@ function NavbarClient({
                                 <div
                                   key={index2}
                                   className="cursor-pointer text-white group/link"
+                                  onClick={(e) => {
+                                    e.stopPropagation();
+                                  }}
                                 >
                                   <p>{l.testo}</p>
                                   <div
