@@ -1,0 +1,135 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+model Image{
+  ImageId String @id @db.ObjectId @default(auto()) @map("_id")
+  link String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+type Service{
+  name String
+  description String
+  image String
+  LinkPage String?
+}
+
+type FAQ{
+  domand String
+  response String
+}
+
+type SectionData{
+  animation Boolean?
+  animationType String?
+
+  backgroundImages String?
+  backgroundImageOpacity Int?
+  backgroundColor String?
+
+  images String[]
+  imagesOnLeft Boolean?
+
+  textBlue String?
+  textGreen String?
+  textBlack String?
+  description String?
+
+  carouselDots Boolean?
+  carouselButtons Boolean?
+
+  service Service[]
+
+  hScreen Boolean?
+  space Int? 
+
+  primaryButton Boolean?
+  primaryButtonText String?
+  primaryLink String?
+  widthPrimaryButton Int?
+  heightPrimaryButton Int?
+
+  secondaryButton Boolean?
+  secondaryButtonText String?
+  secondaryLink String?
+  widthSecondaryButton Int?
+  heightSecondaryButton Int?
+
+  faq FAQ[]
+}
+
+model Section {
+  SectionId String @id @db.ObjectId @default(auto()) @map("_id")
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  name String
+ 
+  pageType String
+
+  data SectionData
+
+  PageId String? @db.ObjectId
+}
+
+model Page{
+  PageId String @id @db.ObjectId @default(auto()) @map("_id")
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  name String
+  link String
+
+  defaltPage Boolean?
+
+  numberSections Int?
+  sections String[]
+
+  // sections Section[]
+}
+
+model Link{
+  LinkId String @id @db.ObjectId @default(auto()) @map("_id")
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  type String
+  titolo String
+  link String?
+  multipleLink MultipleLink[]
+}
+
+type MultipleLink{
+  testo String
+  link String
+}
+
+model Navbar{
+  NavbraId String @id @db.ObjectId @default(auto()) @map("_id")
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  links String[]
+  
+  logo String?
+  logoWidth Int? @default(150)
+  logoHeight Int? @default(80)
+
+  buttonText String?
+  buttonWidth Int? @default(150)
+  buttonHeight Int? @default(60)
+  buttonLink String?
+}

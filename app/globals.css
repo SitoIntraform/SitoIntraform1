@@ -2,32 +2,236 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
-}
-
-@media (prefers-color-scheme: dark) {
+@layer base {
   :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+
+    --primary: 222.2 47.4% 11.2%;
+    --primary-foreground: 210 40% 98%;
+
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 222.2 84% 4.9%;
+
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 210 40% 98%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 212.7 26.8% 83.9%;
   }
 }
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+.modal-open {
+  overflow: hidden;
+}
+
+.hidden {
+  display: none;
+}
+
+.blueShadowBtn {
+  box-shadow: 2px 2px rgba(73, 101, 203, 0.5);
+}
+
+.greenShadowBtn {
+  box-shadow: 2px 2px rgba(63, 180, 93, 0.5);
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+.h1Shadow {
+  text-shadow: 2px 2px #303030;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 @layer utilities {
-  .text-balance {
-    text-wrap: balance;
+  * {
+    @apply border-border font-sans;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+
+  .h1Desktop {
+    @apply text-h1DesktopFont leading-[120%] font-bold text-textDesign font-roboto;
+  }
+  .h2Desktop {
+    @apply text-h2DesktopFont leading-[120%] font-bold text-textDesign font-roboto;
+  }
+  .h3Desktop {
+    @apply text-h3DesktopFont leading-[120%] font-bold text-textDesign font-roboto;
+  }
+  .h4Desktop {
+    @apply text-h4DesktopFont leading-[130%] font-bold text-textDesign font-roboto;
+  }
+  .h5Desktop {
+    @apply text-h5DesktopFont leading-[140%] font-bold text-textDesign font-roboto;
+  }
+  .h6Desktop {
+    @apply text-h6DesktopFont leading-[140%] font-bold text-textDesign font-roboto;
+  }
+
+  .h1Mobile {
+    @apply text-h1MobileFont leading-[120%] font-bold text-textDesign font-roboto;
+  }
+  .h2Mobile {
+    @apply text-h2MobileFont leading-[120%] font-bold text-textDesign font-roboto;
+  }
+  .h3Mobile {
+    @apply text-h3MobileFont leading-[120%] font-bold text-textDesign font-roboto;
+  }
+  .h4Mobile {
+    @apply text-h4MobileFont leading-[140%] font-bold text-textDesign font-roboto;
+  }
+  .h5Mobile {
+    @apply text-h5MobileFont leading-[140%] font-bold text-textDesign font-roboto;
+  }
+  .h6Mobile {
+    @apply text-h6MobileFont leading-[140%] font-bold text-textDesign font-roboto;
+  }
+
+  .large-light {
+    @apply font-light text-largeFont text-textDesign leading-[150%] font-sans;
+  }
+  .large-normal {
+    @apply font-normal text-largeFont text-textDesign leading-[150%] font-sans;
+  }
+  .large-medium {
+    @apply font-medium text-largeFont text-textDesign leading-[150%] font-sans;
+  }
+  .large-semibold {
+    @apply font-semibold text-largeFont text-textDesign leading-[150%] font-sans;
+  }
+  .large-bold {
+    @apply font-bold text-largeFont text-textDesign leading-[150%] font-sans;
+  }
+  .large-extrabold {
+    @apply font-extrabold text-largeFont text-textDesign leading-[150%] font-sans;
+  }
+
+  .medium-light {
+    @apply font-light text-mediumFont text-textDesign leading-[150%] font-sans;
+  }
+  .medium-normal {
+    @apply font-normal text-mediumFont text-textDesign leading-[150%] font-sans;
+  }
+  .medium-medium {
+    @apply font-medium text-mediumFont text-textDesign leading-[150%] font-sans;
+  }
+  .medium-semibold {
+    @apply font-semibold text-mediumFont text-textDesign leading-[150%] font-sans;
+  }
+  .medium-bold {
+    @apply font-bold text-mediumFont text-textDesign leading-[150%] font-sans;
+  }
+  .medium-extrabold {
+    @apply font-extrabold text-mediumFont text-textDesign leading-[150%] font-sans;
+  }
+
+  .regular-light {
+    @apply font-light text-regularFont text-textDesign leading-[150%] font-sans;
+  }
+  .regular-normal {
+    @apply font-normal text-regularFont text-textDesign leading-[150%] font-sans;
+  }
+  .regular-medium {
+    @apply font-medium text-regularFont text-textDesign leading-[150%] font-sans;
+  }
+  .regular-semibold {
+    @apply font-semibold text-regularFont text-textDesign leading-[150%] font-sans;
+  }
+  .regular-bold {
+    @apply font-bold text-regularFont text-textDesign leading-[150%] font-sans;
+  }
+  .regular-extrabold {
+    @apply font-extrabold text-regularFont text-textDesign leading-[150%] font-sans;
+  }
+
+  .small-light {
+    @apply font-light text-smallFont text-textDesign leading-[150%] font-sans;
+  }
+  .small-normal {
+    @apply font-normal text-smallFont text-textDesign leading-[150%] font-sans;
+  }
+  .small-medium {
+    @apply font-medium text-smallFont text-textDesign leading-[150%] font-sans;
+  }
+  .small-semibold {
+    @apply font-semibold text-smallFont text-textDesign leading-[150%] font-sans;
+  }
+  .small-bold {
+    @apply font-bold text-smallFont text-textDesign leading-[150%] font-sans;
+  }
+  .small-extrabold {
+    @apply font-extrabold text-smallrFont text-textDesign leading-[150%] font-sans;
+  }
+
+  .tiny-light {
+    @apply font-light text-tinyFont text-textDesign leading-[150%] font-sans;
+  }
+  .tiny-normal {
+    @apply font-normal text-tinyFont text-textDesign leading-[150%] font-sans;
+  }
+  .tiny-medium {
+    @apply font-medium text-tinyFont text-textDesign leading-[150%] font-sans;
+  }
+  .tiny-semibold {
+    @apply font-semibold text-tinyFont text-textDesign leading-[150%] font-sans;
+  }
+  .tiny-bold {
+    @apply font-bold text-tinyFont text-textDesign leading-[150%] font-sans;
+  }
+  .tiny-extrabold {
+    @apply font-extrabold text-tinyFont text-textDesign leading-[150%] font-sans;
   }
 }
