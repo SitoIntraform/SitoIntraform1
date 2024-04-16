@@ -1,6 +1,6 @@
 "use client";
 
-import { SectionType } from "@/types";
+import { PageType, SectionType } from "@/types";
 import { Link, Page } from "@prisma/client";
 import { usePathname } from "next/navigation";
 import React, { useEffect, useState } from "react";
@@ -14,11 +14,16 @@ function ShowPageComponent({
 }: {
   links: Link[];
   allSections: SectionType[];
-  allPages: Page[];
+  allPages: PageType[];
 }) {
   const [mounted, setMounted] = useState(false);
 
   const path = usePathname();
+
+  useEffect(() => {
+    window.scroll(0, 0);
+    console.log("SCROLL TO TOP");
+  }, [path]);
 
   useEffect(() => {
     setMounted(true);
@@ -43,7 +48,7 @@ function ShowPageComponent({
 
         return (
           <div className="pt-[80px]" key={index}>
-            {page.sections.map((sectionID, index2) => {
+            {page.sections?.map((sectionID, index2) => {
               const section = allSections.find(
                 (sec) => sec.SectionId === sectionID
               );
@@ -55,6 +60,8 @@ function ShowPageComponent({
               return (
                 <div key={index2}>
                   <ReturnViewComponent
+                    allPages={allPages}
+                    allSection={allSections}
                     section={section}
                     pageType={section.pageType}
                   />

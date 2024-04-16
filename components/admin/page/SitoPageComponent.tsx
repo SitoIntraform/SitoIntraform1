@@ -34,7 +34,7 @@ function SitoPageComponent({
   totalImage,
 }: {
   allPage: PageType[];
-  allSections?: SectionType[];
+  allSections: SectionType[];
   navbar: Navbar;
   allLinks: Link[];
   totalImage: string[];
@@ -47,20 +47,25 @@ function SitoPageComponent({
 
   const [links, setLinks] = useState(navbar.links);
 
-  const [possibleLinks, setPossibleLinks] = useState<Array<{name: string, value: string}>>([]);
+  const [possibleLinks, setPossibleLinks] = useState<
+    Array<{ name: string; value: string }>
+  >([]);
 
   useEffect(() => {
-    let links: Array<{ name: string, value: string }> = [];
+    let links: Array<{ name: string; value: string }> = [];
 
     allPage.forEach((page) => {
-      links = [...links, {
-        name: page.name,
-        value: "/"+page.PageId
-      }]
-    })
+      links = [
+        ...links,
+        {
+          name: page.name,
+          value: "/" + page.PageId,
+        },
+      ];
+    });
 
     setPossibleLinks(links);
-  }, [allPage])
+  }, [allPage]);
 
   const [logo, setLogo] = useState(navbar.logo || "");
   const [logoWidth, setLogoWidth] = useState(navbar.logoWidth || 150);
@@ -92,7 +97,7 @@ function SitoPageComponent({
 
   const onCancelEditNavbar = () => {
     setEditMode(false);
-    
+
     setLinks(navbar.links);
 
     setLogo(navbar.logo || "");
@@ -103,30 +108,35 @@ function SitoPageComponent({
     setButtonWidth(navbar.buttonWidth || 150);
     setButtonHeight(navbar.buttonHeight || 60);
     setButtonLink(navbar.buttonLink || "");
-  }
+  };
 
   const onEditNavbar = async () => {
     setLoading(true);
 
-    try{
-
+    try {
       const req = await axios.post(`/api/navbar`, {
-        links, logo, logoWidth, logoHeight, buttonText, buttonWidth, buttonHeight, buttonLink
+        links,
+        logo,
+        logoWidth,
+        logoHeight,
+        buttonText,
+        buttonWidth,
+        buttonHeight,
+        buttonLink,
       });
 
-      if(req.status === 200){
+      if (req.status === 200) {
         toast.success("Successo");
         setEditMode(false);
         router.refresh();
       }
-
-    } catch(err: any){
+    } catch (err: any) {
       console.log(err);
       toast.error(err.response.data);
-    } finally{
+    } finally {
       setLoading(false);
     }
-  }
+  };
 
   return (
     <CustomScrollbar
@@ -290,18 +300,25 @@ function SitoPageComponent({
                 </Button>
               </HeaderPage>
               <div className="my-5 flex items-center gap-4 flex-wrap justify-center">
-                {logo && (<div className="relative w-[300px] h-[200px] rounded-md overflow-hidden group">
-                  <Button
-                    className="hidden group-hover:flex absolute z-10 right-0 w-full h-full items-center justify-center"
-                    onClick={() => setLogo("")}
-                    rectangle
-                    disabled={loading}
-                  >
-                    <Trash className="h-8 w-8" />
-                  </Button>
+                {logo && (
+                  <div className="relative w-[300px] h-[200px] rounded-md overflow-hidden group">
+                    <Button
+                      className="hidden group-hover:flex absolute z-10 right-0 w-full h-full items-center justify-center"
+                      onClick={() => setLogo("")}
+                      rectangle
+                      disabled={loading}
+                    >
+                      <Trash className="h-8 w-8" />
+                    </Button>
 
-                  <Image src={logo} alt="Image" fill className="object-scale-down" />
-                </div>)}
+                    <Image
+                      src={logo}
+                      alt="Image"
+                      fill
+                      className="object-scale-down"
+                    />
+                  </div>
+                )}
               </div>
               <WrapConfigurazioni>
                 <Input
@@ -358,16 +375,30 @@ function SitoPageComponent({
         />
       </div>
 
-      <NavbarClient 
-        dev 
+      <NavbarClient
+        dev
         allLinks={allLinks}
         allPage={allPage}
-        logo={editMode ? logo : navbar.logo ? navbar.logo : ""}  
-        logoHeight={editMode ? logoHeight : navbar.logoHeight ? navbar.logoHeight : 150}
-        logoWidth={editMode ? logoWidth : navbar.logoWidth ? navbar.logoWidth : 80}
-        buttonText={editMode ? buttonText : navbar.buttonText ? navbar.buttonText : ""}
-        buttonHeight={editMode ? buttonHeight : navbar.buttonHeight ? navbar.buttonHeight : 150}
-        buttonWidth={editMode ? buttonWidth : navbar.buttonWidth ? navbar.buttonWidth : 60}
+        logo={editMode ? logo : navbar.logo ? navbar.logo : ""}
+        logoHeight={
+          editMode ? logoHeight : navbar.logoHeight ? navbar.logoHeight : 150
+        }
+        logoWidth={
+          editMode ? logoWidth : navbar.logoWidth ? navbar.logoWidth : 80
+        }
+        buttonText={
+          editMode ? buttonText : navbar.buttonText ? navbar.buttonText : ""
+        }
+        buttonHeight={
+          editMode
+            ? buttonHeight
+            : navbar.buttonHeight
+            ? navbar.buttonHeight
+            : 150
+        }
+        buttonWidth={
+          editMode ? buttonWidth : navbar.buttonWidth ? navbar.buttonWidth : 60
+        }
         links={editMode ? links : navbar.links ? navbar.links : []}
       />
       <div className="containerDesign px-10">
@@ -397,6 +428,8 @@ function SitoPageComponent({
               return (
                 <div key={sectionId}>
                   <ReturnViewComponent
+                    allSection={allSections}
+                    allPages={allPage}
                     dev
                     section={section}
                     pageType={section.pageType}

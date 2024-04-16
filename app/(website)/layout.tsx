@@ -102,7 +102,7 @@ async function WebsiteLayout({ children }: { children: React.ReactNode }) {
         buttonLink={navbar?.buttonLink || ""}
         buttonText={navbar?.buttonText || ""}
       />
-      <ShowPageComponent links={links} allSections={allSectionType} allPages={pages} />
+      <ShowPageComponent links={links} allSections={allSectionType} allPages={allPages} />
     </>
   )
 }

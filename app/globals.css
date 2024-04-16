@@ -98,9 +98,9 @@ html {
   * {
     @apply border-border font-sans;
   }
-  body {
+  /* body {
     @apply bg-background text-foreground;
-  }
+  } */
 
   .containerDesign{
     @apply max-w-[1440px] mx-auto px-10;

@@ -6,7 +6,7 @@ import HeaderPage from "../HeaderPage";
 import { Edit, Plus } from "lucide-react";
 import { useRouter } from "next/navigation";
 import Button from "@/components/Button";
-import { SectionColumnType, SectionType } from "@/types";
+import { PageType, SectionColumnType, SectionType } from "@/types";
 import { DataTable } from "@/components/DataTable";
 import { SectionColumn } from "./Columns/SectionColumns";
 import HeroView from "@/components/view/HeroView";
@@ -14,9 +14,13 @@ import { useScroll } from "framer-motion";
 import ReturnViewComponent from "@/components/view/ReturnViewComponent";
 
 function SezioniPageComponent({
-  sectionTable, allSection
+  sectionTable,
+  allSection,
+  allPages,
 }: {
-  sectionTable: SectionColumnType[], allSection?: SectionType[]
+  sectionTable: SectionColumnType[];
+  allSection: SectionType[];
+  allPages: PageType[];
 }) {
   const router = useRouter();
 
@@ -48,22 +52,21 @@ function SezioniPageComponent({
           </Button>
         </HeaderPage>
         <div className="my-[20px]" />
-        <DataTable
-          data={sectionTable}
-          columns={SectionColumn}
-        />
+        <DataTable data={sectionTable} columns={SectionColumn} />
       </div>
-      {allSection?.map(section => (
+      {allSection?.map((section) => (
         <div className="pt-[20px]" key={section.SectionId}>
           <div className="containerDesign px-10 pb-2">
             <HeaderPage
               title={section.name}
-              description={"Visualizza la preview della sezione " + section.name}
+              description={
+                "Visualizza la preview della sezione " + section.name
+              }
             >
               <Button
                 className="md:w-[170px] w-[90%] h-[50px]"
                 onClick={() => {
-                  router.push("sezioni/"+section.SectionId);
+                  router.push("sezioni/" + section.SectionId);
                 }}
                 disabled={false}
                 secondary
@@ -75,7 +78,13 @@ function SezioniPageComponent({
               </Button>
             </HeaderPage>
           </div>
-          <ReturnViewComponent dev section={section} pageType={section.pageType} />
+          <ReturnViewComponent
+            allSection={allSection}
+            allPages={allPages}
+            dev
+            section={section}
+            pageType={section.pageType}
+          />
         </div>
       ))}
     </CustomScrollbar>

@@ -99,6 +99,12 @@ function NavbarClient({
   const pathName = usePathname();
 
   useEffect(() => {
+    if (!isOpen) {
+      setDropDownOpen(-1);
+    }
+  }, [isOpen]);
+
+  useEffect(() => {
     setIsMounted(true);
   }, []);
 
@@ -120,6 +126,8 @@ function NavbarClient({
     (p) => p.PageId === buttonLink?.split("/").at(1)
   );
   buttonLinkReal = dev ? "" : "/" + page?.link;
+
+  
 
 
 
@@ -167,6 +175,7 @@ function NavbarClient({
                   href={linkReal}
                   key={currentLink?.LinkId}
                   className={`text-center regular-normal group`}
+                  scroll={true}
                 >
                   <div
                     className={`${
@@ -355,20 +364,29 @@ function NavbarClient({
                         >
                           <div className="flex flex-col items-center justify-between gap-3 rounded-md px-8 py-5">
                             {currentLink.multipleLink.map((l, index2) => {
+                              let linkReal2 = "";
+
+                              const page = allPage.find(
+                                (p) => p.PageId === l?.link?.split("/").at(1)
+                              );
+                              linkReal2 = dev ? "" : "/" + page?.link;
+
                               return (
-                                <div
+                                <Link
                                   key={index2}
                                   className="cursor-pointer text-white group/link"
                                   onClick={(e) => {
+                                    setIsOpen(false);
                                     e.stopPropagation();
                                   }}
+                                  href={linkReal2}
                                 >
                                   <p>{l.testo}</p>
                                   <div
                                     className={`h-[1px] w-0 group-hover/link:w-full bg-white
                                     transition-all duration-300  rounded-full`}
                                   />
-                                </div>
+                                </Link>
                               );
                             })}
                           </div>

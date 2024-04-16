@@ -1,7 +1,7 @@
 import SezioniPageComponent from "@/components/admin/page/SezioniPageComponent";
 import prismadb from "@/lib/prismadb";
 import React from "react";
-import { SectionColumnType, SectionType } from "@/types";
+import { PageType, SectionColumnType, SectionType } from "@/types";
 
 async function SezioniPage() {
   const section = await prismadb.section.findMany({});
@@ -76,8 +76,33 @@ async function SezioniPage() {
     }),
   ];
 
+  const pages = await prismadb.page.findMany({});
+
+  const allPages: PageType[] = pages && [
+    ...pages.map((page) => {
+      const createdAt = new Date(page.createdAt);
+      const updatedAt = new Date(page.updatedAt);
+
+      return {
+        PageId: page.PageId || "",
+        createdAt: `${createdAt.getUTCDate()}/${createdAt.getUTCMonth() + 1
+          }/${createdAt.getFullYear()}`,
+        updatedAt: `${updatedAt.getUTCDate()}/${updatedAt.getUTCMonth() + 1
+          }/${updatedAt.getFullYear()}`,
+
+        name: page.name || "",
+        link: page.link || "",
+
+        defaltPage: page.defaltPage || false,
+
+        numberSections: page.numberSections || 0,
+        sections: page.sections || [],
+      };
+    }),
+  ];
+
   return (
-    <SezioniPageComponent sectionTable={sectionTable} allSection={allSection} />
+    <SezioniPageComponent sectionTable={sectionTable} allSection={allSection} allPages={allPages} />
   );
 }
 

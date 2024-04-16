@@ -1,13 +1,13 @@
 import SitoPageComponent from "@/components/admin/page/SitoPageComponent";
 import prismadb from "@/lib/prismadb";
-import { SectionType } from "@/types";
+import { PageType, SectionType } from "@/types";
 import { Link } from "@prisma/client";
 import React from "react";
 
 async function SitoPage() {
   const pages = await prismadb.page.findMany({});
 
-  const allPages = pages && [
+  const allPages: PageType[] = pages && [
     ...pages.map((page) => {
       const createdAt = new Date(page.createdAt);
       const updatedAt = new Date(page.updatedAt);
@@ -41,8 +41,8 @@ async function SitoPage() {
 
       return {
         SectionId: sectionSingle?.SectionId || "",
-        updatedAt: sectionSingle?.updatedAt.toString() || "",
-        createdAt: sectionSingle?.createdAt.toString() || "",
+        updatedAt: updatedAt || "",
+        createdAt: createdAt || "",
         name: sectionSingle?.name || "",
         pageType: sectionSingle?.pageType || "Hero",
 

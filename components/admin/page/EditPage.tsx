@@ -10,7 +10,7 @@ import WrapConfigurazioni from "../WrapConfigurazioni";
 import Input from "@/components/Input";
 import Select from "@/components/Select";
 import toast from "react-hot-toast";
-import { emptySection, SectionType } from "@/types";
+import { emptySection, PageType, SectionType } from "@/types";
 import CheckBox from "@/components/CheckBox";
 import axios from "axios";
 import { useRouter } from "next/navigation";
@@ -22,12 +22,16 @@ function EditPage({
   pageData,
   possibleSectionData,
   sectionInPage,
-  allPage,
+  pagesWithoutSelectedPage,
+  allSection,
+  allPages
 }: {
   pageData: Page;
   possibleSectionData?: Section[];
   sectionInPage?: Section[];
-  allPage?: Page[];
+    pagesWithoutSelectedPage?: Page[];
+    allPages: PageType[]
+  allSection: SectionType[];
 }) {
   const router = useRouter();
   const [loading, setIsLoading] = useState(false);
@@ -58,7 +62,7 @@ function EditPage({
       name: string;
       value: string;
     }> =
-      allPage?.map((page) => {
+      pagesWithoutSelectedPage?.map((page) => {
         return {
           name: page.name + " - Link a pagina",
           value: "/" + page.PageId,
@@ -126,11 +130,11 @@ function EditPage({
         section.data.secondaryLink = "";
       }
 
-       section.data.service.forEach((ser) => {
-         if (ser.LinkPage == "#" + removedSection.SectionId){
-          ser.LinkPage = ""
-         }
-       })
+      section.data.service.forEach((ser) => {
+        if (ser.LinkPage == "#" + removedSection.SectionId) {
+          ser.LinkPage = "";
+        }
+      });
     });
 
     setPossibleSection((prev) => [removedSection, ...prev]);
@@ -242,7 +246,6 @@ function EditPage({
     setIsLoading(false);
 
     try {
-
       const res = await axios.delete(`/api/pages/${pageData.PageId}`);
 
       if (res.status === 200) {
@@ -250,7 +253,6 @@ function EditPage({
         window.location.assign("/admin/dashboard/sito");
         return;
       }
-
     } catch (err: any) {
       console.log(err);
       toast.error(err.response.data);
@@ -258,7 +260,7 @@ function EditPage({
       setIsLoading(false);
       setDeleteModal(false);
     }
-  }
+  };
 
   return (
     <CustomScrollbar
@@ -525,6 +527,8 @@ function EditPage({
         return (
           <>
             <ReturnViewComponent
+              allSection={allSection}
+              allPages={allPages}
               section={correctedSection}
               dev
               pageType={correctedSection.pageType}

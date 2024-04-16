@@ -6,7 +6,7 @@ import { Check, LogOut, Plus, Trash } from "lucide-react";
 import Button from "@/components/Button";
 import Input from "@/components/Input";
 import Select from "@/components/Select";
-import { FAQType, pageTypes, SectionType, ServiceType } from "@/types";
+import { FAQType, PageType, pageTypes, SectionType, ServiceType } from "@/types";
 import { Section } from "@prisma/client";
 import { useEffect, useState } from "react";
 import HeroConfigurator from "../configurator/HeroConfigurator";
@@ -23,12 +23,16 @@ interface CreateEditSectionPageProps {
   id: string;
   sectionRecived: SectionType;
   totalImage: string[];
+  allPages: PageType[];
+  allSection: SectionType[];
 }
 
 function CreateEditSectionPage({
   id,
   sectionRecived,
   totalImage,
+  allPages,
+  allSection
 }: CreateEditSectionPageProps) {
   const deleteModal = useDeleteModal();
 
@@ -443,6 +447,8 @@ function CreateEditSectionPage({
       {/* VIEW */}
       <>
         <ReturnViewComponent
+          allPages={allPages}
+          allSection={allSection}
           dev
           section={{
             SectionId: sectionRecived.SectionId,
