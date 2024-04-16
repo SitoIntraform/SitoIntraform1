@@ -6,7 +6,7 @@ import NavbarClient from "./NavbarClient";
 import ShowPageComponent from "./ShowPageComponent";
 import Loading from "./Loading";
 
-function PageViewer({ link }: { link: string }) {
+function PageViewer({ link }: { link?: string }) {
   const [data, setData] = useState<any>();
 
   useEffect(() => {
