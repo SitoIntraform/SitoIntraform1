@@ -9,7 +9,6 @@ export async function middleware(req: NextRequest, ev: NextFetchEvent) {
   // Definisci quali percorsi sono protetti
   const protectedRoutes = [
     "/admin",
-    "/api",
   ];
 
   // Controlla se il percorso richiesto è uno dei percorsi protetti
