@@ -8,26 +8,6 @@ const nextConfig = {
       },
     ],
   },
-  // async redirects() {
-  //   return [
-  //     {
-  //       source: "/admin/dashboard",
-  //       destination: "/admin/dashboard",
-  //       permanent: false,
-  //     },
-  //   ];
-  // },
-  headers: () => [
-    {
-      source: "/:path*",
-      headers: [
-        {
-          key: "Cache-Control",
-          value: "no-store",
-        },
-      ],
-    },
-  ],
 };
 
 export default nextConfig;
