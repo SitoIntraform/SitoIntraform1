@@ -89,8 +89,7 @@ async function page() {
     }),
   ];
 
-  console.log(allPages);
-  console.log(allSection);
+  console.log("Ciao");
 
   return (
     <>
