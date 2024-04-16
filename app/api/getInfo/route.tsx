@@ -95,5 +95,10 @@ export async function GET(req: Request) {
     allSectionType,
   };
 
-  return NextResponse.json(allInfo);
+  return NextResponse.json(allInfo, {
+    headers: {
+      "Content-Type": "application/json",
+      "Cache-Control": "public, max-age=0, must-revalidate",
+    },
+  });
 }

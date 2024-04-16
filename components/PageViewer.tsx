@@ -6,17 +6,23 @@ import NavbarClient from "./NavbarClient";
 import ShowPageComponent from "./ShowPageComponent";
 import Loading from "./Loading";
 
-function PageViewer() {
+function PageViewer({ link }: { link: string }) {
   const [data, setData] = useState<any>();
 
   useEffect(() => {
     const requestData = async () => {
-      const req = await axios.get(`/api/getInfo`)
+      const req = await axios.get(`/api/getInfo`, {
+        headers: {
+          "Content-Type": "application/json",
+          "Cache-Control": "public, max-age=0, must-revalidate",
+        },
+      });
       setData(req.data);
     };
 
     requestData();
-  }, []);
+    console.log("Ask data");
+  }, [link]);
 
   useEffect(() => {
     console.log(data);
@@ -28,7 +34,7 @@ function PageViewer() {
 
   return (
     <>
-      {/* <NavbarClient
+      <NavbarClient
         allLinks={data.links}
         dev={false}
         allPage={data.allPages}
@@ -45,7 +51,7 @@ function PageViewer() {
         links={data.links}
         allSections={data.allSectionType}
         allPages={data.allPages}
-      /> */}
+      />
     </>
   );
 }
