@@ -9,17 +9,14 @@ export async function middleware(req: NextRequest, ev: NextFetchEvent) {
   // Definisci quali percorsi sono protetti
   const protectedRoutes = [
     "/admin",
-    "/admin/immagini",
-    "/admin/sezioni",
-    "/admin/sito",
-    "/admin/corsi",
+    "/api",
   ];
 
   // Controlla se il percorso richiesto è uno dei percorsi protetti
-  if (protectedRoutes.some((route) => req.nextUrl.pathname === route)) {
+  if (protectedRoutes.some((route) => req.nextUrl.pathname.startsWith(route))) {
     if (!session) {
       const url = req.nextUrl.clone();
-      url.pathname = "/admin/sign-in"; // Reindirizza alla pagina di login
+      url.pathname = "/sign-in"; // Reindirizza alla pagina di login
       return NextResponse.redirect(url);
     }
   }
