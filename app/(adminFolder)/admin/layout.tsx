@@ -9,7 +9,7 @@ async function DashboardLayout({ children }: { children: React.ReactNode }) {
   const session = await getServerSession(authOptions);
 
   if (!session?.user?.email) {
-    redirect("/admin/sign-in");
+    redirect("/sign-in");
   }
 
   return (

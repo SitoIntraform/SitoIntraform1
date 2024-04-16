@@ -127,7 +127,7 @@ function NavbarAdmin() {
           <div className="lg:flex hidden flex-row items-center xl:gap-14 lg:gap-7 absolute top-[50%] -translate-y-[50%] left-[50%] -translate-x-[50%]">
             {links.map((link) => {
               // Capire se il link è attivo
-              const active = path.split("/").at(3) || "";
+              const active = path.split("/").at(2) || "";
               const isActive = active === link.link;
 
               return (
