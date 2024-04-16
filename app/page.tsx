@@ -1,117 +1,53 @@
+import Loading from '@/components/Loading';
 import NavbarClient from '@/components/NavbarClient';
-import PageViewer from '@/components/PageViewer';
 import ShowPageComponent from '@/components/ShowPageComponent';
-import prismadb from '@/lib/prismadb';
-import { SectionType } from '@/types';
-import { Page } from '@prisma/client';
 import axios from 'axios';
-import React, { useEffect } from 'react'
+import { NextResponse } from 'next/server';
+import React from 'react'
 
-async function page() {
+export async function loader({ params }: { params: any }) {
+  const linkId = params.linkId;  // Assumi che il parametro dinamico sia 'linkId'
 
-  // const pages: Page[] = await prismadb.page.findMany({});
-  // const allSection = await prismadb.section.findMany({});
-  // const navbar = await prismadb.navbar.findFirst({});
-  // const links = await prismadb.link.findMany({});
+  // Chiamata API per ottenere i dati basati su 'linkId'
+  const response = await axios.get(`/api/getInfo`);
 
-  // const allPages = pages && [
-  //   ...pages.map((page) => {
-  //     const createdAt = new Date(page.createdAt);
-  //     const updatedAt = new Date(page.updatedAt);
+  // Restituisce la risposta con i dati e disabilita la cache
+  return NextResponse.json(response.data, {
+    headers: {
+      'Cache-Control': 'no-store, max-age=0'
+    }
+  });
+}
 
-  //     return {
-  //       PageId: page.PageId || "",
-  //       createdAt: `${createdAt.getUTCDate()}/${createdAt.getUTCMonth() + 1
-  //         }/${createdAt.getFullYear()}`,
-  //       updatedAt: `${updatedAt.getUTCDate()}/${updatedAt.getUTCMonth() + 1
-  //         }/${updatedAt.getFullYear()}`,
+// Componente React per visualizzare i dati
+export default function PageViewer({ data } : { data: any}) {
 
-  //       name: page.name || "",
-  //       link: page.link || "",
+  console.log(data);
 
-  //       defaltPage: page.defaltPage || false,
-
-  //       numberSections: page.numberSections || 0,
-  //       sections: page.sections || [],
-  //     };
-  //   }),
-  // ];
-
-  // const allSectionType: SectionType[] = allSection && [
-  //   ...allSection.map((sectionSingle: any) => {
-  //     return {
-  //       SectionId: sectionSingle?.SectionId || "",
-  //       updatedAt: sectionSingle?.updatedAt.toString() || "",
-  //       createdAt: sectionSingle?.createdAt.toString() || "",
-  //       name: sectionSingle?.name || "",
-  //       pageType: sectionSingle?.pageType || "Hero",
-
-  //       data: {
-  //         animation: sectionSingle?.data.animation || false,
-  //         animationType: sectionSingle?.data.animationType || "up",
-
-  //         backgroundImages: sectionSingle?.data.backgroundImages || "",
-  //         backgroundImageOpacity:
-  //           sectionSingle?.data.backgroundImageOpacity || 100,
-  //         backgroundColor: sectionSingle?.data.backgroundColor || "",
-
-  //         images: sectionSingle?.data.images || [],
-  //         imagesOnLeft: sectionSingle?.data.imagesOnLeft || true,
-
-  //         textBlue: sectionSingle?.data.textBlue || "",
-  //         textGreen: sectionSingle?.data.textGreen || "",
-  //         textBlack: sectionSingle?.data.textBlack || "",
-  //         description: sectionSingle?.data.description || "",
-
-  //         carouselDots: sectionSingle?.data.carouselDots || false,
-  //         carouselButtons: sectionSingle?.data.carouselButtons || false,
-
-  //         service: sectionSingle?.data.service || [],
-
-  //         hScreen: sectionSingle?.data.hScreen || false,
-  //         space: sectionSingle?.data.space || 40,
-
-  //         primaryButton: sectionSingle?.data.primaryButton || false,
-  //         primaryButtonText: sectionSingle?.data.primaryButtonText || "",
-  //         primaryLink: sectionSingle?.data.primaryLink || "",
-  //         heightPrimaryButton: sectionSingle?.data.heightPrimaryButton || 0,
-  //         widthPrimaryButton: sectionSingle?.data.widthPrimaryButton || 0,
-
-  //         secondaryButton: sectionSingle?.data.secondaryButton || false,
-  //         secondaryButtonText: sectionSingle?.data.secondaryButtonText || "",
-  //         secondaryLink: sectionSingle?.data.secondaryLink || "",
-  //         heightSecondaryButton: sectionSingle?.data.heightSecondaryButton || 0,
-  //         widthSecondaryButton: sectionSingle?.data.widthSecondaryButton || 0,
-
-  //         faq: sectionSingle?.data.faq || [],
-  //       },
-  //     };
-  //   }),
-  // ];
+  if(!data){
+    return <Loading />
+  }
 
   return (
     <>
-      {/* <NavbarClient
-        allLinks={links}
+      <NavbarClient
+        allLinks={data.links}
         dev={false}
-        allPage={allPages}
-        links={navbar?.links || []}
-        logo={navbar?.logo || ""}
-        logoHeight={navbar?.logoHeight || 0}
-        logoWidth={navbar?.logoWidth || 0}
-        buttonHeight={navbar?.buttonHeight || 0}
-        buttonWidth={navbar?.buttonWidth || 0}
-        buttonLink={navbar?.buttonLink || ""}
-        buttonText={navbar?.buttonText || ""}
+        allPage={data.allPages}
+        links={data.navbar?.links || []}
+        logo={data.navbar?.logo || ""}
+        logoHeight={data.navbar?.logoHeight || 0}
+        logoWidth={data.navbar?.logoWidth || 0}
+        buttonHeight={data.navbar?.buttonHeight || 0}
+        buttonWidth={data.navbar?.buttonWidth || 0}
+        buttonLink={data.navbar?.buttonLink || ""}
+        buttonText={data.navbar?.buttonText || ""}
       />
       <ShowPageComponent
-        links={links}
-        allSections={allSectionType}
-        allPages={allPages}
-      /> */}
-      <PageViewer link='' />
+        links={data.links}
+        allSections={data.allSectionType}
+        allPages={data.allPages}
+      />
     </>
-  )
+  );
 }
-
-export default page
