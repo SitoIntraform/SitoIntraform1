@@ -1,11 +1,10 @@
-import NavbarClient from "@/components/NavbarClient";
-import ShowPageComponent from "@/components/ShowPageComponent";
-import prismadb from "@/lib/prismadb";
-import { SectionType } from "@/types";
-import { Page } from "@prisma/client";
-import React from "react";
+import ShowPageComponent from '@/components/ShowPageComponent';
+import prismadb from '@/lib/prismadb';
+import { SectionType } from '@/types';
+import { Page } from '@prisma/client';
+import React from 'react'
 
-async function WebsiteLayout({ children }: { children: React.ReactNode }) {
+async function page() {
   const pages: Page[] = await prismadb.page.findMany({});
   const allSection = await prismadb.section.findMany({});
   const navbar = await prismadb.navbar.findFirst({});
@@ -18,12 +17,10 @@ async function WebsiteLayout({ children }: { children: React.ReactNode }) {
 
       return {
         PageId: page.PageId || "",
-        createdAt: `${createdAt.getUTCDate()}/${
-          createdAt.getUTCMonth() + 1
-        }/${createdAt.getFullYear()}`,
-        updatedAt: `${updatedAt.getUTCDate()}/${
-          updatedAt.getUTCMonth() + 1
-        }/${updatedAt.getFullYear()}`,
+        createdAt: `${createdAt.getUTCDate()}/${createdAt.getUTCMonth() + 1
+          }/${createdAt.getFullYear()}`,
+        updatedAt: `${updatedAt.getUTCDate()}/${updatedAt.getUTCMonth() + 1
+          }/${updatedAt.getFullYear()}`,
 
         name: page.name || "",
         link: page.link || "",
@@ -50,8 +47,7 @@ async function WebsiteLayout({ children }: { children: React.ReactNode }) {
           animationType: sectionSingle?.data.animationType || "up",
 
           backgroundImages: sectionSingle?.data.backgroundImages || "",
-          backgroundImageOpacity:
-            sectionSingle?.data.backgroundImageOpacity || 100,
+          backgroundImageOpacity: sectionSingle?.data.backgroundImageOpacity || 100,
           backgroundColor: sectionSingle?.data.backgroundColor || "",
 
           images: sectionSingle?.data.images || [],
@@ -90,26 +86,9 @@ async function WebsiteLayout({ children }: { children: React.ReactNode }) {
 
   return (
     <>
-      <NavbarClient
-        allLinks={links}
-        dev={false}
-        allPage={allPages}
-        links={navbar?.links || []}
-        logo={navbar?.logo || ""}
-        logoHeight={navbar?.logoHeight || 0}
-        logoWidth={navbar?.logoWidth || 0}
-        buttonHeight={navbar?.buttonHeight || 0}
-        buttonWidth={navbar?.buttonWidth || 0}
-        buttonLink={navbar?.buttonLink || ""}
-        buttonText={navbar?.buttonText || ""}
-      />
-      <ShowPageComponent
-        links={links}
-        allSections={allSectionType}
-        allPages={allPages}
-      />
+      <ShowPageComponent links={links} allSections={allSectionType} allPages={allPages} />
     </>
-  );
+  )
 }
 
-export default WebsiteLayout;
+export default page
