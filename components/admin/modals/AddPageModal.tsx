@@ -30,7 +30,7 @@ function AddPageModal({
 
       if (res.status === 200) {
         toast.success("Pagina creata con successo");
-        window.location.assign("/admin/dashboard/sito");
+        window.location.assign("/admin/sito");
         return;
       }
     } catch (err: any) {

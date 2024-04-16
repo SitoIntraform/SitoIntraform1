@@ -113,7 +113,7 @@ function NavbarAdmin() {
       <div className="z-[100] w-full h-[80px] border-b shadow-sm fixed top-0 bg-white">
         <div className="h-full containerDesign px-10 flex items-center justify-between relative">
           <Link 
-            href={"/admin/dashboard"}
+            href={"/admin"}
             className="hover:scale-110 transition-all duration-300"
           >
             <Image 
@@ -132,7 +132,7 @@ function NavbarAdmin() {
 
               return (
                 <Link
-                  href={"/admin/dashboard/" + link.link}
+                  href={"/admin/" + link.link}
                   key={link.name}
                   className={`text-center regular-medium lg:medium-medium xl:large-medium group`}
                 >
@@ -220,7 +220,7 @@ function NavbarAdmin() {
 
               return (
                 <AnimatedLink
-                  href={"/admin/dashboard/" + link.link}
+                  href={"/admin/" + link.link}
                   key={link.name}
                   className={`text-center text-[55px] h-[60px] sm:text-[65px] group sm:h-[70px] font-semibold`}
                   variants={linkVariant}

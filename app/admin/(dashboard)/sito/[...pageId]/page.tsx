@@ -115,7 +115,7 @@ async function PageIdPage({
   ];
 
   if(!page){
-    redirect("/admin/dashboard/sito");
+    redirect("/admin/sito");
     return;
   }
 

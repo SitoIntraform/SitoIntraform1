@@ -226,9 +226,9 @@ function EditPage({
       if (res.status === 200) {
         toast.success("Pagina salvata con successo");
         if (exit) {
-          window.location.assign("/admin/dashboard/sito");
+          window.location.assign("/admin/sito");
         } else {
-          window.location.assign("/admin/dashboard/sito/" + pageData.PageId);
+          window.location.assign("/admin/sito/" + pageData.PageId);
         }
         return;
       }
@@ -250,7 +250,7 @@ function EditPage({
 
       if (res.status === 200) {
         toast.success("Pagina cancellata con successo");
-        window.location.assign("/admin/dashboard/sito");
+        window.location.assign("/admin/sito");
         return;
       }
     } catch (err: any) {
@@ -310,7 +310,7 @@ function EditPage({
                 <Button
                   className="md:w-[150px] w-[90%] h-[50px]"
                   onClick={() => {
-                    window.location.assign("/admin/dashboard/sito");
+                    window.location.assign("/admin/sito");
                   }}
                   disabled={loading}
                   secondary

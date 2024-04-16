@@ -71,7 +71,7 @@ export default function CellActionLink({ LinkId }: { LinkId: string }) {
           <DropdownMenuLabel>Actions</DropdownMenuLabel>
           <DropdownMenuItem
             disabled={loading}
-            onClick={() => router.push(`/admin/dashboard/sito/navbar/${LinkId}`)}
+            onClick={() => router.push(`/admin/sito/navbar/${LinkId}`)}
             className="cursor-pointer"
           >
             <Edit className="w-4 h-4 mr-2" />

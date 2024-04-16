@@ -71,7 +71,7 @@ export default function CellActionSection({ SectionId }: { SectionId: string }) 
           <DropdownMenuLabel>Actions</DropdownMenuLabel>
           <DropdownMenuItem
             disabled={loading}
-            onClick={() => router.push(`/admin/dashboard/sezioni/${SectionId}`)}
+            onClick={() => router.push(`/admin/sezioni/${SectionId}`)}
             className="cursor-pointer"
           >
             <Edit className="w-4 h-4 mr-2" />

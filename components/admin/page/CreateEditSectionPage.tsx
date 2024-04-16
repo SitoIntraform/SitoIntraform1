@@ -174,7 +174,7 @@ function CreateEditSectionPage({
 
       if (res.status === 200) {
         toast.success("Sezione creata con successo");
-        window.location.assign("/admin/dashboard/sezioni");
+        window.location.assign("/admin/sezioni");
         return;
       }
     } catch (err: any) {
@@ -234,7 +234,7 @@ function CreateEditSectionPage({
       if (res.status === 200) {
         toast.success("Sezione salvata con successo");
         if (exit) {
-          window.location.assign("/admin/dashboard/sezioni");
+          window.location.assign("/admin/sezioni");
         } else {
           router.refresh();
         }
@@ -258,7 +258,7 @@ function CreateEditSectionPage({
 
       if (res.status === 200) {
         toast.success("Sezione cancellata con successo");
-        window.location.assign("/admin/dashboard/sezioni");
+        window.location.assign("/admin/sezioni");
         return;
       }
     } catch (err: any) {
@@ -335,7 +335,7 @@ function CreateEditSectionPage({
                   <Button
                     className="md:w-[150px] w-[90%] h-[50px]"
                     onClick={() => {
-                      window.location.assign("/admin/dashboard/sezioni");
+                      window.location.assign("/admin/sezioni");
                     }}
                     disabled={loading}
                     secondary

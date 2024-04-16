@@ -211,7 +211,7 @@ function SitoPageComponent({
                 <Button
                   className="md:w-[170px] w-[90%] h-[50px]"
                   onClick={() => {
-                    router.push("/admin/dashboard/sito/navbar/new");
+                    router.push("/admin/sito/navbar/new");
                   }}
                   disabled={addPageModal.isOpen || loading}
                   secondary

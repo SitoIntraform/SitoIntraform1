@@ -1,3 +1,4 @@
+import NavbarClient from '@/components/NavbarClient';
 import ShowPageComponent from '@/components/ShowPageComponent';
 import prismadb from '@/lib/prismadb';
 import { SectionType } from '@/types';
@@ -86,6 +87,19 @@ async function page() {
 
   return (
     <>
+      <NavbarClient
+        allLinks={links}
+        dev={false}
+        allPage={allPages}
+        links={navbar?.links || []}
+        logo={navbar?.logo || ""}
+        logoHeight={navbar?.logoHeight || 0}
+        logoWidth={navbar?.logoWidth || 0}
+        buttonHeight={navbar?.buttonHeight || 0}
+        buttonWidth={navbar?.buttonWidth || 0}
+        buttonLink={navbar?.buttonLink || ""}
+        buttonText={navbar?.buttonText || ""}
+      />
       <ShowPageComponent links={links} allSections={allSectionType} allPages={allPages} />
     </>
   )
