@@ -12,12 +12,16 @@ function PageViewer() {
   useEffect(() => {
     const requestData = async () => {
       const req = await fetch(`/api/getInfo`, { next: { revalidate: 60 } })
-      .then(res => res.json())
-      .then(data => setData(data))
+        .then((res) => res.json())
+        .then((data) => setData(data));
     };
 
     requestData();
   }, []);
+
+  useEffect(() => {
+    console.log(data);
+  }, [data]);
 
   if (!data) {
     return <Loading />;
