@@ -103,7 +103,7 @@ html {
   }
 
   .containerDesign{
-    @apply max-w-[1400px] mx-auto px-10;
+    @apply max-w-[1440px] mx-auto px-10;
   }
 
   .h1Desktop {
