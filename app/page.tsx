@@ -89,8 +89,6 @@ async function page() {
     }),
   ];
 
-  console.log("Ciao");
-
   return (
     <>
       <NavbarClient

@@ -20,6 +20,8 @@ function ShowPageComponent({
 
   const path = usePathname();
 
+  console.log(allPages);
+
   useEffect(() => {
     window.scroll(0, 0);
     console.log("SCROLL TO TOP");

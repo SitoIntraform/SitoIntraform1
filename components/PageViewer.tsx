@@ -28,7 +28,7 @@ function PageViewer() {
 
   return (
     <>
-      <NavbarClient
+      {/* <NavbarClient
         allLinks={data.links}
         dev={false}
         allPage={data.allPages}
@@ -45,7 +45,7 @@ function PageViewer() {
         links={data.links}
         allSections={data.allSectionType}
         allPages={data.allPages}
-      />
+      /> */}
     </>
   );
 }
