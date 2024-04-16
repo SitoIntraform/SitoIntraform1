@@ -50,7 +50,8 @@ async function WebsiteLayout({ children }: { children: React.ReactNode }) {
           animationType: sectionSingle?.data.animationType || "up",
 
           backgroundImages: sectionSingle?.data.backgroundImages || "",
-          backgroundImageOpacity: sectionSingle?.data.backgroundImageOpacity || 100,
+          backgroundImageOpacity:
+            sectionSingle?.data.backgroundImageOpacity || 100,
           backgroundColor: sectionSingle?.data.backgroundColor || "",
 
           images: sectionSingle?.data.images || [],
@@ -89,7 +90,7 @@ async function WebsiteLayout({ children }: { children: React.ReactNode }) {
 
   return (
     <>
-      <NavbarClient 
+      <NavbarClient
         allLinks={links}
         dev={false}
         allPage={allPages}
@@ -102,9 +103,13 @@ async function WebsiteLayout({ children }: { children: React.ReactNode }) {
         buttonLink={navbar?.buttonLink || ""}
         buttonText={navbar?.buttonText || ""}
       />
-      {children}
+      <ShowPageComponent
+        links={links}
+        allSections={allSectionType}
+        allPages={allPages}
+      />
     </>
-  )
+  );
 }
 
 export default WebsiteLayout;
