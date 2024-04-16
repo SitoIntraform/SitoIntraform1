@@ -6,11 +6,11 @@ import { redirect } from "next/navigation";
 import React from "react";
 
 async function DashboardLayout({ children }: { children: React.ReactNode }) {
-  const session = await getServerSession(authOptions);
+  // const session = await getServerSession(authOptions);
 
-  if (!session?.user?.email) {
-    redirect("/admin/sign-in");
-  }
+  // if (!session?.user?.email) {
+  //   redirect("/admin/sign-in");
+  // }
 
   return (
     <>

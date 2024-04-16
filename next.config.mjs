@@ -8,6 +8,15 @@ const nextConfig = {
       },
     ],
   },
+  // async redirects() {
+  //   return [
+  //     {
+  //       source: "/admin/dashboard",
+  //       destination: "/admin/dashboard",
+  //       permanent: false,
+  //     },
+  //   ];
+  // },
 };
 
 export default nextConfig;
