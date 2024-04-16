@@ -159,7 +159,7 @@ function SitoPageComponent({
         isOpen={addPageModal.isOpen}
         onClose={addPageModal.onClose}
       />
-      <div className="container px-10 pt-[80px]">
+      <div className="containerDesign px-10 pt-[80px]">
         <HeaderPage
           title="Pagine"
           description="Gestisci tutte le pagine del sito."
@@ -370,7 +370,7 @@ function SitoPageComponent({
         buttonWidth={editMode ? buttonWidth : navbar.buttonWidth ? navbar.buttonWidth : 60}
         links={editMode ? links : navbar.links ? navbar.links : []}
       />
-      <div className="container px-10">
+      <div className="containerDesign px-10">
         <HeaderPage
           title="Prview del sito"
           description="Visualizza tutte le pagine del sito"
@@ -381,7 +381,7 @@ function SitoPageComponent({
       {allPage.map((page) => {
         return (
           <div key={page.PageId}>
-            <div className="container px-10 mb-[10px]">
+            <div className="containerDesign px-10 mb-[10px]">
               <HeaderPage title={page.name} description="" />
             </div>
 

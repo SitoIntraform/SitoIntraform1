@@ -87,7 +87,7 @@ function HeroView({ section, dev }: { section: SectionType; dev?: boolean }) {
         key={updateAnimationCounter}
       >
         <div
-          className={`max-w-[1400px] mx-auto px-10 h-full w-full flex flex-col items-center justify-center`}
+          className={`containerDesign h-full w-full flex flex-col items-center justify-center`}
         >
           <motion.div
             viewport={{ once: true }}

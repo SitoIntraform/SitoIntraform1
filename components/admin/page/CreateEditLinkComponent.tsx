@@ -163,7 +163,7 @@ function CreateEditLinkComponent({
         isOpen={deleteModal}
         text={`Sei sicuro di voler eliminare questo link?`}
       />
-      <div className="container px-10 pt-[80px]">
+      <div className="containerDesign px-10 pt-[80px]">
         <div className="md:sticky top-[80px] bg-white z-[90]">
           <HeaderPage
             title="Link"

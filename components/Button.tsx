@@ -44,7 +44,7 @@ function Button({
   return (
     <button
       className={`relative group ${wfull ? "w-full" : ""}  
-      ${rectangle ? "rounded-md" : "rounded-full"} overflow-hidden text-white
+      ${rectangle ? "rounded-md" : "rounded-full"} overflow-x-hidden overflow-y-hidden text-white
       ${secondary ? "greenShadowBtn" : "blueShadowBtn"}
       ${secondary ? "bg-accentDesign" : "bg-primaryDesign"}
       ${!animation && "hover:opacity-80"}

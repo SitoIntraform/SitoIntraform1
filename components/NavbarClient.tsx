@@ -130,7 +130,7 @@ function NavbarClient({
           dev ? "" : "fixed top-0"
         }`}
       >
-        <div className="h-full px-10 max-w-[1400px] mx-auto flex items-center justify-between relative">
+        <div className="h-full containerDesign flex items-center justify-between relative">
           <Link
             href={"/"}
             className="hover:scale-110 transition-all duration-300"

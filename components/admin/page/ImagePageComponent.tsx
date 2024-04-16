@@ -55,7 +55,7 @@ function ImagePageComponent({ images }: ImagePageProps) {
   return (
     <CustomScrollbar
       containerStyle="h-screen"
-      childrenContainerStyle="h-full  container px-10 pt-[80px]"
+      childrenContainerStyle="h-full  containerDesign px-10 pt-[80px]"
       scrollbarContainerStyle="absolute top-0 right-0 h-full w-2 bg-transparent"
       scrollbarStyle="left-0 absolute w-full bg-primaryDesign rounded-full"
       trackStyle="h-full absolute left-0 top-0 w-full"

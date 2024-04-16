@@ -76,7 +76,7 @@ function OnlyTextView({
             : section.data.space + "px",
           paddingTop: section.data.hScreen ? "0px" : section.data.space + "px",
         }}
-        className={`h-full z-30 flex max-w-[1400px] mx-auto px-10  flex-col items-center justify-center ${
+        className={`h-full z-30 flex containerDesign  flex-col items-center justify-center ${
           section.data.hScreen ? "py-10 lg:py-0" : "!max-lg:!py-10"
         }`}
       >

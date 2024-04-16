@@ -28,7 +28,7 @@ function SezioniPageComponent({
       scrollbarStyle="left-0 absolute w-full bg-primaryDesign rounded-full"
       trackStyle="h-full absolute left-0 top-0 w-full"
     >
-      <div className="container px-10 pt-[80px]">
+      <div className="containerDesign px-10 pt-[80px]">
         <HeaderPage
           title="Sezioni"
           description="Gestisci tutte le sezioni del sito."
@@ -55,7 +55,7 @@ function SezioniPageComponent({
       </div>
       {allSection?.map(section => (
         <div className="pt-[20px]" key={section.SectionId}>
-          <div className="container px-10 pb-2">
+          <div className="containerDesign px-10 pb-2">
             <HeaderPage
               title={section.name}
               description={"Visualizza la preview della sezione " + section.name}

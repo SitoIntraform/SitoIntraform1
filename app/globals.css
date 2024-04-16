@@ -102,6 +102,10 @@ html {
     @apply bg-background text-foreground;
   }
 
+  .containerDesign{
+    @apply max-w-[1400px] mx-auto px-10;
+  }
+
   .h1Desktop {
     @apply text-h1DesktopFont leading-[120%] font-bold text-textDesign font-roboto;
   }

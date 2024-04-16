@@ -89,12 +89,12 @@ function TextWithImageView({
             : section.data.space + "px",
           paddingTop: section.data.hScreen ? "0px" : section.data.space + "px",
         }}
-        className={`h-full z-30 flex max-w-[1400px] mx-auto px-10  flex-col items-center justify-center ${
+        className={`h-full z-30 flex containerDesign  flex-col items-center justify-center ${
           section.data.hScreen ? "py-10 lg:py-0" : "!max-lg:!py-10"
         }`}
       >
         <div
-          className={`mx-auto flex w-[100%] md:w-[90%] items-center justify-center gap-12 lg:gap-24 xl:gap-36 ${
+          className={`mx-auto flex w-[100%] items-center justify-center gap-12 lg:gap-24 xl:gap-36 ${
             section.data.imagesOnLeft
               ? "flex-col lg:flex-row"
               : "flex-col-reverse lg:flex-row-reverse"
@@ -106,7 +106,7 @@ function TextWithImageView({
               variants={containerAnimation(0, section.data.animationType)}
               initial={section.data.animation ? "hidden" : ""}
               whileInView={section.data.animation ? "show" : ""}
-              className="h2Mobile lg:h4Desktop xl:h2Desktop relative"
+              className="h2Mobile lg:h4Desktop xl:h2Desktop relative text-center lg:text-start"
             >
               {/* Title */}
 

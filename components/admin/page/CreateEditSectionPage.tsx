@@ -280,7 +280,7 @@ function CreateEditSectionPage({
         isOpen={deleteModal.isOpen}
         text={`Sei sicuro di voler eliminare la sezione ${name}?`}
       />
-      <div className="container px-10 pt-[80px]">
+      <div className="containerDesign px-10 pt-[80px]">
         <div className="md:sticky top-[80px] bg-white z-[90]">
           <HeaderPage
             title="Sezione"
@@ -433,7 +433,7 @@ function CreateEditSectionPage({
           />
         </>
       </div>
-      <div className="my-[100px] container px-10">
+      <div className="my-[100px] containerDesign px-10">
         <HeaderPage
           title="Preview pagina"
           description="Guarda la preview della pagina"

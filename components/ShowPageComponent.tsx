@@ -24,7 +24,7 @@ function ShowPageComponent({
     setMounted(true);
   }, []);
 
-  if(!mounted){
+  if (!mounted) {
     return null;
   }
 
@@ -42,24 +42,26 @@ function ShowPageComponent({
         }
 
         return (
-            <div className="pt-[80px]" key={index}>            
-                {page.sections.map((sectionID, index2) => {
-                  const section = allSections.find((sec) => sec.SectionId === sectionID);
+          <div className="pt-[80px]" key={index}>
+            {page.sections.map((sectionID, index2) => {
+              const section = allSections.find(
+                (sec) => sec.SectionId === sectionID
+              );
 
-                  if(!section){
-                    return;
-                  }
+              if (!section) {
+                return;
+              }
 
-                  return (
-                    <div key={index2}>
-                        <ReturnViewComponent 
-                          section={section}
-                          pageType={section.pageType}
-                        />
-                    </div>
-                  )
-                })} 
-            </div>
+              return (
+                <div key={index2}>
+                  <ReturnViewComponent
+                    section={section}
+                    pageType={section.pageType}
+                  />
+                </div>
+              );
+            })}
+          </div>
         );
       })}
     </CustomScrollbar>
