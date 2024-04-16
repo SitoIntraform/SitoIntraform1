@@ -89,10 +89,8 @@ async function page() {
     }),
   ];
 
-  console.log({
-    allPages,
-    allSection,
-  });
+  console.log(allPages);
+  console.log(allSection);
 
   return (
     <>
