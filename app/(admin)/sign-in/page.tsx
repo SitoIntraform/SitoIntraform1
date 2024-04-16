@@ -36,7 +36,9 @@ function SignInPage() {
 
     if (login?.ok) {
       toast.success("Accesso eseguito correctamente");
-      window.location.assign("/admin/");
+      await setTimeout(() => {
+        window.location.assign("/admin/");
+      }, 200)
     } else {
       toast.error("Credenziali sbagliate");
     }
