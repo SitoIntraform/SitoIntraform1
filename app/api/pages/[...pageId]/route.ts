@@ -2,6 +2,7 @@ import { authOptions } from "@/lib/authOptions";
 import { getServerSession } from "next-auth";
 import { NextResponse } from "next/server";
 import prismadb from "@/lib/prismadb";
+import { Section } from "@prisma/client";
 
 export async function POST(
   req: Request,
@@ -98,73 +99,6 @@ export async function POST(
       },
     });
 
-    const sectionToReset = await prismadb.section.findMany({
-      where: {
-        PageId: pageId[0],
-      },
-    });
-
-    sectionToReset.forEach(async (sect) => {
-      console.log("page to reset: " + sect.name);
-
-      const isSectionIn = sections.find(
-        (sec: any) => sec.SectionId === sect.SectionId
-      );
-
-      console.log(sections);
-
-      if (isSectionIn) {
-        return;
-      }
-
-      await prismadb.section.update({
-        where: {
-          SectionId: sect.SectionId,
-        },
-        data: {
-          PageId: "",
-          data: {
-            animation: sect.data.animation,
-            animationType: sect.data.animationType,
-
-            backgroundImages: sect.data.backgroundImages,
-            backgroundImageOpacity: sect.data.backgroundImageOpacity,
-            backgroundColor: sect.data.backgroundColor,
-
-            images: sect.data.images,
-            imagesOnLeft: sect.data.imagesOnLeft,
-
-            textBlue: sect.data.textBlue,
-            textGreen: sect.data.textGreen,
-            textBlack: sect.data.textBlack,
-            description: sect.data.description,
-
-            carouselDots: sect.data.carouselDots,
-            carouselButtons: sect.data.carouselButtons,
-
-            service: sect.data.service,
-
-            hScreen: sect.data.hScreen,
-            space: sect.data.space,
-
-            primaryButton: sect.data.primaryButton,
-            primaryButtonText: sect.data.primaryButtonText,
-            primaryLink: "",
-            widthPrimaryButton: sect.data.widthPrimaryButton,
-            heightPrimaryButton: sect.data.heightPrimaryButton,
-
-            secondaryButton: sect.data.secondaryButton,
-            secondaryButtonText: sect.data.secondaryButtonText,
-            secondaryLink: "",
-            widthSecondaryButton: sect.data.widthSecondaryButton,
-            heightSecondaryButton: sect.data.heightSecondaryButton,
-
-            faq: sect.data.faq,
-          },
-        },
-      });
-    });
-
     sections.forEach(async (section: any) => {
       await prismadb.section.update({
         where: {
@@ -213,6 +147,72 @@ export async function POST(
         },
       });
     });
+
+    const allSectionWithId = await prismadb.section.findMany({
+      where: {
+        PageId: pageId[0],
+      }
+    });
+
+    const sectionToReset = allSectionWithId.map((s) => {
+
+      if(sections.find((sec: any) => sec.PageId === s.PageId)){
+        return s;
+      }
+    });
+
+    if(sectionToReset.length > 0){
+      sectionToReset.forEach(async (s) => {
+        
+        await prismadb.section.update({
+          where: {
+            SectionId: s?.SectionId,
+          },
+          data: {
+            PageId: "",
+            data: {
+              animation: s?.data.animation,
+              animationType: s?.data.animationType,
+
+              backgroundImages: s?.data.backgroundImages,
+              backgroundImageOpacity: s?.data.backgroundImageOpacity,
+              backgroundColor: s?.data.backgroundColor,
+
+              images: s?.data.images,
+              imagesOnLeft: s?.data.imagesOnLeft,
+
+              textBlue: s?.data.textBlue,
+              textGreen: s?.data.textGreen,
+              textBlack: s?.data.textBlack,
+              description: s?.data.description,
+
+              carouselDots: s?.data.carouselDots,
+              carouselButtons: s?.data.carouselButtons,
+
+              service: s?.data.service,
+
+              hScreen: s?.data.hScreen,
+              space: s?.data.space,
+
+              primaryButton: s?.data.primaryButton,
+              primaryButtonText: s?.data.primaryButtonText,
+              primaryLink: s?.data.primaryLink,
+              widthPrimaryButton: s?.data.widthPrimaryButton,
+              heightPrimaryButton: s?.data.heightPrimaryButton,
+
+              secondaryButton: s?.data.secondaryButton,
+              secondaryButtonText: s?.data.secondaryButtonText,
+              secondaryLink: s?.data.secondaryLink,
+              widthSecondaryButton: s?.data.widthSecondaryButton,
+              heightSecondaryButton: s?.data.heightSecondaryButton,
+
+              faq: s?.data.faq,
+            },
+          },
+        });
+
+      })
+    }
 
     return NextResponse.json(page);
   } catch (err: any) {
