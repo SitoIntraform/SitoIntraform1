@@ -99,120 +99,114 @@ export async function POST(
       },
     });
 
-    sections.forEach(async (section: any) => {
-      await prismadb.section.update({
-        where: {
-          SectionId: section.SectionId,
-        },
-        data: {
-          PageId: pageId[0],
-          data: {
-            animation: section.data.animation,
-            animationType: section.data.animationType,
+    const allSections = await prismadb.section.findMany({});
 
-            backgroundImages: section.data.backgroundImages,
-            backgroundImageOpacity: section.data.backgroundImageOpacity,
-            backgroundColor: section.data.backgroundColor,
+    allSections.forEach(async (sec) => {
+      const isInSections: Section = sections.find(
+        (s: Section) => s.SectionId === sec.SectionId
+      );
 
-            images: section.data.images,
-            imagesOnLeft: section.data.imagesOnLeft,
-
-            textBlue: section.data.textBlue,
-            textGreen: section.data.textGreen,
-            textBlack: section.data.textBlack,
-            description: section.data.description,
-
-            carouselDots: section.data.carouselDots,
-            carouselButtons: section.data.carouselButtons,
-
-            service: section.data.service,
-
-            hScreen: section.data.hScreen,
-            space: section.data.space,
-
-            primaryButton: section.data.primaryButton,
-            primaryButtonText: section.data.primaryButtonText,
-            primaryLink: section.data.primaryLink,
-            widthPrimaryButton: section.data.widthPrimaryButton,
-            heightPrimaryButton: section.data.heightPrimaryButton,
-
-            secondaryButton: section.data.secondaryButton,
-            secondaryButtonText: section.data.secondaryButtonText,
-            secondaryLink: section.data.secondaryLink,
-            widthSecondaryButton: section.data.widthSecondaryButton,
-            heightSecondaryButton: section.data.heightSecondaryButton,
-
-            faq: section.data.faq,
-          },
-        },
-      });
-    });
-
-    const allSectionWithId = await prismadb.section.findMany({
-      where: {
-        PageId: pageId[0],
-      }
-    });
-
-    const sectionToReset = allSectionWithId.map((s) => {
-
-      if(sections.find((sec: any) => sec.PageId === s.PageId)){
-        return s;
-      }
-    });
-
-    if(sectionToReset.length > 0){
-      sectionToReset.forEach(async (s) => {
+      if (isInSections) {
+        console.log("is in sections: " + sec.name);
 
         await prismadb.section.update({
           where: {
-            SectionId: s?.SectionId,
+            SectionId: sec.SectionId,
           },
           data: {
-            PageId: null,
+            PageId: pageId[0],
             data: {
-              animation: s?.data.animation,
-              animationType: s?.data.animationType,
+              animation: sec.data.animation,
+              animationType: sec.data.animationType,
 
-              backgroundImages: s?.data.backgroundImages,
-              backgroundImageOpacity: s?.data.backgroundImageOpacity,
-              backgroundColor: s?.data.backgroundColor,
+              backgroundImages: sec.data.backgroundImages,
+              backgroundImageOpacity: sec.data.backgroundImageOpacity,
+              backgroundColor: sec.data.backgroundColor,
 
-              images: s?.data.images,
-              imagesOnLeft: s?.data.imagesOnLeft,
+              images: sec.data.images,
+              imagesOnLeft: sec.data.imagesOnLeft,
 
-              textBlue: s?.data.textBlue,
-              textGreen: s?.data.textGreen,
-              textBlack: s?.data.textBlack,
-              description: s?.data.description,
+              textBlue: sec.data.textBlue,
+              textGreen: sec.data.textGreen,
+              textBlack: sec.data.textBlack,
+              description: sec.data.description,
 
-              carouselDots: s?.data.carouselDots,
-              carouselButtons: s?.data.carouselButtons,
+              carouselDots: sec.data.carouselDots,
+              carouselButtons: sec.data.carouselButtons,
 
-              service: s?.data.service,
+              service: sec.data.service,
 
-              hScreen: s?.data.hScreen,
-              space: s?.data.space,
+              hScreen: sec.data.hScreen,
+              space: sec.data.space,
 
-              primaryButton: s?.data.primaryButton,
-              primaryButtonText: s?.data.primaryButtonText,
-              primaryLink: s?.data.primaryLink,
-              widthPrimaryButton: s?.data.widthPrimaryButton,
-              heightPrimaryButton: s?.data.heightPrimaryButton,
+              primaryButton: sec.data.primaryButton,
+              primaryButtonText: sec.data.primaryButtonText,
+              primaryLink: sec.data.primaryLink,
+              widthPrimaryButton: sec.data.widthPrimaryButton,
+              heightPrimaryButton: sec.data.heightPrimaryButton,
 
-              secondaryButton: s?.data.secondaryButton,
-              secondaryButtonText: s?.data.secondaryButtonText,
-              secondaryLink: s?.data.secondaryLink,
-              widthSecondaryButton: s?.data.widthSecondaryButton,
-              heightSecondaryButton: s?.data.heightSecondaryButton,
+              secondaryButton: sec.data.secondaryButton,
+              secondaryButtonText: sec.data.secondaryButtonText,
+              secondaryLink: sec.data.secondaryLink,
+              widthSecondaryButton: sec.data.widthSecondaryButton,
+              heightSecondaryButton: sec.data.heightSecondaryButton,
 
-              faq: s?.data.faq,
+              faq: sec.data.faq,
             },
           },
         });
+      } else {
+        if (sec.PageId === pageId[0]) {
+          console.log("to delete: " + sec.name);
+          await prismadb.section.update({
+            where: {
+              SectionId: sec.SectionId,
+            },
+            data: {
+              PageId: null,
+              data: {
+                animation: sec.data.animation,
+                animationType: sec.data.animationType,
 
-      })
-    }
+                backgroundImages: sec.data.backgroundImages,
+                backgroundImageOpacity: sec.data.backgroundImageOpacity,
+                backgroundColor: sec.data.backgroundColor,
+
+                images: sec.data.images,
+                imagesOnLeft: sec.data.imagesOnLeft,
+
+                textBlue: sec.data.textBlue,
+                textGreen: sec.data.textGreen,
+                textBlack: sec.data.textBlack,
+                description: sec.data.description,
+
+                carouselDots: sec.data.carouselDots,
+                carouselButtons: sec.data.carouselButtons,
+
+                service: sec.data.service,
+
+                hScreen: sec.data.hScreen,
+                space: sec.data.space,
+
+                primaryButton: sec.data.primaryButton,
+                primaryButtonText: sec.data.primaryButtonText,
+                primaryLink: "",
+                widthPrimaryButton: sec.data.widthPrimaryButton,
+                heightPrimaryButton: sec.data.heightPrimaryButton,
+
+                secondaryButton: sec.data.secondaryButton,
+                secondaryButtonText: sec.data.secondaryButtonText,
+                secondaryLink: "",
+                widthSecondaryButton: sec.data.widthSecondaryButton,
+                heightSecondaryButton: sec.data.heightSecondaryButton,
+
+                faq: sec.data.faq,
+              },
+            },
+          });
+        }
+      }
+    });
 
     return NextResponse.json(page);
   } catch (err: any) {
@@ -240,36 +234,34 @@ export async function DELETE(
 
     const sectionWithPage = await prismadb.section.findMany({
       where: {
-        PageId: pageId[0]
-      }
-    })
+        PageId: pageId[0],
+      },
+    });
 
-    if(sectionWithPage.length > 0){
+    if (sectionWithPage.length > 0) {
       return new NextResponse(
         "Non puoi cancellare la pagina poichè al suo interno ha delle sezioni, pulisci prima tutto prima di poter cancellare",
         { status: 400 }
       );
     }
 
-    const linksNav = await prismadb.link.findMany({ });
+    const linksNav = await prismadb.link.findMany({});
 
     let usedInLinks = false;
 
     linksNav.forEach((link) => {
-      if(link.link === "/"+pageToDelete?.PageId && link.type === "Single"){
-        usedInLinks=true;
+      if (link.link === "/" + pageToDelete?.PageId && link.type === "Single") {
+        usedInLinks = true;
       }
 
-      if(link.type === "Multiple"){
+      if (link.type === "Multiple") {
         link.multipleLink.forEach((single) => {
-          if (
-            single.link === "/" + pageToDelete?.PageId
-          ) {
+          if (single.link === "/" + pageToDelete?.PageId) {
             usedInLinks = true;
           }
-        })
+        });
       }
-    })
+    });
 
     if (usedInLinks) {
       return new NextResponse(
@@ -302,7 +294,7 @@ export async function DELETE(
       });
     });
 
-    if(used){
+    if (used) {
       return new NextResponse(
         "Non puoi cancellare la pagina poichè è usata come link in un'altra pagina, rimuovi prima il link",
         { status: 400 }
@@ -321,20 +313,18 @@ export async function DELETE(
     used = false;
 
     links.forEach((link) => {
-
-      if(link.link === "/"+pageToDelete?.PageId){
+      if (link.link === "/" + pageToDelete?.PageId) {
         used = true;
       }
 
       link.multipleLink.forEach((mult) => {
-
-        if(mult.link === "/"+pageToDelete?.PageId){
+        if (mult.link === "/" + pageToDelete?.PageId) {
           used = true;
         }
-      })
-    })
+      });
+    });
 
-    if(used){
+    if (used) {
       return new NextResponse(
         "Non puoi cancellare la pagina poichè è collegata ad un link nella navbar, cancella prima il link",
         { status: 400 }
