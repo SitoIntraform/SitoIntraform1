@@ -163,13 +163,13 @@ export async function POST(
 
     if(sectionToReset.length > 0){
       sectionToReset.forEach(async (s) => {
-        
+
         await prismadb.section.update({
           where: {
             SectionId: s?.SectionId,
           },
           data: {
-            PageId: "",
+            PageId: null,
             data: {
               animation: s?.data.animation,
               animationType: s?.data.animationType,
