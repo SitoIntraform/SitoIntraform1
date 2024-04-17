@@ -4,6 +4,7 @@ import HeroView from "./HeroView";
 import TextWithImageView from "./TextWithImageView";
 import OnlyTextView from "./OnlyTextView";
 import { Page } from "@prisma/client";
+import GalleryView from "./GalleryView";
 
 function ReturnViewComponent({
   pageType,
@@ -24,6 +25,8 @@ function ReturnViewComponent({
     return <TextWithImageView dev={dev} section={section} allPages={allPages} allSections={allSection} />;
   } else if (pageType === "OnlyText") {
     return <OnlyTextView dev={dev} section={section} allPages={allPages} allSections={allSection} />;
+  } else if (pageType === "Gallery") {
+    return <GalleryView dev={dev} section={section} allPages={allPages} allSections={allSection} />;
   }
 }
 

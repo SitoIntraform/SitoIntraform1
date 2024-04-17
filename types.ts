@@ -85,6 +85,10 @@ export const pageTypes: pageType[] = [
     value: "OnlyText",
     name: "Solo testo",
   },
+  {
+    value: "Gallery",
+    name: "Galleria",
+  },
 ];
 
 export type SectionColumnType = {
