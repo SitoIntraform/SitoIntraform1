@@ -122,7 +122,7 @@ export async function POST(
           SectionId: sect.SectionId,
         },
         data: {
-          PageId: null,
+          PageId: "",
           data: {
             animation: sect.data.animation,
             animationType: sect.data.animationType,
