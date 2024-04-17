@@ -6,7 +6,9 @@ import { NextResponse } from 'next/server';
 import React, { useEffect, useState } from 'react'
 
 async function getData() {
-  const response = await fetch('https://intraform.vercel.app/api/getInfo');
+  const response = await fetch('https://intraform.vercel.app/api/getInfo', {
+    cache: "no-cache"
+  });
   const data = await response.json();
   return data;
 }
