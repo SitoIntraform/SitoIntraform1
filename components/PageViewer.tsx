@@ -5,6 +5,8 @@ import NavbarClient from "./NavbarClient";
 import ShowPageComponent from "./ShowPageComponent";
 import { Link, Navbar } from "@prisma/client";
 import { PageType, SectionType } from "@/types";
+import PrivacyModal from "./admin/modals/PrivacyModal";
+import usePrivacyModal from "@/hooks/usePrivacyModal";
 
 function PageViewer({
   links,
@@ -17,6 +19,8 @@ function PageViewer({
   navbar: Navbar | null;
   allSectionType: SectionType[];
 }) {
+  const privacyModal = usePrivacyModal();
+
   return (
     <div>
       <NavbarClient
@@ -36,6 +40,10 @@ function PageViewer({
         links={links}
         allSections={allSectionType}
         allPages={allPages}
+      />
+      <PrivacyModal
+        isOpen={privacyModal.isOpen}
+        onClose={privacyModal.onClose}
       />
     </div>
   );

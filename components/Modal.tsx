@@ -67,7 +67,7 @@ function Modal({
 
   return (
     <motion.div
-      className="h-screen w-screen fixed top-0 inset-0 bg-textDesign/40 z-[102] flex flex-col items-center justify-center"
+      className="h-screen w-screen fixed top-0 inset-0 bg-textDesign/40 z-[302] flex flex-col items-center justify-center"
       variants={modalBackgroundVariants}
       initial="hidden"
       animate={open ? "animate" : "hidden"}

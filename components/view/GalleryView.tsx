@@ -175,7 +175,7 @@ function GalleryView({
             {section.data.images && (
               <Swiper
                 spaceBetween={20}
-                slidesPerView={3}
+                slidesPerView={1}
                 autoplay={{
                   delay: 5000,
                 }}
