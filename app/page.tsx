@@ -1,28 +1,30 @@
+"use client"
+
 import Loading from '@/components/Loading';
 import NavbarClient from '@/components/NavbarClient';
 import ShowPageComponent from '@/components/ShowPageComponent';
 import axios from 'axios';
 import { NextResponse } from 'next/server';
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 
-export async function loader({ params }: { params: any }) {
-  const linkId = params.linkId;  // Assumi che il parametro dinamico sia 'linkId'
 
-  // Chiamata API per ottenere i dati basati su 'linkId'
-  const response = await axios.get(`/api/getInfo`);
+export default function PageViewer() {
 
-  // Restituisce la risposta con i dati e disabilita la cache
-  return NextResponse.json(response.data, {
-    headers: {
-      'Cache-Control': 'no-store, max-age=0'
+  const [data, setData] = useState<any>();
+
+  const getData = async () => {
+    try{
+      const res = await axios.get("/api/getInfo");
+      console.log(res.data);
+      setData(res.data);
+    } catch(err: any){
+      console.log(err);
     }
-  });
-}
+  }
 
-// Componente React per visualizzare i dati
-export default function PageViewer({ data } : { data: any}) {
-
-  console.log(data);
+  useEffect(() => {
+    getData();
+  }, [])
 
   if(!data){
     return <Loading />
