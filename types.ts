@@ -89,6 +89,10 @@ export const pageTypes: pageType[] = [
     value: "Gallery",
     name: "Galleria",
   },
+  {
+    value: "Contact",
+    name: "Form Contatti",
+  },
 ];
 
 export type SectionColumnType = {

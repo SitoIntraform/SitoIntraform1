@@ -14,8 +14,11 @@ import { Navigation, Pagination, Autoplay } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
+import Input from "../Input";
+import usePrivacyModal from "@/hooks/usePrivacyModal";
+import toast from "react-hot-toast";
 
-function GalleryView({
+function ContactView({
   section,
   dev,
   allPages,
@@ -27,10 +30,17 @@ function GalleryView({
   allSections: SectionType[];
 }) {
   const [updateCounter, setUpdateCounter] = useState(0);
-  const [carouselCounter, setCarouselCounter] = useState(0);
+
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [message, setMessage] = useState("");
+
+  const [policy, setPolicy] = useState(false);
 
   const [link1, setLink1] = useState("");
   const [link2, setLink2] = useState("");
+
+  const privacyModal = usePrivacyModal();
 
   useEffect(() => {
     if (dev) {
@@ -68,17 +78,19 @@ function GalleryView({
     setUpdateCounter((prev) => prev + 1);
   }, [section]);
 
-  useEffect(() => {
-    const carouselUpdate = () => {
-      setCarouselCounter((prev) => prev + 1);
-    };
+  const onPressContactBtn = () => {
+    if(!name || !email || !message){
+      toast.error("Compila tutti i campi");
+      return;
+    }
 
-    window.addEventListener("resize", carouselUpdate);
+    if(!policy){
+      toast.error("Conferma di aver letto le policy per poterci contattare");
+      return;
+    }
 
-    return () => {
-      window.removeEventListener("resize", carouselUpdate);
-    };
-  }, []);
+    toast.success("Contattati");
+  };
 
   return (
     <section
@@ -97,7 +109,7 @@ function GalleryView({
     >
       {section.data.backgroundImages && section.data.backgroundImageOpacity && (
         <div className={` h-full w-full absolute inset-0`}>
-          <div className="h-full w-full relative">
+          <div className="h-full w-full relative z-[-10]">
             <Image
               src={section.data.backgroundImages}
               alt=""
@@ -122,7 +134,7 @@ function GalleryView({
         }`}
       >
         <div
-          className={`mx-auto flex flex-col w-[100%] items-center justify-center gap-12`}
+          className={`mx-auto flex flex-col w-[100%] items-center justify-center gap-6`}
         >
           <motion.div
             viewport={{ once: true }}
@@ -165,97 +177,97 @@ function GalleryView({
               </>
             )}
           </motion.div>
-          <motion.div
-            variants={containerAnimation(0, section.data.animationType)}
-            viewport={{ once: true }}
-            initial={section.data.animation ? "hidden" : ""}
-            whileInView={section.data.animation ? "show" : ""}
-            className="w-full h-[350px] md:h-[500px]"
-          >
-            {section.data.images && (
-              <Swiper
-                spaceBetween={20}
-                slidesPerView={1}
-                autoplay={{
-                  delay: 5000,
-                }}
-                speed={1200}
-                loop={true}
-                className="h-[100%] w-full"
-                modules={[Autoplay, Pagination, Navigation]}
-                pagination={section.data.carouselDots}
-                navigation={section.data.carouselButtons}
-                key={section.name + carouselCounter}
-                breakpoints={{
-                  640: {
-                    slidesPerView: 1,
-                  },
-                  768: {
-                    slidesPerView: 2,
-                  },
-                  1024: {
-                    slidesPerView: 3,
-                  },
-                //   1300: {
-                //     slidesPerView: 4,
-                //   },
-                }}
-              >
-                {section.data.images.map((image) => (
-                  <SwiperSlide key={image} className="relative">
-                    <Image
-                      src={image || ""}
-                      alt=""
-                      fill
-                      className="object-cover"
-                    />
-                  </SwiperSlide>
-                ))}
-              </Swiper>
-            )}
-          </motion.div>
-
-          {(section.data.primaryButton || section.data.secondaryButton) && (
+          <div className="w-full flex flex-col items-center justify-center">
             <motion.div
+              className="max-w-[500px] w-[100%] space-y-[20px] "
               viewport={{ once: true }}
-              variants={containerAnimation(0.2, section.data.animationType)}
+              variants={containerAnimation(0, section.data.animationType)}
               initial={section.data.animation ? "hidden" : ""}
               whileInView={section.data.animation ? "show" : ""}
-              className="flex md:flex-row flex-col gap-3 md:gap-6"
             >
-              {section.data.primaryButton && (
-                <Link href={link1}>
-                  <Button
-                    width={section.data.widthPrimaryButton || 0}
-                    height={section.data.heightPrimaryButton || 0}
-                    onClick={() => {}}
-                    className="scale-90 md:scale-100 xl:scale-105"
-                    animation
+              <div className="w-full">
+                <Input
+                  value={name}
+                  onValueChange={(e) => setName(e.target.value)}
+                  label="Nome"
+                  notAnimate
+                />
+              </div>
+              <div className="w-full">
+                <Input
+                  value={email}
+                  onValueChange={(e) => setEmail(e.target.value)}
+                  label="Email"
+                  notAnimate
+                />
+              </div>
+              <div className="w-full">
+                <Input
+                  value={message}
+                  onValueChange={(e) => setMessage(e.target.value)}
+                  label="Messaggio"
+                  textArea
+                  rows={5}
+                  notAnimate
+                />
+              </div>
+              <div className="flex flex-row items-center justify-center gap-2">
+                <input type="checkbox" checked={policy} onChange={(e) => setPolicy(e.target.checked)} />
+                <p
+                  className={`regular-normal`}
+                  style={{
+                    color:
+                      section.data.backgroundColor === "#303030"
+                        ? "white"
+                        : "#303030",
+                  }}
+                >
+                  Dichiaro di aver letto le{" "}
+                  <span
+                    className="regular-medium hover:underline cursor-pointer hover:underline-offset-1"
+                    onClick={() => {
+                      if (!dev) {
+                        privacyModal.onOpen();
+                      }
+                    }}
+                    style={{
+                      color:
+                        section.data.backgroundColor === "#303030"
+                          ? "white"
+                          : "#303030",
+                    }}
                   >
-                    <p>{section.data.primaryButtonText}</p>
-                  </Button>
-                </Link>
-              )}
-              {section.data.secondaryButton && (
-                <Link href={link2}>
-                  <Button
-                    width={section.data.widthSecondaryButton || 0}
-                    height={section.data.heightSecondaryButton || 0}
-                    onClick={() => {}}
-                    className="scale-90 md:scale-100 xl:scale-105"
-                    secondary
-                    animation
-                  >
-                    <p>{section.data.secondaryButtonText}</p>
-                  </Button>
-                </Link>
-              )}
+                    Privacy Policy
+                  </span>
+                </p>
+              </div>
             </motion.div>
-          )}
+            <motion.div
+              viewport={{ once: true }}
+              variants={containerAnimation(0, section.data.animationType)}
+              initial={section.data.animation ? "hidden" : ""}
+              whileInView={section.data.animation ? "show" : ""}
+              className="w-full flex flex-row items-center justify-center mt-[20px]"
+            >
+              <Button
+                height={55}
+                width={160}
+                onClick={() => {
+                  if (!dev) {
+                    onPressContactBtn();
+                  }
+                }}
+                className="scale-90 md:scale-100 xl:scale-105"
+                animation
+              >
+                <p>Contattaci</p>
+              </Button>
+            </motion.div>
+          </div>
         </div>
       </div>
     </section>
   );
 }
 
-export default GalleryView;
+export default ContactView;

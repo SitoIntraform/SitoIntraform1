@@ -5,6 +5,7 @@ import TextWithImageView from "./TextWithImageView";
 import OnlyTextView from "./OnlyTextView";
 import { Page } from "@prisma/client";
 import GalleryView from "./GalleryView";
+import ContactView from "./ContactView";
 
 function ReturnViewComponent({
   pageType,
@@ -27,6 +28,8 @@ function ReturnViewComponent({
     return <OnlyTextView dev={dev} section={section} allPages={allPages} allSections={allSection} />;
   } else if (pageType === "Gallery") {
     return <GalleryView dev={dev} section={section} allPages={allPages} allSections={allSection} />;
+  } else if (pageType === "Contact") {
+    return <ContactView dev={dev} section={section} allPages={allPages} allSections={allSection} />;
   }
 }
 

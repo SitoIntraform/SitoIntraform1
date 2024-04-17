@@ -12,6 +12,7 @@ interface InputProps {
   disabled?: boolean;
   textArea?: boolean;
   rows?: number;
+  notAnimate?: boolean;
 }
 
 function Input({
@@ -22,6 +23,7 @@ function Input({
   disabled,
   textArea,
   rows,
+  notAnimate
 }: InputProps) {
   return (
     <div className="relative w-full h-full">
@@ -50,7 +52,7 @@ function Input({
         />
       )}
       <div
-        className={`absolute top-[2px] scale-[0.8] px-2 left-2 text-textDesign peer-focus-within:text-primaryDesign peer-focus-within:scale-105 peer-focus-within:px-2 peer-focus-within:bg-white transition-all duration-150 peer-focus-within:-top-3 peer-focus-within:left-4`}
+        className={`absolute top-[2px] scale-[0.8] px-2 left-2 text-textDesign peer-focus-within:text-primaryDesign ${notAnimate ? "" : "peer-focus-within:scale-105 peer-focus-within:px-2 peer-focus-within:bg-white transition-all duration-150 peer-focus-within:-top-3 peer-focus-within:left-4"}`}
       >
         {label}
       </div>

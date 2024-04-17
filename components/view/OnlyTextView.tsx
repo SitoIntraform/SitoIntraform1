@@ -150,9 +150,9 @@ function OnlyTextView({ section, dev, allPages, allSections }: { section: Sectio
                 </>
               )}
             </motion.div>
-            <motion.div
+            {section.data.description && <motion.div
               viewport={{ once: true }}
-              variants={containerAnimation(0.1, section.data.animationType)}
+              variants={containerAnimation(0, section.data.animationType)}
               initial={section.data.animation ? "hidden" : ""}
               whileInView={section.data.animation ? "show" : ""}
               className="small-normal  xl:regular-normal relative text-center"
@@ -165,11 +165,11 @@ function OnlyTextView({ section, dev, allPages, allSections }: { section: Sectio
             >
               {section.data.description}
               <div className="absolute -bottom-3 -right-3 border-r-primaryDesign border-8 w-[50px] border-b-accentDesign border-t-transparent border-l-transparent h-[50px]" />
-            </motion.div>
+            </motion.div>}
             {(section.data.primaryButton || section.data.secondaryButton) && (
               <motion.div
                 viewport={{ once: true }}
-                variants={containerAnimation(0.2, section.data.animationType)}
+                variants={containerAnimation(0, section.data.animationType)}
                 initial={section.data.animation ? "hidden" : ""}
                 whileInView={section.data.animation ? "show" : ""}
                 className="flex md:flex-row flex-col gap-6 justify-center"

@@ -3,6 +3,7 @@
 import Button from "@/components/Button";
 import Input from "@/components/Input";
 import { signIn, signOut } from "next-auth/react";
+import Image from "next/image";
 import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import toast from "react-hot-toast";
@@ -53,7 +54,14 @@ function SignInPage() {
       <div className="h-auto xl:w-1/3 lg:w-2/4 sm:w-3/4 w-full p-14 bg-white shadow-xl rounded-2xl">
         <div className="h-full w-full flex flex-col ">
           <div className="text-center border-b border-textDesign pb-5">
-            <h1 className="h1Desktop">Intraform</h1>
+            <div className="flex flex-col items-center justify-center">
+              <Image
+                src={"/logo.jpg"}
+                width={300}
+                height={100}
+                alt="Logo"
+              />
+            </div>
           </div>
           <div className="space-y-8 py-9">
             <div>
