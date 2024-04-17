@@ -1,28 +1,13 @@
-import Loading from '@/components/Loading';
-import NavbarClient from '@/components/NavbarClient';
-import PageViewer from '@/components/PageViewer';
-import ShowPageComponent from '@/components/ShowPageComponent';
-import prismadb from '@/lib/prismadb';
-import { SectionType } from '@/types';
-import { Page } from '@prisma/client';
-import axios from 'axios';
-import { NextResponse } from 'next/server';
-import React, { useEffect, useState } from 'react'
+import SitoPageComponent from "@/components/admin/page/SitoPageComponent";
+import prismadb from "@/lib/prismadb";
+import { PageType, SectionType } from "@/types";
+import { Link } from "@prisma/client";
+import React from "react";
 
-export default async function page() {
+async function SitoPage() {
+  const pages = await prismadb.page.findMany({});
 
-  // const data = await getData();
-
-  // if (!data) {
-  //   return <Loading />
-  // }
-
-  const pages: Page[] = await prismadb.page.findMany({});
-  const allSection = await prismadb.section.findMany({});
-  const navbar = await prismadb.navbar.findFirst({});
-  const links = await prismadb.link.findMany({});
-
-  const allPages = pages && [
+  const allPages: PageType[] = pages && [
     ...pages.map((page) => {
       const createdAt = new Date(page.createdAt);
       const updatedAt = new Date(page.updatedAt);
@@ -45,12 +30,17 @@ export default async function page() {
     }),
   ];
 
-  const allSectionType: SectionType[] = allSection && [
-    ...allSection.map((sectionSingle: any) => {
+  const section = await prismadb.section.findMany({});
+
+  const allSections: SectionType[] = section && [
+    ...section.map((sectionSingle) => {
+      const createdAt = new Date(sectionSingle.createdAt).toUTCString();
+      const updatedAt = new Date(sectionSingle.updatedAt).toUTCString();
+
       return {
         SectionId: sectionSingle?.SectionId || "",
-        updatedAt: sectionSingle?.updatedAt.toString() || "",
-        createdAt: sectionSingle?.createdAt.toString() || "",
+        updatedAt: updatedAt || "",
+        createdAt: createdAt || "",
         name: sectionSingle?.name || "",
         pageType: sectionSingle?.pageType || "Hero",
 
@@ -59,8 +49,7 @@ export default async function page() {
           animationType: sectionSingle?.data.animationType || "up",
 
           backgroundImages: sectionSingle?.data.backgroundImages || "",
-          backgroundImageOpacity:
-            sectionSingle?.data.backgroundImageOpacity || 100,
+          backgroundImageOpacity: sectionSingle?.data.backgroundImageOpacity || 100,
           backgroundColor: sectionSingle?.data.backgroundColor || "",
 
           images: sectionSingle?.data.images || [],
@@ -97,7 +86,29 @@ export default async function page() {
     }),
   ];
 
-  return (
-    <PageViewer allPages={allPages} allSectionType={allSectionType} links={links} navbar={navbar}  />
-  );
+  let navbar = await prismadb.navbar.findFirst({});
+
+  if (!navbar) {
+    navbar = await prismadb.navbar.create({ data: {} });
+  }
+
+  const links = await prismadb.link.findMany({});
+
+  let allLinks: Link[] = [];
+
+  navbar.links.forEach((link) => {
+    const selectedLink = links.find((l) => l.LinkId === link);
+
+    if (selectedLink) {
+      allLinks = [...allLinks, selectedLink];
+    }
+  })
+
+  const queryImages = await prismadb.image.findMany({});
+
+  const totalImage = [...queryImages.map((image) => image.link)];
+
+  return <SitoPageComponent totalImage={totalImage} allLinks={allLinks} allPage={allPages} allSections={allSections} navbar={navbar} />;
 }
+
+export default SitoPage;
