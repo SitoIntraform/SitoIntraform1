@@ -14,7 +14,11 @@ export default function PageViewer() {
 
   const getData = async () => {
     try {
-      const res = await axios.get("/api/getInfo");
+      const res = await axios.get("/api/getInfo", {
+        headers: {
+          'Cache-Control': 'no-store, max-age=0'
+        }
+      });
       console.log(res.data);
       setData(res.data);
     } catch (err: any) {
