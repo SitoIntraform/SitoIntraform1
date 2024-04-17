@@ -1,5 +1,6 @@
 import Loading from '@/components/Loading';
 import NavbarClient from '@/components/NavbarClient';
+import PageViewer from '@/components/PageViewer';
 import ShowPageComponent from '@/components/ShowPageComponent';
 import prismadb from '@/lib/prismadb';
 import { SectionType } from '@/types';
@@ -8,15 +9,7 @@ import axios from 'axios';
 import { NextResponse } from 'next/server';
 import React, { useEffect, useState } from 'react'
 
-async function getData() {
-  const response = await fetch('https://intraform.vercel.app/api/getInfo', {
-    cache: "no-cache"
-  });
-  const data = await response.json();
-  return data;
-}
-
-export default async function PageViewer() {
+export default async function page() {
 
   // const data = await getData();
 
@@ -105,25 +98,6 @@ export default async function PageViewer() {
   ];
 
   return (
-    <>
-      <NavbarClient
-        allLinks={links}
-        dev={false}
-        allPage={allPages}
-        links={navbar?.links || []}
-        logo={navbar?.logo || ""}
-        logoHeight={navbar?.logoHeight || 0}
-        logoWidth={navbar?.logoWidth || 0}
-        buttonHeight={navbar?.buttonHeight || 0}
-        buttonWidth={navbar?.buttonWidth || 0}
-        buttonLink={navbar?.buttonLink || ""}
-        buttonText={navbar?.buttonText || ""}
-      />
-      <ShowPageComponent
-        links={links}
-        allSections={allSectionType}
-        allPages={allPages}
-      />
-    </>
+    <PageViewer allPages={allPages} allSectionType={allSectionType} links={links} navbar={navbar}  />
   );
 }
