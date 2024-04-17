@@ -1,5 +1,3 @@
-"use client"
-
 import Loading from '@/components/Loading';
 import NavbarClient from '@/components/NavbarClient';
 import ShowPageComponent from '@/components/ShowPageComponent';
@@ -7,28 +5,15 @@ import axios from 'axios';
 import { NextResponse } from 'next/server';
 import React, { useEffect, useState } from 'react'
 
+async function getData() {
+  const response = await fetch('https://intraform.vercel.app/api/getInfo');
+  const data = await response.json();
+  return data;
+}
 
-export default function PageViewer() {
+export default async function PageViewer() {
 
-  const [data, setData] = useState<any>();
-
-  const getData = async () => {
-    try {
-      const res = await axios.get("/api/getInfo", {
-        headers: {
-          'Cache-Control': 'no-store, max-age=0'
-        }
-      });
-      console.log(res.data);
-      setData(res.data);
-    } catch (err: any) {
-      console.log(err);
-    }
-  }
-
-  useEffect(() => {
-    getData();
-  }, [])
+  const data = await getData();
 
   if (!data) {
     return <Loading />
