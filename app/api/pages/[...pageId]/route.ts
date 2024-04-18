@@ -109,6 +109,8 @@ export async function POST(
       if (isInSections) {
         console.log("is in sections: " + sec.name);
 
+        console.log(isInSections.data.service);
+
         await prismadb.section.update({
           where: {
             SectionId: sec.SectionId,
