@@ -467,7 +467,7 @@ function EditPage({
                   {section.pageType === "Service" && (
                     <>
                       {section.data.service.map((s, index2) => (
-                        <div className="w-full mt-[8px] space-y-3">
+                        <div key={index2} className="w-full mt-[8px] space-y-3">
                           <p className="md:h5Desktop h6Mobile text-center">
                             Servizio: {s.name}
                           </p>
