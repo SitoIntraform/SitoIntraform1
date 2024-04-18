@@ -7,6 +7,7 @@ import React, { useEffect, useState } from "react";
 import ReturnViewComponent from "./view/ReturnViewComponent";
 import CustomScrollbar from "./CustomScrollbar";
 import PageNotFound from "./PageNotFound";
+import usePrivacyModal from "@/hooks/usePrivacyModal";
 
 function ShowPageComponent({
   links,
@@ -80,6 +81,7 @@ function ShowPageComponent({
               </div>
             );
           })}
+          <Footer />
         </div>
       )}
     </CustomScrollbar>
@@ -87,3 +89,43 @@ function ShowPageComponent({
 }
 
 export default ShowPageComponent;
+
+function Footer() {
+  const privacy = usePrivacyModal();
+
+  return (
+    <div className="bg-primaryDesign md:px-20 px-5 pt-10">
+      <div className="containerDesign  !text-white flex flex-row justify-center gap-40 flex-wrap">
+        <div className="flex flex-col items-center justify-center gap-2">
+          <p className="large-bold mb-[10px] !text-white">SEDE</p>
+          <p className="regular-medium !text-white">Via E. Bignone 85/12</p>
+          <p className="regular-medium !text-white">10064 Pinerolo (TO)</p>
+        </div>
+        <div className="flex flex-col items-center justify-center gap-2">
+          <p className="large-bold mb-[10px] !text-white">RECAPITI</p>
+          <p className="regular-medium !text-white">Tel: +39 0121 305343</p>
+          <p className="regular-medium !text-white">Fax: +39 0121 303653</p>
+          <p className="regular-medium !text-white underline underline-offset-2">
+            info@intraform.it
+          </p>
+        </div>
+        <div className="flex flex-col items-center justify-center gap-2">
+          <p className="large-bold mb-[10px] !text-white">
+            ORARI DI SEGRETERIA
+          </p>
+          <p className="regular-medium !text-white flex flex-row justify-between w-full">
+            <p className="regular-medium !text-white">Lun - Ven</p>
+            <p className="regular-medium !text-white">09:00 - 13:00</p>
+          </p>
+          <p className="regular-medium !text-white flex flex-row justify-between w-full">
+            <p className="regular-medium !text-white">Sab - Dom</p>
+            <p className="regular-medium !text-white">Chiuso</p>
+          </p>
+        </div>
+      </div>
+      <div onClick={privacy.onOpen} className="pb-[20px] cursor-pointer pt-[5px] mt-[20px] border-t-2 border-white regular-medium !text-white w-full text-center underline underline-offset-1">
+        Privacy Policy
+      </div>
+    </div>
+  );
+}

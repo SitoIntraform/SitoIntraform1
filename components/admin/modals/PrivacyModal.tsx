@@ -269,7 +269,7 @@ function PrivacyModal({
           </div>
         </>
       }
-      bodyContainerClass="max-h-[450px] overflow-scroll regular-normal"
+      bodyContainerClass="max-h-[300px] overflow-scroll regular-normal"
       footer={<></>}
       footerContainerClass=""
       onClose={onClose}
