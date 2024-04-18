@@ -24,13 +24,13 @@ function EditPage({
   sectionInPage,
   pagesWithoutSelectedPage,
   allSection,
-  allPages
+  allPages,
 }: {
   pageData: Page;
   possibleSectionData?: Section[];
   sectionInPage?: Section[];
-    pagesWithoutSelectedPage?: Page[];
-    allPages: PageType[]
+  pagesWithoutSelectedPage?: Page[];
+  allPages: PageType[];
   allSection: SectionType[];
 }) {
   const router = useRouter();
@@ -262,6 +262,12 @@ function EditPage({
     }
   };
 
+  const onChangeLinkService = (index1: number, index2: number, link: string) => {
+    const s = sections;
+    s[index1].data.service[index2].LinkPage = link;
+    setSections([...s]);
+  }
+
   return (
     <CustomScrollbar
       containerStyle="h-screen"
@@ -457,6 +463,26 @@ function EditPage({
                         possbileValues={usableLink}
                       />
                     </div>
+                  )}
+                  {section.pageType === "Service" && (
+                    <>
+                      {section.data.service.map((s, index2) => (
+                        <div className="w-full mt-[8px] space-y-3">
+                          <p className="md:h5Desktop h6Mobile text-center">
+                            Servizio: {s.name}
+                          </p>
+                          <Select
+                            value={s.LinkPage || ""}
+                            label="Seleziona il link del servizio"
+                            disabled={loading}
+                            onValueChange={(e) =>
+                              onChangeLinkService(index, index2, e.target.value)
+                            }
+                            possbileValues={usableLink}
+                          />
+                        </div>
+                      ))}
+                    </>
                   )}
                 </div>
                 <Trash

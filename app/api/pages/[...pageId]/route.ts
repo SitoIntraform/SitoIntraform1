@@ -2,7 +2,7 @@ import { authOptions } from "@/lib/authOptions";
 import { getServerSession } from "next-auth";
 import { NextResponse } from "next/server";
 import prismadb from "@/lib/prismadb";
-import { Section } from "@prisma/client";
+import { Section, Service } from "@prisma/client";
 
 export async function POST(
   req: Request,
@@ -158,6 +158,16 @@ export async function POST(
       } else {
         if (sec.PageId === pageId[0]) {
           console.log("to delete: " + sec.name);
+
+          const service: Service[] = [...sec.data.service.map((s) => {
+            return {
+              image: s.image,
+              LinkPage: "",
+              description: s.description,
+              name: s.name,
+            }
+          })]
+
           await prismadb.section.update({
             where: {
               SectionId: sec.SectionId,
@@ -183,7 +193,7 @@ export async function POST(
                 carouselDots: sec.data.carouselDots,
                 carouselButtons: sec.data.carouselButtons,
 
-                service: sec.data.service,
+                service: service,
 
                 hScreen: sec.data.hScreen,
                 space: sec.data.space,
