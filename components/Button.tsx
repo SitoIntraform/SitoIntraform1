@@ -1,6 +1,7 @@
 "use client";
 
 import React, { MouseEvent, useEffect, useRef, useState } from "react";
+import { useMediaQuery } from "react-responsive"
 
 interface ButtonPros {
   children: React.ReactNode;
@@ -29,6 +30,8 @@ function Button({
 }: ButtonPros) {
   const [isMouseOverLeft, setIsMouseOverLeft] = useState<boolean>(false);
   const [isMouseOverRight, setIsMouseOverRight] = useState<boolean>(false);
+
+  const isMobile = useMediaQuery({ query: '(max-width: 768px)' });
 
   const handleMouseMove: React.MouseEventHandler<HTMLButtonElement> = (
     event
@@ -62,7 +65,7 @@ function Button({
         setIsMouseOverRight(false);
       }}
     >
-      {animation && !disabled && (
+      {animation && !disabled && !isMobile && (
         <div
           className={`z-10 absolute h-full w-[99%] ${
             secondary ? "bg-primaryDesign" : "bg-accentDesign"
@@ -70,7 +73,7 @@ function Button({
           `}
         />
       )}
-      {animation && !disabled && (
+      {animation && !disabled && !isMobile && (
         <div
           className={`z-10 absolute h-full w-[99%] ${secondary ? "bg-primaryDesign" : "bg-accentDesign"
             } top-0  transition-all duration-500 left-[100%] ${isMouseOverRight && "group-hover:left-0"}
