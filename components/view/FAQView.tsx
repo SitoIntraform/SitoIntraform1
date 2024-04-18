@@ -192,7 +192,7 @@ export default function FAQView({
               return (
                 <div
                   key={index}
-                  className={`w-full border-2 outline-none p-5 rounded-2xl cursor-pointer ${
+                  className={`w-full border-2 outline-none p-5 rounded-2xl cursor-pointer bg-white ${
                     isActive ? "border-primaryDesign" : "border-textDesign/50"
                   } transition-all duration-200`}
                   onClick={click}
