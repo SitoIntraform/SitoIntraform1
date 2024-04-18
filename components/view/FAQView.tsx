@@ -199,15 +199,15 @@ export default function FAQView({
                   onClick={click}
                 >
                   <div className="flex flex-row items-center">
-                    <p className="large-medium">{f.domand}</p>
+                    <p className="large-semibold">{f.domand}</p>
                     <X
-                      className={`w-8 h-8 text-textDesign/70 ml-auto transition-transform duration-200 ${
-                        isActive ? "rotate-180" : "rotate-45"
+                      className={`w-8 h-8 text-textDesign/70 ml-auto transition-transform duration-300 ${
+                        isActive ? "rotate-180 !text-primaryDesign" : "rotate-45"
                       }`}
                     />
                   </div>
                   <div
-                    className="overflow-hidden transition-all duration-500"
+                    className="overflow-hidden transition-all duration-300"
                     style={{
                       maxHeight: isActive ? "1000px" : "0px",
                       // opacity: isActive ? 1 : 0,
