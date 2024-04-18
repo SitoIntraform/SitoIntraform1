@@ -7,6 +7,7 @@ import { Page } from "@prisma/client";
 import GalleryView from "./GalleryView";
 import ContactView from "./ContactView";
 import FAQView from "./FAQView";
+import ServiceView from "./ServiceView";
 
 function ReturnViewComponent({
   pageType,
@@ -33,6 +34,8 @@ function ReturnViewComponent({
     return <ContactView dev={dev} section={section} allPages={allPages} allSections={allSection} />;
   } else if (pageType === "FAQ") {
     return <FAQView dev={dev} section={section} allPages={allPages} allSections={allSection} />;
+  } else if (pageType === "Service") {
+    return <ServiceView dev={dev} section={section} allPages={allPages} allSections={allSection} />;
   }
 }
 

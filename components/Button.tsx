@@ -43,8 +43,8 @@ function Button({
 
   return (
     <button
-      className={`relative group ${wfull ? "w-full" : ""}  
-      ${rectangle ? "rounded-md" : "rounded-full"} overflow-x-hidden overflow-y-hidden text-white
+      className={`relative overflow-hidden group ${wfull ? "w-full overflow-hidden" : "overflow-hidden"}  
+      ${rectangle ? "rounded-md" : "rounded-full"}  overflow-y-hidden text-white
       ${secondary ? "greenShadowBtn" : "blueShadowBtn"}
       ${secondary ? "bg-accentDesign" : "bg-primaryDesign"}
       ${!animation && "hover:opacity-80"}
@@ -64,7 +64,7 @@ function Button({
     >
       {animation && !disabled && (
         <div
-          className={`z-10 absolute h-full w-full ${
+          className={`z-10 absolute h-full w-[99%] ${
             secondary ? "bg-primaryDesign" : "bg-accentDesign"
             } top-0  transition-all duration-500 right-[100%] ${isMouseOverLeft && "group-hover:right-0"}
           `}
@@ -72,7 +72,7 @@ function Button({
       )}
       {animation && !disabled && (
         <div
-          className={`z-10 absolute h-full w-full ${secondary ? "bg-primaryDesign" : "bg-accentDesign"
+          className={`z-10 absolute h-full w-[99%] ${secondary ? "bg-primaryDesign" : "bg-accentDesign"
             } top-0  transition-all duration-500 left-[100%] ${isMouseOverRight && "group-hover:left-0"}
           `}
         />
