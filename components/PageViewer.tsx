@@ -1,12 +1,13 @@
 "use client";
 
-import React from "react";
+import React, { useEffect } from "react";
 import NavbarClient from "./NavbarClient";
 import ShowPageComponent from "./ShowPageComponent";
 import { Link, Navbar } from "@prisma/client";
 import { PageType, SectionType } from "@/types";
 import PrivacyModal from "./admin/modals/PrivacyModal";
 import usePrivacyModal from "@/hooks/usePrivacyModal";
+import { usePathname } from "next/navigation";
 
 function PageViewer({
   links,

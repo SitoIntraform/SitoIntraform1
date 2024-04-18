@@ -189,7 +189,6 @@ export default function FAQView({
                   scrollBar.onSet();
                 }, 550);
               };
-
               return (
                 <div
                   key={index}

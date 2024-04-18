@@ -6,6 +6,7 @@ import { usePathname } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import ReturnViewComponent from "./view/ReturnViewComponent";
 import CustomScrollbar from "./CustomScrollbar";
+import PageNotFound from "./PageNotFound";
 
 function ShowPageComponent({
   links,
@@ -21,6 +22,18 @@ function ShowPageComponent({
   const path = usePathname();
 
   console.log(allPages);
+
+  const [page, setPage] = useState<PageType | null | undefined>(undefined);
+
+  useEffect(() => {
+    const p = allPages.find((pa) => pa.link === path.split("/")[1]);
+
+    if (p) {
+      setPage(p);
+    } else {
+      setPage(null);
+    }
+  }, [path]);
 
   useEffect(() => {
     window.scroll(0, 0);
@@ -43,36 +56,32 @@ function ShowPageComponent({
       scrollbarStyle="left-0 absolute w-full bg-primaryDesign rounded-full"
       trackStyle="h-full absolute left-0 top-0 w-full"
     >
-      {allPages.map((page, index) => {
-        if (page.link !== path.split("/")[1]) {
-          return;
-        }
+      {page === null ? (
+        <PageNotFound />
+      ) : (
+        <div className="pt-[80px]">
+          {page?.sections?.map((sectionID, index2) => {
+            const section = allSections.find(
+              (sec) => sec.SectionId === sectionID
+            );
 
-        return (
-          <div className="pt-[80px]" key={index}>
-            {page.sections?.map((sectionID, index2) => {
-              const section = allSections.find(
-                (sec) => sec.SectionId === sectionID
-              );
+            if (!section) {
+              return;
+            }
 
-              if (!section) {
-                return;
-              }
-
-              return (
-                <div key={index2}>
-                  <ReturnViewComponent
-                    allPages={allPages}
-                    allSection={allSections}
-                    section={section}
-                    pageType={section.pageType}
-                  />
-                </div>
-              );
-            })}
-          </div>
-        );
-      })}
+            return (
+              <div key={index2}>
+                <ReturnViewComponent
+                  allPages={allPages}
+                  allSection={allSections}
+                  section={section}
+                  pageType={section.pageType}
+                />
+              </div>
+            );
+          })}
+        </div>
+      )}
     </CustomScrollbar>
   );
 }
