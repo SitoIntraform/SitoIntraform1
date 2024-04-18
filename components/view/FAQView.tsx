@@ -190,7 +190,11 @@ export default function FAQView({
                 }, 550);
               };
               return (
-                <div
+                <motion.div
+                viewport={{ once: true }}
+                variants={containerAnimation(0, section.data.animationType)}
+                initial={section.data.animation ? "hidden" : ""}
+                whileInView={section.data.animation ? "show" : ""}
                   key={index}
                   className={`w-full border-2 outline-none p-5 rounded-2xl cursor-pointer bg-white ${
                     isActive ? "border-primaryDesign" : "border-textDesign/50"
@@ -214,7 +218,7 @@ export default function FAQView({
                   >
                     <div className="mt-[10px]">{f.response}</div>
                   </div>
-                </div>
+                </motion.div>
               );
             })}
           </div>
