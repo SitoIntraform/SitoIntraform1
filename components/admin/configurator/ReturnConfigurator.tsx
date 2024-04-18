@@ -6,6 +6,7 @@ import OnlyTextConfigurator from "./OnlyTextConfigurator";
 import GalleryConfigurator from "./GalleryConfigurator";
 import ContactConfigurator from "./ContactConfigurator";
 import FAQConfigurator from "./FAQConfigurator";
+import ServiceConfigurator from "./ServiceConfigurator";
 
 interface ConfiguratorInterfaceProps {
   animation: boolean;
@@ -426,6 +427,63 @@ function ReturnConfigurator({
   } else if (pageType === "FAQ") {
     return (
       <FAQConfigurator
+        animation={animation}
+        setAnimation={setAnimation}
+        animationType={animationType}
+        setAnimationType={setAnimationType}
+        backgroundImages={backgroundImages}
+        setBackgroundImages={setBackgroundImages}
+        backgroundImageOpacity={backgroundImageOpacity}
+        setBackgroundImageOpacity={setBackgroundImageOpacity}
+        backgroundColor={backgroundColor}
+        setBackgroundColor={setBackgroundColor}
+        images={images}
+        setImages={setImages}
+        imagesOnLeft={imagesOnLeft}
+        setImagesOnLeft={setImagesOnLeft}
+        textBlue={textBlue}
+        setTextBlue={setTextBlue}
+        textGreen={textGreen}
+        setTextGreen={setTextGreen}
+        textBlack={textBlack}
+        setTextBlack={setTextBlack}
+        description={description}
+        setDescription={setDescription}
+        carouselDots={carouselDots}
+        setCarouselDots={setCarouselDots}
+        carouselButtons={carouselButtons}
+        setCarouselButtons={setCarouselButtons}
+        service={service}
+        setService={setService}
+        hScreen={hScreen}
+        setHScreen={setHScreen}
+        space={space}
+        setSpace={setSpace}
+        primaryButton={primaryButton}
+        setPrimaryButton={setPrimaryButton}
+        primaryButtonText={primaryButtonText}
+        setPrimaryButtonText={setPrimaryButtonText}
+        widthPrimaryButton={widthPrimaryButton}
+        setWidthPrimaryButton={setWidthPrimaryButton}
+        heightPrimaryButton={heightPrimaryButton}
+        setHeightPrimaryButton={setHeightPrimaryButton}
+        secondaryButton={secondaryButton}
+        setSecondaryButton={setSecondaryButton}
+        secondaryButtonText={secondaryButtonText}
+        setSecondaryButtonText={setSecondaryButtonText}
+        widthSecondaryButton={widthSecondaryButton}
+        setWidthSecondaryButton={setWidthSecondaryButton}
+        heightSecondaryButton={heightSecondaryButton}
+        setHeightSecondaryButton={setHeightSecondaryButton}
+        faq={faq}
+        setFaq={setFaq}
+        disabled={disabled}
+        totalImage={totalImage}
+      />
+    );
+  } else if (pageType === "Service") {
+    return (
+      <ServiceConfigurator
         animation={animation}
         setAnimation={setAnimation}
         animationType={animationType}

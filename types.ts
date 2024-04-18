@@ -98,8 +98,8 @@ export const pageTypes: pageType[] = [
     name: "Form Contatti",
   },
   {
-    value: "Servizi",
-    name: "Service",
+    value: "Service",
+    name: "Lista Servizi",
   },
   {
     value: "FAQ",
