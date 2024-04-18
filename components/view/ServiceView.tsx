@@ -178,23 +178,25 @@ export default function ServiceView({
           <div className="flex flex-row flex-wrap items-center justify-center mt-[16px] w-full gap-12 z-[10]">
             {section.data.service.map((s, index) => {
 
-              let link = "";
+              let l = "";
 
               if (s.LinkPage?.at(0) === "/") {
                 //LINK A PAGINA
                 const pageId = s.LinkPage?.split("/")[1];
                 const page = allPages.find((p) => p.PageId === pageId);
-                link = ("/" + page?.link);
+                l = ("/" + page?.link);
               } else if (s.LinkPage?.at(0) === "#") {
                 //LINK AD ANCORA
                 const sectionId = s.LinkPage?.split("#")[1];
                 const section = allSections.find((s) => s.SectionId === sectionId);
-                link  = ("#" + section?.name);
+                l  = ("#" + section?.name);
               }
 
               if(dev){
-                link = "";
+                l = "";
               }
+
+              console.log(l);
 
               return (
                 <motion.div
@@ -214,7 +216,7 @@ export default function ServiceView({
                   <div className="max-h-[120px] h-full w-full p-2 flex flex-row items-center justify-center text-center overflow-hidden">
                     {s.description}
                   </div>
-                  <Link href={link} className="mb-[5px] flex flex-row items-center justify-center gap-1 hover:underline underline-offset-2">
+                  <Link href={l} className="mb-[5px] flex flex-row items-center justify-center gap-1 hover:underline underline-offset-2">
                     Scopri di più
                     <ChevronRight className="w-4 h-4 text-primaryDesign" />
                   </Link>

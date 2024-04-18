@@ -265,6 +265,7 @@ function EditPage({
   const onChangeLinkService = (index1: number, index2: number, link: string) => {
     const s = sections;
     s[index1].data.service[index2].LinkPage = link;
+    console.log("Link servizio " + s[index1].data.service[index2].name + ": " +link)
     setSections([...s]);
   }
 
