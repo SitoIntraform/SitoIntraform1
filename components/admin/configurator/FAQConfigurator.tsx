@@ -293,13 +293,13 @@ function FAQConfigurator({
         />
       </div>
       <div className="mt-[16px] space-y-4">
-        <CheckBox
+        {/* <CheckBox
           label="Altezza minima tutto schemro"
           description="Se la spunta non è attivata la pagina avrà un'altezza che dipenderà dal testo"
           value={hScreen}
           onValueChange={(e) => setHScreen(e.target.checked)}
           disabled={disabled}
-        />
+        /> */}
         {!hScreen && (
           <Input
             value={space}

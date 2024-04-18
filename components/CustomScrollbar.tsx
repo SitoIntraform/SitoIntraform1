@@ -1,5 +1,6 @@
 "use client";
 
+import useScrollBar from "@/hooks/useScrollbar";
 import React, { MouseEvent, useCallback, useEffect } from "react";
 import { useState, useRef } from "react";
 
@@ -23,6 +24,8 @@ function CustomScrollbar({
   const trackRef = useRef<HTMLDivElement>(null);
   const [visible, setVisible] = useState(true);
 
+  const scrollBar = useScrollBar();
+
   function scrollBarHeight() {
     if (!thumbRef.current || !contentRef.current) return;
 
@@ -32,6 +35,13 @@ function CustomScrollbar({
     const scrollRatio = contentEle.clientHeight / contentEle.scrollHeight;
     thumbEle.style.height = `${scrollRatio === 1 ? 0 :scrollRatio * 100}%`;
   }
+
+  useEffect(() => {
+    if(scrollBar.onChangeValue === true){
+      scrollBarHeight();
+      scrollBar.onReset();
+    }
+  }, [scrollBar.onChangeValue, scrollBar])
 
   useEffect(() => {
     const body = document.body;
