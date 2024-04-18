@@ -145,7 +145,14 @@ export async function POST(
               carouselDots: isInSections.data.carouselDots,
               carouselButtons: isInSections.data.carouselButtons,
 
-              service: service,
+              service: [...sec.data.service.map((s, index) => {
+                return {
+                  image: s.image,
+                  LinkPage: isInSections.data.service[index].LinkPage,
+                  description: s.description,
+                  name: s.name,
+                }
+              })],
 
               hScreen: isInSections.data.hScreen,
               space: isInSections.data.space,
