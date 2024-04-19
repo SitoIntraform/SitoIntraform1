@@ -206,7 +206,7 @@ function NavbarAdmin() {
         </div>
       </div>
       <motion.div
-        className="block lg:hidden fixed max-h-[calc(100dvh-80px)] h-[calc(100dvh-70px)] max-w-[calc(100vw-0px)] w-[calc(100vw-0px)] z-[100]  overflow-hidden bg-white top-[80px]"
+        className="block lg:hidden fixed max-h-[calc(100%-80px)] h-[calc(100%-70px)] max-w-[calc(100vw-0px)] w-[calc(100vw-0px)] z-[100]  overflow-hidden bg-white top-[80px]"
         variants={menuVariants}
         initial="hidden"
         animate={isOpen ? "show" : "hidden"}

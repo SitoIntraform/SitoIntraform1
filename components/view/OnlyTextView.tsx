@@ -70,7 +70,7 @@ function OnlyTextView({ section, dev, allPages, allSections }: { section: Sectio
       }}
       className={`${
         section.data.hScreen
-          ? "lg:h-[calc(100dvh-80px)] h-auto py-20 lg:py-0"
+          ? "lg:h-[calc(100%-80px)] h-auto py-20 lg:py-0"
           : ""
       } w-screen relative lg:overflow-hidden !max-w-[100%] !overflow-x-hidden`}
       key={dev ? updateCounter : section.name}
