@@ -1,6 +1,5 @@
 "use client";
 
-import CustomScrollbar from "@/components/CustomScrollbar";
 import React, { useEffect } from "react";
 import HeaderPage from "../HeaderPage";
 import { Edit, Plus } from "lucide-react";
@@ -25,13 +24,7 @@ function SezioniPageComponent({
   const router = useRouter();
 
   return (
-    <CustomScrollbar
-      containerStyle="h-screen"
-      childrenContainerStyle="h-full  "
-      scrollbarContainerStyle="absolute top-0 right-0 h-full w-2 bg-transparent"
-      scrollbarStyle="left-0 absolute w-full bg-primaryDesign rounded-full"
-      trackStyle="h-full absolute left-0 top-0 w-full"
-    >
+    <>
       <div className="containerDesign px-10 pt-[80px]">
         <HeaderPage
           title="Sezioni"
@@ -87,7 +80,7 @@ function SezioniPageComponent({
           />
         </div>
       ))}
-    </CustomScrollbar>
+    </>
   );
 }
 

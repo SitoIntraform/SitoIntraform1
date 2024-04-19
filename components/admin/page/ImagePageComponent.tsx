@@ -1,6 +1,5 @@
 "use client";
 
-import CustomScrollbar from "@/components/CustomScrollbar";
 import React, { useState } from "react";
 import UploadImageModal from "../modals/UploadImageModal";
 import Button from "@/components/Button";
@@ -53,13 +52,7 @@ function ImagePageComponent({ images }: ImagePageProps) {
   }
 
   return (
-    <CustomScrollbar
-      containerStyle="h-screen"
-      childrenContainerStyle="h-full  containerDesign px-10 pt-[80px]"
-      scrollbarContainerStyle="absolute top-0 right-0 h-full w-2 bg-transparent"
-      scrollbarStyle="left-0 absolute w-full bg-primaryDesign rounded-full"
-      trackStyle="h-full absolute left-0 top-0 w-full"
-    >
+    <>
       <DeleteModal 
         text="Sei scuro di voler eliminare questa immagine?"
         disabled={loading}
@@ -111,7 +104,7 @@ function ImagePageComponent({ images }: ImagePageProps) {
           </div>
         ))}
       </div>
-    </CustomScrollbar>
+    </>
   );
 }
 

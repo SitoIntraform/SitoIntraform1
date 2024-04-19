@@ -3,7 +3,6 @@
 import { X } from "lucide-react";
 import React, { useEffect, useState } from "react";
 import { motion, Variants } from "framer-motion";
-import CustomScrollbar from "./CustomScrollbar";
 
 const modalBackgroundVariants: Variants = {
   hidden: {

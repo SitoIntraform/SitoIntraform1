@@ -1,7 +1,6 @@
 "use client";
 
 import Button from "@/components/Button";
-import CustomScrollbar from "@/components/CustomScrollbar";
 import { Page, Section } from "@prisma/client";
 import { Check, LogOut, Menu, Plus, Trash } from "lucide-react";
 import React, { useEffect, useState } from "react";
@@ -270,13 +269,7 @@ function EditPage({
   }
 
   return (
-    <CustomScrollbar
-      containerStyle="h-screen"
-      childrenContainerStyle="h-full  "
-      scrollbarContainerStyle="absolute top-0 right-0 h-full w-2 bg-transparent"
-      scrollbarStyle="left-0 absolute w-full bg-primaryDesign rounded-full"
-      trackStyle="h-full absolute left-0 top-0 w-full"
-    >
+    <>
       <DeleteModal
         isOpen={deleteModal}
         onCancel={onDelete}
@@ -563,7 +556,7 @@ function EditPage({
           </>
         );
       })}
-    </CustomScrollbar>
+    </>
   );
 }
 

@@ -1,6 +1,5 @@
 "use client";
 
-import CustomScrollbar from "@/components/CustomScrollbar";
 import { LinkType } from "@/types";
 import React, { useState } from "react";
 import DeleteModal from "../modals/DeleteModal";
@@ -150,13 +149,7 @@ function CreateEditLinkComponent({
   };
 
   return (
-    <CustomScrollbar
-      containerStyle="h-screen"
-      childrenContainerStyle="h-full  "
-      scrollbarContainerStyle="absolute top-0 right-0 h-full w-2 bg-transparent"
-      scrollbarStyle="left-0 absolute w-full bg-primaryDesign rounded-full"
-      trackStyle="h-full absolute left-0 top-0 w-full"
-    >
+    <>
       <DeleteModal
         onCancel={onDelete}
         onClose={() => setDeleteModal(false)}
@@ -334,7 +327,7 @@ function CreateEditLinkComponent({
           </>
         )}
       </div>
-    </CustomScrollbar>
+    </>
   );
 }
 

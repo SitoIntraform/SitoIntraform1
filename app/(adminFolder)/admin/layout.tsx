@@ -1,4 +1,3 @@
-import CustomScrollbar from "@/components/CustomScrollbar";
 import NavbarAdmin from "@/components/admin/NavbarAdmin";
 import { authOptions } from "@/lib/authOptions";
 import { getServerSession } from "next-auth";

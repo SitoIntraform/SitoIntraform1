@@ -5,7 +5,6 @@ import { Link, Page } from "@prisma/client";
 import { usePathname } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import ReturnViewComponent from "./view/ReturnViewComponent";
-import CustomScrollbar from "./CustomScrollbar";
 import PageNotFound from "./PageNotFound";
 import usePrivacyModal from "@/hooks/usePrivacyModal";
 
@@ -50,13 +49,6 @@ function ShowPageComponent({
   }
 
   return (
-    // <CustomScrollbar
-    //   containerStyle="h-screen !w-screen !max-w-[100vw] !overflow-x-hidden"
-    //   childrenContainerStyle="h-full  "
-    //   scrollbarContainerStyle="absolute top-0 right-0 h-full w-2 bg-transparent"
-    //   scrollbarStyle="left-0 absolute w-full bg-primaryDesign rounded-full"
-    //   trackStyle="h-full absolute left-0 top-0 w-full"
-    // >
     <>
       {page === null ? (
         <PageNotFound />
@@ -86,7 +78,6 @@ function ShowPageComponent({
         </div>
       )}
     </>
-    // </CustomScrollbar>
   );
 }
 

@@ -1,6 +1,5 @@
 "use client";
 
-import CustomScrollbar from "@/components/CustomScrollbar";
 import React, { useEffect, useState } from "react";
 import HeaderPage from "../HeaderPage";
 import Button from "@/components/Button";
@@ -139,13 +138,7 @@ function SitoPageComponent({
   };
 
   return (
-    <CustomScrollbar
-      containerStyle="h-screen"
-      childrenContainerStyle="h-full  "
-      scrollbarContainerStyle="absolute top-0 right-0 h-full w-2 bg-transparent"
-      scrollbarStyle="left-0 absolute w-full bg-primaryDesign rounded-full"
-      trackStyle="h-full absolute left-0 top-0 w-full"
-    >
+    <>
       <UploadImageModal
         isOpen={openUploadImage}
         onClose={() => setOpenUploadImage(false)}
@@ -441,7 +434,7 @@ function SitoPageComponent({
           </div>
         );
       })}
-    </CustomScrollbar>
+    </>
   );
 }
 
