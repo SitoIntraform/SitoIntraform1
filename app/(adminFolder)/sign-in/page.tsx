@@ -14,6 +14,12 @@ function SignInPage() {
   const [pss, setPss] = useState("");
   const router = useRouter();
 
+  const [isMounted, setIsMounted] = useState(false);
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, [])
+
   useEffect(() => {
     async function cancelSession() {
       await signOut({
@@ -48,6 +54,10 @@ function SignInPage() {
     setPss("");
     setEmail("");
   };
+
+  if (!isMounted){
+    return null;
+  }
 
   return (
     <div className="h-screen w-full flex flex-col items-center justify-center bg-neutral-50">

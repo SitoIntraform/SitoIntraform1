@@ -90,6 +90,12 @@ function NavbarAdmin() {
   const router = useRouter();
   const path = usePathname();
 
+  const [isMounted, setIsMounted] = useState(false);
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, [])
+
   useEffect(() => {
     if (isOpen) {
       document.body.classList.add("modal-open");
@@ -106,6 +112,10 @@ function NavbarAdmin() {
     await router.refresh();
     setIsLoading(false);
   };
+
+  if(!isMounted){
+    return null;
+  }
 
   return (
     <>

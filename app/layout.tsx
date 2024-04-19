@@ -22,7 +22,7 @@ export default function RootLayout({
       <head>
         <meta name="apple-mobile-web-app-capable" content="yes"></meta>
       </head>
-      <body className={`${sans.className} ${roboto.className} `}>
+      <body className={`${sans.className} ${roboto.className} max-w-[100vw] overflow-x-hidden`}>
         <ToastProvider />
         {children}
       </body>

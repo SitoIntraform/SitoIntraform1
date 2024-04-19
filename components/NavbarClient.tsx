@@ -126,17 +126,14 @@ function NavbarClient({
   buttonLinkReal = dev ? "" : "/" + page?.link;
 
   return (
-    <div className="!max-w-[100%] !overflow-x-hidden">
+    <div className="max-w-[100vw] !overflow-x-hidden">
       <div
-        className={`z-[200] !w-screen !max-w-[100%] !overflow-x-hidden h-[80px] border-b shadow-sm  bg-white ${
+        className={`z-[200] !w-screen !max-w-[100vw] !overflow-x-hidden h-[80px] border-b shadow-sm  bg-white ${
           dev ? "" : "fixed top-0"
         }`}
       >
         <div className="h-full containerDesign flex items-center justify-between relative">
-          <a
-            href={"/"}
-            className="hover:scale-110 transition-all duration-300"
-          >
+          <a href={"/"} className="hover:scale-110 transition-all duration-300">
             {logo && (
               <Image src={logo} alt="" width={logoWidth} height={logoHeight} />
             )}

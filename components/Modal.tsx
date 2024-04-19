@@ -84,7 +84,7 @@ function Modal({
       }}
     >
       <motion.div
-        className={`bg-white p-10 rounded-xl shadow-lg w-full md:w-3/4 lg:w-2/4 ${containerClass} space-y-3 relative z-[101]`}
+        className={`bg-white p-10 rounded-xl shadow-lg  w-full md:w-3/4 lg:w-2/4 ${containerClass} space-y-3 relative z-[101]`}
         variants={modalVariants}
         transition={{
           duration: 0.4,
@@ -103,7 +103,7 @@ function Modal({
             <X className="w-8 h-8" />
           </div>
         </div>
-        <div className={bodyContainerClass}>
+        <div className={bodyContainerClass + "max-w-full max-h-[300px] lg:max-h-[400px] overflow-y-scroll"}>
           {body}
         </div>
         <div className={footerContainerClass}>{footer}</div>
