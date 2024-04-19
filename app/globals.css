@@ -90,13 +90,13 @@
   text-shadow: 2px 2px #303030;
 }
 
-html {
+/* html {
   scroll-behavior: smooth;
 }
 
 * {
   box-sizing: border-box;
-}
+} */
 
 /* body, html {
   width: 100%;

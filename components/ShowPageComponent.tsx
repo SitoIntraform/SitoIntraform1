@@ -50,13 +50,14 @@ function ShowPageComponent({
   }
 
   return (
-    <CustomScrollbar
-      containerStyle="h-screen !w-screen !max-w-[100vw] !overflow-x-hidden"
-      childrenContainerStyle="h-full  "
-      scrollbarContainerStyle="absolute top-0 right-0 h-full w-2 bg-transparent"
-      scrollbarStyle="left-0 absolute w-full bg-primaryDesign rounded-full"
-      trackStyle="h-full absolute left-0 top-0 w-full"
-    >
+    // <CustomScrollbar
+    //   containerStyle="h-screen !w-screen !max-w-[100vw] !overflow-x-hidden"
+    //   childrenContainerStyle="h-full  "
+    //   scrollbarContainerStyle="absolute top-0 right-0 h-full w-2 bg-transparent"
+    //   scrollbarStyle="left-0 absolute w-full bg-primaryDesign rounded-full"
+    //   trackStyle="h-full absolute left-0 top-0 w-full"
+    // >
+    <>
       {page === null ? (
         <PageNotFound />
       ) : (
@@ -84,7 +85,8 @@ function ShowPageComponent({
           <Footer />
         </div>
       )}
-    </CustomScrollbar>
+    </>
+    // </CustomScrollbar>
   );
 }
 
@@ -122,9 +124,11 @@ function Footer() {
             info@intraform.it
           </p>
         </div>
-        
       </div>
-      <div onClick={privacy.onOpen} className="pb-16 cursor-pointer pt-4 mt-8 border-t-2 border-white regular-medium !text-white w-full text-center underline underline-offset-1">
+      <div
+        onClick={privacy.onOpen}
+        className="pb-16 cursor-pointer pt-4 mt-8 border-t-2 border-white regular-medium !text-white w-full text-center underline underline-offset-1"
+      >
         Privacy Policy
       </div>
     </div>
