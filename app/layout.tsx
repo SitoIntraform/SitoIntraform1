@@ -19,7 +19,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${sans.className} ${roboto.className} !w-screen !max-w-[100vw] !overflow-x-hidden h-[100dvh] overflow-y-scroll`}>
+      <body className={`${sans.className} ${roboto.className} !w-screen !max-w-[100vw] !overflow-x-hidden h-[100dvh] max-[100dvh] min-h-[100dvh] overflow-y-scroll`}>
         <ToastProvider />
         {children}
       </body>
