@@ -51,7 +51,7 @@ function ShowPageComponent({
 
   return (
     <CustomScrollbar
-      containerStyle="h-screen"
+      containerStyle="h-screen !w-screen !max-w-[100vw] !overflow-x-hidden"
       childrenContainerStyle="h-full  "
       scrollbarContainerStyle="absolute top-0 right-0 h-full w-2 bg-transparent"
       scrollbarStyle="left-0 absolute w-full bg-primaryDesign rounded-full"

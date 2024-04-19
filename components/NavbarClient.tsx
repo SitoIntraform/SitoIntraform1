@@ -134,7 +134,7 @@ function NavbarClient({
   return (
     <>
       <div
-        className={`z-[200] w-full h-[80px] border-b shadow-sm  bg-white ${
+        className={`z-[200] !w-screen !max-w-[100vw] !overflow-x-hidden h-[80px] border-b shadow-sm  bg-white ${
           dev ? "" : "fixed top-0"
         }`}
       >

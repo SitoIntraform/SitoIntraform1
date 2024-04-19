@@ -23,7 +23,7 @@ function PageViewer({
   const privacyModal = usePrivacyModal();
 
   return (
-    <div>
+    <div className="!w-screen !max-w-[100vw] !overflow-x-hidden">
       <NavbarClient
         allLinks={links}
         dev={false}
