@@ -19,6 +19,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <meta name="apple-mobile-web-app-capable" content="yes"></meta>
+      </head>
       <body className={`${sans.className} ${roboto.className} !w-screen !max-w-[100vw] !overflow-x-hidden h-[100svh] max-h-[100svh] min-h-[100svh] overflow-y-scroll`}>
         <ToastProvider />
         {children}
