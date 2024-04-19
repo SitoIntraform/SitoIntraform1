@@ -109,7 +109,7 @@ export async function POST(
       if (isInSections) {
         console.log("is in sections: " + sec.name);
 
-        const service: Service[] = [...sec.data.service.map((s, index) => {
+        const serviceCorrected: Service[] = [...sec.data.service.map((s, index) => {
           return {
             image: s.image,
             LinkPage: isInSections.data.service[index].LinkPage,
@@ -118,7 +118,7 @@ export async function POST(
           }
         })]
 
-        console.log(service);
+        console.log(serviceCorrected);
 
         await prismadb.section.update({
           where: {
@@ -145,14 +145,7 @@ export async function POST(
               carouselDots: isInSections.data.carouselDots,
               carouselButtons: isInSections.data.carouselButtons,
 
-              service: [...sec.data.service.map((s, index) => {
-                return {
-                  image: s.image,
-                  LinkPage: isInSections.data.service[index].LinkPage,
-                  description: s.description,
-                  name: s.name,
-                }
-              })],
+              service: serviceCorrected,
 
               hScreen: isInSections.data.hScreen,
               space: isInSections.data.space,

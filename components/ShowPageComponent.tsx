@@ -94,8 +94,8 @@ function Footer() {
   const privacy = usePrivacyModal();
 
   return (
-    <div className="bg-primaryDesign md:px-20 px-5 pt-10">
-      <div className="containerDesign  !text-white flex flex-row justify-center gap-40 flex-wrap">
+    <div className="bg-primaryDesign md:px-20 px-5 pt-16">
+      <div className="containerDesign  !text-white flex md:flex-row flex-col justify-evenly gap-10 flex-wrap">
         <div className="flex flex-col items-center justify-center gap-2">
           <p className="large-bold mb-[10px] !text-white">SEDE</p>
           <p className="regular-medium !text-white">Via E. Bignone 85/12</p>
@@ -113,17 +113,17 @@ function Footer() {
           <p className="large-bold mb-[10px] !text-white">
             ORARI DI SEGRETERIA
           </p>
-          <p className="regular-medium !text-white flex flex-row justify-between w-full">
+          <p className="regular-medium !text-white flex flex-row justify-between w-[220px]">
             <p className="regular-medium !text-white">Lun - Ven</p>
             <p className="regular-medium !text-white">09:00 - 13:00</p>
           </p>
-          <p className="regular-medium !text-white flex flex-row justify-between w-full">
+          <p className="regular-medium !text-white flex flex-row justify-between w-[220px]">
             <p className="regular-medium !text-white">Sab - Dom</p>
             <p className="regular-medium !text-white">Chiuso</p>
           </p>
         </div>
       </div>
-      <div onClick={privacy.onOpen} className="pb-[20px] cursor-pointer pt-[5px] mt-[20px] border-t-2 border-white regular-medium !text-white w-full text-center underline underline-offset-1">
+      <div onClick={privacy.onOpen} className="pb-16 cursor-pointer pt-4 mt-8 border-t-2 border-white regular-medium !text-white w-full text-center underline underline-offset-1">
         Privacy Policy
       </div>
     </div>

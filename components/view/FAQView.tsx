@@ -191,28 +191,30 @@ export default function FAQView({
               };
               return (
                 <motion.div
-                viewport={{ once: true }}
-                variants={containerAnimation(0, section.data.animationType)}
-                initial={section.data.animation ? "hidden" : ""}
-                whileInView={section.data.animation ? "show" : ""}
+                  viewport={{ once: true }}
+                  variants={containerAnimation(0, section.data.animationType)}
+                  initial={section.data.animation ? "hidden" : ""}
+                  whileInView={section.data.animation ? "show" : ""}
                   key={index}
                   className={`w-full border-2 outline-none p-5 rounded-2xl cursor-pointer bg-white ${
-                    isActive ? "border-primaryDesign" : "border-textDesign/50"
-                  } transition-all duration-200`}
+                    isActive ? "border-primaryDesign" : "border-accentDesign"
+                  } transition-all duration-200 max-w-[900px]`}
                   onClick={click}
                 >
                   <div className="flex flex-row items-center">
                     <p className="large-semibold">{f.domand}</p>
                     <X
                       className={`w-8 h-8 text-textDesign/70 ml-auto transition-transform duration-300 ${
-                        isActive ? "rotate-180 !text-primaryDesign" : "rotate-45"
+                        isActive
+                          ? "rotate-180 !text-primaryDesign"
+                          : "rotate-45"
                       }`}
                     />
                   </div>
                   <div
                     className="overflow-hidden transition-all duration-300"
                     style={{
-                      maxHeight: isActive ? "1000px" : "0px",
+                      maxHeight: isActive ? "10000px" : "0px",
                       // opacity: isActive ? 1 : 0,
                     }}
                   >
@@ -228,7 +230,7 @@ export default function FAQView({
               variants={containerAnimation(0, section.data.animationType)}
               initial={section.data.animation ? "hidden" : ""}
               whileInView={section.data.animation ? "show" : ""}
-              className="small-normal  xl:regular-normal relative text-center"
+              className="h5Desktop relative text-center"
               style={{
                 color:
                   section.data.backgroundColor === "#303030"

@@ -19,7 +19,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${sans.className} ${roboto.className}`}>
+      <body className={`${sans.className} ${roboto.className} !w-screen !overflow-x-hidden`}>
         <ToastProvider />
         {children}
       </body>

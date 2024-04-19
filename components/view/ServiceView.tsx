@@ -33,12 +33,6 @@ export default function ServiceView({
 }) {
   const [updateCounter, setUpdateCounter] = useState(0);
 
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [message, setMessage] = useState("");
-
-  const [policy, setPolicy] = useState(false);
-
   const [link1, setLink1] = useState("");
   const [link2, setLink2] = useState("");
 
@@ -84,20 +78,6 @@ export default function ServiceView({
     setUpdateCounter((prev) => prev + 1);
   }, [section]);
 
-  const onPressContactBtn = () => {
-    if (!name || !email || !message) {
-      toast.error("Compila tutti i campi");
-      return;
-    }
-
-    if (!policy) {
-      toast.error("Conferma di aver letto le policy per poterci contattare");
-      return;
-    }
-
-    toast.success("Contattati");
-  };
-
   return (
     <section
       id={section.name}
@@ -132,7 +112,7 @@ export default function ServiceView({
         className={`h-full z-30 flex containerDesign  flex-col items-center justify-center !max-lg:!py-10`}
       >
         <div
-          className={`mx-auto flex flex-col w-[100%] items-center justify-center gap-6`}
+          className={`mx-auto flex flex-col w-[100%] items-center justify-center gap-12`}
         >
           <motion.div
             viewport={{ once: true }}
@@ -175,24 +155,25 @@ export default function ServiceView({
               </>
             )}
           </motion.div>
-          <div className="flex flex-row flex-wrap items-center justify-center mt-[16px] w-full gap-12 z-[10]">
+          <div className="flex flex-row flex-wrap items-center justify-center mt-[16px] w-full gap-16 z-[10]">
             {section.data.service.map((s, index) => {
-
               let l = "";
 
               if (s.LinkPage?.at(0) === "/") {
                 //LINK A PAGINA
                 const pageId = s.LinkPage?.split("/")[1];
                 const page = allPages.find((p) => p.PageId === pageId);
-                l = ("/" + page?.link);
+                l = "/" + page?.link;
               } else if (s.LinkPage?.at(0) === "#") {
                 //LINK AD ANCORA
                 const sectionId = s.LinkPage?.split("#")[1];
-                const section = allSections.find((s) => s.SectionId === sectionId);
-                l  = ("#" + section?.name);
+                const section = allSections.find(
+                  (s) => s.SectionId === sectionId
+                );
+                l = "#" + section?.name;
               }
 
-              if(dev){
+              if (dev) {
                 l = "";
               }
 
@@ -200,28 +181,38 @@ export default function ServiceView({
 
               return (
                 <motion.div
-                viewport={{ once: true }}
-                variants={containerAnimation(0, section.data.animationType)}
-                initial={section.data.animation ? "hidden" : ""}
-                whileInView={section.data.animation ? "show" : ""} key={index} className="h-[400px] w-[285px] rounded-lg ring-[2px] ring-accentDesign overflow-hidden bg-white">
+                  viewport={{ once: true }}
+                  variants={containerAnimation(0, section.data.animationType)}
+                  initial={section.data.animation ? "hidden" : ""}
+                  whileInView={section.data.animation ? "show" : ""}
+                  key={index}
+                  className="h-[470px] w-[370px] rounded-lg ring-[2px] ring-accentDesign overflow-hidden bg-white"
+                >
                   <div className="h-[45%] w-full relative overflow-hidden">
-                    <Image 
+                    <Image
                       src={s.image}
                       alt="Image"
                       fill
                       className="object-cover"
                     />
                   </div>
-                  <div className="!text-primaryDesign text-center h4Mobile px-5 my-[10px]">{s.name}</div>
-                  <div className="max-h-[120px] h-full w-full p-2 flex flex-row items-center justify-center text-center overflow-hidden">
-                    {s.description}
+                  <div className="h-[65%] w-full px-5">
+                    <div className="!text-primaryDesign text-center h6Mobile  h-[20%] flex flex-col items-center justify-center">
+                      {s.name}
+                    </div>
+                    <div className="h-[45%] w-full p-2 flex flex-row justify-center text-center overflow-hidden">
+                      {s.description}
+                    </div>
+                    <Link
+                      href={l}
+                      className=" h-[15%] text-accentDesign flex flex-row items-center justify-center gap-1 hover:underline underline-offset-2"
+                    >
+                      Scopri di più
+                      <ChevronRight className="w-4 h-4 text-primaryDesign" />
+                    </Link>
                   </div>
-                  <Link href={l} className="mb-[5px] flex flex-row items-center justify-center gap-1 hover:underline underline-offset-2">
-                    Scopri di più
-                    <ChevronRight className="w-4 h-4 text-primaryDesign" />
-                  </Link>
                 </motion.div>
-              )
+              );
             })}
           </div>
           {section.data.description && (
