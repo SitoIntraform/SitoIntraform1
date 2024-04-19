@@ -177,7 +177,7 @@ function ContactView({
               </>
             )}
           </motion.div>
-          <div className="w-full flex flex-col items-center justify-center">
+          <div className="w-full flex flex-col items-center justify-center z-[20]">
             <motion.div
               className="max-w-[500px] w-[100%] space-y-[20px] "
               viewport={{ once: true }}

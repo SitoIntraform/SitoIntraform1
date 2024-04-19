@@ -212,10 +212,10 @@ export default function FAQView({
                     />
                   </div>
                   <div
-                    className="overflow-hidden transition-all duration-300"
+                    className="overflow-hidden transition-all duration-700"
                     style={{
                       maxHeight: isActive ? "10000px" : "0px",
-                      // opacity: isActive ? 1 : 0,
+                      opacity: isActive ? 1 : 0,
                     }}
                   >
                     <div className="mt-[10px]">{f.response}</div>
