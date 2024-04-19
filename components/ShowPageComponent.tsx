@@ -95,21 +95,13 @@ function Footer() {
 
   return (
     <div className="bg-primaryDesign md:px-20 px-5 pt-16">
-      <div className="containerDesign  !text-white flex md:flex-row flex-col justify-evenly gap-10 flex-wrap">
+      <div className="containerDesign  !text-white flex md:flex-row flex-col justify-between gap-10 flex-wrap relative">
         <div className="flex flex-col items-center justify-center gap-2">
           <p className="large-bold mb-[10px] !text-white">SEDE</p>
           <p className="regular-medium !text-white">Via E. Bignone 85/12</p>
           <p className="regular-medium !text-white">10064 Pinerolo (TO)</p>
         </div>
-        <div className="flex flex-col items-center justify-center gap-2">
-          <p className="large-bold mb-[10px] !text-white">RECAPITI</p>
-          <p className="regular-medium !text-white">Tel: +39 0121 305343</p>
-          <p className="regular-medium !text-white">Fax: +39 0121 303653</p>
-          <p className="regular-medium !text-white underline underline-offset-2">
-            info@intraform.it
-          </p>
-        </div>
-        <div className="flex flex-col items-center justify-center gap-2">
+        <div className="flex flex-col items-center justify-center gap-2 lg:absolute lg:left-[50%] lg:-translate-x-[50%] lg:top-3">
           <p className="large-bold mb-[10px] !text-white">
             ORARI DI SEGRETERIA
           </p>
@@ -122,6 +114,15 @@ function Footer() {
             <p className="regular-medium !text-white">Chiuso</p>
           </p>
         </div>
+        <div className="flex flex-col items-center justify-center gap-2">
+          <p className="large-bold mb-[10px] !text-white">RECAPITI</p>
+          <p className="regular-medium !text-white">Tel: +39 0121 305343</p>
+          <p className="regular-medium !text-white">Fax: +39 0121 303653</p>
+          <p className="regular-medium !text-white underline underline-offset-2">
+            info@intraform.it
+          </p>
+        </div>
+        
       </div>
       <div onClick={privacy.onOpen} className="pb-16 cursor-pointer pt-4 mt-8 border-t-2 border-white regular-medium !text-white w-full text-center underline underline-offset-1">
         Privacy Policy
