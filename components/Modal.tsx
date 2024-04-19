@@ -95,7 +95,7 @@ function Modal({
         }}
       >
         <div className="border-b border-textDesign pb-5 ">
-          <div className="md:h3Desktop h2Mobile text-center">{title}</div>
+          <div className="md:h3Desktop large-semibold text-center">{title}</div>
           <div
             onClick={onClose}
             className="absolute md:top-4 md:right-4 top-2 right-2 p-1 rounded-full hover:bg-textDesign/10 cursor-pointer hover:opacity-60 hover:scale-105 active:scale-95"
