@@ -201,10 +201,10 @@ export default function FAQView({
                   } transition-all duration-200 max-w-[900px]`}
                   onClick={click}
                 >
-                  <div className="flex flex-row items-center">
-                    <p className="large-semibold">{f.domand}</p>
+                  <div className="flex flex-row items-center justify-between">
+                    <p className="medium-semibold md:large-semibold">{f.domand}</p>
                     <X
-                      className={`w-8 h-8 text-textDesign/70 ml-auto transition-transform duration-300 ${
+                      className={`w-8 h-8 text-textDesign/70 transition-transform duration-300 ${
                         isActive
                           ? "rotate-180 !text-primaryDesign"
                           : "rotate-45"
