@@ -122,14 +122,8 @@ function NavbarClient({
 
   let buttonLinkReal = "";
 
-  const page = allPage.find(
-    (p) => p.PageId === buttonLink?.split("/").at(1)
-  );
+  const page = allPage.find((p) => p.PageId === buttonLink?.split("/").at(1));
   buttonLinkReal = dev ? "" : "/" + page?.link;
-
-  
-
-
 
   return (
     <div className="!max-w-[100%] !overflow-x-hidden">
@@ -157,7 +151,7 @@ function NavbarClient({
 
               let isActive = currentPage?.link === path.split("/")[1];
 
-              if(currentLink?.type != "Single"){
+              if (currentLink?.type != "Single") {
                 isActive = false;
               }
 
@@ -295,7 +289,7 @@ function NavbarClient({
         </div>
       </div>
       <motion.div
-        className="z-[200] block border-l shadow-md lg:hidden fixed max-h-[calc(100%-80px)] h-[calc(100%-70px)] w-[75%] overflow-hidden bg-white top-[80px]"
+        className="z-[200] block border-l shadow-md lg:hidden fixed max-h-[calc(100dvh-80px)] h-[calc(100dvh-70px)] w-[75%] overflow-hidden bg-white top-[80px]"
         variants={menuVariants}
         initial="hidden"
         animate={isOpen ? "show" : "hidden"}

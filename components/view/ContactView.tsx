@@ -79,12 +79,12 @@ function ContactView({
   }, [section]);
 
   const onPressContactBtn = () => {
-    if(!name || !email || !message){
+    if (!name || !email || !message) {
       toast.error("Compila tutti i campi");
       return;
     }
 
-    if(!policy){
+    if (!policy) {
       toast.error("Conferma di aver letto le policy per poterci contattare");
       return;
     }
@@ -102,7 +102,7 @@ function ContactView({
       }}
       className={`${
         section.data.hScreen
-          ? "lg:h-[calc(100%-80px)] h-auto py-20 lg:py-0"
+          ? "lg:h-[calc(100dvh-80px)] h-auto py-20 lg:py-0"
           : ""
       } w-screen relative lg:overflow-hidden !max-w-[100%] !overflow-x-hidden`}
       key={dev ? updateCounter : section.name}
@@ -212,7 +212,11 @@ function ContactView({
                 />
               </div>
               <div className="flex flex-row items-center justify-center gap-2">
-                <input type="checkbox" checked={policy} onChange={(e) => setPolicy(e.target.checked)} />
+                <input
+                  type="checkbox"
+                  checked={policy}
+                  onChange={(e) => setPolicy(e.target.checked)}
+                />
                 <p
                   className={`regular-normal`}
                   style={{

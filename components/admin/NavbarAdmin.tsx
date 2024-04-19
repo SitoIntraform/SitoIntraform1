@@ -91,10 +91,9 @@ function NavbarAdmin() {
   const path = usePathname();
 
   useEffect(() => {
-    if(isOpen){
+    if (isOpen) {
       document.body.classList.add("modal-open");
-    }
-    else{
+    } else {
       document.body.classList.remove("modal-open");
     }
   }, [isOpen]);
@@ -112,16 +111,11 @@ function NavbarAdmin() {
     <>
       <div className="z-[100] w-full h-[80px] border-b shadow-sm fixed top-0 bg-white">
         <div className="h-full containerDesign px-10 flex items-center justify-between relative">
-          <Link 
+          <Link
             href={"/admin"}
             className="hover:scale-110 transition-all duration-300"
           >
-            <Image 
-              src={"/logo.jpg"}
-              alt=""
-              width={170}
-              height={100}
-            />
+            <Image src={"/logo.jpg"} alt="" width={170} height={100} />
           </Link>
 
           <div className="lg:flex hidden flex-row items-center xl:gap-14 lg:gap-7 absolute top-[50%] -translate-y-[50%] left-[50%] -translate-x-[50%]">
@@ -206,7 +200,7 @@ function NavbarAdmin() {
         </div>
       </div>
       <motion.div
-        className="block lg:hidden fixed max-h-[calc(100%-80px)] h-[calc(100%-70px)] max-w-[calc(100vw-0px)] w-[calc(100vw-0px)] z-[100]  overflow-hidden bg-white top-[80px]"
+        className="block lg:hidden fixed max-h-[calc(100dvh-80px)] h-[calc(100dvh-70px)] max-w-[calc(100vw-0px)] w-[calc(100vw-0px)] z-[100]  overflow-hidden bg-white top-[80px]"
         variants={menuVariants}
         initial="hidden"
         animate={isOpen ? "show" : "hidden"}
@@ -215,7 +209,7 @@ function NavbarAdmin() {
           <div className="flex flex-col gap-5 items-center justify-center h-full absolute w-full bottom-20">
             {links.map((link) => {
               // Capire se il link è attivo
-              const active = path.split("/").at(3) || "";
+              const active = path.split("/").at(2) || "";
               const isActive = active === link.link;
 
               return (

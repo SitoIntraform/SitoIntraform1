@@ -15,7 +15,17 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 
-function TextWithImageView({ section, dev, allPages, allSections }: { section: SectionType; dev?: boolean, allPages: PageType[], allSections: SectionType[] }) {
+function TextWithImageView({
+  section,
+  dev,
+  allPages,
+  allSections,
+}: {
+  section: SectionType;
+  dev?: boolean;
+  allPages: PageType[];
+  allSections: SectionType[];
+}) {
   const [updateCounter, setUpdateCounter] = useState(0);
   const [carouselCounter, setCarouselCounter] = useState(0);
 
@@ -26,16 +36,14 @@ function TextWithImageView({ section, dev, allPages, allSections }: { section: S
     if (dev) {
       setLink1("");
       setLink2("");
-    }
-    else {
+    } else {
       const sec = section;
       if (section.data.primaryLink?.at(0) === "/") {
         //LINK A PAGINA
         const pageId = sec.data.primaryLink?.split("/")[1];
         const page = allPages.find((p) => p.PageId === pageId);
         setLink1("/" + page?.link);
-      }
-      else if (section.data.primaryLink?.at(0) === "#") {
+      } else if (section.data.primaryLink?.at(0) === "#") {
         //LINK AD ANCORA
         const sectionId = sec.data.primaryLink?.split("#")[1];
         const section = allSections.find((s) => s.SectionId === sectionId);
@@ -47,15 +55,14 @@ function TextWithImageView({ section, dev, allPages, allSections }: { section: S
         const pageId = sec.data.secondaryLink?.split("/")[1];
         const page = allPages.find((p) => p.PageId === pageId);
         setLink2("/" + page?.link);
-      }
-      else if (section.data.secondaryLink?.at(0) === "#") {
+      } else if (section.data.secondaryLink?.at(0) === "#") {
         //LINK AD ANCORA
         const sectionId = sec.data.secondaryLink?.split("#")[1];
         const section = allSections.find((s) => s.SectionId === sectionId);
         setLink2("#" + section?.name);
       }
     }
-  }, [section, dev, allPages, allSections])
+  }, [section, dev, allPages, allSections]);
 
   useEffect(() => {
     setUpdateCounter((prev) => prev + 1);
@@ -83,7 +90,7 @@ function TextWithImageView({ section, dev, allPages, allSections }: { section: S
       }}
       className={`${
         section.data.hScreen
-          ? "lg:h-[calc(100%-80px)] h-auto py-20 lg:py-0"
+          ? "lg:h-[calc(100dvh-80px)] h-auto py-20 lg:py-0"
           : ""
       } w-screen relative lg:overflow-hidden !max-w-[100%] !overflow-x-hidden`}
       key={dev ? updateCounter : section.name}

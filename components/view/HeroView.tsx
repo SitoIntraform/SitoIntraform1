@@ -16,31 +16,39 @@ import Button from "../Button";
 import { motion } from "framer-motion";
 import { containerAnimation } from "@/lib/animation";
 
-function HeroView({ section, dev, allPages, allSections }: { section: SectionType; dev?: boolean, allPages: PageType[], allSections: SectionType[]}) {
+function HeroView({
+  section,
+  dev,
+  allPages,
+  allSections,
+}: {
+  section: SectionType;
+  dev?: boolean;
+  allPages: PageType[];
+  allSections: SectionType[];
+}) {
   const [imageVersion, setImageVersion] = useState(0);
   const [updateAnimationCounter, setUpdateanimationCounter] = useState(0);
 
-  const [link1, setLink1]  = useState("");   
-  const [link2, setLink2] = useState("");   
+  const [link1, setLink1] = useState("");
+  const [link2, setLink2] = useState("");
 
   useEffect(() => {
-    if(dev){
+    if (dev) {
       setLink1("");
       setLink2("");
-    }
-    else{
+    } else {
       const sec = section;
-      if(section.data.primaryLink?.at(0) === "/"){
+      if (section.data.primaryLink?.at(0) === "/") {
         //LINK A PAGINA
         const pageId = sec.data.primaryLink?.split("/")[1];
         const page = allPages.find((p) => p.PageId === pageId);
-        setLink1("/"+page?.link);
-      }
-      else if (section.data.primaryLink?.at(0) === "#"){
+        setLink1("/" + page?.link);
+      } else if (section.data.primaryLink?.at(0) === "#") {
         //LINK AD ANCORA
         const sectionId = sec.data.primaryLink?.split("#")[1];
         const section = allSections.find((s) => s.SectionId === sectionId);
-        setLink1("#"+section?.name);
+        setLink1("#" + section?.name);
       }
 
       if (section.data.secondaryLink?.at(0) === "/") {
@@ -48,15 +56,14 @@ function HeroView({ section, dev, allPages, allSections }: { section: SectionTyp
         const pageId = sec.data.secondaryLink?.split("/")[1];
         const page = allPages.find((p) => p.PageId === pageId);
         setLink2("/" + page?.link);
-      }
-      else if (section.data.secondaryLink?.at(0) === "#") {
+      } else if (section.data.secondaryLink?.at(0) === "#") {
         //LINK AD ANCORA
         const sectionId = sec.data.secondaryLink?.split("#")[1];
         const section = allSections.find((s) => s.SectionId === sectionId);
         setLink2("#" + section?.name);
       }
     }
-  }, [section, dev, allPages, allSections])
+  }, [section, dev, allPages, allSections]);
 
   useEffect(() => {
     setImageVersion((prev) => prev + 1);
@@ -70,7 +77,7 @@ function HeroView({ section, dev, allPages, allSections }: { section: SectionTyp
     <section
       id={section.name}
       className={`${
-        section.data.hScreen ? "h-[calc(100%-80px)]" : ""
+        section.data.hScreen ? "h-[calc(100dvh-80px)]" : ""
       } w-screen relative overflow-hidden !max-w-[100%] !overflow-x-hidden`}
     >
       {/* Carousel z-[-100] */}
@@ -98,9 +105,14 @@ function HeroView({ section, dev, allPages, allSections }: { section: SectionTyp
       </div>
 
       {/* Overlay z-[-50] */}
-      <div className="h-full w-full absolute top-0 bg-black z-[-50]" style={{
-        opacity: section.data.backgroundImageOpacity ? section.data.backgroundImageOpacity / 100 : 0,
-      }} />
+      <div
+        className="h-full w-full absolute top-0 bg-black z-[-50]"
+        style={{
+          opacity: section.data.backgroundImageOpacity
+            ? section.data.backgroundImageOpacity / 100
+            : 0,
+        }}
+      />
 
       {/* Text z-3 */}
       <div
