@@ -203,13 +203,14 @@ export default function FAQView({
                 >
                   <div className="flex flex-row items-center justify-between">
                     <p className="medium-semibold md:large-semibold">{f.domand}</p>
-                    <X
-                      className={`w-8 h-8 text-textDesign/70 transition-transform duration-300 ${
-                        isActive
-                          ? "rotate-180 !text-primaryDesign"
-                          : "rotate-45"
-                      }`}
-                    />
+                    <div>
+                      <X
+                        className={`w-8 h-8 text-textDesign/70 transition-transform duration-300 ${isActive
+                            ? "rotate-180 !text-primaryDesign"
+                            : "rotate-45"
+                          }`}
+                      />
+                    </div>
                   </div>
                   <div
                     className="overflow-hidden transition-all duration-700"
