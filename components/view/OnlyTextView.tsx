@@ -72,7 +72,7 @@ function OnlyTextView({ section, dev, allPages, allSections }: { section: Sectio
         section.data.hScreen
           ? "lg:h-[calc(100vh-80px)] h-auto py-20 lg:py-0"
           : ""
-      } w-screen relative lg:overflow-hidden`}
+      } w-screen relative lg:overflow-hidden !max-w-[100%] !overflow-x-hidden`}
       key={dev ? updateCounter : section.name}
     >
       {section.data.backgroundImages && section.data.backgroundImageOpacity && (

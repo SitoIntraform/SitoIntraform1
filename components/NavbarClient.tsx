@@ -132,9 +132,9 @@ function NavbarClient({
 
 
   return (
-    <>
+    <div className="!max-w-[100%] !overflow-x-hidden">
       <div
-        className={`z-[200] !w-screen !max-w-[100vw] !overflow-x-hidden h-[80px] border-b shadow-sm  bg-white ${
+        className={`z-[200] !w-screen !max-w-[100%] !overflow-x-hidden h-[80px] border-b shadow-sm  bg-white ${
           dev ? "" : "fixed top-0"
         }`}
       >
@@ -295,7 +295,7 @@ function NavbarClient({
         </div>
       </div>
       <motion.div
-        className="z-[200] block border-l shadow-md lg:hidden fixed max-h-[calc(100vh-80px)] h-[calc(100vh-70px)] w-[75%]  overflow-hidden bg-white top-[80px]"
+        className="z-[200] block border-l shadow-md lg:hidden fixed max-h-[calc(100vh-80px)] h-[calc(100vh-70px)] w-[75%] overflow-hidden bg-white top-[80px]"
         variants={menuVariants}
         initial="hidden"
         animate={isOpen ? "show" : "hidden"}
@@ -420,7 +420,7 @@ function NavbarClient({
           </motion.div>
         </div>
       </motion.div>
-    </>
+    </div>
   );
 }
 

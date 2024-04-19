@@ -207,7 +207,7 @@ function CustomScrollbar({
 
   return (
     <>
-      <div className={containerStyle + " overflow-hidden"}>
+      <div className={containerStyle + " overflow-hidden !max-w-[100%] !overflow-x-hidden"}>
         <div
           className={childrenContainerStyle + " overflow-auto"}
           ref={contentRef}

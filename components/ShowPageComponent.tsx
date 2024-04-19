@@ -94,7 +94,7 @@ function Footer() {
   const privacy = usePrivacyModal();
 
   return (
-    <div className="bg-primaryDesign md:px-20 px-5 pt-16">
+    <div className="bg-primaryDesign md:px-20 px-5 pt-16 !max-w-[100%] !overflow-x-hidden">
       <div className="containerDesign  !text-white flex md:flex-row flex-col justify-between gap-10 flex-wrap relative">
         <div className="flex flex-col items-center justify-center gap-2">
           <p className="large-bold mb-[10px] !text-white">SEDE</p>

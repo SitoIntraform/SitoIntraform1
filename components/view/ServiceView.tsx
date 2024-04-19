@@ -86,7 +86,7 @@ export default function ServiceView({
           ? "transparent"
           : section.data.backgroundColor,
       }}
-      className={` w-screen relative lg:overflow-hidden`}
+      className={` w-screen relative lg:overflow-hidden !max-w-[100%] !overflow-x-hidden`}
       key={dev ? updateCounter : section.name}
     >
       {section.data.backgroundImages && section.data.backgroundImageOpacity && (
