@@ -224,7 +224,7 @@ function GalleryView({
               className="flex md:flex-row flex-col gap-3 md:gap-6"
             >
               {section.data.primaryButton && (
-                <Link href={link1}>
+                <a href={link1}>
                   <Button
                     width={section.data.widthPrimaryButton || 0}
                     height={section.data.heightPrimaryButton || 0}
@@ -234,10 +234,10 @@ function GalleryView({
                   >
                     <p>{section.data.primaryButtonText}</p>
                   </Button>
-                </Link>
+                </a>
               )}
               {section.data.secondaryButton && (
-                <Link href={link2}>
+                <a href={link2}>
                   <Button
                     width={section.data.widthSecondaryButton || 0}
                     height={section.data.heightSecondaryButton || 0}
@@ -248,7 +248,7 @@ function GalleryView({
                   >
                     <p>{section.data.secondaryButtonText}</p>
                   </Button>
-                </Link>
+                </a>
               )}
             </motion.div>
           )}

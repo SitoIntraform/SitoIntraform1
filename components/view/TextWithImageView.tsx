@@ -92,7 +92,7 @@ function TextWithImageView({
         section.data.hScreen
           ? "lg:h-[calc(100dvh-80px)] h-auto py-20 lg:py-0"
           : ""
-      } w-screen relative lg:overflow-hidden !max-w-[100%] !overflow-x-hidden`}
+      } w-screen relative lg:overflow-hidden !max-w-[100%] !overflow-x-hidden !overflow-hidden`}
       key={dev ? updateCounter : section.name}
     >
       {section.data.backgroundImages && section.data.backgroundImageOpacity && (
@@ -195,7 +195,7 @@ function TextWithImageView({
                 className="flex md:flex-row flex-col gap-6 "
               >
                 {section.data.primaryButton && (
-                  <Link href={link1}>
+                  <a href={link1}>
                     <Button
                       width={section.data.widthPrimaryButton || 0}
                       height={section.data.heightPrimaryButton || 0}
@@ -205,10 +205,10 @@ function TextWithImageView({
                     >
                       <p>{section.data.primaryButtonText}</p>
                     </Button>
-                  </Link>
+                  </a>
                 )}
                 {section.data.secondaryButton && (
-                  <Link href={link2}>
+                  <a href={link2}>
                     <Button
                       width={section.data.widthSecondaryButton || 0}
                       height={section.data.heightSecondaryButton || 0}
@@ -219,7 +219,7 @@ function TextWithImageView({
                     >
                       <p>{section.data.secondaryButtonText}</p>
                     </Button>
-                  </Link>
+                  </a>
                 )}
               </motion.div>
             )}

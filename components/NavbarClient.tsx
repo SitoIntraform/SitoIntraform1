@@ -133,14 +133,14 @@ function NavbarClient({
         }`}
       >
         <div className="h-full containerDesign flex items-center justify-between relative">
-          <Link
+          <a
             href={"/"}
             className="hover:scale-110 transition-all duration-300"
           >
             {logo && (
               <Image src={logo} alt="" width={logoWidth} height={logoHeight} />
             )}
-          </Link>
+          </a>
 
           <div className="lg:flex hidden flex-row items-center xl:gap-10 lg:gap-5 absolute top-[50%] -translate-y-[50%] left-[50%] -translate-x-[50%]">
             {links.map((link, index) => {
@@ -165,11 +165,10 @@ function NavbarClient({
               }
 
               return (
-                <Link
+                <a
                   href={linkReal}
                   key={currentLink?.LinkId}
                   className={`text-center regular-normal group`}
-                  scroll={true}
                 >
                   <div
                     className={`${
@@ -201,7 +200,7 @@ function NavbarClient({
                               // console.log(linkReal2);
 
                               return (
-                                <Link
+                                <a
                                   key={index2}
                                   className="cursor-pointer text-white group/link"
                                   href={linkReal2}
@@ -214,7 +213,7 @@ function NavbarClient({
                                     className={`h-[1px] w-0 group-hover/link:w-full bg-white
                                     transition-all duration-300  rounded-full`}
                                   />
-                                </Link>
+                                </a>
                               );
                             })}
                           </div>
@@ -229,7 +228,7 @@ function NavbarClient({
                         : "w-0 group-hover:w-full bg-primaryDesign"
                     } transition-all duration-300  rounded-full`}
                   />
-                </Link>
+                </a>
               );
             })}
           </div>
@@ -240,7 +239,7 @@ function NavbarClient({
               All the recent action
             </div> */}
             <div className="hidden lg:block">
-              <Link href={buttonLinkReal}>
+              <a href={buttonLinkReal}>
                 <Button
                   className="normal-normal !text-white"
                   onClick={() => {}}
@@ -251,7 +250,7 @@ function NavbarClient({
                 >
                   {buttonText}
                 </Button>
-              </Link>
+              </a>
             </div>
           </div>
           <div
@@ -366,7 +365,7 @@ function NavbarClient({
                               linkReal2 = dev ? "" : "/" + page?.link;
 
                               return (
-                                <Link
+                                <a
                                   key={index2}
                                   className="cursor-pointer text-white group/link"
                                   onClick={(e) => {
@@ -380,7 +379,7 @@ function NavbarClient({
                                     className={`h-[1px] w-0 group-hover/link:w-full bg-white
                                     transition-all duration-300  rounded-full`}
                                   />
-                                </Link>
+                                </a>
                               );
                             })}
                           </div>
@@ -398,7 +397,7 @@ function NavbarClient({
             initial="hidden"
             animate={isOpen ? "show" : "hidden"}
           >
-            <Link href={""} className="w-full">
+            <a href={""} className="w-full">
               <Button
                 wfull
                 className="medium-normal !text-white w-full"
@@ -410,7 +409,7 @@ function NavbarClient({
               >
                 {buttonText}
               </Button>
-            </Link>
+            </a>
           </motion.div>
         </div>
       </motion.div>
