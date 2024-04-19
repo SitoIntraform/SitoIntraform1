@@ -210,7 +210,7 @@ function NavbarAdmin() {
         </div>
       </div>
       <motion.div
-        className="block lg:hidden fixed max-h-[calc(100vh-80px)] h-[calc(100vh-70px)] max-w-[calc(100vw-0px)] w-[calc(100vw-0px)] z-[100]  overflow-hidden bg-white top-[80px]"
+        className="block lg:hidden fixed max-h-[calc(100%-80px)] h-[calc(100%-70px)] max-w-[calc(100vw-0px)] w-[calc(100vw-0px)] z-[100]  overflow-hidden bg-white top-[80px]"
         variants={menuVariants}
         initial="hidden"
         animate={isOpen ? "show" : "hidden"}
@@ -226,7 +226,7 @@ function NavbarAdmin() {
                 <AnimatedLink
                   href={"/admin/" + link.link}
                   key={link.name}
-                  className={`text-center text-[55px] h-[60px] sm:text-[65px] group sm:h-[70px] font-semibold`}
+                  className={`text-center text-[50px] h-[55px] sm:text-[65px] group sm:h-[70px] font-semibold`}
                   variants={linkVariant}
                   onClick={() => setIsOpen(false)}
                 >
