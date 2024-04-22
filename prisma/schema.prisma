@@ -133,3 +133,24 @@ model Navbar{
   buttonHeight Int? @default(60)
   buttonLink String?
 }
+
+model Course{
+  CorsoId String @id @db.ObjectId @default(auto()) @map("_id")
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  name String?
+  link String?
+  title String?
+
+  description String?
+  price Float?
+  duration String?
+
+  code String?
+
+  haveFile Boolean?
+  fileLink String?
+
+  image String?
+}

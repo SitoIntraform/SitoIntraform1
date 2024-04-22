@@ -14,7 +14,9 @@ async function DashboardLayout({ children }: { children: React.ReactNode }) {
   return (
     <>
       <NavbarAdmin />
-      {children}
+      <div className="w-[100vw]">
+        {children}
+      </div>
     </>
   );
 }

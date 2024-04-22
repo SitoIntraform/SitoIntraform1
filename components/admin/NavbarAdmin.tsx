@@ -119,7 +119,7 @@ function NavbarAdmin() {
 
   return (
     <>
-      <div className="z-[100] w-full h-[80px] border-b shadow-sm fixed top-0 bg-white">
+      <div className="z-[100] w-[100vw] h-[80px] border-b shadow-sm fixed top-0 bg-white">
         <div className="h-full containerDesign px-10 flex items-center justify-between relative">
           <Link
             href={"/admin"}
