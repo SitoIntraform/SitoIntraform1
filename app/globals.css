@@ -66,6 +66,15 @@
   }
 }
 
+.swiper-slide {
+  -webkit-backface-visibility: hidden;
+  -webkit-transform: translate3d(0, 0, 0);
+}
+
+.swiper-wrapper {
+  -webkit-transform-style: preserve-3d;
+}
+
 .modal-open {
   overflow: hidden;
 }
@@ -102,14 +111,14 @@ body.modal-open {
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: #3FB45D;
+  background: #3fb45d;
   border-radius: 30px;
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
   background: #36a251;
-  transition: all .1s;
+  transition: all 0.1s;
   cursor: grab;
 }
 
@@ -131,7 +140,7 @@ body.modal-open {
     @apply border-border font-sans;
   }
 
-  .containerDesign{
+  .containerDesign {
     @apply max-w-[1440px] mx-auto md:px-10 px-5;
   }
 

@@ -241,14 +241,14 @@ function TextWithImageView({
                   }}
                   speed={1200}
                   loop={true}
-                  className="h-[100%] w-full"
+                  className="h-[100%] w-full swiper-wrapper"
                   modules={[Autoplay, Pagination, Navigation]}
                   pagination={section.data.carouselDots}
                   navigation={section.data.carouselButtons}
                   key={section.name + carouselCounter}
                 >
                   {section.data.images.map((image) => (
-                    <SwiperSlide key={image} className="relative">
+                    <SwiperSlide key={image} className="relative swiper-slide">
                       <Image
                         src={image || ""}
                         alt=""
