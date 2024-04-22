@@ -201,7 +201,9 @@ export default function ServiceView({
                       {s.name}
                     </div>
                     <div className="h-[45%] w-full p-2 flex flex-row justify-center text-center overflow-hidden">
-                      {s.description}
+                      <div dangerouslySetInnerHTML={{
+                        __html: section.data.description || ""
+                      }} />
                     </div>
                     <a
                       href={l}
@@ -229,7 +231,9 @@ export default function ServiceView({
                     : "#303030",
               }}
             >
-              {section.data.description}
+              <div dangerouslySetInnerHTML={{
+                __html: section.data.description || ""
+              }} />
             </motion.div>
           )}
           <div className="w-full flex flex-col items-center justify-center">

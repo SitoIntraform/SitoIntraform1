@@ -130,6 +130,12 @@ function CreateEditSectionPage({
 
   const [faq, setFaq] = useState<Array<FAQType>>(sectionRecived.data.faq || []);
 
+  const onChangePagetType = (value: string) => {
+    setPageType(value);
+    setFaq([]);
+    setService([]);
+  }
+
   const insertInDB = async () => {
     if (!name || !pageType) {
       toast.error("Assicurati di aver dato il nome e di aver scelto il tipo");
@@ -364,7 +370,7 @@ function CreateEditSectionPage({
           />
           <Select
             value={pageType}
-            onValueChange={(e) => setPageType(e.target.value)}
+            onValueChange={(e) => onChangePagetType(e.target.value)}
             possbileValues={pageTypes}
             label="Tipo pagina"
             disabled={loading}

@@ -219,7 +219,11 @@ export default function FAQView({
                       opacity: isActive ? 1 : 0,
                     }}
                   >
-                    <div className="mt-[10px]">{f.response}</div>
+                    <div className="mt-[10px]">
+                      <div dangerouslySetInnerHTML={{
+                        __html: section.data.description || ""
+                      }} />
+                    </div>
                   </div>
                 </motion.div>
               );
@@ -239,7 +243,9 @@ export default function FAQView({
                     : "#303030",
               }}
             >
-              {section.data.description}
+              <div dangerouslySetInnerHTML={{
+                __html: section.data.description || ""
+              }} />
             </motion.div>
           )}
           <div className="w-full flex flex-col items-center justify-center">

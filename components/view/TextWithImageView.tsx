@@ -183,7 +183,9 @@ function TextWithImageView({
                     : "#303030",
               }}
             >
-              {section.data.description}
+              <div dangerouslySetInnerHTML={{
+                __html: section.data.description || ""
+              }} />
               <div className="absolute -bottom-3 -right-3 border-r-primaryDesign border-8 w-[50px] border-b-accentDesign border-t-transparent border-l-transparent h-[50px]" />
             </motion.div>
             {(section.data.primaryButton || section.data.secondaryButton) && (
