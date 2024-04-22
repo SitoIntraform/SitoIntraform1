@@ -69,6 +69,9 @@ interface ConfiguratorInterfaceProps {
   faq: FAQType[];
   setFaq: (faq: FAQType[]) => void;
 
+  courseId: string[];
+  setCourseId: (courseId: string[]) => void;
+
   disabled?: boolean;
   totalImage: string[];
   pageType: string;
@@ -135,9 +138,13 @@ function ReturnConfigurator({
   faq,
   setFaq,
 
+  courseId,
+  setCourseId,
+
   disabled,
   totalImage,
   pageType,
+
 }: ConfiguratorInterfaceProps) {
   if (pageType === "Hero") {
     return (
@@ -192,6 +199,8 @@ function ReturnConfigurator({
         setHeightSecondaryButton={setHeightSecondaryButton}
         faq={faq}
         setFaq={setFaq}
+        courseId={courseId}
+        setCourseId={setCourseId}
         disabled={disabled}
         totalImage={totalImage}
       />
@@ -249,6 +258,8 @@ function ReturnConfigurator({
         setHeightSecondaryButton={setHeightSecondaryButton}
         faq={faq}
         setFaq={setFaq}
+        courseId={courseId}
+        setCourseId={setCourseId}
         disabled={disabled}
         totalImage={totalImage}
       />
@@ -306,6 +317,8 @@ function ReturnConfigurator({
         setHeightSecondaryButton={setHeightSecondaryButton}
         faq={faq}
         setFaq={setFaq}
+        courseId={courseId}
+        setCourseId={setCourseId}
         disabled={disabled}
         totalImage={totalImage}
       />
@@ -363,6 +376,8 @@ function ReturnConfigurator({
         setHeightSecondaryButton={setHeightSecondaryButton}
         faq={faq}
         setFaq={setFaq}
+        courseId={courseId}
+        setCourseId={setCourseId}
         disabled={disabled}
         totalImage={totalImage}
       />
@@ -420,6 +435,8 @@ function ReturnConfigurator({
         setHeightSecondaryButton={setHeightSecondaryButton}
         faq={faq}
         setFaq={setFaq}
+        courseId={courseId}
+        setCourseId={setCourseId}
         disabled={disabled}
         totalImage={totalImage}
       />
@@ -477,6 +494,8 @@ function ReturnConfigurator({
         setHeightSecondaryButton={setHeightSecondaryButton}
         faq={faq}
         setFaq={setFaq}
+        courseId={courseId}
+        setCourseId={setCourseId}
         disabled={disabled}
         totalImage={totalImage}
       />
@@ -534,6 +553,8 @@ function ReturnConfigurator({
         setHeightSecondaryButton={setHeightSecondaryButton}
         faq={faq}
         setFaq={setFaq}
+        courseId={courseId}
+        setCourseId={setCourseId}
         disabled={disabled}
         totalImage={totalImage}
       />

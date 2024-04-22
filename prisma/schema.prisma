@@ -69,6 +69,8 @@ type SectionData{
   heightSecondaryButton Int?
 
   faq FAQ[]
+
+  courseId String[]
 }
 
 model Section {

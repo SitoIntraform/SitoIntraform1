@@ -12,6 +12,11 @@ import SelectOneImageForConfigurator from "../configurator/SelectOneImageForConf
 import Image from "next/image";
 import UploadImageModal from "../modals/UploadImageModal";
 import SelectMultipleImageModal from "../modals/SelectMultipleImageModal.tsx";
+import ViewMultipleCourse from "@/components/view/ViewMultipleCourse";
+import toast from "react-hot-toast";
+import axios from "axios";
+import ViewSingleCourse from "@/components/view/ViewSingleCourse";
+import { useRouter } from "next/navigation";
 
 function CreateEditCorsoPageComponent({
   course,
@@ -20,7 +25,9 @@ function CreateEditCorsoPageComponent({
   course: Course;
   totalImage: string[];
 }) {
-  const [loading, setIsLoading] = useState(false);
+  const router = useRouter();
+
+  const [loading, setLoading] = useState(false);
   const [deleteModal, setDeleteModal] = useState(false);
 
   const [name, setName] = useState(course.name || "");
@@ -39,9 +46,78 @@ function CreateEditCorsoPageComponent({
     setLink(value.toLowerCase().replaceAll(" ", "-"));
   };
 
-  const onCreate = () => {};
+  const onCreate = async () => {
+    if (!name || !link) {
+      toast.error("Assicurati di aver compilato tutti i campi necessari");
+      return;
+    }
 
-  const onUpdate = (exit?: boolean) => {};
+    setLoading(true);
+
+    try {
+      const req = await axios.post("/api/course", {
+        name,
+        title,
+        link,
+        description,
+        price,
+        duration,
+        code,
+        haveFile,
+        fileLink,
+        image,
+      });
+
+      if (req.status === 200) {
+        toast.success("Corso inserito con successo");
+        window.location.assign("/admin/corsi");
+      }
+    } catch (err: any) {
+      console.log(err);
+      toast.error(err.response.data);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const onUpdate = async (exit?: boolean) => {
+    if (!name || !link) {
+      toast.error("Assicurati di aver compilato tutti i campi necessari");
+      return;
+    }
+
+    setLoading(true);
+
+    try {
+      const req = await axios.post("/api/course/"+course.CorsoId, {
+        name,
+        title,
+        link,
+        description,
+        price,
+        duration,
+        code,
+        haveFile,
+        fileLink,
+        image,
+      });
+
+      if (req.status === 200) {
+        toast.success("Corso aggiornato con successo");
+        if(exit){
+          window.location.assign("/admin/corsi");
+        }
+        else{
+          router.refresh();
+        }
+      }
+    } catch (err: any) {
+      console.log(err);
+      toast.error(err.response.data);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   const onDelete = () => {};
 
@@ -78,7 +154,7 @@ function CreateEditCorsoPageComponent({
         onClose={() => {
           setSelectImageModalOpen(false);
         }}
-        onCloseCallback={() => { }}
+        onCloseCallback={() => {}}
         totalImage={totalImage}
         currentSetImages={(images) => {
           setImage(images[0]);
@@ -268,6 +344,50 @@ function CreateEditCorsoPageComponent({
               <Image src={image} alt="Image" fill className="object-cover" />
             </div>
           )}
+        </div>
+      </div>
+
+      <div className="containerDesign">
+        <HeaderPage
+          title={"Preview singolo"}
+          description={"Visualizza il corso in pagina con forma integrale"}
+        />
+
+        <div className="my-[16px]">
+          <ViewSingleCourse
+            name={name}
+            link={link}
+            title={title}
+            description={description}
+            price={price}
+            duration={duration}
+            code={code}
+            image={image}
+            haveFile={haveFile}
+            fileLink={fileLink}
+            dev={true}
+          />
+        </div>
+
+        <HeaderPage
+          title={"Preview elenco"}
+          description={"Visualizza il corso in come se fosse in elenco"}
+        />
+
+        <div className="my-[16px]">
+          <ViewMultipleCourse
+            name={name}
+            link={link}
+            title={title}
+            description={description}
+            price={price}
+            duration={duration}
+            code={code}
+            image={image}
+            haveFile={haveFile}
+            fileLink={fileLink}
+            dev={true}
+          />
         </div>
       </div>
     </>

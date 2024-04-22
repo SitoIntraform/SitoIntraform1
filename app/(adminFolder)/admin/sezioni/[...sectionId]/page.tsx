@@ -64,6 +64,8 @@ async function SectionIdPage({
       widthSecondaryButton: sectionDb?.data.widthSecondaryButton || 0,
 
       faq: sectionDb?.data.faq || [],
+
+      courseId: sectionDb?.data.courseId || [],
     },
   };
 
@@ -143,6 +145,8 @@ async function SectionIdPage({
           widthSecondaryButton: sectionSingle?.data.widthSecondaryButton || 0,
 
           faq: sectionSingle?.data.faq || [],
+
+          courseId: sectionSingle?.data.courseId || []
         },
       };
     }),

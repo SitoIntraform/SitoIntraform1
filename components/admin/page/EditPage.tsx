@@ -551,6 +551,7 @@ function EditPage({
             widthSecondaryButton: section?.data.widthSecondaryButton || 0,
 
             faq: section?.data.faq || [],
+            courseId: section?.data.courseId || [],
           },
         };
 

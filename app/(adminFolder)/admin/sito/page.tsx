@@ -83,6 +83,8 @@ async function SitoPage() {
           widthSecondaryButton: sectionSingle?.data.widthSecondaryButton || 0,
 
           faq: sectionSingle?.data.faq || [],
+
+          courseId: sectionSingle?.data.courseId || [],
         },
       };
     }),

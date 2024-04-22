@@ -163,6 +163,7 @@ export async function POST(
               heightSecondaryButton: isInSections.data.heightSecondaryButton,
 
               faq: isInSections.data.faq,
+              courseId: isInSections.data.courseId,
             },
           },
         });
@@ -222,6 +223,7 @@ export async function POST(
                 heightSecondaryButton: sec.data.heightSecondaryButton,
 
                 faq: sec.data.faq,
+                courseId: sec.data.courseId,
               },
             },
           });

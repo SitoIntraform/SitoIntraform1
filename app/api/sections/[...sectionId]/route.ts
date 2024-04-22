@@ -56,6 +56,7 @@ export async function POST(
       widthSecondaryButton,
 
       faq,
+      courseId,
     } = body;
 
     const existSection = await prismadb.section.findFirst({
@@ -115,6 +116,7 @@ export async function POST(
           widthSecondaryButton,
 
           faq,
+          courseId,
         },
       },
     });

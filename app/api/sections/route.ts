@@ -53,6 +53,7 @@ export async function POST(req: Request) {
       widthSecondaryButton,
 
       faq,
+      courseId
     } = body;
 
     const existSection: Boolean = Boolean(
@@ -136,8 +137,9 @@ export async function POST(req: Request) {
           secondaryLink,
           heightSecondaryButton,
           widthSecondaryButton,
-          
+
           faq,
+          courseId,
         },
       },
     });

@@ -72,6 +72,9 @@ interface HeroConfiguratorProps {
   faq: FAQType[];
   setFaq: (faq: FAQType[]) => void;
 
+  courseId: string[];
+  setCourseId: (courseId: string[]) => void;
+
   disabled?: boolean;
   totalImage: string[];
 }

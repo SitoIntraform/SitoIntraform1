@@ -50,7 +50,7 @@ function Button({
       ${rectangle ? "rounded-md" : "rounded-full"}  overflow-y-hidden text-white
       ${secondary ? "greenShadowBtn" : "blueShadowBtn"}
       ${secondary ? "bg-accentDesign" : "bg-primaryDesign"}
-      ${!animation && "hover:opacity-80"}
+      hover:opacity-90
       transition-all duration-500 disabled:opacity-60 cursor-pointer disabled:cursor-not-allowed w-full ${className}
       `}
       style={{

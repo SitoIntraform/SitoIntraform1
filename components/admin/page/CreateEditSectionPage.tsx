@@ -130,6 +130,8 @@ function CreateEditSectionPage({
 
   const [faq, setFaq] = useState<Array<FAQType>>(sectionRecived.data.faq || []);
 
+  const [courseId, setCourseId] = useState<Array<string>>(sectionRecived.data.courseId || []);
+
   const onChangePagetType = (value: string) => {
     setPageType(value);
     setFaq([]);
@@ -181,6 +183,7 @@ function CreateEditSectionPage({
         widthSecondaryButton,
         heightSecondaryButton,
         faq,
+        courseId,
       });
 
       if (res.status === 200) {
@@ -239,6 +242,7 @@ function CreateEditSectionPage({
           widthSecondaryButton,
           heightSecondaryButton,
           faq,
+          courseId,
         }
       );
 
@@ -440,6 +444,8 @@ function CreateEditSectionPage({
             setHeightSecondaryButton={setHeightSecondaryButton}
             faq={faq}
             setFaq={setFaq}
+            courseId={courseId}
+            setCourseId={setCourseId}
             disabled={loading}
             totalImage={totalImage}
             pageType={pageType}
@@ -502,6 +508,7 @@ function CreateEditSectionPage({
               widthSecondaryButton,
 
               faq,
+              courseId,
             },
           }}
           pageType={pageType}

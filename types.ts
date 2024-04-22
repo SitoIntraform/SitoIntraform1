@@ -70,6 +70,8 @@ export type SectionDataType = {
   heightSecondaryButton?: number;
 
   faq: FAQType[];
+
+  courseId?: string[];
 };
 
 export const pageTypes: pageType[] = [
@@ -104,6 +106,10 @@ export const pageTypes: pageType[] = [
   {
     value: "FAQ",
     name: "FAQ",
+  },
+  {
+    value: "Course",
+    name: "Lista corsi",
   },
 ];
 
@@ -177,6 +183,8 @@ export const emptySection: Section = {
     heightSecondaryButton: 0,
 
     faq: [],
+
+    courseId: [],
   },
 };
 
