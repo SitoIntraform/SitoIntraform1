@@ -245,7 +245,7 @@ function TextWithImageView({
                   modules={[Autoplay, Pagination, Navigation]}
                   pagination={section.data.carouselDots}
                   navigation={section.data.carouselButtons}
-                  key={section.name + carouselCounter}
+                  key={dev ? section.name + carouselCounter : section.name}
                 >
                   {section.data.images.map((image) => (
                     <SwiperSlide key={image} className="relative h-full w-full">
