@@ -1,7 +1,7 @@
 "use client";
 
 import { LinkType } from "@/types";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import DeleteModal from "../modals/DeleteModal";
 import useDeleteModal from "@/hooks/useDelete";
 import { useRouter } from "next/navigation";
@@ -147,6 +147,16 @@ function CreateEditLinkComponent({
     setMultipleLink(_sections);
     setDragItemIndex(-1);
   };
+
+  const [mounted, setIsMounted] = useState(false);
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, [])
+
+  if (!mounted) {
+    return;
+  }
 
   return (
     <>

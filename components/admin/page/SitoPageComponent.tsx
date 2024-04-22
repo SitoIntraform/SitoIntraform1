@@ -137,6 +137,16 @@ function SitoPageComponent({
     }
   };
 
+  const [mounted, setIsMounted] = useState(false);
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, [])
+
+  if (!mounted) {
+    return;
+  }
+
   return (
     <>
       <UploadImageModal

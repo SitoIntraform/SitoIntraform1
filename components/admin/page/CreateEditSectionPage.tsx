@@ -136,6 +136,12 @@ function CreateEditSectionPage({
     setService([]);
   }
 
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, [])
+
   const insertInDB = async () => {
     if (!name || !pageType) {
       toast.error("Assicurati di aver dato il nome e di aver scelto il tipo");
@@ -274,6 +280,10 @@ function CreateEditSectionPage({
       deleteModal.onClose();
     }
   };
+
+  if (!mounted) {
+    return;
+  }
 
   return (
     <>

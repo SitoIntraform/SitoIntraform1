@@ -268,6 +268,16 @@ function EditPage({
     setSections([...s]);
   }
 
+  const [mounted, setIsMounted] = useState(false);
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, [])
+
+  if (!mounted) {
+    return;
+  }
+
   return (
     <>
       <DeleteModal

@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import HeaderPage from "../HeaderPage";
 import { Edit, Plus } from "lucide-react";
 import { useRouter } from "next/navigation";
@@ -22,6 +22,16 @@ function SezioniPageComponent({
   allPages: PageType[];
 }) {
   const router = useRouter();
+
+  const [mounted, setIsMounted] = useState(false);
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, [])
+
+  if (!mounted) {
+    return;
+  }
 
   return (
     <>

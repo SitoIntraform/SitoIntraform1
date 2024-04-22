@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import UploadImageModal from "../modals/UploadImageModal";
 import Button from "@/components/Button";
 import { Plus, Trash } from "lucide-react";
@@ -49,6 +49,16 @@ function ImagePageComponent({ images }: ImagePageProps) {
       setLoading(false);
       deleteModal.onClose();
     }
+  }
+
+  const [mounted, setIsMounted] = useState(false);
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, [])
+
+  if (!mounted) {
+    return;
   }
 
   return (
