@@ -185,7 +185,7 @@ function GalleryView({
                 modules={[Autoplay, Pagination, Navigation]}
                 pagination={section.data.carouselDots}
                 navigation={section.data.carouselButtons}
-                key={section.name + carouselCounter}
+                key={dev ? section.name + carouselCounter : section.name}
                 breakpoints={{
                   640: {
                     slidesPerView: 1,
