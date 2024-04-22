@@ -77,7 +77,7 @@ function HeroView({
     <section
       id={section.name}
       className={`${
-        section.data.hScreen ? "h-[calc(100vh-80px)]" : ""
+        section.data.hScreen ? "h-[calc(100%-80px)]" : ""
       } w-screen relative overflow-hidden !max-w-[100%] !overflow-x-hidden `}
     >
       {/* Carousel z-[-100] */}
