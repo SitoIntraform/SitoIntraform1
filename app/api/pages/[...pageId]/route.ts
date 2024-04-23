@@ -85,11 +85,11 @@ export async function POST(
         });
       });
     }
-    
+
     //SISTEMARE IL COLLEGAMENTO PAGINA SEZIONE
     await prismadb.section.updateMany({
       where: {
-        PageId: pageId[0],
+        PageId: pageId[0].toString(),
       },
       data: {
         PageId: null,
@@ -102,7 +102,7 @@ export async function POST(
           SectionId: s.SectionId,
         },
         data: {
-          PageId: pageId[0],
+          PageId: pageId[0].toString(),
           data: {
             animation: s.data.animation,
             animationType: s.data.animationType,
