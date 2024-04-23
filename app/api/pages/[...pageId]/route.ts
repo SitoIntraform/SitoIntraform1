@@ -180,6 +180,8 @@ export async function POST(
             }
           })]
 
+          console.log("Sto per eseguire l'azione");
+
           const req = await prismadb.section.update({
             where: {
               SectionId: sec.SectionId,
@@ -228,7 +230,9 @@ export async function POST(
             },
           });
 
-          console.log(req);
+          console.log("Azione eseguita!");
+          console.log("Nuovo page id: " + req.PageId);
+          console.log("Console log avvenuto");
         }
       }
     });
