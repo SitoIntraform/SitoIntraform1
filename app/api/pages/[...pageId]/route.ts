@@ -118,8 +118,6 @@ export async function POST(
           }
         })]
 
-        console.log(serviceCorrected);
-
         await prismadb.section.update({
           where: {
             SectionId: sec.SectionId,
