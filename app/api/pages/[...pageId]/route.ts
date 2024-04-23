@@ -85,6 +85,66 @@ export async function POST(
         });
       });
     }
+    
+    //SISTEMARE IL COLLEGAMENTO PAGINA SEZIONE
+    await prismadb.section.updateMany({
+      where: {
+        PageId: pageId[0],
+      },
+      data: {
+        PageId: null,
+      },
+    });
+
+    sections.map(async (s: Section) => {
+      await prismadb.section.update({
+        where: {
+          SectionId: s.SectionId,
+        },
+        data: {
+          PageId: pageId[0],
+          data: {
+            animation: s.data.animation,
+            animationType: s.data.animationType,
+
+            backgroundImages: s.data.backgroundImages,
+            backgroundImageOpacity: s.data.backgroundImageOpacity,
+            backgroundColor: s.data.backgroundColor,
+
+            images: s.data.images,
+            imagesOnLeft: s.data.imagesOnLeft,
+
+            textBlue: s.data.textBlue,
+            textGreen: s.data.textGreen,
+            textBlack: s.data.textBlack,
+            description: s.data.description,
+
+            carouselDots: s.data.carouselDots,
+            carouselButtons: s.data.carouselButtons,
+
+            service: s.data.service,
+
+            hScreen: s.data.hScreen,
+            space: s.data.space,
+
+            primaryButton: s.data.primaryButton,
+            primaryButtonText: s.data.primaryButtonText,
+            primaryLink: s.data.primaryLink,
+            widthPrimaryButton: s.data.widthPrimaryButton,
+            heightPrimaryButton: s.data.heightPrimaryButton,
+
+            secondaryButton: s.data.secondaryButton,
+            secondaryButtonText: s.data.secondaryButtonText,
+            secondaryLink: s.data.secondaryLink,
+            widthSecondaryButton: s.data.widthSecondaryButton,
+            heightSecondaryButton: s.data.heightSecondaryButton,
+
+            faq: s.data.faq,
+            courseId: s.data.courseId,
+          },
+        },
+      });
+    });
 
     const page = await prismadb.page.update({
       data: {
@@ -97,159 +157,6 @@ export async function POST(
       where: {
         PageId: pageId[0],
       },
-    });
-
-    const allSections = await prismadb.section.findMany({});
-
-    allSections.forEach(async (sec) => {
-      const isInSections: Section = sections.find(
-        (s: Section) => s.SectionId === sec.SectionId
-      );
-
-      if (isInSections) {
-        console.log("is in sections: " + sec.name);
-
-        const serviceCorrected: Service[] = [
-          ...sec.data.service.map((s, index) => {
-            return {
-              image: s.image,
-              LinkPage: isInSections.data.service[index].LinkPage,
-              description: s.description,
-              name: s.name,
-            };
-          }),
-        ];
-
-        try {
-          const req = await prismadb.section.update({
-            where: {
-              SectionId: sec.SectionId,
-            },
-            data: {
-              PageId: pageId[0],
-              data: {
-                animation: isInSections.data.animation,
-                animationType: isInSections.data.animationType,
-
-                backgroundImages: isInSections.data.backgroundImages,
-                backgroundImageOpacity:
-                  isInSections.data.backgroundImageOpacity,
-                backgroundColor: isInSections.data.backgroundColor,
-
-                images: isInSections.data.images,
-                imagesOnLeft: isInSections.data.imagesOnLeft,
-
-                textBlue: isInSections.data.textBlue,
-                textGreen: isInSections.data.textGreen,
-                textBlack: isInSections.data.textBlack,
-                description: isInSections.data.description,
-
-                carouselDots: isInSections.data.carouselDots,
-                carouselButtons: isInSections.data.carouselButtons,
-
-                service: serviceCorrected,
-
-                hScreen: isInSections.data.hScreen,
-                space: isInSections.data.space,
-
-                primaryButton: isInSections.data.primaryButton,
-                primaryButtonText: isInSections.data.primaryButtonText,
-                primaryLink: isInSections.data.primaryLink,
-                widthPrimaryButton: isInSections.data.widthPrimaryButton,
-                heightPrimaryButton: isInSections.data.heightPrimaryButton,
-
-                secondaryButton: isInSections.data.secondaryButton,
-                secondaryButtonText: isInSections.data.secondaryButtonText,
-                secondaryLink: isInSections.data.secondaryLink,
-                widthSecondaryButton: isInSections.data.widthSecondaryButton,
-                heightSecondaryButton: isInSections.data.heightSecondaryButton,
-
-                faq: isInSections.data.faq,
-                courseId: isInSections.data.courseId,
-              },
-            },
-          });
-
-          console.log("Sto per eseguire l'azione");
-
-          console.log(req);
-
-          console.log("Azione eseguita!");
-          console.log("Nuovo page id: " + req.PageId);
-          console.log("Console log avvenuto");
-        } catch (error) {
-          console.log(error);
-        }
-      } else {
-        if (sec.PageId === pageId[0]) {
-          console.log("to delete: " + sec.name);
-
-          const service: Service[] = [
-            ...sec.data.service.map((s) => {
-              return {
-                image: s.image,
-                LinkPage: "",
-                description: s.description,
-                name: s.name,
-              };
-            }),
-          ];
-
-          console.log("Sto per eseguire l'azione");
-
-          const req = await prismadb.section.update({
-            where: {
-              SectionId: sec.SectionId,
-            },
-            data: {
-              PageId: null,
-              data: {
-                animation: sec.data.animation,
-                animationType: sec.data.animationType,
-
-                backgroundImages: sec.data.backgroundImages,
-                backgroundImageOpacity: sec.data.backgroundImageOpacity,
-                backgroundColor: sec.data.backgroundColor,
-
-                images: sec.data.images,
-                imagesOnLeft: sec.data.imagesOnLeft,
-
-                textBlue: sec.data.textBlue,
-                textGreen: sec.data.textGreen,
-                textBlack: sec.data.textBlack,
-                description: sec.data.description,
-
-                carouselDots: sec.data.carouselDots,
-                carouselButtons: sec.data.carouselButtons,
-
-                service: service,
-
-                hScreen: sec.data.hScreen,
-                space: sec.data.space,
-
-                primaryButton: sec.data.primaryButton,
-                primaryButtonText: sec.data.primaryButtonText,
-                primaryLink: "",
-                widthPrimaryButton: sec.data.widthPrimaryButton,
-                heightPrimaryButton: sec.data.heightPrimaryButton,
-
-                secondaryButton: sec.data.secondaryButton,
-                secondaryButtonText: sec.data.secondaryButtonText,
-                secondaryLink: "",
-                widthSecondaryButton: sec.data.widthSecondaryButton,
-                heightSecondaryButton: sec.data.heightSecondaryButton,
-
-                faq: sec.data.faq,
-                courseId: sec.data.courseId,
-              },
-            },
-          });
-
-          console.log("Azione eseguita!");
-          console.log("Nuovo page id: " + req.PageId);
-          console.log("Console log avvenuto");
-        }
-      }
     });
 
     return NextResponse.json(page);
@@ -387,3 +294,153 @@ export async function DELETE(
     return new NextResponse(err, { status: 400 });
   }
 }
+
+// allSections.forEach(async (sec) => {
+//   const isInSections: Section = sections.find(
+//     (s: Section) => s.SectionId === sec.SectionId
+//   );
+
+//   if (isInSections) {
+//     console.log("is in sections: " + sec.name);
+
+//     const serviceCorrected: Service[] = [
+//       ...sec.data.service.map((s, index) => {
+//         return {
+//           image: s.image,
+//           LinkPage: isInSections.data.service[index].LinkPage,
+//           description: s.description,
+//           name: s.name,
+//         };
+//       }),
+//     ];
+
+//     try {
+//       const req = await prismadb.section.update({
+//         where: {
+//           SectionId: sec.SectionId,
+//         },
+//         data: {
+//           PageId: pageId[0],
+//           data: {
+//             animation: isInSections.data.animation,
+//             animationType: isInSections.data.animationType,
+
+//             backgroundImages: isInSections.data.backgroundImages,
+//             backgroundImageOpacity: isInSections.data.backgroundImageOpacity,
+//             backgroundColor: isInSections.data.backgroundColor,
+
+//             images: isInSections.data.images,
+//             imagesOnLeft: isInSections.data.imagesOnLeft,
+
+//             textBlue: isInSections.data.textBlue,
+//             textGreen: isInSections.data.textGreen,
+//             textBlack: isInSections.data.textBlack,
+//             description: isInSections.data.description,
+
+//             carouselDots: isInSections.data.carouselDots,
+//             carouselButtons: isInSections.data.carouselButtons,
+
+//             service: serviceCorrected,
+
+//             hScreen: isInSections.data.hScreen,
+//             space: isInSections.data.space,
+
+//             primaryButton: isInSections.data.primaryButton,
+//             primaryButtonText: isInSections.data.primaryButtonText,
+//             primaryLink: isInSections.data.primaryLink,
+//             widthPrimaryButton: isInSections.data.widthPrimaryButton,
+//             heightPrimaryButton: isInSections.data.heightPrimaryButton,
+
+//             secondaryButton: isInSections.data.secondaryButton,
+//             secondaryButtonText: isInSections.data.secondaryButtonText,
+//             secondaryLink: isInSections.data.secondaryLink,
+//             widthSecondaryButton: isInSections.data.widthSecondaryButton,
+//             heightSecondaryButton: isInSections.data.heightSecondaryButton,
+
+//             faq: isInSections.data.faq,
+//             courseId: isInSections.data.courseId,
+//           },
+//         },
+//       });
+
+//       console.log("Sto per eseguire l'azione");
+
+//       console.log(req);
+
+//       console.log("Azione eseguita!");
+//       console.log("Nuovo page id: " + req.PageId);
+//       console.log("Console log avvenuto");
+//     } catch (error) {
+//       console.log(error);
+//     }
+//   } else {
+//     if (sec.PageId === pageId[0]) {
+//       console.log("to delete: " + sec.name);
+
+//       const service: Service[] = [
+//         ...sec.data.service.map((s) => {
+//           return {
+//             image: s.image,
+//             LinkPage: "",
+//             description: s.description,
+//             name: s.name,
+//           };
+//         }),
+//       ];
+
+//       console.log("Sto per eseguire l'azione");
+
+//       const req = await prismadb.section.update({
+//         where: {
+//           SectionId: sec.SectionId,
+//         },
+//         data: {
+//           PageId: null,
+//           data: {
+//             animation: sec.data.animation,
+//             animationType: sec.data.animationType,
+
+//             backgroundImages: sec.data.backgroundImages,
+//             backgroundImageOpacity: sec.data.backgroundImageOpacity,
+//             backgroundColor: sec.data.backgroundColor,
+
+//             images: sec.data.images,
+//             imagesOnLeft: sec.data.imagesOnLeft,
+
+//             textBlue: sec.data.textBlue,
+//             textGreen: sec.data.textGreen,
+//             textBlack: sec.data.textBlack,
+//             description: sec.data.description,
+
+//             carouselDots: sec.data.carouselDots,
+//             carouselButtons: sec.data.carouselButtons,
+
+//             service: service,
+
+//             hScreen: sec.data.hScreen,
+//             space: sec.data.space,
+
+//             primaryButton: sec.data.primaryButton,
+//             primaryButtonText: sec.data.primaryButtonText,
+//             primaryLink: "",
+//             widthPrimaryButton: sec.data.widthPrimaryButton,
+//             heightPrimaryButton: sec.data.heightPrimaryButton,
+
+//             secondaryButton: sec.data.secondaryButton,
+//             secondaryButtonText: sec.data.secondaryButtonText,
+//             secondaryLink: "",
+//             widthSecondaryButton: sec.data.widthSecondaryButton,
+//             heightSecondaryButton: sec.data.heightSecondaryButton,
+
+//             faq: sec.data.faq,
+//             courseId: sec.data.courseId,
+//           },
+//         },
+//       });
+
+//       console.log("Azione eseguita!");
+//       console.log("Nuovo page id: " + req.PageId);
+//       console.log("Console log avvenuto");
+//     }
+//   }
+// });
