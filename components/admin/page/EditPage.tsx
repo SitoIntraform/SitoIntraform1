@@ -226,11 +226,11 @@ function EditPage({
 
       if (res.status === 200) {
         toast.success("Pagina salvata con successo");
-        // if (exit) {
-        //   window.location.assign("/admin/sito");
-        // } else {
-        //   window.location.assign("/admin/sito/" + pageData?.PageId);
-        // }
+        if (exit) {
+          window.location.assign("/admin/sito");
+        } else {
+          window.location.assign("/admin/sito/" + pageData?.PageId);
+        }
         return;
       }
     } catch (e: any) {
