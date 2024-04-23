@@ -26,7 +26,7 @@ function EditPage({
   allPages,
   allCourse,
 }: {
-  pageData: Page;
+  pageData?: Page;
   possibleSectionData?: Section[];
   sectionInPage?: Section[];
   pagesWithoutSelectedPage?: Page[];
@@ -37,10 +37,10 @@ function EditPage({
   const router = useRouter();
   const [loading, setIsLoading] = useState(false);
 
-  const [name, setName] = useState(pageData.name);
-  const [link, setLink] = useState(pageData.link);
+  const [name, setName] = useState(pageData?.name);
+  const [link, setLink] = useState(pageData?.link);
 
-  const [defaultPage, setDefaultPage] = useState(pageData.defaltPage);
+  const [defaultPage, setDefaultPage] = useState(pageData?.defaltPage);
 
   const [sections, setSections] = useState<Section[]>(sectionInPage || []);
   const [possibleSection, setPossibleSection] = useState<Section[]>(
@@ -217,7 +217,7 @@ function EditPage({
     try {
       setIsLoading(true);
 
-      const res = await axios.post(`/api/pages/${pageData.PageId}`, {
+      const res = await axios.post(`/api/pages/${pageData?.PageId}`, {
         name,
         link,
         defaultPage,
@@ -226,11 +226,11 @@ function EditPage({
 
       if (res.status === 200) {
         toast.success("Pagina salvata con successo");
-        if (exit) {
-          window.location.assign("/admin/sito");
-        } else {
-          window.location.assign("/admin/sito/" + pageData.PageId);
-        }
+        // if (exit) {
+        //   window.location.assign("/admin/sito");
+        // } else {
+        //   window.location.assign("/admin/sito/" + pageData?.PageId);
+        // }
         return;
       }
     } catch (e: any) {
@@ -247,7 +247,7 @@ function EditPage({
     setIsLoading(false);
 
     try {
-      const res = await axios.delete(`/api/pages/${pageData.PageId}`);
+      const res = await axios.delete(`/api/pages/${pageData?.PageId}`);
 
       if (res.status === 200) {
         toast.success("Pagina cancellata con successo");
@@ -292,8 +292,8 @@ function EditPage({
       <div className="containerDesign px-10 pt-[80px]">
         <div className="md:sticky top-[80px] bg-white z-[90]">
           <HeaderPage
-            title={pageData.name}
-            description={"Modifica o elimina la pagina " + pageData.name}
+            title={pageData?.name || ""}
+            description={"Modifica o elimina la pagina " + pageData?.name }
           >
             <div className="flex md:flex-row flex-col gap-2 md:w-auto w-full justify-center items-center md:justify-end">
               <div className="w-full items-center md:w-auto flex flex-col gap-2">
@@ -350,7 +350,7 @@ function EditPage({
 
         <WrapConfigurazioni>
           <Input
-            value={name}
+            value={name || ""}
             onValueChange={(e) => updateNameAndLink(e.target.value)}
             disabled={loading}
             label="Nome della pagina"
@@ -363,7 +363,7 @@ function EditPage({
           />
         </WrapConfigurazioni>
 
-        {pageData.defaltPage === false && (
+        {pageData?.defaltPage === false && (
           <div className="my-[20px]">
             <CheckBox
               onValueChange={(e) => setDefaultPage(e.target.checked)}
@@ -378,7 +378,7 @@ function EditPage({
         <HeaderPage
           title={"Sezioni"}
           description={
-            "Modifica o elimina le sezioni della pagina " + pageData.name
+            "Modifica o elimina le sezioni della pagina " + pageData?.name
           }
         >
           <Button
@@ -503,7 +503,7 @@ function EditPage({
         <div className="my-[50px]">
           <HeaderPage
             title={"Preview"}
-            description={"Preview della pagina " + pageData.name}
+            description={"Preview della pagina " + pageData?.name}
           />
         </div>
       </div>
