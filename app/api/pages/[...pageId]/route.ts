@@ -97,7 +97,7 @@ export async function POST(
         },
       })
       .then(() => {
-        sections.map(async (s: Section) => {
+        sections.forEach(async (s: Section) => {
           await prismadb.section.update({
             where: {
               SectionId: s.SectionId,
