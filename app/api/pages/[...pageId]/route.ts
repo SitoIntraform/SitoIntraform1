@@ -166,7 +166,14 @@ export async function POST(
           },
         });
 
+        console.log("Sto per eseguire l'azione");
+
         console.log(req);
+
+        console.log("Azione eseguita!");
+        console.log("Nuovo page id: " + req.PageId);
+        console.log("Console log avvenuto");
+
       } else {
         if (sec.PageId === pageId[0]) {
           console.log("to delete: " + sec.name);
