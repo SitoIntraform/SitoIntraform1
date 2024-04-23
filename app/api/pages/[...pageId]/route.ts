@@ -86,66 +86,38 @@ export async function POST(
       });
     }
 
-    //SISTEMARE IL COLLEGAMENTO PAGINA SEZIONE
-    await prismadb.section.updateMany({
-      where: {
-        PageId: pageId[0],
-      },
-      data: {
-        PageId: null,
-      },
-    });
-    
-    sections.forEach(async (s: Section) => {
-      console.log(s);
-      await prismadb.section.update({
+    const sectionIds = sections.map((s: Section) => s.SectionId);
+
+    const result = await prismadb.$transaction(async (prisma) => {
+      // Aggiorna prima le sezioni che non sono più collegate a questa pagina
+      await prisma.section.updateMany({
         where: {
-          SectionId: s.SectionId,
-        },
-        data: {
-          PageId: pageId[0],
-          data: {
-            animation: s.data.animation,
-            animationType: s.data.animationType,
-
-            backgroundImages: s.data.backgroundImages,
-            backgroundImageOpacity: s.data.backgroundImageOpacity,
-            backgroundColor: s.data.backgroundColor,
-
-            images: s.data.images,
-            imagesOnLeft: s.data.imagesOnLeft,
-
-            textBlue: s.data.textBlue,
-            textGreen: s.data.textGreen,
-            textBlack: s.data.textBlack,
-            description: s.data.description,
-
-            carouselDots: s.data.carouselDots,
-            carouselButtons: s.data.carouselButtons,
-
-            service: s.data.service,
-
-            hScreen: s.data.hScreen,
-            space: s.data.space,
-
-            primaryButton: s.data.primaryButton,
-            primaryButtonText: s.data.primaryButtonText,
-            primaryLink: s.data.primaryLink,
-            widthPrimaryButton: s.data.widthPrimaryButton,
-            heightPrimaryButton: s.data.heightPrimaryButton,
-
-            secondaryButton: s.data.secondaryButton,
-            secondaryButtonText: s.data.secondaryButtonText,
-            secondaryLink: s.data.secondaryLink,
-            widthSecondaryButton: s.data.widthSecondaryButton,
-            heightSecondaryButton: s.data.heightSecondaryButton,
-
-            faq: s.data.faq,
-            courseId: s.data.courseId,
+          PageId: pageId,
+          NOT: {
+            SectionId: {
+              in: sectionIds,
+            },
           },
         },
+        data: {
+          PageId: null,
+        },
       });
+
+      // Poi aggiorna le sezioni attualmente collegate a questa pagina
+      for (const section of sections) {
+        await prisma.section.update({
+          where: {
+            SectionId: section.SectionId,
+          },
+          data: {
+            PageId: pageId,
+            ...section.data, // Assicurati che la struttura di `section.data` sia corretta
+          },
+        });
+      }
     });
+
 
     const page = await prismadb.page.update({
       data: {
