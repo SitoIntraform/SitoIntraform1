@@ -51,7 +51,8 @@ async function SitoPage() {
           animationType: sectionSingle?.data.animationType || "up",
 
           backgroundImages: sectionSingle?.data.backgroundImages || "",
-          backgroundImageOpacity: sectionSingle?.data.backgroundImageOpacity || 100,
+          backgroundImageOpacity:
+            sectionSingle?.data.backgroundImageOpacity || 100,
           backgroundColor: sectionSingle?.data.backgroundColor || "",
 
           images: sectionSingle?.data.images || [],
@@ -92,7 +93,7 @@ async function SitoPage() {
 
   let navbar = await prismadb.navbar.findFirst({});
 
-  if(!navbar){
+  if (!navbar) {
     navbar = await prismadb.navbar.create({ data: {} });
   }
 
@@ -103,16 +104,27 @@ async function SitoPage() {
   navbar.links.forEach((link) => {
     const selectedLink = links.find((l) => l.LinkId === link);
 
-    if(selectedLink){
+    if (selectedLink) {
       allLinks = [...allLinks, selectedLink];
-    }    
-  })
+    }
+  });
 
   const queryImages = await prismadb.image.findMany({});
 
   const totalImage = [...queryImages.map((image) => image.link)];
 
-  return <SitoPageComponent totalImage={totalImage} allLinks={allLinks} allPage={allPages} allSections={allSections} navbar={navbar} />;
+  const allCourse = await prismadb.course.findMany({});
+
+  return (
+    <SitoPageComponent
+      allCourse={allCourse}
+      totalImage={totalImage}
+      allLinks={allLinks}
+      allPage={allPages}
+      allSections={allSections}
+      navbar={navbar}
+    />
+  );
 }
 
 export default SitoPage;

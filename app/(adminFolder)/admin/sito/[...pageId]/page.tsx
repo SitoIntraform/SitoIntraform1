@@ -114,13 +114,15 @@ async function PageIdPage({
     }),
   ];
 
+  const allCourse = await prismadb.course.findMany({});
+
   if(!page){
     redirect("/admin/sito");
     return;
   }
 
   return (
-    <EditPage pageData={page} possibleSectionData={sectionsWithoutPage} sectionInPage={sectionInPage} pagesWithoutSelectedPage={pagesWithoutSelectedPage} allPages={allPages} allSection={allSections} />
+    <EditPage pageData={page} allCourse={allCourse} possibleSectionData={sectionsWithoutPage} sectionInPage={sectionInPage} pagesWithoutSelectedPage={pagesWithoutSelectedPage} allPages={allPages} allSection={allSections} />
   )
 }
 

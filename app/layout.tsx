@@ -7,8 +7,8 @@ const sans = Open_Sans({ subsets: ["latin"], weight: ["300", "400", "500", "600"
 const roboto = Roboto({ subsets: ["latin"], weight: ["100", "300", "400", "500",  "700", "900"] });
 
 export const metadata: Metadata = {
-  title: "Intraform",
-  description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae quidem est laboriosam. Suscipit iste sequi ex blanditiis dolores, tenetur deleniti incidunt vitae doloribus consequatur aut nostrum animi? Laborum, voluptatibus necessitatibus!",
+  title: "Intraform, Pinerolo TO",
+  description: "Associazione Intraform è un ente formativo nato con l’intento di costituire un punto di riferimento per il territorio piemontese nell’ambito della formazione continua e aziendale e teso all’elaborazione di progetti e programmi a livello nazionale, comunitario e internazionale per il coinvolgimento delle aziende locali e nazionali.",
   //Inserire una descrizione per intraform
 };
 

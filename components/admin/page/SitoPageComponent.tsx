@@ -12,7 +12,7 @@ import { PageColumn } from "./Columns/PageColumn";
 import HeroView from "@/components/view/HeroView";
 import ReturnViewComponent from "@/components/view/ReturnViewComponent";
 import { useRouter } from "next/navigation";
-import { Link, Navbar } from "@prisma/client";
+import { Course, Link, Navbar } from "@prisma/client";
 import { LinkColumn } from "./Columns/LinkColumn";
 import NavbarClient from "@/components/NavbarClient";
 import SelectImagesConfigurations from "../SelectImagesConfigurations";
@@ -31,12 +31,14 @@ function SitoPageComponent({
   navbar,
   allLinks,
   totalImage,
+  allCourse,
 }: {
   allPage: PageType[];
   allSections: SectionType[];
   navbar: Navbar;
   allLinks: Link[];
   totalImage: string[];
+  allCourse: Course[];
 }) {
   const [loading, setLoading] = useState(false);
   const [editMode, setEditMode] = useState(false);
@@ -141,7 +143,7 @@ function SitoPageComponent({
 
   useEffect(() => {
     setIsMounted(true);
-  }, [])
+  }, []);
 
   if (!mounted) {
     return;
@@ -431,6 +433,7 @@ function SitoPageComponent({
               return (
                 <div key={sectionId}>
                   <ReturnViewComponent
+                    allCourse={allCourse}
                     allSection={allSections}
                     allPages={allPage}
                     dev

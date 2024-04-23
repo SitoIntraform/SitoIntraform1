@@ -1,11 +1,10 @@
 import Loading from '@/components/Loading';
 import NavbarClient from '@/components/NavbarClient';
 import PageViewer from '@/components/PageViewer';
-import ShowPageComponent from '@/components/ShowPageComponent';
 import prismadb from '@/lib/prismadb';
 import { SectionType } from '@/types';
 import { Page } from '@prisma/client';
-import axios from 'axios';
+import axios, { all } from 'axios';
 import { NextResponse } from 'next/server';
 import React, { useEffect, useState } from 'react'
 
@@ -99,7 +98,9 @@ export default async function page() {
     }),
   ];
 
+  const allCourse = await prismadb.course.findMany({});
+
   return (
-    <PageViewer allPages={allPages} allSectionType={allSectionType} links={links} navbar={navbar} />
+    <PageViewer allCourse={allCourse} allPages={allPages} allSectionType={allSectionType} links={links} navbar={navbar} />
   );
 }

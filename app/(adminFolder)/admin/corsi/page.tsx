@@ -1,9 +1,12 @@
 import CorsiPageComponent from '@/components/admin/page/CorsiPageComponent'
+import prismadb from '@/lib/prismadb'
 import React from 'react'
 
-function CorsiPage() {
+async function CorsiPage() {
+  const corsi = await prismadb.course.findMany({});
+
   return (
-    <CorsiPageComponent />
+    <CorsiPageComponent corsi={corsi} />
   )
 }
 

@@ -11,15 +11,18 @@ import { SectionColumn } from "./Columns/SectionColumns";
 import HeroView from "@/components/view/HeroView";
 import { useScroll } from "framer-motion";
 import ReturnViewComponent from "@/components/view/ReturnViewComponent";
+import { Course } from "@prisma/client";
 
 function SezioniPageComponent({
   sectionTable,
   allSection,
   allPages,
+  allCourse,
 }: {
   sectionTable: SectionColumnType[];
   allSection: SectionType[];
   allPages: PageType[];
+  allCourse: Course[];
 }) {
   const router = useRouter();
 
@@ -27,7 +30,7 @@ function SezioniPageComponent({
 
   useEffect(() => {
     setIsMounted(true);
-  }, [])
+  }, []);
 
   if (!mounted) {
     return;
@@ -82,6 +85,7 @@ function SezioniPageComponent({
             </HeaderPage>
           </div>
           <ReturnViewComponent
+            allCourse={allCourse}
             allSection={allSection}
             allPages={allPages}
             dev

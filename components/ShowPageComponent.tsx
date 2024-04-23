@@ -1,21 +1,24 @@
 "use client";
 
 import { PageType, SectionType } from "@/types";
-import { Link, Page } from "@prisma/client";
+import { Course, Link, Page } from "@prisma/client";
 import { usePathname } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import ReturnViewComponent from "./view/ReturnViewComponent";
 import PageNotFound from "./PageNotFound";
 import usePrivacyModal from "@/hooks/usePrivacyModal";
+import ViewSingleCourse from "./view/ViewSingleCourse";
 
 function ShowPageComponent({
   links,
   allSections,
   allPages,
+  allCourse,
 }: {
   links: Link[];
   allSections: SectionType[];
   allPages: PageType[];
+  allCourse: Course[];
 }) {
   const [mounted, setMounted] = useState(false);
 
@@ -24,14 +27,22 @@ function ShowPageComponent({
   console.log(allPages);
 
   const [page, setPage] = useState<PageType | null | undefined>(undefined);
+  const [course, setCourse] = useState<Course | null | undefined>(undefined);
 
   useEffect(() => {
     const p = allPages.find((pa) => pa.link === path.split("/")[1]);
 
     if (p) {
       setPage(p);
+      setCourse(null);
     } else {
       setPage(null);
+      const c = allCourse.find((co) => co.link === path.split("/")[1]);
+      if (c) {
+        setCourse(c);
+      } else {
+        setCourse(null);
+      }
     }
   }, [path]);
 
@@ -51,31 +62,65 @@ function ShowPageComponent({
   return (
     <>
       {page === null ? (
-        <PageNotFound />
+        <>
+          {course === null ? (
+            <>
+              <header>
+                <title>{"Pagina non trovata | Intraform, Pinerolo TO"}</title>
+              </header>
+              <PageNotFound />
+            </>
+          ) : (
+            <>
+              <header>
+                <title>{course?.name + " | Intraform, Pinerolo TO"}</title>
+              </header>
+              <ViewSingleCourse
+                name={course?.name || ""}
+                link={course?.link || ""}
+                title={course?.title || ""}
+                description={course?.description || ""}
+                price={course?.price || 0}
+                duration={course?.duration || ""}
+                code={course?.code || ""}
+                image={course?.image || ""}
+                haveFile={course?.haveFile || false}
+                fileLink={course?.fileLink || ""}
+                dev={false}
+              />
+            </>
+          )}
+        </>
       ) : (
-        <div className="pt-[80px]">
-          {page?.sections?.map((sectionID, index2) => {
-            const section = allSections.find(
-              (sec) => sec.SectionId === sectionID
-            );
+        <>
+          <header>
+            <title>{page?.name + " | Intraform, Pinerolo TO"}</title>
+          </header>
+          <div className="pt-[80px]">
+            {page?.sections?.map((sectionID, index2) => {
+              const section = allSections.find(
+                (sec) => sec.SectionId === sectionID
+              );
 
-            if (!section) {
-              return;
-            }
+              if (!section) {
+                return;
+              }
 
-            return (
-              <div key={index2}>
-                <ReturnViewComponent
-                  allPages={allPages}
-                  allSection={allSections}
-                  section={section}
-                  pageType={section.pageType}
-                />
-              </div>
-            );
-          })}
-          <Footer />
-        </div>
+              return (
+                <div key={index2}>
+                  <ReturnViewComponent
+                    allCourse={allCourse}
+                    allPages={allPages}
+                    allSection={allSections}
+                    section={section}
+                    pageType={section.pageType}
+                  />
+                </div>
+              );
+            })}
+            <Footer />
+          </div>
+        </>
       )}
     </>
   );

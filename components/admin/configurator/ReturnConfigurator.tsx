@@ -7,6 +7,8 @@ import GalleryConfigurator from "./GalleryConfigurator";
 import ContactConfigurator from "./ContactConfigurator";
 import FAQConfigurator from "./FAQConfigurator";
 import ServiceConfigurator from "./ServiceConfigurator";
+import CourseConfigurator from "./CourseConfigurator";
+import { Course } from "@prisma/client";
 
 interface ConfiguratorInterfaceProps {
   animation: boolean;
@@ -74,6 +76,7 @@ interface ConfiguratorInterfaceProps {
 
   disabled?: boolean;
   totalImage: string[];
+  allCourse: Course[]
   pageType: string;
 }
 
@@ -144,6 +147,8 @@ function ReturnConfigurator({
   disabled,
   totalImage,
   pageType,
+
+  allCourse,
 
 }: ConfiguratorInterfaceProps) {
   if (pageType === "Hero") {
@@ -557,6 +562,66 @@ function ReturnConfigurator({
         setCourseId={setCourseId}
         disabled={disabled}
         totalImage={totalImage}
+      />
+    );
+  } else if (pageType === "Course") {
+    return (
+      <CourseConfigurator
+        animation={animation}
+        setAnimation={setAnimation}
+        animationType={animationType}
+        setAnimationType={setAnimationType}
+        backgroundImages={backgroundImages}
+        setBackgroundImages={setBackgroundImages}
+        backgroundImageOpacity={backgroundImageOpacity}
+        setBackgroundImageOpacity={setBackgroundImageOpacity}
+        backgroundColor={backgroundColor}
+        setBackgroundColor={setBackgroundColor}
+        images={images}
+        setImages={setImages}
+        imagesOnLeft={imagesOnLeft}
+        setImagesOnLeft={setImagesOnLeft}
+        textBlue={textBlue}
+        setTextBlue={setTextBlue}
+        textGreen={textGreen}
+        setTextGreen={setTextGreen}
+        textBlack={textBlack}
+        setTextBlack={setTextBlack}
+        description={description}
+        setDescription={setDescription}
+        carouselDots={carouselDots}
+        setCarouselDots={setCarouselDots}
+        carouselButtons={carouselButtons}
+        setCarouselButtons={setCarouselButtons}
+        service={service}
+        setService={setService}
+        hScreen={hScreen}
+        setHScreen={setHScreen}
+        space={space}
+        setSpace={setSpace}
+        primaryButton={primaryButton}
+        setPrimaryButton={setPrimaryButton}
+        primaryButtonText={primaryButtonText}
+        setPrimaryButtonText={setPrimaryButtonText}
+        widthPrimaryButton={widthPrimaryButton}
+        setWidthPrimaryButton={setWidthPrimaryButton}
+        heightPrimaryButton={heightPrimaryButton}
+        setHeightPrimaryButton={setHeightPrimaryButton}
+        secondaryButton={secondaryButton}
+        setSecondaryButton={setSecondaryButton}
+        secondaryButtonText={secondaryButtonText}
+        setSecondaryButtonText={setSecondaryButtonText}
+        widthSecondaryButton={widthSecondaryButton}
+        setWidthSecondaryButton={setWidthSecondaryButton}
+        heightSecondaryButton={heightSecondaryButton}
+        setHeightSecondaryButton={setHeightSecondaryButton}
+        faq={faq}
+        setFaq={setFaq}
+        courseId={courseId}
+        setCourseId={setCourseId}
+        disabled={disabled}
+        totalImage={totalImage}
+        allCourse={allCourse}
       />
     );
   }

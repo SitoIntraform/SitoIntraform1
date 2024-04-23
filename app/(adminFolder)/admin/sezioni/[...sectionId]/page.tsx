@@ -152,7 +152,9 @@ async function SectionIdPage({
     }),
   ];
 
-  return <CreateEditSectionPage allPages={allPages} allSection={allSections} id={sectionId} sectionRecived={section} totalImage={totalImage} />;
+  const allCourse = await prismadb.course.findMany({});
+
+  return <CreateEditSectionPage allCourse={allCourse} allPages={allPages} allSection={allSections} id={sectionId} sectionRecived={section} totalImage={totalImage} />;
 }
 
 export default SectionIdPage;

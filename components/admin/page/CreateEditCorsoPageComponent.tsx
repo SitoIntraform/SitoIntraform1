@@ -119,7 +119,25 @@ function CreateEditCorsoPageComponent({
     }
   };
 
-  const onDelete = () => {};
+  const onDelete = async () => {
+    setLoading(false);
+
+    try {
+      const res = await axios.delete(`/api/course/${course.CorsoId}`);
+
+      if (res.status === 200) {
+        toast.success("Corso cancellato con successo");
+        window.location.assign("/admin/corsi");
+        return;
+      }
+    } catch (err: any) {
+      console.log(err);
+      toast.error(err.response.data);
+    } finally {
+      setLoading(false);
+      setDeleteModal(false);
+    }
+  };
 
   const [selectImageModalOpen, setSelectImageModalOpen] = useState(false);
   const [uploadImageModalOpen, setUploadImageModalOpen] = useState(false);
@@ -222,7 +240,7 @@ function CreateEditCorsoPageComponent({
                   <Button
                     className="md:w-[150px] w-[90%] h-[50px]"
                     onClick={() => {
-                      window.location.assign("/admin/sito");
+                      window.location.assign("/admin/corsi");
                     }}
                     disabled={loading}
                     secondary

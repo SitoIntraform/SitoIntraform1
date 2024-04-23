@@ -1,7 +1,7 @@
 "use client";
 
 import Button from "@/components/Button";
-import { Page, Section } from "@prisma/client";
+import { Course, Page, Section } from "@prisma/client";
 import { Check, LogOut, Menu, Plus, Trash } from "lucide-react";
 import React, { useEffect, useState } from "react";
 import HeaderPage from "../HeaderPage";
@@ -24,6 +24,7 @@ function EditPage({
   pagesWithoutSelectedPage,
   allSection,
   allPages,
+  allCourse,
 }: {
   pageData: Page;
   possibleSectionData?: Section[];
@@ -31,6 +32,7 @@ function EditPage({
   pagesWithoutSelectedPage?: Page[];
   allPages: PageType[];
   allSection: SectionType[];
+    allCourse: Course[],
 }) {
   const router = useRouter();
   const [loading, setIsLoading] = useState(false);
@@ -558,6 +560,7 @@ function EditPage({
         return (
           <>
             <ReturnViewComponent
+            allCourse={allCourse}
               allSection={allSection}
               allPages={allPages}
               section={correctedSection}

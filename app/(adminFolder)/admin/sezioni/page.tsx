@@ -103,8 +103,10 @@ async function SezioniPage() {
     }),
   ];
 
+  const allCourse = await prismadb.course.findMany({});
+
   return (
-    <SezioniPageComponent sectionTable={sectionTable} allSection={allSection} allPages={allPages} />
+    <SezioniPageComponent allCourse={allCourse} sectionTable={sectionTable} allSection={allSection} allPages={allPages} />
   );
 }
 

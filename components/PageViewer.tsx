@@ -1,26 +1,39 @@
 "use client";
 
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import NavbarClient from "./NavbarClient";
 import ShowPageComponent from "./ShowPageComponent";
-import { Link, Navbar } from "@prisma/client";
+import { Course, Link, Navbar } from "@prisma/client";
 import { PageType, SectionType } from "@/types";
 import PrivacyModal from "./admin/modals/PrivacyModal";
 import usePrivacyModal from "@/hooks/usePrivacyModal";
 import { usePathname } from "next/navigation";
+import Loading from "./Loading";
 
 function PageViewer({
   links,
   allPages,
   navbar,
   allSectionType,
+  allCourse,
 }: {
   links: Link[];
   allPages: PageType[];
   navbar: Navbar | null;
   allSectionType: SectionType[];
+  allCourse: Course[];
 }) {
   const privacyModal = usePrivacyModal();
+
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, [])
+
+  if(!mounted){
+    return <Loading />;
+  }
 
   return (
     <div className="!w-screen !max-w-[100vw] !overflow-x-hidden">
@@ -38,6 +51,7 @@ function PageViewer({
         buttonText={navbar?.buttonText || ""}
       />
       <ShowPageComponent
+        allCourse={allCourse}
         links={links}
         allSections={allSectionType}
         allPages={allPages}

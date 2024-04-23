@@ -6,7 +6,7 @@ import Button from "@/components/Button";
 import Input from "@/components/Input";
 import Select from "@/components/Select";
 import { FAQType, PageType, pageTypes, SectionType, ServiceType } from "@/types";
-import { Section } from "@prisma/client";
+import { Course, Section } from "@prisma/client";
 import { useEffect, useState } from "react";
 import HeroConfigurator from "../configurator/HeroConfigurator";
 import toast from "react-hot-toast";
@@ -24,6 +24,7 @@ interface CreateEditSectionPageProps {
   totalImage: string[];
   allPages: PageType[];
   allSection: SectionType[];
+  allCourse: Course[];
 }
 
 function CreateEditSectionPage({
@@ -31,7 +32,8 @@ function CreateEditSectionPage({
   sectionRecived,
   totalImage,
   allPages,
-  allSection
+  allSection,
+  allCourse,
 }: CreateEditSectionPageProps) {
   const deleteModal = useDeleteModal();
 
@@ -134,8 +136,9 @@ function CreateEditSectionPage({
 
   const onChangePagetType = (value: string) => {
     setPageType(value);
-    setFaq([]);
-    setService([]);
+    // setFaq([]);
+    // setService([]);
+    // setCourseId([]);
   }
 
   const [mounted, setMounted] = useState(false);
@@ -448,6 +451,7 @@ function CreateEditSectionPage({
             setCourseId={setCourseId}
             disabled={loading}
             totalImage={totalImage}
+            allCourse={allCourse}
             pageType={pageType}
           />
         </>
@@ -464,6 +468,7 @@ function CreateEditSectionPage({
         <ReturnViewComponent
           allPages={allPages}
           allSection={allSection}
+          allCourse={allCourse}
           dev
           section={{
             SectionId: sectionRecived.SectionId,

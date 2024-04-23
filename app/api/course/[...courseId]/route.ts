@@ -119,15 +119,22 @@ export async function DELETE(
     let canDelte = true;
 
     sections.forEach((section) => {
-      if (section.data.courseId.includes(courseId[0])) {
-        canDelte = false;
+      if (section.data.courseId && section.data.courseId.length > 0) {
+        section.data.courseId.forEach((value) => {
+          if (value === courseId[0]) {
+            canDelte = false;
+          }
+        });
       }
     });
 
-    if(!canDelte){
-      return new NextResponse("Non puoi eliminare questo corso poichè è utilizzato", {
-        status: 400,
-      });
+    if (!canDelte) {
+      return new NextResponse(
+        "Non puoi eliminare questo corso poichè è utilizzato",
+        {
+          status: 400,
+        }
+      );
     }
 
     const sectionDelete = await prismadb.course.delete({
