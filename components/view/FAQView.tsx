@@ -221,7 +221,7 @@ export default function FAQView({
                   >
                     <div className="mt-[10px]">
                       <div dangerouslySetInnerHTML={{
-                        __html: section.data.description || ""
+                        __html: f.response || ""
                       }} />
                     </div>
                   </div>
