@@ -92,7 +92,7 @@ export async function POST(
       // Aggiorna prima le sezioni che non sono più collegate a questa pagina
       await prisma.section.updateMany({
         where: {
-          PageId: pageId,
+          PageId: pageId[0],
           NOT: {
             SectionId: {
               in: sectionIds,
@@ -111,13 +111,12 @@ export async function POST(
             SectionId: section.SectionId,
           },
           data: {
-            PageId: pageId,
+            PageId: pageId[0],
             ...section.data, // Assicurati che la struttura di `section.data` sia corretta
           },
         });
       }
     });
-
 
     const page = await prismadb.page.update({
       data: {
