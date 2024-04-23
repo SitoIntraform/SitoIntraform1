@@ -118,7 +118,7 @@ export async function POST(
           }
         })]
 
-        await prismadb.section.update({
+        const req = await prismadb.section.update({
           where: {
             SectionId: sec.SectionId,
           },
@@ -165,6 +165,8 @@ export async function POST(
             },
           },
         });
+
+        console.log(req);
       } else {
         if (sec.PageId === pageId[0]) {
           console.log("to delete: " + sec.name);
@@ -178,7 +180,7 @@ export async function POST(
             }
           })]
 
-          await prismadb.section.update({
+          const req = await prismadb.section.update({
             where: {
               SectionId: sec.SectionId,
             },
@@ -225,6 +227,8 @@ export async function POST(
               },
             },
           });
+
+          console.log(req);
         }
       }
     });
