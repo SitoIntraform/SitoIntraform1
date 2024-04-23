@@ -84,7 +84,7 @@ model Section {
 
   data SectionData
 
-  PageId String?
+  PageId String? @db.ObjectId
 }
 
 model Page{
