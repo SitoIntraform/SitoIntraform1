@@ -112,7 +112,9 @@ export async function POST(
           },
           data: {
             PageId: pageId[0],
-            ...section.data, // Assicurati che la struttura di `section.data` sia corretta
+            data: {
+              ...section.data,
+            }, // Assicurati che la struttura di `section.data` sia corretta
           },
         });
       }
