@@ -109,83 +109,91 @@ export async function POST(
       if (isInSections) {
         console.log("is in sections: " + sec.name);
 
-        const serviceCorrected: Service[] = [...sec.data.service.map((s, index) => {
-          return {
-            image: s.image,
-            LinkPage: isInSections.data.service[index].LinkPage,
-            description: s.description,
-            name: s.name,
-          }
-        })]
+        const serviceCorrected: Service[] = [
+          ...sec.data.service.map((s, index) => {
+            return {
+              image: s.image,
+              LinkPage: isInSections.data.service[index].LinkPage,
+              description: s.description,
+              name: s.name,
+            };
+          }),
+        ];
 
-        const req = await prismadb.section.update({
-          where: {
-            SectionId: sec.SectionId,
-          },
-          data: {
-            PageId: pageId[0],
-            data: {
-              animation: isInSections.data.animation,
-              animationType: isInSections.data.animationType,
-
-              backgroundImages: isInSections.data.backgroundImages,
-              backgroundImageOpacity: isInSections.data.backgroundImageOpacity,
-              backgroundColor: isInSections.data.backgroundColor,
-
-              images: isInSections.data.images,
-              imagesOnLeft: isInSections.data.imagesOnLeft,
-
-              textBlue: isInSections.data.textBlue,
-              textGreen: isInSections.data.textGreen,
-              textBlack: isInSections.data.textBlack,
-              description: isInSections.data.description,
-
-              carouselDots: isInSections.data.carouselDots,
-              carouselButtons: isInSections.data.carouselButtons,
-
-              service: serviceCorrected,
-
-              hScreen: isInSections.data.hScreen,
-              space: isInSections.data.space,
-
-              primaryButton: isInSections.data.primaryButton,
-              primaryButtonText: isInSections.data.primaryButtonText,
-              primaryLink: isInSections.data.primaryLink,
-              widthPrimaryButton: isInSections.data.widthPrimaryButton,
-              heightPrimaryButton: isInSections.data.heightPrimaryButton,
-
-              secondaryButton: isInSections.data.secondaryButton,
-              secondaryButtonText: isInSections.data.secondaryButtonText,
-              secondaryLink: isInSections.data.secondaryLink,
-              widthSecondaryButton: isInSections.data.widthSecondaryButton,
-              heightSecondaryButton: isInSections.data.heightSecondaryButton,
-
-              faq: isInSections.data.faq,
-              courseId: isInSections.data.courseId,
+        try {
+          const req = await prismadb.section.update({
+            where: {
+              SectionId: sec.SectionId,
             },
-          },
-        });
+            data: {
+              PageId: pageId[0],
+              data: {
+                animation: isInSections.data.animation,
+                animationType: isInSections.data.animationType,
 
-        console.log("Sto per eseguire l'azione");
+                backgroundImages: isInSections.data.backgroundImages,
+                backgroundImageOpacity:
+                  isInSections.data.backgroundImageOpacity,
+                backgroundColor: isInSections.data.backgroundColor,
 
-        console.log(req);
+                images: isInSections.data.images,
+                imagesOnLeft: isInSections.data.imagesOnLeft,
 
-        console.log("Azione eseguita!");
-        console.log("Nuovo page id: " + req.PageId);
-        console.log("Console log avvenuto");
+                textBlue: isInSections.data.textBlue,
+                textGreen: isInSections.data.textGreen,
+                textBlack: isInSections.data.textBlack,
+                description: isInSections.data.description,
 
+                carouselDots: isInSections.data.carouselDots,
+                carouselButtons: isInSections.data.carouselButtons,
+
+                service: serviceCorrected,
+
+                hScreen: isInSections.data.hScreen,
+                space: isInSections.data.space,
+
+                primaryButton: isInSections.data.primaryButton,
+                primaryButtonText: isInSections.data.primaryButtonText,
+                primaryLink: isInSections.data.primaryLink,
+                widthPrimaryButton: isInSections.data.widthPrimaryButton,
+                heightPrimaryButton: isInSections.data.heightPrimaryButton,
+
+                secondaryButton: isInSections.data.secondaryButton,
+                secondaryButtonText: isInSections.data.secondaryButtonText,
+                secondaryLink: isInSections.data.secondaryLink,
+                widthSecondaryButton: isInSections.data.widthSecondaryButton,
+                heightSecondaryButton: isInSections.data.heightSecondaryButton,
+
+                faq: isInSections.data.faq,
+                courseId: isInSections.data.courseId,
+              },
+            },
+          });
+
+          console.log("Sto per eseguire l'azione");
+
+          console.log(req);
+
+          console.log("Azione eseguita!");
+          console.log("Nuovo page id: " + req.PageId);
+          console.log("Console log avvenuto");
+        } catch (error) {
+          console.log(error);
+        }
       } else {
         if (sec.PageId === pageId[0]) {
           console.log("to delete: " + sec.name);
 
-          const service: Service[] = [...sec.data.service.map((s) => {
-            return {
-              image: s.image,
-              LinkPage: "",
-              description: s.description,
-              name: s.name,
-            }
-          })]
+          const service: Service[] = [
+            ...sec.data.service.map((s) => {
+              return {
+                image: s.image,
+                LinkPage: "",
+                description: s.description,
+                name: s.name,
+              };
+            }),
+          ];
 
           console.log("Sto per eseguire l'azione");
 
