@@ -113,11 +113,11 @@ body.modal-open {
   cursor: grab;
 }
 
-/* html {
+html {
   scroll-behavior: smooth;
 }
 
-* {
+/* * {
   box-sizing: border-box;
 } */
 
