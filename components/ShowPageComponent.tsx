@@ -161,7 +161,7 @@ function Footer() {
           </p>
         </div>
       </div>
-      <div className="pb-16 bg-green-800 cursor-pointer pt-4 mt-8 border-t-2 border-white regular-medium !text-white w-full text-center underline underline-offset-1 flex sm:flex-row flex-col gap-4">
+      <div className="pb-16 cursor-pointer pt-4 mt-8 border-t-2 border-white regular-medium !text-white w-full text-center underline underline-offset-1 flex sm:flex-row flex-col gap-4 items-center justify-center">
         <div>P.I. 10284960019</div>
         <div onClick={privacy.onOpen}>Privacy Policy</div>
       </div>
