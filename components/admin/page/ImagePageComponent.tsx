@@ -76,43 +76,45 @@ function ImagePageComponent({ images }: ImagePageProps) {
           uploadImageModal.onClose();
         }}
       />
-      <HeaderPage
-        title="Immagini"
-        description="Gestisci tutte le immagini del sito."
-      >
-        <Button
-          className="md:w-[220px] w-[90%] h-[50px]"
-          onClick={uploadImageModal.onOpen}
-          disabled={uploadImageModal.isOpen}
-          secondary
+      <div className="pt-[80px] containerDesign">
+        <HeaderPage
+          title="Immagini"
+          description="Gestisci tutte le immagini del sito."
         >
-          <div className="flex flex-row items-center justify-center gap-2 xl:regular-medium !text-white md:small-regular">
-            <Plus />
-            Carica Immagini
-          </div>
-        </Button>
-      </HeaderPage>
-
-      <div className="my-5 flex items-center gap-4 flex-wrap justify-center">
-        {images.map((url) => (
-          <div
-            key={url.ImageId}
-            className="relative w-[250px] h-[250px] rounded-md overflow-hidden group"
+          <Button
+            className="md:w-[220px] w-[90%] h-[50px]"
+            onClick={uploadImageModal.onOpen}
+            disabled={uploadImageModal.isOpen}
+            secondary
           >
-            <Button
-              className="hidden group-hover:flex absolute z-10 right-0 w-full h-full items-center justify-center"
-              onClick={() => {
-                setDeleteId(url.ImageId);
-                deleteModal.onOpen();
-              }}
-              rectangle
-            >
-              <Trash className="h-10 w-10" />
-            </Button>
+            <div className="flex flex-row items-center justify-center gap-2 xl:regular-medium !text-white md:small-regular">
+              <Plus />
+              Carica Immagini
+            </div>
+          </Button>
+        </HeaderPage>
 
-            <Image src={url.link} alt="Image" fill className="object-cover" />
-          </div>
-        ))}
+        <div className="my-5 flex items-center gap-4 flex-wrap justify-center">
+          {images.map((url) => (
+            <div
+              key={url.ImageId}
+              className="relative w-[250px] h-[250px] rounded-md overflow-hidden group"
+            >
+              <Button
+                className="hidden group-hover:flex absolute z-10 right-0 w-full h-full items-center justify-center"
+                onClick={() => {
+                  setDeleteId(url.ImageId);
+                  deleteModal.onOpen();
+                }}
+                rectangle
+              >
+                <Trash className="h-10 w-10" />
+              </Button>
+
+              <Image src={url.link} alt="Image" fill className="object-cover" />
+            </div>
+          ))}
+        </div>
       </div>
     </>
   );
