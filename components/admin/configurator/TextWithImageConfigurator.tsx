@@ -344,8 +344,8 @@ function TextWithImageConfigurator({
       <div className="my-[16px]" />
 
       <CheckBox
-        label="Immagine sulla sinistra"
-        description="Se la spunta è attiva le immagini saranno sulla sinistra, altrimenti saranno sulla destra"
+        label="Immagine sulla destra"
+        description="Se la spunta è attiva le immagini saranno sulla destra, altrimenti saranno sulla sinistra"
         value={imagesOnLeft}
         onValueChange={(e) => setImagesOnLeft(e.target.checked)}
         disabled={disabled}
