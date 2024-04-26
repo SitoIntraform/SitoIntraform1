@@ -4,6 +4,7 @@ import Button from "../Button";
 import { containerAnimation } from "@/lib/animation";
 
 import { motion } from "framer-motion";
+import Link from "next/link";
 
 function ViewMultipleCourse({
   name,
@@ -85,7 +86,7 @@ function ViewMultipleCourse({
           whileInView={"show"}
           className="flex flex-row gap-4 w-full"
         >
-          <a href={l}>
+          <Link href={l}>
             <Button
               onClick={() => { }}
               height={55}
@@ -94,7 +95,7 @@ function ViewMultipleCourse({
             >
               Scopri di più
             </Button>
-          </a>
+          </Link>
         </motion.div>
       </div>
     </div>

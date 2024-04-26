@@ -186,7 +186,7 @@ function OnlyTextView({
                 className="flex md:flex-row flex-col gap-6 justify-center"
               >
                 {section.data.primaryButton && (
-                  <a href={link1}>
+                  <Link href={link1}>
                     <Button
                       width={section.data.widthPrimaryButton || 0}
                       height={section.data.heightPrimaryButton || 0}
@@ -196,10 +196,10 @@ function OnlyTextView({
                     >
                       <p>{section.data.primaryButtonText}</p>
                     </Button>
-                  </a>
+                  </Link>
                 )}
                 {section.data.secondaryButton && (
-                  <a href={link2}>
+                  <Link href={link2}>
                     <Button
                       width={section.data.widthSecondaryButton || 0}
                       height={section.data.heightSecondaryButton || 0}
@@ -210,7 +210,7 @@ function OnlyTextView({
                     >
                       <p>{section.data.secondaryButtonText}</p>
                     </Button>
-                  </a>
+                  </Link>
                 )}
               </motion.div>
             )}

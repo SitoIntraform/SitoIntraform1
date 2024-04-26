@@ -159,9 +159,10 @@ function HeroView({
                   initial={section.data.animation ? "hidden" : ""}
                   whileInView={section.data.animation ? "show" : ""}
                   className="regular-medium md:medium-normal xl:large-medium !text-white max-w-4xl text-center"
-                >
-                  {section.data.description}
-                </motion.p>
+                  dangerouslySetInnerHTML={{
+                    __html: section.data.description
+                  }}
+                ></motion.p>
               )}
             </div>
             {(section.data.primaryButton || section.data.secondaryButton) && (
@@ -173,7 +174,7 @@ function HeroView({
                 className="flex md:flex-row flex-col gap-6 mt-[10px]"
               >
                 {section.data.primaryButton && (
-                  <a href={link1}>
+                  <Link href={link1}>
                     <Button
                       width={section.data.widthPrimaryButton || 0}
                       height={section.data.heightPrimaryButton || 0}
@@ -183,10 +184,10 @@ function HeroView({
                     >
                       <p>{section.data.primaryButtonText}</p>
                     </Button>
-                  </a>
+                  </Link>
                 )}
                 {section.data.secondaryButton && (
-                  <a href={link2}>
+                  <Link href={link2}>
                     <Button
                       width={section.data.widthSecondaryButton || 0}
                       height={section.data.heightSecondaryButton || 0}
@@ -197,7 +198,7 @@ function HeroView({
                     >
                       <p>{section.data.secondaryButtonText}</p>
                     </Button>
-                  </a>
+                  </Link>
                 )}
               </motion.div>
             )}
