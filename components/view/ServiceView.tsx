@@ -202,7 +202,7 @@ export default function ServiceView({
                     </div>
                     <div className="h-[45%] w-full p-2 flex flex-row justify-center text-center overflow-hidden">
                       <div dangerouslySetInnerHTML={{
-                        __html: section.data.description || ""
+                        __html: s.description || ""
                       }} />
                     </div>
                     <a
