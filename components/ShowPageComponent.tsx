@@ -20,8 +20,6 @@ function ShowPageComponent({
   allPages: PageType[];
   allCourse: Course[];
 }) {
-  const [mounted, setMounted] = useState(false);
-
   const path = usePathname();
 
   console.log(allPages);
@@ -50,14 +48,6 @@ function ShowPageComponent({
     window.scroll(0, 0);
     console.log("SCROLL TO TOP");
   }, [path]);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
-  if (!mounted) {
-    return null;
-  }
 
   return (
     <>

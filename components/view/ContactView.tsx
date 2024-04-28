@@ -17,6 +17,7 @@ import "swiper/css/pagination";
 import Input from "../Input";
 import usePrivacyModal from "@/hooks/usePrivacyModal";
 import toast from "react-hot-toast";
+import { useRouter } from "next/navigation";
 
 function ContactView({
   section,
@@ -29,6 +30,7 @@ function ContactView({
   allPages: PageType[];
   allSections: SectionType[];
 }) {
+  const router = useRouter();
   const [updateCounter, setUpdateCounter] = useState(0);
 
   const [name, setName] = useState("");

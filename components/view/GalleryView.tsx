@@ -14,6 +14,7 @@ import { Navigation, Pagination, Autoplay } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
+import { useRouter } from "next/navigation";
 
 function GalleryView({
   section,
@@ -26,6 +27,8 @@ function GalleryView({
   allPages: PageType[];
   allSections: SectionType[];
 }) {
+  const router = useRouter();
+
   const [updateCounter, setUpdateCounter] = useState(0);
   const [carouselCounter, setCarouselCounter] = useState(0);
 
@@ -224,7 +227,7 @@ function GalleryView({
               className="flex md:flex-row flex-col gap-3 md:gap-6"
             >
               {section.data.primaryButton && (
-                <Link href={link1}>
+                <div onClick={() => { if (!dev && link1) router.push(link1) }}>
                   <Button
                     width={section.data.widthPrimaryButton || 0}
                     height={section.data.heightPrimaryButton || 0}
@@ -234,10 +237,10 @@ function GalleryView({
                   >
                     <p>{section.data.primaryButtonText}</p>
                   </Button>
-                </Link>
+                </div>
               )}
               {section.data.secondaryButton && (
-                <Link href={link2}>
+                <div onClick={() => { if (!dev && link2) router.push(link2) }}>
                   <Button
                     width={section.data.widthSecondaryButton || 0}
                     height={section.data.heightSecondaryButton || 0}
@@ -248,7 +251,7 @@ function GalleryView({
                   >
                     <p>{section.data.secondaryButtonText}</p>
                   </Button>
-                </Link>
+                </div>
               )}
             </motion.div>
           )}

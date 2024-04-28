@@ -19,6 +19,7 @@ import usePrivacyModal from "@/hooks/usePrivacyModal";
 import toast from "react-hot-toast";
 import { X } from "lucide-react";
 import useScrollBar from "@/hooks/useScrollbar";
+import { useRouter } from "next/navigation";
 
 export default function FAQView({
   section,
@@ -31,6 +32,7 @@ export default function FAQView({
   allPages: PageType[];
   allSections: SectionType[];
 }) {
+  const router = useRouter();
   const [updateCounter, setUpdateCounter] = useState(0);
 
   const [name, setName] = useState("");
@@ -258,7 +260,7 @@ export default function FAQView({
                 className="flex md:flex-row flex-col gap-3 md:gap-6"
               >
                 {section.data.primaryButton && (
-                  <Link href={link1}>
+                  <div onClick={() => { if (!dev && link1) router.push(link1) }}>
                     <Button
                       width={section.data.widthPrimaryButton || 0}
                       height={section.data.heightPrimaryButton || 0}
@@ -268,10 +270,10 @@ export default function FAQView({
                     >
                       <p>{section.data.primaryButtonText}</p>
                     </Button>
-                  </Link>
+                  </div>
                 )}
                 {section.data.secondaryButton && (
-                  <Link href={link2}>
+                  <div onClick={() => { if (!dev && link2) router.push(link2) }}>
                     <Button
                       width={section.data.widthSecondaryButton || 0}
                       height={section.data.heightSecondaryButton || 0}
@@ -282,7 +284,7 @@ export default function FAQView({
                     >
                       <p>{section.data.secondaryButtonText}</p>
                     </Button>
-                  </Link>
+                  </div>
                 )}
               </motion.div>
             )}

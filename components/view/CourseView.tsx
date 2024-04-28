@@ -19,6 +19,7 @@ import usePrivacyModal from "@/hooks/usePrivacyModal";
 import toast from "react-hot-toast";
 import { Course } from "@prisma/client";
 import ViewMultipleCourse from "./ViewMultipleCourse";
+import { useRouter } from "next/navigation";
 
 function CourseView({
   section,

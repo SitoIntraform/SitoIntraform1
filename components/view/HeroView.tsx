@@ -15,6 +15,7 @@ import Button from "../Button";
 
 import { motion } from "framer-motion";
 import { containerAnimation } from "@/lib/animation";
+import { useRouter } from "next/navigation";
 
 function HeroView({
   section,
@@ -27,6 +28,7 @@ function HeroView({
   allPages: PageType[];
   allSections: SectionType[];
 }) {
+  const router = useRouter();
   const [imageVersion, setImageVersion] = useState(0);
   const [updateAnimationCounter, setUpdateanimationCounter] = useState(0);
 
@@ -97,7 +99,7 @@ function HeroView({
           >
             {section.data.images.map((image) => (
               <SwiperSlide key={image} className="relative">
-                <Image src={image || ""} alt="" fill className="object-cover" />
+                <Image src={image || ""} alt="" fill className="object-scale-down" />
               </SwiperSlide>
             ))}
           </Swiper>
@@ -174,7 +176,7 @@ function HeroView({
                 className="flex md:flex-row flex-col gap-6 mt-[10px]"
               >
                 {section.data.primaryButton && (
-                  <Link href={link1}>
+                  <div onClick={() => { if (!dev && link1) router.push(link1) }}>
                     <Button
                       width={section.data.widthPrimaryButton || 0}
                       height={section.data.heightPrimaryButton || 0}
@@ -184,10 +186,10 @@ function HeroView({
                     >
                       <p>{section.data.primaryButtonText}</p>
                     </Button>
-                  </Link>
+                  </div>
                 )}
                 {section.data.secondaryButton && (
-                  <Link href={link2}>
+                  <div onClick={() => { if (!dev && link2) router.push(link2) }}>
                     <Button
                       width={section.data.widthSecondaryButton || 0}
                       height={section.data.heightSecondaryButton || 0}
@@ -198,7 +200,7 @@ function HeroView({
                     >
                       <p>{section.data.secondaryButtonText}</p>
                     </Button>
-                  </Link>
+                  </div>
                 )}
               </motion.div>
             )}
