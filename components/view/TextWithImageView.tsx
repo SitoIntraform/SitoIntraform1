@@ -175,7 +175,7 @@ function TextWithImageView({
               variants={containerAnimation(0.1, section.data.animationType)}
               initial={section.data.animation ? "hidden" : ""}
               whileInView={section.data.animation ? "show" : ""}
-              className="small-normal  xl:regular-normal relative text-center lg:text-start"
+              className="tiny-normal  xl:small-normal relative text-center lg:text-start"
               style={{
                 color:
                   section.data.backgroundColor === "#303030"
