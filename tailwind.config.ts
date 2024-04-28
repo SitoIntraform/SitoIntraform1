@@ -16,7 +16,7 @@ const config = {
     },
     extend: {
       fontFamily: {
-        sans: "Open Sans",
+        sans: "Montserrat",
         roboto: "Roboto",
       },
       fontSize: {

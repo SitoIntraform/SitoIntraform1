@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
-import { Inter, Open_Sans, Poppins, Roboto } from "next/font/google";
+import { Inter, Montserrat, Open_Sans, Poppins, Roboto } from "next/font/google";
 import "./globals.css";
 import ToastProvider from "@/providers/ToastProvider";
 
-const sans = Open_Sans({ subsets: ["latin"], weight: ["300", "400", "500", "600", "700", "800"] });
+const sans = Montserrat({ subsets: ["latin"], weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"] });
 const roboto = Roboto({ subsets: ["latin"], weight: ["100", "300", "400", "500",  "700", "900"] });
 
 export const metadata: Metadata = {
