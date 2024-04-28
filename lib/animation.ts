@@ -10,8 +10,9 @@ export const containerAnimation = (delay: number, direction?: string) => {
         opacity: 0,
         transition: {
           type: "spring",
-          duration: .6,
+          duration: 0.6,
           //   ease: "easeInOut"
+          delay: 0.1,
         },
       },
       show: {
@@ -20,7 +21,7 @@ export const containerAnimation = (delay: number, direction?: string) => {
         opacity: 1,
 
         transition: {
-          delay: delay,
+          delay: delay + 0.1,
           type: "spring",
           duration: 1,
           //   ease: "easeInOut"

@@ -24,6 +24,7 @@ function ShowPageComponent({
 
   console.log(allPages);
 
+  const [mounted, setMounted] = useState(false);
   const [page, setPage] = useState<PageType | null | undefined>(undefined);
   const [course, setCourse] = useState<Course | null | undefined>(undefined);
 
@@ -48,6 +49,14 @@ function ShowPageComponent({
     window.scroll(0, 0);
     console.log("SCROLL TO TOP");
   }, [path]);
+
+  useEffect(() => {
+    setMounted(true);
+  }, [])
+
+  if(!mounted){
+    return null;
+  }
 
   return (
     <>
