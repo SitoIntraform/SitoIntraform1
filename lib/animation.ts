@@ -12,7 +12,7 @@ export const containerAnimation = (delay: number, direction?: string) => {
           type: "spring",
           duration: 0.6,
           //   ease: "easeInOut"
-          delay: 0.1,
+          // delay: 0.1,
         },
       },
       show: {

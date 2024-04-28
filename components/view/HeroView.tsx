@@ -99,7 +99,7 @@ function HeroView({
           >
             {section.data.images.map((image) => (
               <SwiperSlide key={image} className="relative">
-                <Image src={image || ""} alt="" fill className="object-contain" />
+                <Image src={image || ""} alt="" fill className="object-fill" />
               </SwiperSlide>
             ))}
           </Swiper>
