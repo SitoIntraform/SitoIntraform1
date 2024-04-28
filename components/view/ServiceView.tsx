@@ -186,7 +186,7 @@ export default function ServiceView({
                   initial={section.data.animation ? "hidden" : ""}
                   whileInView={section.data.animation ? "show" : ""}
                   key={index}
-                  className="h-[470px] w-[370px] rounded-lg ring-accentDesign overflow-hidden bg-white"
+                  className="h-[470px] w-[370px] rounded-lg ring-[2px] ring-neutral-200 overflow-hidden bg-white"
                 >
                   <div className="h-[45%] w-full relative overflow-hidden">
                     <Image
