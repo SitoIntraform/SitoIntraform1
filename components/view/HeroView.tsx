@@ -31,6 +31,7 @@ function HeroView({
   const router = useRouter();
   const [imageVersion, setImageVersion] = useState(0);
   const [updateAnimationCounter, setUpdateanimationCounter] = useState(0);
+  const [mounted, setMounted] = useState(false);
 
   const [link1, setLink1] = useState("");
   const [link2, setLink2] = useState("");
@@ -75,6 +76,10 @@ function HeroView({
     setUpdateanimationCounter((prev) => prev + 1);
   }, [section.data.animation, section.data.animationType]);
 
+  useEffect(() => {
+    setMounted(true);
+  }, [])
+
   return (
     <section
       id={section.name}
@@ -86,7 +91,7 @@ function HeroView({
       <div className="z-[-100] absolute top-0 w-full h-full">
         {section.data.images && (
           <Swiper
-            key={dev ? section.name + imageVersion : section.name}
+            key={dev ? section.name + imageVersion : mounted ? section.name : undefined}
             spaceBetween={0}
             slidesPerView={1}
             autoplay={{
