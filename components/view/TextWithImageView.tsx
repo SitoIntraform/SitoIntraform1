@@ -134,7 +134,7 @@ function TextWithImageView({
               variants={containerAnimation(0, section.data.animationType)}
               initial={section.data.animation ? "hidden" : ""}
               whileInView={section.data.animation ? "show" : ""}
-              className="h2Mobile lg:h4Desktop xl:h2Desktop relative text-center lg:text-start"
+              className="h2Mobile lg:h5Desktop xl:h3Desktop relative text-center lg:text-start"
             >
               {/* Title */}
 
