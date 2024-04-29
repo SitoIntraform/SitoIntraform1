@@ -216,7 +216,7 @@ export default function ServiceView({
                     </div>
                     <div
                       onClick={() => { if(!dev && l) router.push(l)}}
-                      className=" h-[15%] text-accentDesign flex flex-row items-center justify-center gap-1 hover:underline underline-offset-2"
+                      className=" h-[15%] cursor-pointer text-accentDesign flex flex-row items-center justify-center gap-1 hover:underline underline-offset-2"
                     >
                       Scopri di più
                       <ChevronRight className="w-4 h-4 text-primaryDesign" />
