@@ -91,7 +91,7 @@ function HeroView({
       <div className="z-[-100] absolute top-0 w-full h-full">
         {section.data.images && (
           <Swiper
-            key={dev ? section.name + imageVersion : mounted ? section.name : undefined}
+            key={dev ? section.name + imageVersion: section.name}
             spaceBetween={0}
             slidesPerView={1}
             autoplay={{
