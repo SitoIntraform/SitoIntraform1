@@ -19,6 +19,8 @@ import usePrivacyModal from "@/hooks/usePrivacyModal";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
 
+import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api';
+
 function ContactView({
   section,
   dev,
@@ -99,6 +101,11 @@ function ContactView({
   useEffect(() => {
     setMounted(true);
   }, []);
+
+  const center = {
+    lat: 44.8805885, 
+    lng: 7.3446302
+  };
 
   return (
     <section
@@ -185,63 +192,50 @@ function ContactView({
               </>
             )}
           </motion.div>
-          <div className="w-full flex flex-col items-center justify-center z-[20]">
-            <motion.div
-              className="max-w-[500px] w-[100%] space-y-[20px] "
-              viewport={{ once: true }}
-              variants={containerAnimation(0, section.data.animationType)}
-              initial={section.data.animation ? "hidden" : ""}
-              whileInView={section.data.animation ? "show" : ""}
-            >
-              <div className="w-full">
-                <Input
-                  value={name}
-                  onValueChange={(e) => setName(e.target.value)}
-                  label="Nome"
-                  notAnimate
-                />
-              </div>
-              <div className="w-full">
-                <Input
-                  value={email}
-                  onValueChange={(e) => setEmail(e.target.value)}
-                  label="Email"
-                  notAnimate
-                />
-              </div>
-              <div className="w-full">
-                <Input
-                  value={message}
-                  onValueChange={(e) => setMessage(e.target.value)}
-                  label="Messaggio"
-                  textArea
-                  rows={5}
-                  notAnimate
-                />
-              </div>
-              <div className="flex flex-row items-center justify-center gap-2">
-                <input
-                  type="checkbox"
-                  checked={policy}
-                  onChange={(e) => setPolicy(e.target.checked)}
-                />
-                <p
-                  className={`regular-normal`}
-                  style={{
-                    color:
-                      section.data.backgroundColor === "#303030"
-                        ? "white"
-                        : "#303030",
-                  }}
-                >
-                  Dichiaro di aver letto le{" "}
-                  <span
-                    className="regular-medium hover:underline cursor-pointer hover:underline-offset-1"
-                    onClick={() => {
-                      if (!dev) {
-                        privacyModal.onOpen();
-                      }
-                    }}
+          <div className="w-full flex flex-col md:flex-row gap-10">
+            {/* FORM */}
+            <div className="w-[100%] md:w-[50%] flex flex-col items-center justify-center z-[20]">
+              <motion.div
+                className="max-w-[500px] w-[100%] space-y-[20px] "
+                viewport={{ once: true }}
+                variants={containerAnimation(0, section.data.animationType)}
+                initial={section.data.animation ? "hidden" : ""}
+                whileInView={section.data.animation ? "show" : ""}
+              >
+                <div className="w-full">
+                  <Input
+                    value={name}
+                    onValueChange={(e) => setName(e.target.value)}
+                    label="Nome"
+                    notAnimate
+                  />
+                </div>
+                <div className="w-full">
+                  <Input
+                    value={email}
+                    onValueChange={(e) => setEmail(e.target.value)}
+                    label="Email"
+                    notAnimate
+                  />
+                </div>
+                <div className="w-full">
+                  <Input
+                    value={message}
+                    onValueChange={(e) => setMessage(e.target.value)}
+                    label="Messaggio"
+                    textArea
+                    rows={5}
+                    notAnimate
+                  />
+                </div>
+                <div className="flex flex-row items-center justify-center gap-2">
+                  <input
+                    type="checkbox"
+                    checked={policy}
+                    onChange={(e) => setPolicy(e.target.checked)}
+                  />
+                  <p
+                    className={`regular-normal`}
                     style={{
                       color:
                         section.data.backgroundColor === "#303030"
@@ -249,32 +243,63 @@ function ContactView({
                           : "#303030",
                     }}
                   >
-                    Privacy Policy
-                  </span>
-                </p>
-              </div>
-            </motion.div>
-            <motion.div
-              viewport={{ once: true }}
-              variants={containerAnimation(0, section.data.animationType)}
-              initial={section.data.animation ? "hidden" : ""}
-              whileInView={section.data.animation ? "show" : ""}
-              className="w-full flex flex-row items-center justify-center mt-[20px]"
-            >
-              <Button
-                height={55}
-                width={160}
-                onClick={() => {
-                  if (!dev) {
-                    onPressContactBtn();
-                  }
-                }}
-                className="scale-90 md:scale-100 xl:scale-105"
-                animation
+                    Dichiaro di aver letto le{" "}
+                    <span
+                      className="regular-medium hover:underline cursor-pointer hover:underline-offset-1"
+                      onClick={() => {
+                        if (!dev) {
+                          privacyModal.onOpen();
+                        }
+                      }}
+                      style={{
+                        color:
+                          section.data.backgroundColor === "#303030"
+                            ? "white"
+                            : "#303030",
+                      }}
+                    >
+                      Privacy Policy
+                    </span>
+                  </p>
+                </div>
+              </motion.div>
+              <motion.div
+                viewport={{ once: true }}
+                variants={containerAnimation(0, section.data.animationType)}
+                initial={section.data.animation ? "hidden" : ""}
+                whileInView={section.data.animation ? "show" : ""}
+                className="w-full flex flex-row items-center justify-center mt-[20px]"
               >
-                <p>Contattaci</p>
-              </Button>
-            </motion.div>
+                <Button
+                  height={55}
+                  width={160}
+                  onClick={() => {
+                    if (!dev) {
+                      onPressContactBtn();
+                    }
+                  }}
+                  className="scale-90 md:scale-100 xl:scale-105"
+                  animation
+                >
+                  <p>Contattaci</p>
+                </Button>
+              </motion.div>
+            </div>
+            
+            {/* MAP */}
+            <div className="h-full lg:h-[300px] w-[100%] md:w-[50%]">
+              <LoadScript
+                googleMapsApiKey={process.env.MAPS_API || ""}
+              >
+                <GoogleMap
+                  mapContainerClassName="w-full h-full"
+                  center={center}
+                  zoom={10}
+                >
+                  <Marker position={center} /> {/* Mostra un marker nella posizione dell'azienda */}
+                </GoogleMap>
+              </LoadScript>
+            </div>
           </div>
         </div>
       </div>
