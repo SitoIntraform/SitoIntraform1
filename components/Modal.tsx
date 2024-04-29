@@ -102,7 +102,7 @@ function Modal({
             <X className="w-8 h-8" />
           </div>
         </div>
-        <div className={bodyContainerClass + "max-w-full max-h-[300px] lg:max-h-[400px] overflow-y-scroll"}>
+        <div className={bodyContainerClass + "max-w-full max-h-[300px] overflow-y-scroll"}>
           {body}
         </div>
         <div className={footerContainerClass}>{footer}</div>

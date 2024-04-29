@@ -19,6 +19,7 @@ import usePrivacyModal from "@/hooks/usePrivacyModal";
 import toast from "react-hot-toast";
 import { ChevronLeft, ChevronRight, X } from "lucide-react";
 import useScrollBar from "@/hooks/useScrollbar";
+import { useRouter } from "next/navigation";
 
 export default function ServiceView({
   section,
@@ -78,6 +79,14 @@ export default function ServiceView({
     setUpdateCounter((prev) => prev + 1);
   }, [section]);
 
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  const router = useRouter();
+
   return (
     <section
       id={section.name}
@@ -87,7 +96,7 @@ export default function ServiceView({
           : section.data.backgroundColor,
       }}
       className={` w-screen relative lg:overflow-hidden !max-w-[100%] !overflow-hidden`}
-      key={dev ? updateCounter : section.name}
+      key={dev ? updateCounter : mounted ? section.SectionId : undefined}
     >
       {section.data.backgroundImages && section.data.backgroundImageOpacity && (
         <div className={` h-full w-full absolute inset-0`}>
@@ -205,13 +214,13 @@ export default function ServiceView({
                         __html: s.description || ""
                       }} />
                     </div>
-                    <a
-                      href={l}
+                    <div
+                      onClick={() => { if(!dev && l) router.push(l)}}
                       className=" h-[15%] text-accentDesign flex flex-row items-center justify-center gap-1 hover:underline underline-offset-2"
                     >
                       Scopri di più
                       <ChevronRight className="w-4 h-4 text-primaryDesign" />
-                    </a>
+                    </div>
                   </div>
                 </motion.div>
               );
@@ -246,7 +255,7 @@ export default function ServiceView({
                 className="flex md:flex-row flex-col gap-3 md:gap-6"
               >
                 {section.data.primaryButton && (
-                  <Link href={link1}>
+                  <div onClick={() => { if(!dev && link1) router.push(link1)}}>
                     <Button
                       width={section.data.widthPrimaryButton || 0}
                       height={section.data.heightPrimaryButton || 0}
@@ -256,10 +265,10 @@ export default function ServiceView({
                     >
                       <p>{section.data.primaryButtonText}</p>
                     </Button>
-                  </Link>
+                  </div>
                 )}
                 {section.data.secondaryButton && (
-                  <Link href={link2}>
+                  <div onClick={() => {if(!dev && link2) router.push(link2)}}>
                     <Button
                       width={section.data.widthSecondaryButton || 0}
                       height={section.data.heightSecondaryButton || 0}
@@ -270,7 +279,7 @@ export default function ServiceView({
                     >
                       <p>{section.data.secondaryButtonText}</p>
                     </Button>
-                  </Link>
+                  </div>
                 )}
               </motion.div>
             )}

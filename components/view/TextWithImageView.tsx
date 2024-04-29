@@ -14,6 +14,7 @@ import { Navigation, Pagination, Autoplay } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
+import { useRouter } from "next/navigation";
 
 function TextWithImageView({
   section,
@@ -80,6 +81,14 @@ function TextWithImageView({
     };
   }, []);
 
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  const router = useRouter();
+
   return (
     <section
       id={section.name}
@@ -93,7 +102,7 @@ function TextWithImageView({
           ? "lg:h-[calc(100vh-80px)] h-auto py-20 lg:py-0"
           : ""
       } w-screen relative lg:overflow-hidden !max-w-[100%] !overflow-x-hidden !overflow-hidden`}
-      key={dev ? updateCounter : section.name}
+      key={dev ? updateCounter : mounted ? section.SectionId : undefined}
     >
       {section.data.backgroundImages && section.data.backgroundImageOpacity && (
         <div className={` h-full w-full absolute inset-0`}>
@@ -197,7 +206,7 @@ function TextWithImageView({
                 className="flex md:flex-row flex-col gap-6 "
               >
                 {section.data.primaryButton && (
-                  <a href={link1}>
+                  <div onClick={() => { if(!dev && link1) router.push(link1)}}>
                     <Button
                       width={section.data.widthPrimaryButton || 0}
                       height={section.data.heightPrimaryButton || 0}
@@ -207,10 +216,10 @@ function TextWithImageView({
                     >
                       <p>{section.data.primaryButtonText}</p>
                     </Button>
-                  </a>
+                  </div>
                 )}
                 {section.data.secondaryButton && (
-                  <a href={link2}>
+                  <div onClick={() => { if(!dev && link2) router.push(link2)}}>
                     <Button
                       width={section.data.widthSecondaryButton || 0}
                       height={section.data.heightSecondaryButton || 0}
@@ -221,7 +230,7 @@ function TextWithImageView({
                     >
                       <p>{section.data.secondaryButtonText}</p>
                     </Button>
-                  </a>
+                  </div>
                 )}
               </motion.div>
             )}

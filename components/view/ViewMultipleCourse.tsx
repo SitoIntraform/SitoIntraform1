@@ -1,5 +1,5 @@
 import Image from "next/image";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Button from "../Button";
 import { containerAnimation } from "@/lib/animation";
 
@@ -37,8 +37,14 @@ function ViewMultipleCourse({
   const router = useRouter();
   const l = dev === true ? "" : link ? "/"+link : "";
 
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
   return (
-    <div className={`w-full flex ${right ? "flex-col-reverse lg:flex-row-reverse" : "flex-col lg:flex-row"} gap-10 items-center justify-center`}>
+    <div key={mounted ? name : undefined} className={`w-full flex ${right ? "flex-col-reverse lg:flex-row-reverse" : "flex-col lg:flex-row"} gap-10 items-center justify-center`}>
       <div onClick={() => { if(!dev && l) router.push(l)}} className="w-full lg:w-[50%] h-[300px] lg:h-[400px] relative cursor-pointer overflow-hidden">
         <Image
           src={image || ""}

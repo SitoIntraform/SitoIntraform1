@@ -40,6 +40,12 @@ function CourseView({
     setUpdateCounter((prev) => prev + 1);
   }, [section]);
 
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
   return (
     <section
       id={section.name}
@@ -53,7 +59,7 @@ function CourseView({
           ? "lg:h-[calc(100vh-80px)] h-auto py-20 lg:py-0"
           : ""
       } w-screen relative lg:overflow-hidden !max-w-[100%] !overflow-x-hidden !overflow-hidden`}
-      key={dev ? updateCounter : section.name}
+      key={dev ? updateCounter : mounted ? section.SectionId : undefined}
     >
       <div
         style={{

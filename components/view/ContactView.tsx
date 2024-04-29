@@ -94,6 +94,12 @@ function ContactView({
     toast.success("Contattati");
   };
 
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
   return (
     <section
       id={section.name}
@@ -107,7 +113,7 @@ function ContactView({
           ? "lg:h-[calc(100vh-80px)] h-auto py-20 lg:py-0"
           : ""
       } w-screen relative lg:overflow-hidden !max-w-[100%] !overflow-x-hidden !overflow-hidden`}
-      key={dev ? updateCounter : section.name}
+      key={dev ? updateCounter : mounted ? section.SectionId : undefined}
     >
       {section.data.backgroundImages && section.data.backgroundImageOpacity && (
         <div className={` h-full w-full absolute inset-0`}>

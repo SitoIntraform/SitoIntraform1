@@ -1,5 +1,5 @@
 import Image from "next/image";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Button from "../Button";
 
 import { motion } from "framer-motion";
@@ -54,8 +54,14 @@ function ViewSingleCourse({
     toast.success("Contattati");
   };
 
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
   return (
-    <div className={`${dev ? "w-full" : "w-[100vw] pt-[90px] containerDesign"}`}>
+    <div key={dev ? name : mounted ? name : undefined} className={`${dev ? "w-full" : "w-[100vw] pt-[90px] containerDesign"}`}>
       <div className="w-full flex lg:flex-row flex-col-reverse gap-10 items-start">
         <div className="w-full lg:w-[70%] flex-col flex gap-3">
           <motion.div

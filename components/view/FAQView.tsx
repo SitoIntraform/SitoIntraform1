@@ -86,19 +86,11 @@ export default function FAQView({
     setUpdateCounter((prev) => prev + 1);
   }, [section]);
 
-  const onPressContactBtn = () => {
-    if (!name || !email || !message) {
-      toast.error("Compila tutti i campi");
-      return;
-    }
+  const [mounted, setMounted] = useState(false);
 
-    if (!policy) {
-      toast.error("Conferma di aver letto le policy per poterci contattare");
-      return;
-    }
-
-    toast.success("Contattati");
-  };
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   return (
     <section
@@ -109,7 +101,7 @@ export default function FAQView({
           : section.data.backgroundColor,
       }}
       className={` w-screen relative lg:overflow-hidden !max-w-[100%] !overflow-x-hidden`}
-      key={dev ? updateCounter : section.name}
+      key={dev ? updateCounter : mounted ? section.SectionId : undefined}
     >
       {section.data.backgroundImages && section.data.backgroundImageOpacity && (
         <div className={` h-full w-full absolute inset-0`}>
