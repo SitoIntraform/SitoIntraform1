@@ -1,6 +1,7 @@
 import { NextApiResponse } from "next";
 import { NextResponse } from "next/server";
 import nodemailer from "nodemailer";
+import sgMail from "@sendgrid/mail";
 
 export async function POST(req: Request, res: NextApiResponse) {
   try {
@@ -28,18 +29,22 @@ export async function POST(req: Request, res: NextApiResponse) {
       to: "giaco.ruetta@gmail.com", // destinatario dell'email
       subject: `${nome} ti ha contattato dal sito di intraform`, // Oggetto dell'email
       text, // Testo dell'email
+      html: `<strong>${text}</strong>`,
     };
 
-    const info = await transporter.sendMail(mailOptions, (error, info) => {
-      if (error) {
-        console.error("Errore nell'invio dell'email:", error);
-        return new NextResponse("Errore nell'invio della email", {
-          status: 500,
-        });
-      } else {
-        console.log("Email inviata: " + info.response);
+    try {
+      await sgMail.send(mailOptions);
+      res.status(200).json({ message: "Email inviata con successo" });
+    } catch (error: any) {
+      console.error(error);
+      if (error.response) {
+        console.error(error.response.body);
       }
-    });
+      console.error("Errore nell'invio dell'email:", error);
+      return new NextResponse("Errore nell'invio della email", {
+        status: 500,
+      });
+    }
 
     return NextResponse.json("Email inviata con successo");
   } catch (err: any) {
