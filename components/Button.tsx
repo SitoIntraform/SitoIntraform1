@@ -81,7 +81,7 @@ function Button({
         />
       )}
       <div
-        className={`h-full w-full absolute z-50 top-0 flex flex-col items-center justify-center transition-all duration-500`}
+        className={`h-full w-full absolute z-50 top-0 flex flex-col items-center justify-center transition-all duration-500 regular-medium !text-white`}
       >
         {children}
       </div>

@@ -19,7 +19,12 @@ import usePrivacyModal from "@/hooks/usePrivacyModal";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
 
-import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api';
+import { GoogleMap, LoadScript, Marker } from "@react-google-maps/api";
+import dynamic from "next/dynamic";
+
+const Map = dynamic(() => import('./Map'), {
+  ssr: false,
+});
 
 function ContactView({
   section,
@@ -37,6 +42,7 @@ function ContactView({
 
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
+  const [telefono, setTelefono] = useState("");
   const [message, setMessage] = useState("");
 
   const [policy, setPolicy] = useState(false);
@@ -101,11 +107,6 @@ function ContactView({
   useEffect(() => {
     setMounted(true);
   }, []);
-
-  const center = {
-    lat: 44.8805885, 
-    lng: 7.3446302
-  };
 
   return (
     <section
@@ -192,9 +193,9 @@ function ContactView({
               </>
             )}
           </motion.div>
-          <div className="w-full flex flex-col md:flex-row gap-10">
+          <div className="w-full flex flex-col lg:flex-row gap-10 mt-8">
             {/* FORM */}
-            <div className="w-[100%] md:w-[50%] flex flex-col items-center justify-center z-[20]">
+            <div className="w-[100%] lg:w-[50%] flex flex-col items-center justify-center z-[20]">
               <motion.div
                 className="max-w-[500px] w-[100%] space-y-[20px] "
                 viewport={{ once: true }}
@@ -206,7 +207,7 @@ function ContactView({
                   <Input
                     value={name}
                     onValueChange={(e) => setName(e.target.value)}
-                    label="Nome"
+                    label="Nome e Cognome"
                     notAnimate
                   />
                 </div>
@@ -215,6 +216,14 @@ function ContactView({
                     value={email}
                     onValueChange={(e) => setEmail(e.target.value)}
                     label="Email"
+                    notAnimate
+                  />
+                </div>
+                <div className="w-full">
+                  <Input
+                    value={telefono}
+                    onValueChange={(e) => setTelefono(e.target.value)}
+                    label="Numero di telefono"
                     notAnimate
                   />
                 </div>
@@ -285,21 +294,17 @@ function ContactView({
                 </Button>
               </motion.div>
             </div>
-            
+
             {/* MAP */}
-            <div className="h-full lg:h-[300px] w-[100%] md:w-[50%]">
-              <LoadScript
-                googleMapsApiKey={process.env.MAPS_API || ""}
-              >
-                <GoogleMap
-                  mapContainerClassName="w-full h-full"
-                  center={center}
-                  zoom={10}
-                >
-                  <Marker position={center} /> {/* Mostra un marker nella posizione dell'azienda */}
-                </GoogleMap>
-              </LoadScript>
-            </div>
+            <motion.div
+              viewport={{ once: true }}
+              variants={containerAnimation(0, section.data.animationType)}
+              initial={section.data.animation ? "hidden" : ""}
+              whileInView={section.data.animation ? "show" : ""}
+              className="lg:h-full h-[300px] w-[100%] lg:w-[50%]"
+            >
+              <Map />
+            </motion.div>
           </div>
         </div>
       </div>
