@@ -7,7 +7,11 @@ import { containerAnimation } from "@/lib/animation";
 import Input from "../Input";
 import usePrivacyModal from "@/hooks/usePrivacyModal";
 import toast from "react-hot-toast";
-import Map from "./Map";
+import dynamic from "next/dynamic";
+
+const Map = dynamic(() => import('./Map'), {
+  ssr: false,
+});
 
 function ViewSingleCourse({
   name,
