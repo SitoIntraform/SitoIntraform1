@@ -68,7 +68,7 @@ function CreateEditLinkComponent({
 
       if (res.status === 200) {
         toast.success("Link creato con successo");
-        window.location.assign("/admin/sito");
+        window.location.assign("/admin");
         return;
       }
     } catch (err: any) {
@@ -94,10 +94,10 @@ function CreateEditLinkComponent({
       if (res.status === 200) {
         toast.success("Link aggiornato con successo");
         if (exit) {
-          window.location.assign("/admin/sito");
+          window.location.assign("/admin");
         } else {
           window.location.assign(
-            "/admin/sito/navbar/" + correctedLink.LinkId
+            "/admin/navbar/" + correctedLink.LinkId
           );
         }
         return;
@@ -120,7 +120,7 @@ function CreateEditLinkComponent({
 
       if (res.status === 200) {
         toast.success("Link cancellato con successo");
-        window.location.assign("/admin/sito");
+        window.location.assign("/admin");
         return;
       }
     } catch (err: any) {
@@ -217,7 +217,7 @@ function CreateEditLinkComponent({
                   <Button
                     className="md:w-[150px] w-[90%] h-[50px]"
                     onClick={() => {
-                      window.location.assign("/admin/sito");
+                      window.location.assign("/admin");
                     }}
                     disabled={loading}
                     secondary

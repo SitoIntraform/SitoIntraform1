@@ -1,10 +1,38 @@
-import SitoPageComponent from "@/components/admin/page/SitoPageComponent";
-import prismadb from "@/lib/prismadb";
-import { PageType, SectionType } from "@/types";
-import { Link } from "@prisma/client";
-import React from "react";
+import EditPage from '@/components/admin/page/EditPage';
+import prismadb from '@/lib/prismadb'
+import { PageType, SectionType } from '@/types';
+import { Section } from '@prisma/client';
+import { redirect } from 'next/navigation';
+import React from 'react'
 
-async function SitoPage() {
+async function PageIdPage({
+    params: { pageId }
+} : {
+    params: { pageId: string }
+}) {
+
+  const allPage = await prismadb.page.findMany({})
+
+  const allSection: Section[] = await prismadb.section.findMany({});
+
+  const page = allPage.find((page) => page.PageId == pageId);
+
+  const pagesWithoutSelectedPage = allPage.filter((page) => page.PageId != pageId);
+
+  const sectionsWithoutPage: Section[] = allSection.filter((section) => section.PageId == null);
+
+  let sectionInPage: Section[] = []; 
+  
+  page?.sections.forEach((sec) => {
+    const sect =  allSection.find((section) => sec === section.SectionId);
+
+    if(sect){
+      sectionInPage = [...sectionInPage, sect];
+    }
+  })
+
+  console.log(sectionInPage);
+
   const pages = await prismadb.page.findMany({});
 
   const allPages: PageType[] = pages && [
@@ -14,12 +42,10 @@ async function SitoPage() {
 
       return {
         PageId: page.PageId || "",
-        createdAt: `${createdAt.getUTCDate()}/${
-          createdAt.getUTCMonth() + 1
-        }/${createdAt.getFullYear()}`,
-        updatedAt: `${updatedAt.getUTCDate()}/${
-          updatedAt.getUTCMonth() + 1
-        }/${updatedAt.getFullYear()}`,
+        createdAt: `${createdAt.getUTCDate()}/${createdAt.getUTCMonth() + 1
+          }/${createdAt.getFullYear()}`,
+        updatedAt: `${updatedAt.getUTCDate()}/${updatedAt.getUTCMonth() + 1
+          }/${updatedAt.getFullYear()}`,
 
         name: page.name || "",
         link: page.link || "",
@@ -51,8 +77,7 @@ async function SitoPage() {
           animationType: sectionSingle?.data.animationType || "up",
 
           backgroundImages: sectionSingle?.data.backgroundImages || "",
-          backgroundImageOpacity:
-            sectionSingle?.data.backgroundImageOpacity || 100,
+          backgroundImageOpacity: sectionSingle?.data.backgroundImageOpacity || 100,
           backgroundColor: sectionSingle?.data.backgroundColor || "",
 
           images: sectionSingle?.data.images || [],
@@ -84,47 +109,24 @@ async function SitoPage() {
           widthSecondaryButton: sectionSingle?.data.widthSecondaryButton || 0,
 
           faq: sectionSingle?.data.faq || [],
-
-          courseId: sectionSingle?.data.courseId || [],
         },
       };
     }),
   ];
 
-  let navbar = await prismadb.navbar.findFirst({});
-
-  if (!navbar) {
-    navbar = await prismadb.navbar.create({ data: {} });
-  }
-
-  const links = await prismadb.link.findMany({});
-
-  let allLinks: Link[] = [];
-
-  navbar.links.forEach((link) => {
-    const selectedLink = links.find((l) => l.LinkId === link);
-
-    if (selectedLink) {
-      allLinks = [...allLinks, selectedLink];
-    }
-  });
-
-  const queryImages = await prismadb.image.findMany({});
-
-  const totalImage = [...queryImages.map((image) => image.link)];
-
   const allCourse = await prismadb.course.findMany({});
 
   return (
-    <SitoPageComponent
-      allCourse={allCourse}
-      totalImage={totalImage}
-      allLinks={allLinks}
-      allPage={allPages}
-      allSections={allSections}
-      navbar={navbar}
-    />
-  );
+    <EditPage pageData={page} allCourse={allCourse} possibleSectionData={sectionsWithoutPage} sectionInPage={sectionInPage} pagesWithoutSelectedPage={pagesWithoutSelectedPage} allPages={allPages} allSection={allSections} />
+  )
 }
 
-export default SitoPage;
+export default PageIdPage
+
+// await prismadb.section.findMany({
+//   where: {
+//     SectionId: {
+//       in: page?.sections
+//     }
+//   },
+// });

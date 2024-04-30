@@ -18,10 +18,6 @@ const links = [
     link: "",
   },
   {
-    name: "Sito",
-    link: "sito",
-  },
-  {
     name: "Sezioni",
     link: "sezioni",
   },

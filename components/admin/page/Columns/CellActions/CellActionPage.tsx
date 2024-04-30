@@ -71,7 +71,7 @@ export default function CellActionPage({ PageId }: { PageId: string }) {
           <DropdownMenuLabel>Actions</DropdownMenuLabel>
           <DropdownMenuItem
             disabled={loading}
-            onClick={() => router.push(`/admin/sito/${PageId}`)}
+            onClick={() => router.push(`/admin/${PageId}`)}
             className="cursor-pointer"
           >
             <Edit className="w-4 h-4 mr-2" />
