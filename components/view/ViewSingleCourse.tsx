@@ -8,6 +8,7 @@ import Input from "../Input";
 import usePrivacyModal from "@/hooks/usePrivacyModal";
 import toast from "react-hot-toast";
 import dynamic from "next/dynamic";
+import axios from "axios";
 
 const Map = dynamic(() => import('./Map'), {
   ssr: false,
@@ -46,18 +47,41 @@ function ViewSingleCourse({
   const [messageContact, setMessageContact] = useState("");
   const [privacy, setPrivacy] = useState(false);
 
+  const [isLoafing, setIsLoafing] = useState(false);
+
+
   const onPressContactBtn = () => {
+    setIsLoafing(true);
     if (!nameContact || !emailContact || !messageContact || !telefonoContact) {
       toast.error("Compila tutti i campi");
+      setIsLoafing(false);
       return;
     }
 
     if (!privacy) {
       toast.error("Conferma di aver letto le policy per poterci contattare");
+      setIsLoafing(false);
       return;
     }
 
-    toast.success("Contattati");
+    try {
+      const req = axios.post("/api/contact", {
+        nome: nameContact, telefono: telefonoContact, email: emailContact, messaggio: messageContact, corso: name
+      });
+
+      toast.success("Grazie per averci contattato! Riceverai nostre notizie al più presto");
+    } catch (e) {
+      console.log(e);
+      toast.error("Something went wrong");
+    }
+
+    setEmailContact("");
+    setMessageContact("");
+    setTelefonoContact("");
+    setNameContact("");
+    setPrivacy(false);
+
+    setIsLoafing(false);
   };
 
   const [mounted, setMounted] = useState(false);
@@ -172,6 +196,7 @@ function ViewSingleCourse({
                   onValueChange={(e) => setNameContact(e.target.value)}
                   label="Nome e Cognome"
                   notAnimate
+                  disabled={isLoafing}
                 />
               </div>
               <div className="w-full">
@@ -180,6 +205,7 @@ function ViewSingleCourse({
                   onValueChange={(e) => setEmailContact(e.target.value)}
                   label="Email"
                   notAnimate
+                  disabled={isLoafing}
                 />
               </div>
               <div className="w-full">
@@ -188,6 +214,7 @@ function ViewSingleCourse({
                   onValueChange={(e) => setTelefonoContact(e.target.value)}
                   label="Numero di telefono"
                   notAnimate
+                  disabled={isLoafing}
                 />
               </div>
               <div className="w-full">
@@ -198,6 +225,7 @@ function ViewSingleCourse({
                   textArea
                   rows={5}
                   notAnimate
+                  disabled={isLoafing}
                 />
               </div>
               <div className="flex flex-row items-center justify-center gap-2">
@@ -205,13 +233,14 @@ function ViewSingleCourse({
                   type="checkbox"
                   checked={privacy}
                   onChange={(e) => setPrivacy(e.target.checked)}
+                  disabled={isLoafing}
                 />
                 <p
                   className={`regular-normal`}
                 >
                   Dichiaro di aver letto le{" "}
                   <span
-                    className="regular-medium hover:underline cursor-pointer hover:underline-offset-1"
+                    className="regular-medium hover:underline cursor-pointer hover:underline-offset-1 !text-primaryDesign"
                     onClick={() => {
                       if (!dev) {
                         privacyModal.onOpen();
@@ -236,6 +265,7 @@ function ViewSingleCourse({
                 }}
                 className="scale-90 md:scale-100 xl:scale-105"
                 animation
+                disabled={isLoafing}
               >
                 <p>Contattaci</p>
               </Button>

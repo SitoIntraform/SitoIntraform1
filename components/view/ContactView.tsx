@@ -53,6 +53,8 @@ function ContactView({
 
   const privacyModal = usePrivacyModal();
 
+  const [isLoafing, setIsLoafing] = useState(false);
+
   useEffect(() => {
     if (dev) {
       setLink1("");
@@ -90,13 +92,16 @@ function ContactView({
   }, [section]);
 
   const onPressContactBtn = () => {
+    setIsLoafing(true);
     if (!name || !email || !message || !telefono) {
       toast.error("Compila tutti i campi");
+      setIsLoafing(false);
       return;
     }
 
     if (!policy) {
       toast.error("Conferma di aver letto le policy per poterci contattare");
+      setIsLoafing(false);
       return;
     }
 
@@ -111,7 +116,13 @@ function ContactView({
       toast.error("Something went wrong");
     }
 
-    toast.success("Contattati");
+    setEmail("");
+    setMessage("");
+    setTelefono("");
+    setName("");
+    setPolicy(false);
+
+    setIsLoafing(false);
   };
 
   const [mounted, setMounted] = useState(false);
@@ -210,6 +221,7 @@ function ContactView({
                     onValueChange={(e) => setName(e.target.value)}
                     label="Nome e Cognome"
                     notAnimate
+                    disabled={isLoafing}
                   />
                 </div>
                 <div className="w-full">
@@ -218,6 +230,7 @@ function ContactView({
                     onValueChange={(e) => setEmail(e.target.value)}
                     label="Email"
                     notAnimate
+                    disabled={isLoafing}
                   />
                 </div>
                 <div className="w-full">
@@ -226,6 +239,7 @@ function ContactView({
                     onValueChange={(e) => setTelefono(e.target.value)}
                     label="Numero di telefono"
                     notAnimate
+                    disabled={isLoafing}
                   />
                 </div>
                 <div className="w-full">
@@ -236,6 +250,7 @@ function ContactView({
                     textArea
                     rows={5}
                     notAnimate
+                    disabled={isLoafing}
                   />
                 </div>
                 <div className="flex flex-row items-center justify-center gap-2">
@@ -243,6 +258,7 @@ function ContactView({
                     type="checkbox"
                     checked={policy}
                     onChange={(e) => setPolicy(e.target.checked)}
+                    disabled={isLoafing}
                   />
                   <p
                     className={`regular-normal`}
@@ -255,17 +271,11 @@ function ContactView({
                   >
                     Dichiaro di aver letto le{" "}
                     <span
-                      className="regular-medium hover:underline cursor-pointer hover:underline-offset-1"
+                      className="regular-medium hover:underline cursor-pointer hover:underline-offset-1 !text-primaryDesign"
                       onClick={() => {
                         if (!dev) {
                           privacyModal.onOpen();
                         }
-                      }}
-                      style={{
-                        color:
-                          section.data.backgroundColor === "#303030"
-                            ? "white"
-                            : "#303030",
                       }}
                     >
                       Privacy Policy
@@ -286,6 +296,7 @@ function ContactView({
                   }}
                   className="scale-90 md:scale-100 xl:scale-105"
                   animation
+                  disabled={isLoafing}
                 >
                   <p>Contattaci</p>
                 </Button>

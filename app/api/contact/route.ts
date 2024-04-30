@@ -20,8 +20,8 @@ export async function POST(req: Request, res: NextApiResponse) {
     });
 
     const text = `Nuovo messaggio di contatto sul sito di intraform\nDa: ${nome}\nTelefono:${telefono}\nEmail:${email}\n${
-      corso && `Corso: ${corso}`
-    }\nMessaggio:${messaggio}`;
+      corso ? `Corso: ${corso}` : ""
+    }\nMessaggio:\n${messaggio}`;
 
     const mailOptions = {
       from: "sitointraform@gmail.com",
@@ -33,12 +33,15 @@ export async function POST(req: Request, res: NextApiResponse) {
     transporter.sendMail(mailOptions, (error, info) => {
       if (error) {
         console.error("Errore nell'invio dell'email:", error);
-        return new NextResponse("Errore nell'invio della email", { status: 500 });
+        return new NextResponse("Errore nell'invio della email", {
+          status: 500,
+        });
       } else {
         console.log("Email inviata: " + info.response);
-        return NextResponse.json("Email inviata con successo");
       }
     });
+
+    return NextResponse.json("Email inviata con successo");
   } catch (err: any) {
     console.log("ERROR_PAGES_POST", err);
     return new NextResponse(err, { status: 400 });
