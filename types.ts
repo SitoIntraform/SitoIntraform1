@@ -96,10 +96,6 @@ export const pageTypes: pageType[] = [
     name: "Form Contatti",
   },
   {
-    value: "Contact",
-    name: "Form Contatti",
-  },
-  {
     value: "Service",
     name: "Lista Servizi",
   },

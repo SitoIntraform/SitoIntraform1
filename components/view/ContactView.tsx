@@ -21,6 +21,7 @@ import { useRouter } from "next/navigation";
 
 import { GoogleMap, LoadScript, Marker } from "@react-google-maps/api";
 import dynamic from "next/dynamic";
+import axios from "axios";
 
 const Map = dynamic(() => import('./Map'), {
   ssr: false,
@@ -97,6 +98,17 @@ function ContactView({
     if (!policy) {
       toast.error("Conferma di aver letto le policy per poterci contattare");
       return;
+    }
+
+    try{
+      const req = axios.post("/api/contact", {
+        nome: name, telefono, email, messaggio: message
+      });
+
+      toast.success("Grazie per averci contattato! Riceverai nostre notizie al più presto");
+    } catch(e){
+      console.log(e);
+      toast.error("Something went wrong");
     }
 
     toast.success("Contattati");
