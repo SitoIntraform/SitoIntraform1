@@ -3,6 +3,8 @@ import { NextResponse } from "next/server";
 import nodemailer from "nodemailer";
 import sgMail from "@sendgrid/mail";
 
+sgMail.setApiKey(process.env.API_EMAIL || "");
+
 export async function POST(req: Request, res: NextApiResponse) {
   try {
     const body = await req.json();
@@ -29,12 +31,10 @@ export async function POST(req: Request, res: NextApiResponse) {
       to: "giaco.ruetta@gmail.com", // destinatario dell'email
       subject: `${nome} ti ha contattato dal sito di intraform`, // Oggetto dell'email
       text, // Testo dell'email
-      html: `<strong>${text}</strong>`,
     };
 
     try {
       await sgMail.send(mailOptions);
-      res.status(200).json({ message: "Email inviata con successo" });
     } catch (error: any) {
       console.error(error);
       if (error.response) {

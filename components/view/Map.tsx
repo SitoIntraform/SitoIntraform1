@@ -30,8 +30,9 @@ const Map = () => {
       />
       <Marker position={[44.880713557083546, 7.347154455996236]}>
         <Popup>
-          Azienda Intraform <br />
+          Associazione Intraform <br />
           Pinerolo, TO
+          Via E. Bignone 85/12
         </Popup>
       </Marker>
     </MapContainer>
