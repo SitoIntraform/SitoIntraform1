@@ -419,7 +419,7 @@ function ContactConfigurator({
           type="number"
         />
       </WrapConfigurazioni> */}
-
+{/* 
       <HeaderPage
         title="Animazioni"
         description="Gestisci le animazioni del sito"
@@ -456,7 +456,7 @@ function ContactConfigurator({
             },
           ]}
         />
-      </WrapConfigurazioni>
+      </WrapConfigurazioni> */}
     </div>
   );
 }

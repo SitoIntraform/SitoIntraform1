@@ -152,11 +152,7 @@ function ContactView({
         <div
           className={`mx-auto flex flex-col w-[100%] items-center justify-center gap-6`}
         >
-          <motion.div
-            viewport={{ once: true }}
-            variants={containerAnimation(0, section.data.animationType)}
-            initial={section.data.animation ? "hidden" : ""}
-            whileInView={section.data.animation ? "show" : ""}
+          <div
             className="h4Mobile md:h4Desktop xl:h3Desktop relative text-center"
           >
             {/* Title */}
@@ -189,16 +185,12 @@ function ContactView({
                 </span>
               </>
             )}
-          </motion.div>
+          </div>
           <div className="w-full flex flex-col lg:flex-row gap-10 mt-8">
             {/* FORM */}
             <div className="w-[100%] lg:w-[50%] flex flex-col items-center justify-center z-[20]">
-              <motion.div
+              <div
                 className="max-w-[500px] w-[100%] space-y-[20px] "
-                viewport={{ once: true }}
-                variants={containerAnimation(0, section.data.animationType)}
-                initial={section.data.animation ? "hidden" : ""}
-                whileInView={section.data.animation ? "show" : ""}
               >
                 <div className="w-full">
                   <Input
@@ -268,12 +260,8 @@ function ContactView({
                     </span>
                   </p>
                 </div>
-              </motion.div>
-              <motion.div
-                viewport={{ once: true }}
-                variants={containerAnimation(0, section.data.animationType)}
-                initial={section.data.animation ? "hidden" : ""}
-                whileInView={section.data.animation ? "show" : ""}
+              </div>
+              <div
                 className="w-full flex flex-row items-center justify-center mt-[20px]"
               >
                 <Button
@@ -289,19 +277,15 @@ function ContactView({
                 >
                   <p>Contattaci</p>
                 </Button>
-              </motion.div>
+              </div>
             </div>
 
             {/* MAP */}
-            <motion.div
-              viewport={{ once: true }}
-              variants={containerAnimation(0, section.data.animationType)}
-              initial={section.data.animation ? "hidden" : ""}
-              whileInView={section.data.animation ? "show" : ""}
+            <div
               className="lg:h-full h-[300px] w-[100%] lg:w-[50%]"
             >
               <Map />
-            </motion.div>
+            </div>
           </div>
         </div>
       </div>
