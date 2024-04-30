@@ -30,7 +30,7 @@ export async function POST(req: Request, res: NextApiResponse) {
       text, // Testo dell'email
     };
 
-    transporter.sendMail(mailOptions, (error, info) => {
+    const info = await transporter.sendMail(mailOptions, (error, info) => {
       if (error) {
         console.error("Errore nell'invio dell'email:", error);
         return new NextResponse("Errore nell'invio della email", {
