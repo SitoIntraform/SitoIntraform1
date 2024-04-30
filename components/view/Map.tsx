@@ -31,8 +31,8 @@ const Map = () => {
       <Marker position={[44.880713557083546, 7.347154455996236]}>
         <Popup>
           Associazione Intraform <br />
+          Via E. Bignone 85/12 <br/>
           Pinerolo, TO
-          Via E. Bignone 85/12
         </Popup>
       </Marker>
     </MapContainer>
