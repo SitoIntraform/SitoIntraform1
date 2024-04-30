@@ -143,7 +143,7 @@ function TextWithImageView({
               variants={containerAnimation(0, section.data.animationType)}
               initial={section.data.animation ? "hidden" : ""}
               whileInView={section.data.animation ? "show" : ""}
-              className="h3Mobile lg:h6Desktop xl:h4Desktop relative text-center lg:text-start"
+              className="h4Mobile md:h5Desktop xl:h4Desktop relative text-center lg:text-start"
             >
               {/* Title */}
 
@@ -152,9 +152,6 @@ function TextWithImageView({
                   <span className="text-accentDesign">
                     {section.data.textBlue}
                   </span>{" "}
-                  <span className="md:hidden">
-                    <br />
-                  </span>
                   <span className="text-primaryDesign">
                     {section.data.textGreen}
                   </span>
@@ -184,7 +181,7 @@ function TextWithImageView({
               variants={containerAnimation(0.1, section.data.animationType)}
               initial={section.data.animation ? "hidden" : ""}
               whileInView={section.data.animation ? "show" : ""}
-              className="tiny-normal  xl:small-normal relative text-center lg:text-start"
+              className="tiny-normal md:small-normal relative text-center lg:text-start"
               style={{
                 color:
                   section.data.backgroundColor === "#303030"

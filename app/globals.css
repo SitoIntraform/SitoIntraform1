@@ -132,7 +132,7 @@ html {
   }
 
   .containerDesign {
-    @apply xl:max-w-[1440px] lg:max-w-[1100px] md:max-w-[900px] max-w-[600px] mx-auto px-10;
+    @apply xl:max-w-[1440px] lg:max-w-[1100px] md:max-w-[900px] sm:max-w-[600px] max-w-[500px]  mx-auto md:px-10 px-5;
   }
 
   .h1Desktop {

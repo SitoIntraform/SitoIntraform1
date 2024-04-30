@@ -7,6 +7,7 @@ import { containerAnimation } from "@/lib/animation";
 import Input from "../Input";
 import usePrivacyModal from "@/hooks/usePrivacyModal";
 import toast from "react-hot-toast";
+import Map from "./Map";
 
 function ViewSingleCourse({
   name,
@@ -37,11 +38,12 @@ function ViewSingleCourse({
 
   const [nameContact, setNameContact] = useState("");
   const [emailContact, setEmailContact] = useState("");
+  const [telefonoContact, setTelefonoContact] = useState("");
   const [messageContact, setMessageContact] = useState("");
   const [privacy, setPrivacy] = useState(false);
 
   const onPressContactBtn = () => {
-    if (!nameContact || !emailContact || !messageContact) {
+    if (!nameContact || !emailContact || !messageContact || !telefonoContact) {
       toast.error("Compila tutti i campi");
       return;
     }
@@ -61,7 +63,10 @@ function ViewSingleCourse({
   }, []);
 
   return (
-    <div key={dev ? name : mounted ? name : undefined} className={`${dev ? "w-full" : "w-[100vw] pt-[90px] containerDesign"}`}>
+    <div
+      key={dev ? name : mounted ? name : undefined}
+      className={`${dev ? "w-full" : "w-[100vw] pt-[90px] containerDesign"}`}
+    >
       <div className="w-full flex lg:flex-row flex-col-reverse gap-10 items-start">
         <div className="w-full lg:w-[70%] flex-col flex gap-3">
           <motion.div
@@ -89,14 +94,14 @@ function ViewSingleCourse({
             whileInView={"show"}
             className="flex flex-col gap-2"
           >
-            <div className="">
+            {code && <div className="">
               <span className="large-medium !text-primaryDesign">Codice: </span>
               <span className="large-extrabold">{code}</span>
-            </div>
-            <div className="">
+            </div>}
+            {price && <div className="">
               <span className="large-medium !text-primaryDesign">Prezzo: </span>
               <span className="large-extrabold">€{price}</span>
-            </div>
+            </div>}
           </motion.div>
           <motion.div
             viewport={{ once: true }}
@@ -128,77 +133,91 @@ function ViewSingleCourse({
             <div className="small-normal line-clamp-4">{description}</div>
           </div>
 
-          {haveFile && <div className="hidden lg:flex flex-col gap-2 w-full mt-[30px]">
-            <Button
-              onClick={() => {}}
-              height={55}
-              className="w-full regular-medium !text-white"
-              secondary
-            >
-              Scarica il programma
-            </Button>
-          </div>}
+          {haveFile && (
+            <div className="hidden lg:flex flex-col gap-2 w-full mt-[30px]">
+              <Button
+                onClick={() => {}}
+                height={55}
+                className="w-full regular-medium !text-white"
+                secondary
+              >
+                Scarica il programma
+              </Button>
+            </div>
+          )}
         </motion.div>
       </div>
-      <div>
-        <div className="text-center h2Desktop !text-primaryDesign my-[50px]">
-          Contattaci per informazioni
+      <div
+        className={`mx-auto flex flex-col w-[100%] items-center justify-center gap-6`}
+      >
+        <div
+          className="h4Mobile md:h4Desktop xl:h3Desktop relative text-center text-primaryDesign"
+        >
+          {/* Title */}
+          Contattaci per scoprire di più
         </div>
-        <div className="my-[30px] flex flex-row justify-center">
-          <div className="max-w-[600px] w-full flex-col items-center justify-center space-y-[16px]">
+        <div className="w-full flex flex-col lg:flex-row gap-10 mt-8">
+          {/* FORM */}
+          <div className="w-[100%] lg:w-[50%] flex flex-col items-center justify-center z-[20]">
             <div
-              className="w-full"
+              className="max-w-[500px] w-[100%] space-y-[20px] "
             >
-              <Input
-                value={nameContact}
-                onValueChange={(e) => setNameContact(e.target.value)}
-                label="Nome"
-                notAnimate
-              />
-            </div>
-            <div
-              className="w-full"
-            >
-              <Input
-                value={emailContact}
-                onValueChange={(e) => setEmailContact(e.target.value)}
-                label="Email"
-                notAnimate
-              />
-            </div>
-            <div
-              className="w-full"
-            >
-              <Input
-                value={messageContact}
-                onValueChange={(e) => setMessageContact(e.target.value)}
-                label="Messaggio"
-                textArea
-                rows={5}
-                notAnimate
-              />
-            </div>
-            <div
-              className="flex flex-row items-center justify-center gap-2"
-            >
-              <input
-                type="checkbox"
-                checked={privacy}
-                onChange={(e) => setPrivacy(e.target.checked)}
-              />
-              <p className={`regular-normal`}>
-                Dichiaro di aver letto le{" "}
-                <span
-                  className="regular-medium hover:underline cursor-pointer hover:underline-offset-1"
-                  onClick={() => {
-                    if (!dev) {
-                      privacyModal.onOpen();
-                    }
-                  }}
+              <div className="w-full">
+                <Input
+                  value={nameContact}
+                  onValueChange={(e) => setNameContact(e.target.value)}
+                  label="Nome e Cognome"
+                  notAnimate
+                />
+              </div>
+              <div className="w-full">
+                <Input
+                  value={emailContact}
+                  onValueChange={(e) => setEmailContact(e.target.value)}
+                  label="Email"
+                  notAnimate
+                />
+              </div>
+              <div className="w-full">
+                <Input
+                  value={telefonoContact}
+                  onValueChange={(e) => setTelefonoContact(e.target.value)}
+                  label="Numero di telefono"
+                  notAnimate
+                />
+              </div>
+              <div className="w-full">
+                <Input
+                  value={messageContact}
+                  onValueChange={(e) => setMessageContact(e.target.value)}
+                  label="Messaggio"
+                  textArea
+                  rows={5}
+                  notAnimate
+                />
+              </div>
+              <div className="flex flex-row items-center justify-center gap-2">
+                <input
+                  type="checkbox"
+                  checked={privacy}
+                  onChange={(e) => setPrivacy(e.target.checked)}
+                />
+                <p
+                  className={`regular-normal`}
                 >
-                  Privacy Policy
-                </span>
-              </p>
+                  Dichiaro di aver letto le{" "}
+                  <span
+                    className="regular-medium hover:underline cursor-pointer hover:underline-offset-1"
+                    onClick={() => {
+                      if (!dev) {
+                        privacyModal.onOpen();
+                      }
+                    }}
+                  >
+                    Privacy Policy
+                  </span>
+                </p>
+              </div>
             </div>
             <div
               className="w-full flex flex-row items-center justify-center mt-[20px]"
@@ -217,6 +236,13 @@ function ViewSingleCourse({
                 <p>Contattaci</p>
               </Button>
             </div>
+          </div>
+
+          {/* MAP */}
+          <div
+            className="lg:h-full h-[300px] w-[100%] lg:w-[50%]"
+          >
+            <Map />
           </div>
         </div>
       </div>

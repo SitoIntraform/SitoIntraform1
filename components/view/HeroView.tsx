@@ -149,13 +149,13 @@ function HeroView({
                 variants={containerAnimation(0, section.data.animationType)}
                 initial={section.data.animation ? "hidden" : ""}
                 whileInView={section.data.animation ? "show" : ""}
-                className="h1Mobile md:h1Desktop xl:!text-[72px]  text-center h1Shadow"
+                className={`${section.data.hScreen ? "h2Desktop lg:h1Desktop" : "h4Mobile md:h4Desktop xl:h3Desktop"}  text-center h1Shadow`}
               >
                 <span className="text-accentDesign">
                   {section.data.textBlue}
                 </span>
                 <span> </span>
-                <br className="md:hidden inline-block" />
+                {/* <br className="md:hidden inline-block" /> */}
                 <span className="text-primaryDesign">
                   {section.data.textGreen}
                 </span>
@@ -166,7 +166,7 @@ function HeroView({
                   variants={containerAnimation(0.1, section.data.animationType)}
                   initial={section.data.animation ? "hidden" : ""}
                   whileInView={section.data.animation ? "show" : ""}
-                  className="regular-medium md:medium-normal xl:large-medium !text-white max-w-4xl text-center"
+                  className="small-medium md:regular-normal xl:medium-medium !text-white max-w-4xl text-center"
                   dangerouslySetInnerHTML={{
                     __html: section.data.description
                   }}

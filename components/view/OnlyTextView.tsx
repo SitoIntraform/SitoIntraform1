@@ -130,7 +130,7 @@ function OnlyTextView({
               variants={containerAnimation(0, section.data.animationType)}
               initial={section.data.animation ? "hidden" : ""}
               whileInView={section.data.animation ? "show" : ""}
-              className="h2Mobile lg:h4Desktop xl:h2Desktop relative text-center"
+              className="h4Mobile md:h4Desktop xl:h3Desktop relative text-center"
             >
               {/* Title */}
 
@@ -139,9 +139,6 @@ function OnlyTextView({
                   <span className="text-accentDesign">
                     {section.data.textBlue}
                   </span>{" "}
-                  <span className="md:hidden">
-                    <br />
-                  </span>
                   <span className="text-primaryDesign">
                     {section.data.textGreen}
                   </span>
@@ -172,7 +169,7 @@ function OnlyTextView({
                 variants={containerAnimation(0, section.data.animationType)}
                 initial={section.data.animation ? "hidden" : ""}
                 whileInView={section.data.animation ? "show" : ""}
-                className="small-normal  xl:regular-normal relative text-center"
+                className="small-normal md:regular-normal relative text-center"
                 style={{
                   color:
                     section.data.backgroundColor === "#303030"
