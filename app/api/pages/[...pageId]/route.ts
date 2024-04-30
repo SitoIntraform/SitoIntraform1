@@ -201,22 +201,24 @@ export async function DELETE(
     console.log(pageId);
 
     sections.forEach((sect) => {
-      if (sect.data.primaryLink === "/" + pageToDelete?.PageId) {
-        used = true;
-        return;
-      }
-
-      if (sect.data.secondaryLink === "/" + pageToDelete?.PageId) {
-        used = true;
-        return;
-      }
-
-      sect.data.service.forEach((serv) => {
-        if (serv.LinkPage === "/" + pageToDelete?.PageId) {
+      if (sect.PageId != null || sect.PageId != "") {
+        if (sect.data.primaryLink === "/" + pageToDelete?.PageId) {
           used = true;
           return;
         }
-      });
+
+        if (sect.data.secondaryLink === "/" + pageToDelete?.PageId) {
+          used = true;
+          return;
+        }
+
+        sect.data.service.forEach((serv) => {
+          if (serv.LinkPage === "/" + pageToDelete?.PageId) {
+            used = true;
+            return;
+          }
+        });
+      }
     });
 
     if (used) {
