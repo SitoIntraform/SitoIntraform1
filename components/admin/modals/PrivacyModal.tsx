@@ -18,11 +18,12 @@ function PrivacyModal({
   return (
     <Modal
       open={isOpen}
-      title="Informativa privacy ai sensi degli artt. 13-14 del Regolamento Europeo “Privacy” (GDPR)"
+      title="Informativa privacy"
       containerClass=""
       body={
         <>
           <div>
+            <p className="text-center font-bold">Informativa privacy ai sensi degli artt. 13-14 del Regolamento Europeo “Privacy” (GDPR)</p>
             <p>
               I dati personali da Lei inseriti, sono trattati dal proprietario
               del sito Associazione Intraform – Agenzia Formativa accreditata
