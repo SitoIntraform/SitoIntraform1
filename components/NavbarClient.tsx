@@ -320,7 +320,7 @@ function NavbarClient({
                   className={`text-center cursor-pointer h5Mobile group !font-medium z-[100] ${
                     dropDownOpen === index
                       ? "h-auto z-[200]"
-                      : "h-[35px] overflow-hidden z-[100]"
+                      : "h-[40px] overflow-hidden z-[100]"
                   }`}
                   variants={linkVariant}
                   onClick={(e) => {
