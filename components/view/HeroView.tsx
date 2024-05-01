@@ -149,7 +149,7 @@ function HeroView({
                 variants={containerAnimation(0, section.data.animationType)}
                 initial={section.data.animation ? "hidden" : ""}
                 whileInView={section.data.animation && mounted ? "show" : ""}
-                className={`${section.data.hScreen ? "h2Desktop lg:h1Desktop max-w-6xl" : "h4Mobile md:h4Desktop xl:h3Desktop max-w-3xl"}  text-center h1Shadow `}
+                className={`${section.data.hScreen ? "h4Mobile lg:h1Desktop max-w-6xl" : "h4Mobile md:h4Desktop xl:h3Desktop max-w-3xl"}  text-center h1Shadow `}
               >
                 <span className="text-accentDesign">
                   {section.data.textBlue}
