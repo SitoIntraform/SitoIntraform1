@@ -120,10 +120,10 @@ function NavbarClient({
     return null;
   }
 
-  let buttonLinkReal = "";
+  let buttonLinkReal;
 
   const page = allPage.find((p) => p.PageId === buttonLink?.split("/").at(1));
-  buttonLinkReal = dev ? "" : "/" + page?.link;
+  buttonLinkReal = dev ? undefined : page?.link ? "/" + page?.link : undefined;
 
   return (
     <div className="max-w-[100vw] !overflow-x-hidden">
