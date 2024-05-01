@@ -163,7 +163,7 @@ function NavbarClient({
 
               return (
                 <a
-                  href={linkReal}
+                  href={dev ? undefined : linkReal}
                   key={currentLink?.LinkId}
                   className={`text-center regular-normal group`}
                 >
