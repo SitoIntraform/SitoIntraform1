@@ -132,7 +132,7 @@ export default function FAQView({
             viewport={{ once: true }}
             variants={containerAnimation(0, section.data.animationType)}
             initial={section.data.animation ? "hidden" : ""}
-            whileInView={section.data.animation ? "show" : ""}
+            whileInView={section.data.animation && mounted ? "show" : ""}
             className="h4Mobile md:h4Desktop xl:h3Desktop relative text-center"
           >
             {/* Title */}
@@ -185,7 +185,7 @@ export default function FAQView({
                   viewport={{ once: true }}
                   variants={containerAnimation(0, section.data.animationType)}
                   initial={section.data.animation ? "hidden" : ""}
-                  whileInView={section.data.animation ? "show" : ""}
+                  whileInView={section.data.animation && mounted ? "show" : ""}
                   key={index}
                   className={`w-full border-2 outline-none p-5 rounded-2xl cursor-pointer bg-white ${
                     isActive ? "border-primaryDesign" : "border-accentDesign"
@@ -225,7 +225,7 @@ export default function FAQView({
               viewport={{ once: true }}
               variants={containerAnimation(0, section.data.animationType)}
               initial={section.data.animation ? "hidden" : ""}
-              whileInView={section.data.animation ? "show" : ""}
+              whileInView={section.data.animation && mounted ? "show" : ""}
               className="small-normal md:regular-normal relative text-center"
               style={{
                 color:
@@ -245,7 +245,7 @@ export default function FAQView({
                 viewport={{ once: true }}
                 variants={containerAnimation(0.2, section.data.animationType)}
                 initial={section.data.animation ? "hidden" : ""}
-                whileInView={section.data.animation ? "show" : ""}
+                whileInView={section.data.animation && mounted ? "show" : ""}
                 className="flex md:flex-row flex-col gap-3 md:gap-6"
               >
                 {section.data.primaryButton && (

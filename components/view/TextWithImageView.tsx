@@ -142,7 +142,7 @@ function TextWithImageView({
               viewport={{ once: true }}
               variants={containerAnimation(0, section.data.animationType)}
               initial={section.data.animation ? "hidden" : ""}
-              whileInView={section.data.animation ? "show" : ""}
+              whileInView={section.data.animation && mounted ? "show" : ""}
               className="h4Mobile md:h5Desktop xl:h4Desktop relative text-center lg:text-start"
             >
               {/* Title */}
@@ -180,7 +180,7 @@ function TextWithImageView({
               viewport={{ once: true }}
               variants={containerAnimation(0.1, section.data.animationType)}
               initial={section.data.animation ? "hidden" : ""}
-              whileInView={section.data.animation ? "show" : ""}
+              whileInView={section.data.animation && mounted ? "show" : ""}
               className="tiny-normal md:small-normal relative text-center lg:text-start"
               style={{
                 color:
@@ -199,7 +199,7 @@ function TextWithImageView({
                 viewport={{ once: true }}
                 variants={containerAnimation(0.2, section.data.animationType)}
                 initial={section.data.animation ? "hidden" : ""}
-                whileInView={section.data.animation ? "show" : ""}
+                whileInView={section.data.animation && mounted ? "show" : ""}
                 className="flex md:flex-row flex-col gap-6 "
               >
                 {section.data.primaryButton && (
@@ -237,7 +237,7 @@ function TextWithImageView({
               variants={containerAnimation(0, section.data.animationType)}
               viewport={{ once: true }}
               initial={section.data.animation ? "hidden" : ""}
-              whileInView={section.data.animation ? "show" : ""}
+              whileInView={section.data.animation && mounted ? "show" : ""}
               className="absolute top-0 w-full h-full"
             >
               {section.data.images && (

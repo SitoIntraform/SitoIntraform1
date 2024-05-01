@@ -101,7 +101,7 @@ function ViewSingleCourse({
             viewport={{ once: true }}
             variants={containerAnimation(0, "up")}
             initial={"hidden"}
-            whileInView={"show"}
+            whileInView={mounted ? "show" : ""}
             className="font-semibold text-[30px] !text-primaryDesign tracking-wider"
           >
             {duration}
@@ -110,7 +110,7 @@ function ViewSingleCourse({
             viewport={{ once: true }}
             variants={containerAnimation(0, "up")}
             initial={"hidden"}
-            whileInView={"show"}
+            whileInView={mounted ? "show" : ""}
             className="h1Desktop !text-accentDesign"
           >
             {title}
@@ -119,7 +119,7 @@ function ViewSingleCourse({
             viewport={{ once: true }}
             variants={containerAnimation(0, "up")}
             initial={"hidden"}
-            whileInView={"show"}
+            whileInView={mounted ? "show" : ""}
             className="flex flex-col gap-2"
           >
             {code && <div className="">
@@ -135,7 +135,7 @@ function ViewSingleCourse({
             viewport={{ once: true }}
             variants={containerAnimation(0, "up")}
             initial={"hidden"}
-            whileInView={"show"}
+            whileInView={mounted ? "show" : ""}
             className="large-normal"
           >
             {description}
@@ -145,7 +145,7 @@ function ViewSingleCourse({
           viewport={{ once: true }}
           variants={containerAnimation(0, "up")}
           initial={"hidden"}
-          whileInView={"show"}
+          whileInView={mounted ? "show" : ""}
           className="w-full lg:w-[30%] lg:border-textDesign/50 lg:p-4 lg:border-2 lg:sticky lg:top-28 overflow-hidden"
         >
           <div className="w-full h-[350px] lg:h-[200px] relative">

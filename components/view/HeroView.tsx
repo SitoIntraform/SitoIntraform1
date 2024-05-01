@@ -140,7 +140,7 @@ function HeroView({
             viewport={{ once: true }}
             variants={containerAnimation(0, section.data.animationType)}
             initial={section.data.animation ? "hidden" : ""}
-            whileInView={section.data.animation ? "show" : ""}
+            whileInView={section.data.animation && mounted ? "show" : ""}
             className="w-full flex flex-col items-center justify-center gap-6 "
           >
             <div className="flex flex-col items-center justify-center p-5 gap-6">
@@ -165,7 +165,7 @@ function HeroView({
                   viewport={{ once: true }}
                   variants={containerAnimation(0.1, section.data.animationType)}
                   initial={section.data.animation ? "hidden" : ""}
-                  whileInView={section.data.animation ? "show" : ""}
+                  whileInView={section.data.animation && mounted ? "show" : ""}
                   className="small-medium md:regular-normal xl:medium-medium !text-white max-w-4xl text-center"
                   dangerouslySetInnerHTML={{
                     __html: section.data.description
@@ -178,7 +178,7 @@ function HeroView({
                 viewport={{ once: true }}
                 variants={containerAnimation(0.2, section.data.animationType)}
                 initial={section.data.animation ? "hidden" : ""}
-                whileInView={section.data.animation ? "show" : ""}
+                whileInView={section.data.animation && mounted ? "show" : ""}
                 className="flex md:flex-row flex-col gap-6 mt-[10px]"
               >
                 {section.data.primaryButton && (

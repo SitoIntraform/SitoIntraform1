@@ -60,7 +60,7 @@ function ViewMultipleCourse({
             viewport={{ once: true }}
             variants={containerAnimation(0, "up")}
             initial={"hidden"}
-            whileInView={"show"}
+            whileInView={mounted ? "show" : ""}
             className="font-semibold text-[25px] !text-primaryDesign tracking-wider"
           >
             {duration}
@@ -69,7 +69,7 @@ function ViewMultipleCourse({
             viewport={{ once: true }}
             variants={containerAnimation(0, "up")}
             initial={"hidden"}
-            whileInView={"show"}
+            whileInView={mounted ? "show" : ""}
             onClick={() => { if (!dev && l) router.push(l) }}
             className="h2Desktop !text-accentDesign !leading-[100%] line-clamp-1 lg:line-clamp-2 cursor-pointer hover:underline underline-offset-1"
           >
@@ -79,7 +79,7 @@ function ViewMultipleCourse({
             viewport={{ once: true }}
             variants={containerAnimation(0, "up")}
             initial={"hidden"}
-            whileInView={"show"}
+            whileInView={mounted ? "show" : ""}
             className="regular-normal line-clamp-2 lg:line-clamp-4"
           >
             {description}
@@ -90,7 +90,7 @@ function ViewMultipleCourse({
           viewport={{ once: true }}
           variants={containerAnimation(0, "up")}
           initial={"hidden"}
-          whileInView={"show"}
+          whileInView={mounted ? "show" : ""}
           className="flex flex-row gap-4 w-full"
         >
           <div onClick={() => { if (!dev && l) router.push(l) }}>
