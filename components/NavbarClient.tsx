@@ -317,10 +317,10 @@ function NavbarClient({
                 <motion.a
                   href={dev ? undefined : linkReal}
                   key={currentLink?.LinkId}
-                  className={`text-center cursor-pointer h5Mobile group !font-medium z-[100] ${
+                  className={`text-center cursor-pointer large-medium group !font-medium z-[100] ${
                     dropDownOpen === index
                       ? "h-auto z-[200]"
-                      : "h-[40px] overflow-hidden z-[100]"
+                      : "h-[30px] overflow-hidden z-[100]"
                   }`}
                   variants={linkVariant}
                   onClick={(e) => {
