@@ -54,7 +54,7 @@ async function SitoPage() {
           backgroundColor: sectionSingle?.data.backgroundColor || "",
 
           images: sectionSingle?.data.images || [],
-          imagesOnLeft: sectionSingle?.data.imagesOnLeft || true,
+          imagesOnLeft: sectionSingle?.data.imagesOnLeft || false,
 
           textBlue: sectionSingle?.data.textBlue || "",
           textGreen: sectionSingle?.data.textGreen || "",

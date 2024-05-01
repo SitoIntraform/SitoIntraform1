@@ -72,6 +72,8 @@ export async function POST(
       );
     }
 
+    console.log("IMAGES ON LEFT: " + imagesOnLeft);
+
     const section = await prismadb.section.update({
       where: {
         SectionId: sectionId[0],
