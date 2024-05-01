@@ -69,7 +69,7 @@ function SelectOneImageForConfigurator({
                 src={images[0]}
                 alt="Image"
                 fill
-                className="object-cover"
+                className="object-contain"
               />
             </div>
           )}

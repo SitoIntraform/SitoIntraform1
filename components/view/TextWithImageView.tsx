@@ -261,7 +261,7 @@ function TextWithImageView({
                         src={image || ""}
                         alt=""
                         fill
-                        className="object-cover"
+                        className="object-contain"
                       />
                     </SwiperSlide>
                   ))}

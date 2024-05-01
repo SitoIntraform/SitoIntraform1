@@ -111,7 +111,7 @@ function ImagePageComponent({ images }: ImagePageProps) {
                 <Trash className="h-10 w-10" />
               </Button>
 
-              <Image src={url.link} alt="Image" fill className="object-cover" />
+              <Image src={url.link} alt="Image" fill className="object-contain" />
             </div>
           ))}
         </div>

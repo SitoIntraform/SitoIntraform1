@@ -106,7 +106,7 @@ function SelectImagesConfigurations({
                 <Trash className="h-8 w-8" />
               </Button>
 
-              <Image src={url} alt="Image" fill className="object-cover" />
+              <Image src={url} alt="Image" fill className="object-conatin" />
             </div>
           )
         })}

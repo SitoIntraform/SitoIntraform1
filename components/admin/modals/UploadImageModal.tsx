@@ -90,7 +90,7 @@ function UploadImageModal({
                 />
               </Button>
 
-              <Image src={url} alt="Image" fill className="object-cover" />
+              <Image src={url} alt="Image" fill className="object-contain" />
             </div>
           ))}
         </>

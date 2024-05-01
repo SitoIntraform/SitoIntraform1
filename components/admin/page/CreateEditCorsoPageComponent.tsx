@@ -359,7 +359,7 @@ function CreateEditCorsoPageComponent({
                 <Trash className="h-8 w-8" />
               </Button>
 
-              <Image src={image} alt="Image" fill className="object-cover" />
+              <Image src={image} alt="Image" fill className="object-contain" />
             </div>
           )}
         </div>
