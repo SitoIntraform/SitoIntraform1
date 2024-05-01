@@ -143,7 +143,7 @@ function HeroView({
             whileInView={section.data.animation && mounted ? "show" : ""}
             className="w-full flex flex-col items-center justify-center gap-6 "
           >
-            <div className="flex flex-col items-center justify-center p-5 gap-6">
+            <div className="flex flex-col items-center justify-center py-5 gap-6">
               <motion.h1
                 viewport={{ once: true }}
                 variants={containerAnimation(0, section.data.animationType)}
