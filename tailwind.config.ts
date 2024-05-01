@@ -45,7 +45,7 @@ const config = {
         xl: "1300px",
       },
       colors: {
-        textDesign: "#303030",
+        textDesign: "#3b3b3b",
         primaryDesign: "#3FB45D",
         secondaryDesign: "#97D8A8",
         accentDesign: "#627FE7",

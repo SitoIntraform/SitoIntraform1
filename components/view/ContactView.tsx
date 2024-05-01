@@ -264,9 +264,9 @@ function ContactView({
                     className={`regular-normal`}
                     style={{
                       color:
-                        section.data.backgroundColor === "#303030"
+                        section.data.backgroundColor === "#3b3b3b"
                           ? "white"
-                          : "#303030",
+                          : "#3b3b3b",
                     }}
                   >
                     Dichiaro di aver letto le{" "}

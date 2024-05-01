@@ -303,7 +303,7 @@ function TextWithImageConfigurator({
               },
               {
                 name: "Nero",
-                value: "#303030",
+                value: "#3b3b3b",
               },
               {
                 name: "Grigio chiaro",

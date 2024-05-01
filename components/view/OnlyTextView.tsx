@@ -172,9 +172,9 @@ function OnlyTextView({
                 className="small-normal md:regular-normal relative text-center"
                 style={{
                   color:
-                    section.data.backgroundColor === "#303030"
+                    section.data.backgroundColor === "#3b3b3b"
                       ? "white"
-                      : "#303030",
+                      : "#3b3b3b",
                 }}
               >
                 <div dangerouslySetInnerHTML={{
