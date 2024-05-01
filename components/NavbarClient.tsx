@@ -165,7 +165,7 @@ function NavbarClient({
                 <a
                   href={dev ? undefined : linkReal}
                   key={currentLink?.LinkId}
-                  className={`text-center regular-normal group`}
+                  className={`text-center regular-normal group cursor-pointer`}
                 >
                   <div
                     className={`${
@@ -200,7 +200,7 @@ function NavbarClient({
                                 <a
                                   key={index2}
                                   className="cursor-pointer text-white group/link"
-                                  href={linkReal2}
+                                  href={dev ? undefined : linkReal2}
                                   onClick={(e) => {
                                     e.stopPropagation();
                                   }}
@@ -236,7 +236,7 @@ function NavbarClient({
               All the recent action
             </div> */}
             <div className="hidden lg:block">
-              <a href={buttonLinkReal}>
+              <a href={dev ? undefined : buttonLinkReal} className="cursor-pointer">
                 <Button
                   className="normal-normal !text-white"
                   onClick={() => {}}
@@ -314,10 +314,10 @@ function NavbarClient({
               }
 
               return (
-                <AnimatedLink
-                  href={linkReal}
+                <motion.a
+                  href={dev ? undefined : linkReal}
                   key={currentLink?.LinkId}
-                  className={`text-center h5Mobile group !font-medium z-[100] ${
+                  className={`text-center cursor-pointer h5Mobile group !font-medium z-[100] ${
                     dropDownOpen === index
                       ? "h-auto z-[200]"
                       : "h-[35px] overflow-hidden z-[100]"
@@ -369,7 +369,7 @@ function NavbarClient({
                                     setIsOpen(false);
                                     e.stopPropagation();
                                   }}
-                                  href={linkReal2}
+                                  href={dev ? undefined : linkReal2}
                                 >
                                   <p>{l.testo}</p>
                                   <div
@@ -384,7 +384,7 @@ function NavbarClient({
                       </>
                     )}
                   </div>
-                </AnimatedLink>
+                </motion.a>
               );
             })}
           </div>
@@ -394,7 +394,7 @@ function NavbarClient({
             initial="hidden"
             animate={isOpen ? "show" : "hidden"}
           >
-            <a href={""} className="w-full">
+            <a href={dev ? undefined : buttonLinkReal} className="w-full cursor-pointer">
               <Button
                 wfull
                 className="medium-normal !text-white w-full"

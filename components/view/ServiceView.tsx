@@ -211,13 +211,13 @@ export default function ServiceView({
                         __html: s.description || ""
                       }} />
                     </div>
-                    <div
-                      onClick={() => { if(!dev && l) router.push(l)}}
+                    <a
+                      href={dev ? undefined : l ? l : undefined}
                       className=" h-[15%] cursor-pointer text-accentDesign flex flex-row items-center justify-center gap-1 hover:underline underline-offset-2"
                     >
                       Scopri di più
                       <ChevronRight className="w-4 h-4 text-primaryDesign" />
-                    </div>
+                    </a>
                   </div>
                 </motion.div>
               );
@@ -252,7 +252,7 @@ export default function ServiceView({
                 className="flex md:flex-row flex-col gap-3 md:gap-6"
               >
                 {section.data.primaryButton && (
-                  <div onClick={() => { if(!dev && link1) router.push(link1)}}>
+                  <a href={dev ? undefined : link1 ? link1 : undefined} className="cursor-pointer">
                     <Button
                       width={section.data.widthPrimaryButton || 0}
                       height={section.data.heightPrimaryButton || 0}
@@ -262,10 +262,10 @@ export default function ServiceView({
                     >
                       <p>{section.data.primaryButtonText}</p>
                     </Button>
-                  </div>
+                  </a>
                 )}
                 {section.data.secondaryButton && (
-                  <div onClick={() => {if(!dev && link2) router.push(link2)}}>
+                  <a href={dev ? undefined : link2 ? link2 : undefined} className="cursor-pointer">
                     <Button
                       width={section.data.widthSecondaryButton || 0}
                       height={section.data.heightSecondaryButton || 0}
@@ -276,7 +276,7 @@ export default function ServiceView({
                     >
                       <p>{section.data.secondaryButtonText}</p>
                     </Button>
-                  </div>
+                  </a>
                 )}
               </motion.div>
             )}
