@@ -45,7 +45,7 @@ export async function POST(req: Request) {
       primaryLink,
       heightPrimaryButton,
       widthPrimaryButton,
-      
+
       secondaryButton,
       secondaryButtonText,
       secondaryLink,
@@ -53,7 +53,7 @@ export async function POST(req: Request) {
       widthSecondaryButton,
 
       faq,
-      courseId
+      courseId,
     } = body;
 
     const existSection: Boolean = Boolean(
