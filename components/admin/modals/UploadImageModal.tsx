@@ -98,7 +98,7 @@ function UploadImageModal({
       bodyContainerClass="w-full flex flex-row justify-center items-center flex-wrap gap-2 max-h-[300px] overflow-auto pb-[20px]"
       footer={
         <div className="w-full flex md:flex-row flex-col items-center gap-3">
-          <CldUploadWidget onUpload={onAddImage} uploadPreset="zegrtvfu">
+          <CldUploadWidget onUpload={onAddImage} uploadPreset="tnbbvu7w">
             {({ open }) => {
               const onClick = () => {
                 open();

@@ -23,7 +23,10 @@ function PrivacyModal({
       body={
         <>
           <div>
-            <p className="text-center font-bold">Informativa privacy ai sensi degli artt. 13-14 del Regolamento Europeo “Privacy” (GDPR)</p>
+            <p className="text-center font-bold">
+              Informativa privacy ai sensi degli artt. 13-14 del Regolamento
+              Europeo “Privacy” (GDPR)
+            </p>
             <p>
               I dati personali da Lei inseriti, sono trattati dal proprietario
               del sito Associazione Intraform – Agenzia Formativa accreditata
@@ -49,53 +52,12 @@ function PrivacyModal({
               categorie di soggetti che supportano il Titolare nell’erogazione
               dei servizi offerti tramite il presente sito (quali, a titolo
               esemplificativo: sviluppatori software e gestori di siti web,
-              spedizionieri). Inoltre, saranno trattati per finalità di analisi
-              statistiche e di marketing diretto, in maniera anonima, come
-              meglio specificato dalla cookie policy. Per modificare o
-              cancellare i soli dati che sono archiviati sui sistemi che erogano
-              il presente sito, cliccare qui. Le informazioni da lei inserite
-              nel form (compreso il suo indirizzo email) potranno essere
-              comunicate a una società terza che agirà in qualità di
-              Responsabile esterno e che supporta il Titolare nella gestione del
-              sito e nell’evasione della sua richiesta. Nel caso di richiesta di
-              cancellazione dei suoi dati, La informiamo che potrebbe non essere
-              più possibile continuare a fornirLe il servizio richiestoci. La
-              informiamo, infine, che potrà proporre reclamo all’Autorità
-              Garante per la Protezione dei Dati, qualora ritenesse siano stati
-              violati i suoi diritti.
+              spedizionieri).
             </p>
             <div className="h5Mobile my-[10px] text-center">COOKIE POLICY</div>
             <p>
-              Questo Sito utilizza cookie tecnici (ovvero cookie necessari), e
-              con il tuo consenso anche cookie analitici e di profilazione, che
-              utilizzeremo noi e terze parti, utili rispettivamente per
-              consentire alcune funzionalità fondamentali per il Sito, per
-              ottenere misurazioni delle perfomance del Sito stesso o per
-              fornirti indicazioni promozionali in linea con i tuoi interessi.
-              Per accettare, rifiutare o selezionale i cookie in base alle
-              finalità, utilizza i comandi presenti nel popup banner per la
-              gestione dei cookie. In particolare, per sapere quali cookie
-              vengono installati tramite il presente sito ed esprimere le tue
-              preferenze a riguardo, seleziona il comando “ “Dettagli” dove è
-              possibile anche visualizzare i singoli cookie rilasciati in ogni
-              categoria. Per selezionare le finalità di tuo interesse utilizza
-              il box riportato nel banner, e clicca su “Personalizza” per
-              confermare le tue preferenze. Le tue preferenze verranno
-              registrate in un’apposita piattaforma di gestione del consenso ai
-              cookie (la &quot;CMP&quot;), sviluppata in conformità ai principi
-              della normativa sul trattamento dei dati personali applicabile
-              secondo le linee guida per consentire all’utente di esercitare le
-              sue scelte in maniera granulare. La CMP consente di prestare o
-              negare il consenso a varie tipologie di cookie, che sono
-              identificate e classificate sulla base delle finalità per le quali
-              i cookie vengono rilasciati e utilizzati, rendendo più semplice ed
-              immediato il loro riconoscimento. Puoi in qualunque momento
-              revocare o modificare il consenso rilasciato, cliccando sulla
-              relativa icona di accesso alla CPM che apparirà sul Sito. Tale
-              icona verrà visualizzata in basso a sinistra, una volta che avrai
-              espresso le tue preferenze tramite il pop up banner visualizzato,
-              nel momento in cui accedi al Sito stesso. I cookies utilizzati in
-              questo Sito rientrano nelle categorie descritte di seguito.
+              Questo Sito utilizza solo cookie tecnici (ovvero cookie
+              necessari).
             </p>
             <div className="h5Mobile my-[10px] text-center">
               Cosa sono i cookies
@@ -134,7 +96,9 @@ function PrivacyModal({
             <div className="h5Mobile my-[10px] text-center">
               Quali categorie di cookie sono utilizzate sul Sito
             </div>
-            <div>1 - Cookie tecnici ovvero necessari</div>
+            <div className="h6Mobile my-[10px] text-center">
+              Cookie tecnici ovvero necessari
+            </div>
             <p>
               I cookie tecnici descritti qui di seguito non richiedono consenso
               e pertanto vengono installati automaticamente a seguito
@@ -148,112 +112,6 @@ function PrivacyModal({
               evitando che il sito richieda di collegarsi più volte per accedere
               alle pagine successive.
             </p>
-            <p>
-              <span>
-                - Cookie Statistici e di Misurazione dell&apos;audience:
-              </span>
-              cookie che aiutano a capire, attraverso dati raccolti in forma
-              anonima e aggregata, come gli utenti interagiscono con il Sito
-              internet fornendo informazioni relative alle sezioni visitate, il
-              tempo trascorso sul sito, eventuali malfunzionamenti.
-            </p>
-            <p>
-              Per esempio, in alcuni casi i cookie di Google Analytics
-              utilizzati da questo sito, sono stati resi anonimi e quindi sono
-              equivalenti a cookie tecnici.
-            </p>
-            <div className="h5Mobile my-[10px] text-center">
-              2 – Cookie Funzionali
-            </div>
-            <p>
-              In questa categoria rientrano i cookie che permettono di ricordare
-              le preferenze selezionate durante la navigazione, ad esempio,
-              consentono di impostare la lingua. Questi cookie sono rilasciati
-              soltanto su richiesta dell’utente e mediante suo preventivo
-              consenso. L&apos;utente è libero di prestare il proprio consenso
-              all&apos;installazione dei cookie funzionali e revocarlo in
-              qualsiasi momento, tramite la CMP, senza che la possibilità di
-              visitare il Sito e fruire dei suoi contenuti sia compromessa;
-              tuttavia, se non acconsentissi a questi cookie potrebbe essere
-              pregiudicato l’utilizzo di alcune funzionalità. Puoi accedere, in
-              qualunque momento, alla CMP tramite l’icona presente sul Sito,
-              dove troverai il riepilogo dei consensi rilasciati che potrai
-              modificare cliccando sul pulsante “Modifica consenso”; a questo
-              punto si aprirà una schermata che ti permette di modificare le tue
-              preferenze scegliendo le categorie di tuo interesse e tramite il
-              pulsante “Dettagli” puoi conoscere quali cookie funzionali sono
-              rilasciati sul Sito, la loro finalità e la durata. Una volta fatta
-              la tua scelta, per confermarla clicca sul pulsante “Personalizza”.
-            </p>
-            <div className="h5Mobile my-[10px] text-center">
-              3 – Cookie Analitici
-            </div>
-            <p>
-              I cookie di questa categoria vengono utilizzati per raccogliere
-              informazioni statistiche, in forma non aggregata, sull&apos;uso
-              del Sito da parte degli utenti che accedono al Sito stesso e sul
-              modo in cui questi navigano sul Sito. Come previsto dalla
-              normativa applicabile, per l&apos;installazione di cookie
-              analitici di terze parti è richiesto il preventivo consenso
-              dell&apos;utente. Nel caso in cui presti il tuo consenso
-              all&apos;installazione dei cookie analitici, il Titolare terrà
-              traccia di tale consenso attraverso un cookie tecnico specifico.
-              In questo modo, sarà possibile evitare di riproporre il cookie
-              banner durante le future visite al Sito. Puoi accedere, in
-              qualunque momento, alla CMP tramite l’icona presente sul Sito,
-              dove troverai il riepilogo dei consensi rilasciati che potrai
-              modificare cliccando sul pulsante “Modifica consenso”; a questo
-              punto si aprirà una schermata che ti permette di modificare le tue
-              preferenze scegliendo le categorie di tuo interesse e tramite il
-              pulsante “Dettagli” puoi conoscere quali cookie analitici sono
-              rilasciati sul Sito ed ottenere così tutte le informazioni
-              necessarie. Una volta fatta la tua scelta, per confermarla clicca
-              sul pulsante “Personalizza”.
-            </p>
-            <div className="h5Mobile my-[10px] text-center">
-              4 – Cookie di Profilazione
-            </div>
-            <div>
-              I cookie di profilazione vengono utilizzati per raggruppare gli
-              utenti in categorie omogenee in base, ad esempio, alle preferenze
-              dell&apos;utente. Tali cookie possono essere utilizzati, tra
-              l’altro, per inviare messaggi pubblicitari conformi al
-              comportamento dell’utente in rete ed ai suoi interessi di
-              navigazione. In conformità con la normativa applicabile, è
-              necessario il previo consenso degli utenti per
-              l&apos;installazione dei cookie di profilazione. L’utente è libero
-              di prestare il proprio consenso all&apos;installazione dei cookie
-              di profilazione e revocarlo in qualsiasi momento, tramite la CMP
-              senza che la possibilità di visitare il Sito e fruire dei suoi
-              contenuti sia compromessa. Nel caso in cui l’utente presti il suo
-              consenso all&apos;installazione dei cookie di profilazione, il
-              Titolare terrà traccia di tale consenso attraverso un cookie
-              tecnico specifico. In questo modo, sarà possibile evitare di
-              riproporre il cookie banner durante le future visite al Sito. I
-              cookie di profilazione sono installati dal Titolare e da soggetti
-              terzi, che agiscono in qualità di autonomi titolari del
-              trattamento dei dati (cookie di terze parti). Puoi accedere, in
-              qualunque momento, alla CMP tramite l’icona presente sul Sito,
-              dove troverai il riepilogo dei consensi rilasciati che potrai
-              modificare cliccando sul pulsante “Modifica consenso”; a questo
-              punto si aprirà una schermata che ti permette di modificare le tue
-              preferenze scegliendo le categorie di tuo interesse e tramite il
-              pulsante “Dettagli” di ottenere maggiori informazioni sulle terze
-              parti che installano i cookie di profilazione, sui singoli cookie
-              rilasciati e sulla loro durata. Una volta fatta la tua scelta, per
-              confermarla clicca sul pulsante “Personalizza”. Inoltre, accedendo
-              alla pagina{" "}
-              <a
-                href="http://www.youronlinechoices.com/it/le-tue-scelte"
-                target="_blank"
-              >
-                http://www.youronlinechoices.com/it/le-tue-scelte
-              </a>{" "}
-              è possibile informarsi sulla pubblicità comportamentale oltre che
-              disattivare o attivare i cookie delle società elencate che
-              lavorano con i gestori dei siti web per raccogliere e utilizzare
-              informazioni utili alla fruizione della pubblicità.
-            </div>
             <div>
               Ricordati che puoi gestire le tue preferenze sui cookie anche
               attraverso il browser
