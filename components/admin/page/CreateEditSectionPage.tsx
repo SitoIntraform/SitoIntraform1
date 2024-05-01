@@ -64,7 +64,7 @@ function CreateEditSectionPage({
     sectionRecived.data.images || []
   );
   const [imagesOnLeft, setImagesOnLeft] = useState<boolean>(
-    sectionRecived.data.imagesOnLeft || true
+    sectionRecived.data.imagesOnLeft || false
   );
 
   const [textBlue, setTextBlue] = useState<string>(

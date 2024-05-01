@@ -525,7 +525,7 @@ function EditPage({
             backgroundColor: section?.data.backgroundColor || "",
 
             images: section?.data.images || [],
-            imagesOnLeft: section?.data.imagesOnLeft || true,
+            imagesOnLeft: section?.data.imagesOnLeft || false,
 
             textBlue: section?.data.textBlue || "",
             textGreen: section?.data.textGreen || "",

@@ -36,7 +36,7 @@ async function SectionIdPage({
       backgroundColor: sectionDb?.data.backgroundColor || "",
 
       images: sectionDb?.data.images ||[],
-      imagesOnLeft: sectionDb?.data.imagesOnLeft || true,
+      imagesOnLeft: sectionDb?.data.imagesOnLeft || false,
 
       textBlue: sectionDb?.data.textBlue || "",
       textGreen: sectionDb?.data.textGreen || "",
