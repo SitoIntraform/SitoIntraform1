@@ -236,7 +236,7 @@ function NavbarClient({
               All the recent action
             </div> */}
             <div className="hidden lg:block">
-              <a href={dev ? undefined : buttonLinkReal} className="cursor-pointer">
+              <a href={dev ? undefined : buttonLinkReal ? buttonLinkReal : undefined} className="cursor-pointer">
                 <Button
                   className="normal-normal !text-white"
                   onClick={() => {}}
@@ -394,7 +394,7 @@ function NavbarClient({
             initial="hidden"
             animate={isOpen ? "show" : "hidden"}
           >
-            <a href={dev ? undefined : buttonLinkReal} className="w-full cursor-pointer">
+            <a href={dev ? undefined : buttonLinkReal ? buttonLinkReal : undefined} className="w-full cursor-pointer">
               <Button
                 wfull
                 className="medium-normal !text-white w-full"
