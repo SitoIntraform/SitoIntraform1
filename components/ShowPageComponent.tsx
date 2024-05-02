@@ -49,9 +49,9 @@ function ShowPageComponent({
 
   useEffect(() => {
     setMounted(true);
-  }, [])
+  }, []);
 
-  if(!mounted){
+  if (!mounted) {
     return null;
   }
 
@@ -84,6 +84,7 @@ function ShowPageComponent({
                 fileLink={course?.fileLink || ""}
                 dev={false}
               />
+              <Footer />
             </>
           )}
         </>

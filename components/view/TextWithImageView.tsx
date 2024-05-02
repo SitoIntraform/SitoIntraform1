@@ -296,7 +296,6 @@ function TextWithImageView({
                       alt=""
                       fill
                       className="object-contain"
-
                     />
                   </div>
                 )}
