@@ -133,9 +133,9 @@ function NavbarClient({
         }`}
       >
         <div className="h-full containerDesign flex items-center justify-between relative">
-          <a href={"/"} className="hover:scale-110 transition-all duration-300">
+          <a href={"/"} aria-label="Logo Home" className="hover:scale-110 transition-all duration-300">
             {logo && (
-              <Image src={logo} alt="" width={logoWidth} height={logoHeight} />
+              <Image src={logo} alt="Link Home" width={logoWidth} height={logoHeight} />
             )}
           </a>
 
