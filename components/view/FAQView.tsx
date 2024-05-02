@@ -128,7 +128,7 @@ export default function FAQView({
         <div
           className={`mx-auto flex flex-col w-[100%] items-center justify-center gap-6`}
         >
-          <motion.div
+          {(section.data.textBlack || section.data.textBlue || section.data.textGreen) && <motion.div
             viewport={{ once: true }}
             variants={containerAnimation(0, section.data.animationType)}
             initial={section.data.animation ? "hidden" : ""}
@@ -165,7 +165,7 @@ export default function FAQView({
                 </span>
               </>
             )}
-          </motion.div>
+          </motion.div>}
           <div className="flex flex-col items-center justify-center p-5 w-full gap-4 z-[10]">
             {section.data.faq?.map((f, index) => {
               const isActive = faqOpen === index;

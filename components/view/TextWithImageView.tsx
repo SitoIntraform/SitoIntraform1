@@ -89,6 +89,10 @@ function TextWithImageView({
 
   const router = useRouter();
 
+  if(!mounted){
+    return null;
+  }
+
   return (
     <section
       id={section.name}
@@ -138,7 +142,7 @@ function TextWithImageView({
           }`}
         >
           <div className="lg:w-[50%] w-[100%] text-start space-y-7 h-full flex flex-col justify-center items-center  lg:items-start">
-            <motion.div
+            {(section.data.textBlue || section.data.textGreen || section.data.textBlack) && <motion.div
               viewport={{ once: true }}
               variants={containerAnimation(0, section.data.animationType)}
               initial={section.data.animation ? "hidden" : ""}
@@ -175,8 +179,8 @@ function TextWithImageView({
                   </span>
                 </>
               )}
-            </motion.div>
-            <motion.div
+            </motion.div>}
+            {section.data.description && <motion.div
               viewport={{ once: true }}
               variants={containerAnimation(0.1, section.data.animationType)}
               initial={section.data.animation ? "hidden" : ""}
@@ -193,7 +197,7 @@ function TextWithImageView({
                 __html: section.data.description || ""
               }} />
               <div className="absolute -bottom-3 -right-3 border-r-primaryDesign border-8 w-[50px] border-b-accentDesign border-t-transparent border-l-transparent h-[50px]" />
-            </motion.div>
+            </motion.div>}
             {(section.data.primaryButton || section.data.secondaryButton) && (
               <motion.div
                 viewport={{ once: true }}
@@ -233,7 +237,7 @@ function TextWithImageView({
             )}
           </div>
           <div className="lg:w-[50%] w-[100%] h-[300px] lg:h-[480px] xl:h-[550px] relative">
-            <motion.div
+            {section.data.images && <motion.div
               variants={containerAnimation(0, section.data.animationType)}
               viewport={{ once: true }}
               initial={section.data.animation ? "hidden" : ""}
@@ -267,7 +271,7 @@ function TextWithImageView({
                   ))}
                 </Swiper>
               )}
-            </motion.div>
+            </motion.div>}
           </div>
         </div>
       </div>

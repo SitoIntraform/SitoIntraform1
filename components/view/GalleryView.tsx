@@ -133,7 +133,7 @@ function GalleryView({
         <div
           className={`mx-auto flex flex-col w-[100%] items-center justify-center gap-12`}
         >
-          <motion.div
+          {(section.data.textBlack || section.data.textBlue || section.data.textGreen) &&<motion.div
             viewport={{ once: true }}
             variants={containerAnimation(0, section.data.animationType)}
             initial={section.data.animation ? "hidden" : ""}
@@ -170,8 +170,8 @@ function GalleryView({
                 </span>
               </>
             )}
-          </motion.div>
-          <motion.div
+          </motion.div>}
+          {section.data.images && <motion.div
             variants={containerAnimation(0, section.data.animationType)}
             viewport={{ once: true }}
             initial={section.data.animation ? "hidden" : ""}
@@ -219,7 +219,7 @@ function GalleryView({
                 ))}
               </Swiper>
             )}
-          </motion.div>
+          </motion.div>}
 
           {(section.data.primaryButton || section.data.secondaryButton) && (
             <motion.div

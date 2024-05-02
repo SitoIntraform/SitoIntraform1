@@ -97,7 +97,7 @@ function ViewSingleCourse({
     >
       <div className="w-full flex lg:flex-row flex-col-reverse gap-10 items-start">
         <div className="w-full lg:w-[70%] flex-col flex gap-3">
-          <motion.div
+          {duration && <motion.div
             viewport={{ once: true }}
             variants={containerAnimation(0, "up")}
             initial={"hidden"}
@@ -105,8 +105,8 @@ function ViewSingleCourse({
             className="font-semibold text-[30px] !text-primaryDesign tracking-wider"
           >
             {duration}
-          </motion.div>
-          <motion.div
+          </motion.div>}
+          {title && <motion.div
             viewport={{ once: true }}
             variants={containerAnimation(0, "up")}
             initial={"hidden"}
@@ -114,8 +114,8 @@ function ViewSingleCourse({
             className="h1Desktop !text-accentDesign"
           >
             {title}
-          </motion.div>
-          <motion.div
+          </motion.div>}
+          {(code || price) && <motion.div
             viewport={{ once: true }}
             variants={containerAnimation(0, "up")}
             initial={"hidden"}
@@ -130,8 +130,8 @@ function ViewSingleCourse({
               <span className="large-medium !text-primaryDesign">Prezzo: </span>
               <span className="large-extrabold">€{price}</span>
             </div>}
-          </motion.div>
-          <motion.div
+          </motion.div>}
+          {description && <motion.div
             viewport={{ once: true }}
             variants={containerAnimation(0, "up")}
             initial={"hidden"}
@@ -139,9 +139,9 @@ function ViewSingleCourse({
             className="large-normal"
           >
             {description}
-          </motion.div>
+          </motion.div>}
         </div>
-        <motion.div
+        {(image || duration || title || description) && <motion.div
           viewport={{ once: true }}
           variants={containerAnimation(0, "up")}
           initial={"hidden"}
@@ -173,7 +173,7 @@ function ViewSingleCourse({
               </Button>
             </div>
           )}
-        </motion.div>
+        </motion.div>}
       </div>
       <div
         className={`mx-auto flex flex-col w-[100%] items-center justify-center gap-6`}

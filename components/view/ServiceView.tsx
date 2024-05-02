@@ -123,7 +123,7 @@ export default function ServiceView({
         <div
           className={`mx-auto flex flex-col w-[100%] items-center justify-center gap-12`}
         >
-          <motion.div
+          {(section.data.textBlack || section.data.textBlue || section.data.textGreen) && <motion.div
             viewport={{ once: true }}
             variants={containerAnimation(0, section.data.animationType)}
             initial={section.data.animation ? "hidden" : ""}
@@ -160,7 +160,7 @@ export default function ServiceView({
                 </span>
               </>
             )}
-          </motion.div>
+          </motion.div>}
           <div className="flex flex-row flex-wrap items-center justify-center mt-[16px] w-full gap-16 z-[10]">
             {section.data.service.map((s, index) => {
               let l = "";

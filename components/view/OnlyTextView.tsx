@@ -125,7 +125,7 @@ function OnlyTextView({
           }`}
         >
           <div className="w-[100%] md:w-[90%] text-start space-y-7 h-full flex flex-col items-center justify-center">
-            <motion.div
+            {(section.data.textBlack || section.data.textBlue || section.data.textGreen) && <motion.div
               viewport={{ once: true }}
               variants={containerAnimation(0, section.data.animationType)}
               initial={section.data.animation ? "hidden" : ""}
@@ -162,7 +162,7 @@ function OnlyTextView({
                   </span>
                 </>
               )}
-            </motion.div>
+            </motion.div>}
             {section.data.description && (
               <motion.div
                 viewport={{ once: true }}

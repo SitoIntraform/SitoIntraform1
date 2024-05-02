@@ -136,7 +136,7 @@ function HeroView({
         <div
           className={`containerDesign h-full w-full flex flex-col items-center justify-center`}
         >
-          <motion.div
+          {(section.data.description || section.data.textBlue || section.data.textGreen || section.data.primaryButton || section.data.secondaryButton) && <motion.div
             viewport={{ once: true }}
             variants={containerAnimation(0, section.data.animationType)}
             initial={section.data.animation ? "hidden" : ""}
@@ -144,7 +144,7 @@ function HeroView({
             className="w-full flex flex-col items-center justify-center gap-6 "
           >
             <div className="flex flex-col items-center justify-center py-5 gap-6">
-              <motion.h1
+              {(section.data.textBlue || section.data.textGreen) && <motion.h1
                 viewport={{ once: true }}
                 variants={containerAnimation(0, section.data.animationType)}
                 initial={section.data.animation ? "hidden" : ""}
@@ -159,7 +159,7 @@ function HeroView({
                 <span className="text-primaryDesign">
                   {section.data.textGreen}
                 </span>
-              </motion.h1>
+              </motion.h1>}
               {section.data.description && (
                 <motion.p
                   viewport={{ once: true }}
@@ -210,7 +210,7 @@ function HeroView({
                 )}
               </motion.div>
             )}
-          </motion.div>
+          </motion.div>}
         </div>
       </div>
     </section>

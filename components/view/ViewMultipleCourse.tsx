@@ -56,7 +56,7 @@ function ViewMultipleCourse({
       </div>
       <div className="w-full lg:w-[50%] flex flex-col gap-10">
         <div className="flex flex-col gap-2">
-          <motion.div
+          {duration && <motion.div
             viewport={{ once: true }}
             variants={containerAnimation(0, "up")}
             initial={"hidden"}
@@ -64,8 +64,8 @@ function ViewMultipleCourse({
             className="font-semibold text-[25px] !text-primaryDesign tracking-wider"
           >
             {duration}
-          </motion.div>
-          <motion.div
+          </motion.div>}
+          {title && <motion.div
             viewport={{ once: true }}
             variants={containerAnimation(0, "up")}
             initial={"hidden"}
@@ -74,8 +74,8 @@ function ViewMultipleCourse({
             className="h2Desktop !text-accentDesign !leading-[100%] line-clamp-1 lg:line-clamp-2 cursor-pointer hover:underline underline-offset-1"
           >
             {title}
-          </motion.div>
-          <motion.div
+          </motion.div>}
+          {description && <motion.div
             viewport={{ once: true }}
             variants={containerAnimation(0, "up")}
             initial={"hidden"}
@@ -83,7 +83,7 @@ function ViewMultipleCourse({
             className="regular-normal line-clamp-2 lg:line-clamp-4"
           >
             {description}
-          </motion.div>
+          </motion.div>}
         </div>
 
         <motion.div

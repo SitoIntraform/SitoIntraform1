@@ -46,6 +46,10 @@ function CourseView({
     setMounted(true);
   }, []);
 
+  if(!mounted){
+    return null;
+  }
+
   return (
     <section
       id={section.name}
@@ -75,7 +79,7 @@ function CourseView({
         <div
           className={`mx-auto flex flex-col w-[100%] items-center justify-center gap-6`}
         >
-          <motion.div
+          {(section.data.textBlack || section.data.textBlue || section.data.textGreen) && <motion.div
             viewport={{ once: true }}
             variants={containerAnimation(0, section.data.animationType)}
             initial={section.data.animation ? "hidden" : ""}
@@ -112,7 +116,7 @@ function CourseView({
                 </span>
               </>
             )}
-          </motion.div>
+          </motion.div>}
           <div className="w-full flex flex-col items-center justify-center mt-[30px] space-y-[16px] z-[20]">
             {section.data.courseId?.map((c, i) => {
               const course = allCourse.find((course) => course.CorsoId === c);
