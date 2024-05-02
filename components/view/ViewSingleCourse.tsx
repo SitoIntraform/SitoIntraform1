@@ -205,7 +205,7 @@ function ViewSingleCourse({
         )}
       </div>
       <div
-        className={`mx-auto flex flex-col w-[100%] items-center justify-center gap-6`}
+        className={`mx-auto flex flex-col w-[100%] items-center justify-center gap-6 pt-[32px]`}
       >
         <div className="h4Mobile md:h4Desktop xl:h3Desktop relative text-center text-primaryDesign">
           {/* Title */}
