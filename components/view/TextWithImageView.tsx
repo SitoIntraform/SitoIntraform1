@@ -295,7 +295,7 @@ function TextWithImageView({
                       src={section.data.images[0]}
                       alt=""
                       fill
-                      className="object-conatin"
+                      className="object-contain"
 
                     />
                   </div>
