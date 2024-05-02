@@ -102,6 +102,7 @@ function OnlyTextView({
               style={{
                 opacity: section.data.backgroundImageOpacity / 100,
               }}
+              
             />
           </div>
         </div>

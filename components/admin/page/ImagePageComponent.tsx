@@ -31,31 +31,28 @@ function ImagePageComponent({ images }: ImagePageProps) {
   const onCancel = async () => {
     setLoading(true);
 
-    try{
-
+    try {
       const res = await axios.delete(`/api/images/${deleteId}`);
 
-      if(res.status === 200){
+      if (res.status === 200) {
         toast.success("Immagine eliminata con successo");
         router.refresh();
         return;
       }
-
-    } catch(err: any){
+    } catch (err: any) {
       console.log(err);
       toast.error(err.response.data);
-    }
-    finally{
+    } finally {
       setLoading(false);
       deleteModal.onClose();
     }
-  }
+  };
 
   const [mounted, setIsMounted] = useState(false);
 
   useEffect(() => {
     setIsMounted(true);
-  }, [])
+  }, []);
 
   if (!mounted) {
     return;
@@ -63,7 +60,7 @@ function ImagePageComponent({ images }: ImagePageProps) {
 
   return (
     <>
-      <DeleteModal 
+      <DeleteModal
         text="Sei scuro di voler eliminare questa immagine?"
         disabled={loading}
         isOpen={deleteModal.isOpen}
@@ -111,7 +108,13 @@ function ImagePageComponent({ images }: ImagePageProps) {
                 <Trash className="h-10 w-10" />
               </Button>
 
-              <Image src={url.link} alt="Image" fill className="object-contain" />
+              <Image
+                
+                src={url.link}
+                alt="Image"
+                fill
+                className="object-contain"
+              />
             </div>
           ))}
         </div>

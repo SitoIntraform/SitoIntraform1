@@ -133,9 +133,19 @@ function NavbarClient({
         }`}
       >
         <div className="h-full containerDesign flex items-center justify-between relative">
-          <a href={"/"} aria-label="Logo Home" className="hover:scale-110 transition-all duration-300">
+          <a
+            href={"/"}
+            aria-label="Logo Home"
+            className="hover:scale-110 transition-all duration-300"
+          >
             {logo && (
-              <Image src={logo} alt="Link Home" width={logoWidth} height={logoHeight} />
+              <Image
+                src={logo}
+                alt="Link Home"
+                width={logoWidth}
+                height={logoHeight}
+                
+              />
             )}
           </a>
 
@@ -162,11 +172,10 @@ function NavbarClient({
               }
 
               return (
-                <>
+                <div key={currentLink?.LinkId}>
                   {currentLink?.type === "Single" ? (
                     <a
                       href={dev ? undefined : linkReal ? linkReal : undefined}
-                      key={currentLink?.LinkId}
                       className={`text-center regular-normal group cursor-pointer`}
                     >
                       <div
@@ -192,7 +201,6 @@ function NavbarClient({
                     </a>
                   ) : (
                     <div
-                      key={currentLink?.LinkId}
                       className={`text-center regular-normal group cursor-pointer`}
                     >
                       <div
@@ -256,7 +264,7 @@ function NavbarClient({
                       />
                     </div>
                   )}
-                </>
+                </div>
               );
             })}
           </div>
@@ -350,17 +358,10 @@ function NavbarClient({
               }
 
               return (
-                <>
+                <div key={currentLink?.LinkId}>
                   {currentLink?.type === "Single" ? (
                     <motion.a
-                      href={
-                        dev
-                          ? undefined
-                          : linkReal
-                          ? linkReal
-                          : undefined
-                      }
-                      key={currentLink?.LinkId}
+                      href={dev ? undefined : linkReal ? linkReal : undefined}
                       className={`text-center cursor-pointer large-medium group !font-medium z-[100] ${
                         dropDownOpen === index
                           ? "h-auto z-[200]"
@@ -392,7 +393,6 @@ function NavbarClient({
                     </motion.a>
                   ) : (
                     <motion.div
-                      key={currentLink?.LinkId}
                       className={`text-center cursor-pointer large-medium group !font-medium z-[100] ${
                         dropDownOpen === index
                           ? "h-auto z-[200]"
@@ -465,7 +465,7 @@ function NavbarClient({
                       </div>
                     </motion.div>
                   )}
-                </>
+                </div>
               );
             })}
           </div>

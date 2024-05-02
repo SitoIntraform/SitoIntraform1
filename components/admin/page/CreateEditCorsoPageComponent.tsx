@@ -89,7 +89,7 @@ function CreateEditCorsoPageComponent({
     setLoading(true);
 
     try {
-      const req = await axios.post("/api/course/"+course.CorsoId, {
+      const req = await axios.post("/api/course/" + course.CorsoId, {
         name,
         title,
         link,
@@ -104,10 +104,9 @@ function CreateEditCorsoPageComponent({
 
       if (req.status === 200) {
         toast.success("Corso aggiornato con successo");
-        if(exit){
+        if (exit) {
           window.location.assign("/admin/corsi");
-        }
-        else{
+        } else {
           router.refresh();
         }
       }
@@ -359,7 +358,13 @@ function CreateEditCorsoPageComponent({
                 <Trash className="h-8 w-8" />
               </Button>
 
-              <Image src={image} alt="Image" fill className="object-contain" />
+              <Image
+                
+                src={image}
+                alt="Image"
+                fill
+                className="object-contain"
+              />
             </div>
           )}
         </div>

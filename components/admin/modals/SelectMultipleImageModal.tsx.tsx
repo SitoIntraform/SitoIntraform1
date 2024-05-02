@@ -32,34 +32,31 @@ function SelectMultipleImageModal({
 
   const onSelect = (url: string) => {
     const isImageSelected = Boolean(images.find((image) => image == url));
-    if(multiple){
+    if (multiple) {
       if (isImageSelected) {
         setImages((prev) => [...prev.filter((current) => current != url)]);
-      }
-      else {
+      } else {
         setImages((prev) => [...prev, url]);
       }
-    }
-    else{
+    } else {
       if (isImageSelected) {
         setImages((prev) => [...prev.filter((current) => current != url)]);
-      }
-      else {
+      } else {
         setImages((prev) => [url]);
       }
     }
   };
 
   useEffect(() => {
-    if(isOpen){
+    if (isOpen) {
       setImages(currentImages);
     }
-  }, [isOpen])
+  }, [isOpen]);
 
   const onConfirm = () => {
     currentSetImages(images);
     closeModal();
-  }
+  };
 
   const closeModal = () => {
     if (onCloseCallback) {
@@ -78,27 +75,34 @@ function SelectMultipleImageModal({
         body={
           <>
             {totalImage.map((url) => {
-
-              const isImageSelected = Boolean(images.find((image) => image == url));
+              const isImageSelected = Boolean(
+                images.find((image) => image == url)
+              );
 
               return (
-                (
-                  <div
-                    key={url}
-                    className="relative w-[150px] h-[150px] rounded-md overflow-hidden group"
+                <div
+                  key={url}
+                  className="relative w-[150px] h-[150px] rounded-md overflow-hidden group"
+                >
+                  <Button
+                    className={`${
+                      isImageSelected ? "opacity-60" : "hidden group-hover:flex"
+                    }  absolute z-10 right-0 w-full h-full items-center justify-center`}
+                    onClick={() => onSelect(url)}
+                    rectangle
                   >
-                    <Button
-                      className={`${isImageSelected ? "opacity-60" : "hidden group-hover:flex"}  absolute z-10 right-0 w-full h-full items-center justify-center`}
-                      onClick={() => onSelect(url)}
-                      rectangle
-                    >
-                      <Check className="h-8 w-8" />
-                    </Button>
+                    <Check className="h-8 w-8" />
+                  </Button>
 
-                    <Image src={url} alt="Image" fill className="object-contain" />
-                  </div>
-                )
-              )
+                  <Image
+                    
+                    src={url}
+                    alt="Image"
+                    fill
+                    className="object-contain"
+                  />
+                </div>
+              );
             })}
           </>
         }

@@ -90,26 +90,38 @@ function HeroView({
     >
       {/* Carousel z-[-100] */}
       <div className="z-[-100] absolute top-0 w-full h-full">
-        {section.data.images && (
-          <Swiper
-            key={dev ? section.name + imageVersion: section.name}
-            spaceBetween={0}
-            slidesPerView={1}
-            autoplay={{
-              delay: 5000,
-            }}
-            speed={1200}
-            loop={true}
-            className="h-[120%] w-full"
-            modules={[Autoplay]}
-          >
-            {section.data.images.map((image) => (
-              <SwiperSlide key={image} className="relative">
-                <Image src={image || ""} alt="" fill className="object-cover" />
-              </SwiperSlide>
-            ))}
-          </Swiper>
-        )}
+        {section.data.images && <>
+          {section.data.images.length > 1 ? (
+            <Swiper
+              key={dev ? section.name + imageVersion : section.name}
+              spaceBetween={0}
+              slidesPerView={1}
+              autoplay={{
+                delay: 5000,
+              }}
+              speed={1200}
+              loop={true}
+              className="h-[120%] w-full"
+              modules={[Autoplay]}
+            >
+              {section.data.images.map((image) => (
+                <SwiperSlide key={image} className="relative">
+                  <Image src={image || ""} alt="" fill className="object-cover" priority  />
+                </SwiperSlide>
+              ))}
+            </Swiper>
+          ) : (
+            <div className="h-[120%] w-full">
+              <Image
+                src={section.data.images[0]}
+                alt=""
+                fill
+                className="object-cover"
+                
+              />
+            </div>
+          )}
+        </>}
       </div>
 
       {/* Overlay z-[-50] */}

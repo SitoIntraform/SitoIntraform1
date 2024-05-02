@@ -89,7 +89,7 @@ function TextWithImageView({
 
   const router = useRouter();
 
-  if(!mounted){
+  if (!mounted) {
     return null;
   }
 
@@ -119,6 +119,7 @@ function TextWithImageView({
               style={{
                 opacity: section.data.backgroundImageOpacity / 100,
               }}
+              
             />
           </div>
         </div>
@@ -142,62 +143,70 @@ function TextWithImageView({
           }`}
         >
           <div className="lg:w-[50%] w-[100%] text-start space-y-7 h-full flex flex-col justify-center items-center  lg:items-start">
-            {(section.data.textBlue || section.data.textGreen || section.data.textBlack) && <motion.div
-              viewport={{ once: true }}
-              variants={containerAnimation(0, section.data.animationType)}
-              initial={section.data.animation ? "hidden" : ""}
-              whileInView={section.data.animation && mounted ? "show" : ""}
-              className="h4Mobile md:h5Desktop xl:h4Desktop relative text-center lg:text-start"
-            >
-              {/* Title */}
+            {(section.data.textBlue ||
+              section.data.textGreen ||
+              section.data.textBlack) && (
+              <motion.div
+                viewport={{ once: true }}
+                variants={containerAnimation(0, section.data.animationType)}
+                initial={section.data.animation ? "hidden" : ""}
+                whileInView={section.data.animation && mounted ? "show" : ""}
+                className="h4Mobile md:h5Desktop xl:h4Desktop relative text-center lg:text-start"
+              >
+                {/* Title */}
 
-              {section.data.textBlue && section.data.textGreen ? (
-                <>
-                  <span className="text-accentDesign">
-                    {section.data.textBlue}
-                  </span>{" "}
-                  <span className="text-primaryDesign">
-                    {section.data.textGreen}
-                  </span>
-                </>
-              ) : section.data.textBlue ? (
-                <>
-                  <span className="text-accentDesign">
-                    {section.data.textBlue}
-                  </span>
-                </>
-              ) : section.data.textGreen ? (
-                <>
-                  <span className="text-primaryDesign">
-                    {section.data.textGreen}
-                  </span>
-                </>
-              ) : (
-                <>
-                  <span className="text-textDesign">
-                    {section.data.textBlack}
-                  </span>
-                </>
-              )}
-            </motion.div>}
-            {section.data.description && <motion.div
-              viewport={{ once: true }}
-              variants={containerAnimation(0.1, section.data.animationType)}
-              initial={section.data.animation ? "hidden" : ""}
-              whileInView={section.data.animation && mounted ? "show" : ""}
-              className="tiny-normal md:small-normal relative text-center lg:text-start"
-              style={{
-                color:
-                  section.data.backgroundColor === "#3b3b3b"
-                    ? "white"
-                    : "#3b3b3b",
-              }}
-            >
-              <div dangerouslySetInnerHTML={{
-                __html: section.data.description || ""
-              }} />
-              <div className="absolute -bottom-3 -right-3 border-r-primaryDesign border-8 w-[50px] border-b-accentDesign border-t-transparent border-l-transparent h-[50px]" />
-            </motion.div>}
+                {section.data.textBlue && section.data.textGreen ? (
+                  <>
+                    <span className="text-accentDesign">
+                      {section.data.textBlue}
+                    </span>{" "}
+                    <span className="text-primaryDesign">
+                      {section.data.textGreen}
+                    </span>
+                  </>
+                ) : section.data.textBlue ? (
+                  <>
+                    <span className="text-accentDesign">
+                      {section.data.textBlue}
+                    </span>
+                  </>
+                ) : section.data.textGreen ? (
+                  <>
+                    <span className="text-primaryDesign">
+                      {section.data.textGreen}
+                    </span>
+                  </>
+                ) : (
+                  <>
+                    <span className="text-textDesign">
+                      {section.data.textBlack}
+                    </span>
+                  </>
+                )}
+              </motion.div>
+            )}
+            {section.data.description && (
+              <motion.div
+                viewport={{ once: true }}
+                variants={containerAnimation(0.1, section.data.animationType)}
+                initial={section.data.animation ? "hidden" : ""}
+                whileInView={section.data.animation && mounted ? "show" : ""}
+                className="tiny-normal md:small-normal relative text-center lg:text-start"
+                style={{
+                  color:
+                    section.data.backgroundColor === "#3b3b3b"
+                      ? "white"
+                      : "#3b3b3b",
+                }}
+              >
+                <div
+                  dangerouslySetInnerHTML={{
+                    __html: section.data.description || "",
+                  }}
+                />
+                <div className="absolute -bottom-3 -right-3 border-r-primaryDesign border-8 w-[50px] border-b-accentDesign border-t-transparent border-l-transparent h-[50px]" />
+              </motion.div>
+            )}
             {(section.data.primaryButton || section.data.secondaryButton) && (
               <motion.div
                 viewport={{ once: true }}
@@ -207,7 +216,10 @@ function TextWithImageView({
                 className="flex md:flex-row flex-col gap-6 "
               >
                 {section.data.primaryButton && (
-                  <a href={dev ? undefined : link1 ? link1 : undefined} className="cursor-pointer">
+                  <a
+                    href={dev ? undefined : link1 ? link1 : undefined}
+                    className="cursor-pointer"
+                  >
                     <Button
                       width={section.data.widthPrimaryButton || 0}
                       height={section.data.heightPrimaryButton || 0}
@@ -220,7 +232,10 @@ function TextWithImageView({
                   </a>
                 )}
                 {section.data.secondaryButton && (
-                  <a href={dev ? undefined : link2 ? link2 : undefined} className="cursor-pointer">
+                  <a
+                    href={dev ? undefined : link2 ? link2 : undefined}
+                    className="cursor-pointer"
+                  >
                     <Button
                       width={section.data.widthSecondaryButton || 0}
                       height={section.data.heightSecondaryButton || 0}
@@ -237,41 +252,56 @@ function TextWithImageView({
             )}
           </div>
           <div className="lg:w-[50%] w-[100%] h-[300px] lg:h-[480px] xl:h-[550px] relative">
-            {section.data.images && <motion.div
-              variants={containerAnimation(0, section.data.animationType)}
-              viewport={{ once: true }}
-              initial={section.data.animation ? "hidden" : ""}
-              whileInView={section.data.animation && mounted ? "show" : ""}
-              className="absolute top-0 w-full h-full"
-            >
-              {section.data.images && (
-                <Swiper
-                  spaceBetween={0}
-                  slidesPerView={1}
-                  autoplay={{
-                    delay: 5000,
-                  }}
-                  speed={1200}
-                  loop={true}
-                  className="h-[100%] w-full"
-                  modules={[Autoplay, Pagination, Navigation]}
-                  pagination={section.data.carouselDots}
-                  navigation={section.data.carouselButtons}
-                  key={dev ? section.name + carouselCounter : section.name}
-                >
-                  {section.data.images.map((image) => (
-                    <SwiperSlide key={image} className="relative h-full w-full">
-                      <Image
-                        src={image || ""}
-                        alt=""
-                        fill
-                        className="object-contain"
-                      />
-                    </SwiperSlide>
-                  ))}
-                </Swiper>
-              )}
-            </motion.div>}
+            {section.data.images && (
+              <motion.div
+                variants={containerAnimation(0, section.data.animationType)}
+                viewport={{ once: true }}
+                initial={section.data.animation ? "hidden" : ""}
+                whileInView={section.data.animation && mounted ? "show" : ""}
+                className="absolute top-0 w-full h-full"
+              >
+                {section.data.images.length > 1 ? (
+                  <Swiper
+                    spaceBetween={0}
+                    slidesPerView={1}
+                    autoplay={{
+                      delay: 5000,
+                    }}
+                    speed={1200}
+                    loop={true}
+                    className="h-[100%] w-full"
+                    modules={[Autoplay, Pagination, Navigation]}
+                    pagination={section.data.carouselDots}
+                    navigation={section.data.carouselButtons}
+                    key={dev ? section.name + carouselCounter : section.name}
+                  >
+                    {section.data.images.map((image) => (
+                      <SwiperSlide
+                        key={image}
+                        className="relative h-full w-full"
+                      >
+                        <Image
+                          src={image || ""}
+                          alt=""
+                          fill
+                          className="object-contain"
+                        />
+                      </SwiperSlide>
+                    ))}
+                  </Swiper>
+                ) : (
+                  <div className="h-[100%] w-full">
+                    <Image
+                      src={section.data.images[0]}
+                      alt=""
+                      fill
+                      className="object-cover"
+                      
+                    />
+                  </div>
+                )}
+              </motion.div>
+            )}
           </div>
         </div>
       </div>

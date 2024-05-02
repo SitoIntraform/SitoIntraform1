@@ -70,6 +70,7 @@ function SelectOneImageForConfigurator({
                 alt="Image"
                 fill
                 className="object-contain"
+                
               />
             </div>
           )}

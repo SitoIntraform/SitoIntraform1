@@ -157,6 +157,7 @@ function ContactView({
               style={{
                 opacity: section.data.backgroundImageOpacity / 100,
               }}
+              
             />
           </div>
         </div>

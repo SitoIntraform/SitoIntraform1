@@ -38,10 +38,9 @@ function SelectImagesConfigurations({
   const selectOneImage = useSelectOneImage();
 
   const onDeleteImage = (url: string) => {
-    if(multiple){
+    if (multiple) {
       setImages(images.filter((image) => image !== url));
-    }
-    else {
+    } else {
       setImages([""]);
     }
     router.refresh();
@@ -53,10 +52,9 @@ function SelectImagesConfigurations({
         isOpen={uploadImageModal.isOpen}
         onClose={uploadImageModal.onClose}
         onCloseCallback={() => {
-          if(multiple){
+          if (multiple) {
             selectImageModal.onOpen();
-          }
-          else{
+          } else {
             selectOneImage.onOpen();
           }
         }}
@@ -88,7 +86,7 @@ function SelectImagesConfigurations({
       </HeaderPage>
       <div className="my-5 flex items-center gap-4 flex-wrap justify-center">
         {images.map((url) => {
-          if(url === ""){
+          if (url === "") {
             return;
           }
 
@@ -106,9 +104,15 @@ function SelectImagesConfigurations({
                 <Trash className="h-8 w-8" />
               </Button>
 
-              <Image src={url} alt="Image" fill className="object-contain" />
+              <Image
+                
+                src={url}
+                alt="Image"
+                fill
+                className="object-contain"
+              />
             </div>
-          )
+          );
         })}
       </div>
     </>

@@ -52,6 +52,7 @@ function ViewMultipleCourse({
           fill
           objectFit="cover"
           className="hover:scale-110 transition-all duration-200"
+          
         />
       </div>
       <div className="w-full lg:w-[50%] flex flex-col gap-10">

@@ -70,6 +70,7 @@ function SignInPage() {
                 width={300}
                 height={100}
                 alt="Logo"
+                
               />
             </div>
           </div>

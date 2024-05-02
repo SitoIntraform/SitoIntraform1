@@ -85,12 +85,16 @@ function UploadImageModal({
                 onClick={() => onRemove(url)}
                 rectangle
               >
-                <Trash
-                  className="h-4 w-4"
-                />
+                <Trash className="h-4 w-4" />
               </Button>
 
-              <Image src={url} alt="Image" fill className="object-contain" />
+              <Image
+                src={url}
+                alt="Image"
+                fill
+                className="object-contain"
+                
+              />
             </div>
           ))}
         </>

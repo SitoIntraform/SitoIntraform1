@@ -109,6 +109,7 @@ export default function ServiceView({
               style={{
                 opacity: section.data.backgroundImageOpacity / 100,
               }}
+              
             />
           </div>
         </div>
@@ -183,8 +184,6 @@ export default function ServiceView({
                 l = "";
               }
 
-              console.log(l);
-
               return (
                 <motion.div
                   viewport={{ once: true }}
@@ -200,6 +199,7 @@ export default function ServiceView({
                       alt="Image"
                       fill
                       className="object-cover"
+                      
                     />
                   </div>
                   <div className="h-[65%] w-full px-5">

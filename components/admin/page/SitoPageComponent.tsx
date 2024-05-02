@@ -321,6 +321,7 @@ function SitoPageComponent({
                       alt="Image"
                       fill
                       className="object-scale-down"
+                      
                     />
                   </div>
                 )}

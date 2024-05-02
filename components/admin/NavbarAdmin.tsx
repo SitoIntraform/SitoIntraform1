@@ -90,7 +90,7 @@ function NavbarAdmin() {
 
   useEffect(() => {
     setIsMounted(true);
-  }, [])
+  }, []);
 
   useEffect(() => {
     if (isOpen) {
@@ -109,7 +109,7 @@ function NavbarAdmin() {
     setIsLoading(false);
   };
 
-  if(!isMounted){
+  if (!isMounted) {
     return null;
   }
 
@@ -121,7 +121,13 @@ function NavbarAdmin() {
             href={"/admin"}
             className="hover:scale-110 transition-all duration-300"
           >
-            <Image src={"/logo.jpg"} alt="" width={170} height={100} />
+            <Image
+              src={"/logo.jpg"}
+              alt=""
+              width={170}
+              height={100}
+              
+            />
           </Link>
 
           <div className="lg:flex hidden flex-row items-center xl:gap-14 lg:gap-7 absolute top-[50%] -translate-y-[50%] left-[50%] -translate-x-[50%]">
