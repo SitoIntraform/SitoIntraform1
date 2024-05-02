@@ -19,7 +19,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="it" className="notranslate" translate="no">
+    <html lang="it" className="notranslate" translate="no" suppressHydrationWarning>
       <head>
         <meta name="apple-mobile-web-app-capable" content="yes"></meta>
         <meta name="google" content="notranslate" />

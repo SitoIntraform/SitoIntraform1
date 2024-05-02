@@ -45,7 +45,7 @@ function CorsiPageComponent({
         {corsi.map((c) => {
 
           return (
-            <>
+            <div key={c.CorsoId}>
               <HeaderPage
                 title={c.name || ""}
                 description={`Gestisci il corso ${c.name}`}
@@ -77,7 +77,7 @@ function CorsiPageComponent({
                 fileLink={c.fileLink || ""}
                 dev={true}
               />
-            </>
+            </div>
           )
         })}
       </div>

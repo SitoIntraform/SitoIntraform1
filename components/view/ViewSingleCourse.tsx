@@ -1,3 +1,5 @@
+"use client"
+
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import Button from "../Button";
@@ -95,13 +97,25 @@ function ViewSingleCourse({
     setMounted(true);
   }, []);
 
+  if(!mounted){
+    return null;
+  }
+
   return (
     <div
       key={dev ? name : mounted ? name : undefined}
       className={`${dev ? "w-full" : "w-[100vw] pt-[90px] containerDesign"}`}
     >
-      <div className="w-full flex lg:flex-row flex-col-reverse gap-10 items-start">
-        <div className="w-full lg:w-[70%] flex-col flex gap-3">
+      <div className="w-full flex flex-col gap-10 items-start">
+        <div className="w-full h-[250px] lg:h-[400px] relative">
+          <Image 
+            src={image || ""}
+            alt="Image"
+            fill
+            objectFit="cover"
+          />
+        </div>
+        <div className="w-full flex-col flex gap-3">
           {duration && (
             <motion.div
               viewport={{ once: true }}
@@ -119,7 +133,7 @@ function ViewSingleCourse({
               variants={containerAnimation(0, "up")}
               initial={"hidden"}
               whileInView={mounted ? "show" : ""}
-              className="h1Desktop !text-accentDesign"
+              className="h4Mobile md:h4Desktop xl:h3Desktop !text-accentDesign"
             >
               {title}
             </motion.div>
@@ -134,18 +148,18 @@ function ViewSingleCourse({
             >
               {code && (
                 <div className="">
-                  <span className="large-medium !text-primaryDesign">
+                  <span className="small-medium md:regular-medium !text-primaryDesign">
                     Codice:{" "}
                   </span>
-                  <span className="large-extrabold">{code}</span>
+                  <span className="small-bold md:regular-bold">{code}</span>
                 </div>
               )}
               {price && (
                 <div className="">
-                  <span className="large-medium !text-primaryDesign">
+                  <span className="small-medium md:regular-medium !text-primaryDesign">
                     Prezzo:{" "}
                   </span>
-                  <span className="large-extrabold">€{price}</span>
+                  <span className="small-bold md:regular-bold">€{price}</span>
                 </div>
               )}
             </motion.div>
@@ -156,53 +170,12 @@ function ViewSingleCourse({
               variants={containerAnimation(0, "up")}
               initial={"hidden"}
               whileInView={mounted ? "show" : ""}
-              className="large-normal"
+              className="small-normal md:regular-normal"
             >
               {description}
             </motion.div>
           )}
         </div>
-        {(image || duration || title || description) && (
-          <motion.div
-            viewport={{ once: true }}
-            variants={containerAnimation(0, "up")}
-            initial={"hidden"}
-            whileInView={mounted ? "show" : ""}
-            className="w-full lg:w-[30%] lg:border-textDesign/50 lg:p-4 lg:border-2 lg:sticky lg:top-28 overflow-hidden"
-          >
-            <div className="w-full h-[350px] lg:h-[200px] relative">
-              <Image
-                
-                src={image || ""}
-                alt="Image"
-                fill
-                objectFit="cover"
-              />
-            </div>
-            <div className="hidden lg:flex flex-col gap-2 mt-[20px]">
-              <div className="font-semibold text-[20px] !text-primaryDesign tracking-wide line-clamp-1">
-                {duration}
-              </div>
-              <div className="h5Desktop !text-accentDesign !leading-[100%] cursor-pointer hover:underline underline-offset-1">
-                {title}
-              </div>
-              <div className="small-normal line-clamp-4">{description}</div>
-            </div>
-
-            {haveFile && (
-              <div className="hidden lg:flex flex-col gap-2 w-full mt-[30px]">
-                <Button
-                  onClick={() => {}}
-                  height={55}
-                  className="w-full regular-medium !text-white"
-                  secondary
-                >
-                  Scarica il programma
-                </Button>
-              </div>
-            )}
-          </motion.div>
-        )}
       </div>
       <div
         className={`mx-auto flex flex-col w-[100%] items-center justify-center gap-6 pt-[32px]`}
@@ -275,7 +248,7 @@ function ViewSingleCourse({
                 </p>
               </div>
             </div>
-            <div className="w-full flex flex-row items-center justify-center mt-[20px]">
+            <div className="w-full flex flex-row items-center justify-center mt-[20px] pb-[5px]">
               <Button
                 height={55}
                 width={160}
@@ -288,7 +261,7 @@ function ViewSingleCourse({
                 animation
                 disabled={isLoafing}
               >
-                <p>Contattaci</p>
+                <div>Contattaci</div>
               </Button>
             </div>
           </div>
