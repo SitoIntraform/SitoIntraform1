@@ -127,7 +127,10 @@ html {
 } */
 
 
-/* container md:px-10 px-5 */
+/*  */
+/*  */
+
+/* lg:max-w-[1100px] md:max-w-[900px] sm:max-w-[600px] max-w-[500px] */
 
 @layer utilities {
   * {
@@ -135,7 +138,7 @@ html {
   }
 
   .containerDesign {
-    @apply xl:max-w-[1440px] lg:max-w-[1100px] md:max-w-[900px] sm:max-w-[600px] max-w-[500px]  mx-auto md:px-10 px-5;
+    @apply max-w-[1440px]  mx-auto md:px-10 px-5;
   }
 
   .h1Desktop {

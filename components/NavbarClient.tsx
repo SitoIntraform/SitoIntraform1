@@ -126,9 +126,9 @@ function NavbarClient({
   buttonLinkReal = dev ? undefined : page?.link ? "/" + page?.link : undefined;
 
   return (
-    <div className="max-w-[100vw] !overflow-x-hidden">
+    <>
       <div
-        className={`z-[200] !w-screen !max-w-[100vw] !overflow-x-hidden h-[80px] border-b shadow-sm  bg-white ${
+        className={`z-[200] w-[100vw] h-[80px] border-b shadow-sm  bg-white ${
           dev ? "" : "fixed top-0"
         }`}
       >
@@ -163,7 +163,7 @@ function NavbarClient({
 
               return (
                 <a
-                  href={dev ? undefined : linkReal}
+                  href={dev ? undefined : currentLink?.type === "Multiple" ? undefined  : linkReal ? linkReal : undefined}
                   key={currentLink?.LinkId}
                   className={`text-center regular-normal group cursor-pointer`}
                 >
@@ -315,7 +315,7 @@ function NavbarClient({
 
               return (
                 <motion.a
-                  href={dev ? undefined : linkReal}
+                  href={dev ? undefined : currentLink?.type === "Multiple" ? undefined : linkReal ? linkReal : undefined}
                   key={currentLink?.LinkId}
                   className={`text-center cursor-pointer large-medium group !font-medium z-[100] ${
                     dropDownOpen === index
@@ -410,7 +410,7 @@ function NavbarClient({
           </motion.div>
         </div>
       </motion.div>
-    </div>
+    </>
   );
 }
 
