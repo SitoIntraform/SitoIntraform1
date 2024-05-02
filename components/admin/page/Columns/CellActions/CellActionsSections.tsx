@@ -105,7 +105,7 @@ export default function CellActionSection({ SectionId }: { SectionId: string }) 
             onClick={onDuplicate}
             className="cursor-pointer"
           >
-            <Trash className="w-4 h-4 mr-2" />
+            <Copy className="w-4 h-4 mr-2" />
             Duplica
           </DropdownMenuItem>
           <Separator className="my-1" />
