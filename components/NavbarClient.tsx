@@ -162,70 +162,101 @@ function NavbarClient({
               }
 
               return (
-                <a
-                  href={dev ? undefined : currentLink?.type === "Multiple" ? undefined  : linkReal ? linkReal : undefined}
-                  key={currentLink?.LinkId}
-                  className={`text-center regular-normal group cursor-pointer`}
-                >
-                  <div
-                    className={`${
-                      currentLink?.type === "Single"
-                        ? `${
-                            isActive
-                              ? "text-accentDesign"
-                              : "group-hover:text-primaryDesign"
-                          }`
-                        : ""
-                    } transition-all duration-300 relative flex flex-row items-center gap-1`}
-                  >
-                    {currentLink?.titolo}
-                    {currentLink?.type === "Multiple" && (
-                      <>
-                        <span>
-                          <ChevronDown className="w-4 h-4 text-primaryDesign" />
-                        </span>
-                        <div className="absolute top-[102%] h-0 overflow-hidden group-hover:h-auto bg-primaryDesign transition-all duration-200 -translate-x-[50%] left-[50%] rounded-sm">
-                          <div className="flex flex-col items-center justify-between gap-3 rounded-md px-8 py-5">
-                            {currentLink.multipleLink.map((l, index2) => {
-                              let linkReal2 = "";
+                <>
+                  {currentLink?.type === "Single" ? (
+                    <a
+                      href={dev ? undefined : linkReal ? linkReal : undefined}
+                      key={currentLink?.LinkId}
+                      className={`text-center regular-normal group cursor-pointer`}
+                    >
+                      <div
+                        className={`${
+                          currentLink?.type === "Single"
+                            ? `${
+                                isActive
+                                  ? "text-accentDesign"
+                                  : "group-hover:text-primaryDesign"
+                              }`
+                            : ""
+                        } transition-all duration-300 relative flex flex-row items-center gap-1`}
+                      >
+                        {currentLink?.titolo}
+                      </div>
+                      <div
+                        className={`h-[1px] ${
+                          isActive
+                            ? "w-full bg-accentDesign"
+                            : "w-0 group-hover:w-full bg-primaryDesign"
+                        } transition-all duration-300  rounded-full`}
+                      />
+                    </a>
+                  ) : (
+                    <div
+                      key={currentLink?.LinkId}
+                      className={`text-center regular-normal group cursor-pointer`}
+                    >
+                      <div
+                        className={`${
+                          currentLink?.type === "Single"
+                            ? `${
+                                isActive
+                                  ? "text-accentDesign"
+                                  : "group-hover:text-primaryDesign"
+                              }`
+                            : ""
+                        } transition-all duration-300 relative flex flex-row items-center gap-1`}
+                      >
+                        {currentLink?.titolo}
+                        {currentLink?.type === "Multiple" && (
+                          <>
+                            <span>
+                              <ChevronDown className="w-4 h-4 text-primaryDesign" />
+                            </span>
+                            <div className="absolute top-[102%] h-0 overflow-hidden group-hover:h-auto bg-primaryDesign transition-all duration-200 -translate-x-[50%] left-[50%] rounded-sm">
+                              <div className="flex flex-col items-center justify-between gap-3 rounded-md px-8 py-5">
+                                {currentLink.multipleLink.map((l, index2) => {
+                                  let linkReal2 = "";
 
-                              const page = allPage.find(
-                                (p) => p.PageId === l?.link?.split("/").at(1)
-                              );
-                              linkReal2 = dev ? "" : "/" + page?.link;
+                                  const page = allPage.find(
+                                    (p) =>
+                                      p.PageId === l?.link?.split("/").at(1)
+                                  );
+                                  linkReal2 = dev ? "" : "/" + page?.link;
 
-                              // console.log(linkReal2);
+                                  // console.log(linkReal2);
 
-                              return (
-                                <a
-                                  key={index2}
-                                  className="cursor-pointer text-white group/link"
-                                  href={dev ? undefined : linkReal2}
-                                  onClick={(e) => {
-                                    e.stopPropagation();
-                                  }}
-                                >
-                                  <p>{l.testo}</p>
-                                  <div
-                                    className={`h-[1px] w-0 group-hover/link:w-full bg-white
+                                  return (
+                                    <a
+                                      key={index2}
+                                      className="cursor-pointer text-white group/link"
+                                      href={dev ? undefined : linkReal2}
+                                      onClick={(e) => {
+                                        e.stopPropagation();
+                                      }}
+                                    >
+                                      <p>{l.testo}</p>
+                                      <div
+                                        className={`h-[1px] w-0 group-hover/link:w-full bg-white
                                     transition-all duration-300  rounded-full`}
-                                  />
-                                </a>
-                              );
-                            })}
-                          </div>
-                        </div>
-                      </>
-                    )}
-                  </div>
-                  <div
-                    className={`h-[1px] ${
-                      isActive
-                        ? "w-full bg-accentDesign"
-                        : "w-0 group-hover:w-full bg-primaryDesign"
-                    } transition-all duration-300  rounded-full`}
-                  />
-                </a>
+                                      />
+                                    </a>
+                                  );
+                                })}
+                              </div>
+                            </div>
+                          </>
+                        )}
+                      </div>
+                      <div
+                        className={`h-[1px] ${
+                          isActive
+                            ? "w-full bg-accentDesign"
+                            : "w-0 group-hover:w-full bg-primaryDesign"
+                        } transition-all duration-300  rounded-full`}
+                      />
+                    </div>
+                  )}
+                </>
               );
             })}
           </div>
@@ -236,7 +267,12 @@ function NavbarClient({
               All the recent action
             </div> */}
             <div className="hidden lg:block">
-              <a href={dev ? undefined : buttonLinkReal ? buttonLinkReal : undefined} className="cursor-pointer">
+              <a
+                href={
+                  dev ? undefined : buttonLinkReal ? buttonLinkReal : undefined
+                }
+                className="cursor-pointer"
+              >
                 <Button
                   className="normal-normal !text-white"
                   onClick={() => {}}
@@ -314,77 +350,122 @@ function NavbarClient({
               }
 
               return (
-                <motion.a
-                  href={dev ? undefined : currentLink?.type === "Multiple" ? undefined : linkReal ? linkReal : undefined}
-                  key={currentLink?.LinkId}
-                  className={`text-center cursor-pointer large-medium group !font-medium z-[100] ${
-                    dropDownOpen === index
-                      ? "h-auto z-[200]"
-                      : "h-[30px] overflow-hidden z-[100]"
-                  }`}
-                  variants={linkVariant}
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    if (currentLink?.type === "Single") {
-                      setIsOpen(false);
-                    } else {
-                      setDropDownOpen((prev) => (prev === index ? -1 : index));
-                    }
-                  }}
-                >
-                  <div
-                    className={`${
-                      isActive
-                        ? "text-accentDesign"
-                        : "group-hover:text-primaryDesign"
-                    } transition-all duration-300 relative flex flex-col items-center `}
-                  >
-                    <div className="flex flex-row items-center gap-1">
-                      {currentLink?.titolo}
-                      {currentLink?.type === "Multiple" && (
-                        <ChevronDown className="w-4 h-4 text-primaryDesign" />
-                      )}
-                    </div>
-                    {currentLink?.type === "Multiple" && (
-                      <>
-                        <div
-                          className={`${
-                            dropDownOpen === index ? "h-auto" : "h-0"
-                          } absolute top-[110%] overflow-hidden bg-primaryDesign transition-all duration-200 rounded-sm`}
-                        >
-                          <div className="flex flex-col items-center justify-between gap-3 rounded-md px-8 py-5">
-                            {currentLink.multipleLink.map((l, index2) => {
-                              let linkReal2 = "";
-
-                              const page = allPage.find(
-                                (p) => p.PageId === l?.link?.split("/").at(1)
-                              );
-                              linkReal2 = dev ? "" : "/" + page?.link;
-
-                              return (
-                                <a
-                                  key={index2}
-                                  className="cursor-pointer text-white group/link"
-                                  onClick={(e) => {
-                                    setIsOpen(false);
-                                    e.stopPropagation();
-                                  }}
-                                  href={dev ? undefined : linkReal2}
-                                >
-                                  <p>{l.testo}</p>
-                                  <div
-                                    className={`h-[1px] w-0 group-hover/link:w-full bg-white
-                                    transition-all duration-300  rounded-full`}
-                                  />
-                                </a>
-                              );
-                            })}
-                          </div>
+                <>
+                  {currentLink?.type === "Single" ? (
+                    <motion.a
+                      href={
+                        dev
+                          ? undefined
+                          : linkReal
+                          ? linkReal
+                          : undefined
+                      }
+                      key={currentLink?.LinkId}
+                      className={`text-center cursor-pointer large-medium group !font-medium z-[100] ${
+                        dropDownOpen === index
+                          ? "h-auto z-[200]"
+                          : "h-[30px] overflow-hidden z-[100]"
+                      }`}
+                      variants={linkVariant}
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        if (currentLink?.type === "Single") {
+                          setIsOpen(false);
+                        } else {
+                          setDropDownOpen((prev) =>
+                            prev === index ? -1 : index
+                          );
+                        }
+                      }}
+                    >
+                      <div
+                        className={`${
+                          isActive
+                            ? "text-accentDesign"
+                            : "group-hover:text-primaryDesign"
+                        } transition-all duration-300 relative flex flex-col items-center `}
+                      >
+                        <div className="flex flex-row items-center gap-1">
+                          {currentLink?.titolo}
                         </div>
-                      </>
-                    )}
-                  </div>
-                </motion.a>
+                      </div>
+                    </motion.a>
+                  ) : (
+                    <motion.div
+                      key={currentLink?.LinkId}
+                      className={`text-center cursor-pointer large-medium group !font-medium z-[100] ${
+                        dropDownOpen === index
+                          ? "h-auto z-[200]"
+                          : "h-[30px] overflow-hidden z-[100]"
+                      }`}
+                      variants={linkVariant}
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        if (currentLink?.type === "Single") {
+                          setIsOpen(false);
+                        } else {
+                          setDropDownOpen((prev) =>
+                            prev === index ? -1 : index
+                          );
+                        }
+                      }}
+                    >
+                      <div
+                        className={`${
+                          isActive
+                            ? "text-accentDesign"
+                            : "group-hover:text-primaryDesign"
+                        } transition-all duration-300 relative flex flex-col items-center `}
+                      >
+                        <div className="flex flex-row items-center gap-1">
+                          {currentLink?.titolo}
+                          {currentLink?.type === "Multiple" && (
+                            <ChevronDown className="w-4 h-4 text-primaryDesign" />
+                          )}
+                        </div>
+                        {currentLink?.type === "Multiple" && (
+                          <>
+                            <div
+                              className={`${
+                                dropDownOpen === index ? "h-auto" : "h-0"
+                              } absolute top-[110%] overflow-hidden bg-primaryDesign transition-all duration-200 rounded-sm`}
+                            >
+                              <div className="flex flex-col items-center justify-between gap-3 rounded-md px-8 py-5">
+                                {currentLink.multipleLink.map((l, index2) => {
+                                  let linkReal2 = "";
+
+                                  const page = allPage.find(
+                                    (p) =>
+                                      p.PageId === l?.link?.split("/").at(1)
+                                  );
+                                  linkReal2 = dev ? "" : "/" + page?.link;
+
+                                  return (
+                                    <a
+                                      key={index2}
+                                      className="cursor-pointer text-white group/link"
+                                      onClick={(e) => {
+                                        setIsOpen(false);
+                                        e.stopPropagation();
+                                      }}
+                                      href={dev ? undefined : linkReal2}
+                                    >
+                                      <p>{l.testo}</p>
+                                      <div
+                                        className={`h-[1px] w-0 group-hover/link:w-full bg-white
+                                    transition-all duration-300  rounded-full`}
+                                      />
+                                    </a>
+                                  );
+                                })}
+                              </div>
+                            </div>
+                          </>
+                        )}
+                      </div>
+                    </motion.div>
+                  )}
+                </>
               );
             })}
           </div>
@@ -394,7 +475,12 @@ function NavbarClient({
             initial="hidden"
             animate={isOpen ? "show" : "hidden"}
           >
-            <a href={dev ? undefined : buttonLinkReal ? buttonLinkReal : undefined} className="w-full cursor-pointer">
+            <a
+              href={
+                dev ? undefined : buttonLinkReal ? buttonLinkReal : undefined
+              }
+              className="w-full cursor-pointer"
+            >
               <Button
                 wfull
                 className="medium-normal !text-white w-full"
