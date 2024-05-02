@@ -84,6 +84,7 @@ function ShowPageComponent({
                 fileLink={course?.fileLink || ""}
                 dev={false}
               />
+              <div className="mt-[20px]"></div>
               <Footer />
             </>
           )}
