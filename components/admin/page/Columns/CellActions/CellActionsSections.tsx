@@ -59,10 +59,10 @@ export default function CellActionSection({ SectionId }: { SectionId: string }) 
 
     try {
 
-      const res = await axios.delete(`/api/sections/${SectionId}`);
+      const res = await axios.delete(`/api/duplicate/${SectionId}`);
 
       if (res.status === 200) {
-        toast.success("Sezione cancellata con successo");
+        toast.success("Sezione duplicata con successo");
         router.refresh();
         return;
       }

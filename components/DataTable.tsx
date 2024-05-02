@@ -59,7 +59,7 @@ export function DataTable<TData, TValue>({
     <div>
       {sort && sortLabel && <div className="flex items-center py-4">
         <Input
-          label="Filter emails..."
+          label="Filtra..."
           value={(table.getColumn(sortLabel)?.getFilterValue() as string) ?? ""}
           onValueChange={(e) =>
             table.getColumn(sortLabel)?.setFilterValue(e.target.value)
