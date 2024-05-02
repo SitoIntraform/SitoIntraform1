@@ -14,6 +14,7 @@ async function SezioniPage() {
       return {
         SectionId: section.SectionId,
         name: section.name,
+        animation: section.data.animation || false,
         pageType: section.pageType,
         createdAt: `${createdAt.getUTCDate()}/${
           createdAt.getUTCMonth() + 1

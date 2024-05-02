@@ -29,6 +29,14 @@ export const SectionColumn: ColumnDef<SectionColumnType>[] = [
     },
   },
   {
+    header: "Animazione",
+    cell: ({ row }) => {
+      const animation = row.original.animation;
+
+      return animation ? "Si" : "No";
+    },
+  },
+  {
     header: "Creata il",
     accessorKey: "createdAt",
   },

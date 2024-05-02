@@ -112,6 +112,7 @@ export const pageTypes: pageType[] = [
 export type SectionColumnType = {
   SectionId: string;
   name: string;
+  animation: boolean;
   pageType: string;
   createdAt: string;
   updatedAt: string;
