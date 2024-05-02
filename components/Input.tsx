@@ -39,6 +39,7 @@ function Input({
           }}
           name={label}
           id={label}
+          aria-label={label}
         />
       ) : (
         <textarea
@@ -53,6 +54,7 @@ function Input({
           }}
           name={label}
           id={label}
+          aria-label={label}
         />
       )}
       <div
