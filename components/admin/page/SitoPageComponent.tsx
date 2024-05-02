@@ -192,7 +192,7 @@ function SitoPageComponent({
           </Button>
         </HeaderPage>
         <div className="my-[20px]" />
-        <DataTable data={allPage} columns={PageColumn} />
+        <DataTable data={allPage} columns={PageColumn} sort sortLabel="name" />
 
         <HeaderPage
           title="Navbar"

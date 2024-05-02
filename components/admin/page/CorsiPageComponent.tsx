@@ -39,7 +39,7 @@ function CorsiPageComponent({
           </div>
         </Button>
       </HeaderPage>
-      <DataTable columns={CourseColumn} data={corsi} />
+      <DataTable columns={CourseColumn} data={corsi} sort sortLabel="name" />
 
       <div className="flex flex-col gap-[16px]">
         {corsi.map((c) => {

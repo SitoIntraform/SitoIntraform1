@@ -4,6 +4,8 @@ import { ColumnDef } from "@tanstack/react-table";
 import { PageType, SectionColumnType, SectionType } from "@/types";
 import CellActionSection from "./CellActions/CellActionsSections";
 import CellActionPage from "./CellActions/CellActionPage";
+import { Button } from "@/components/ui/button";
+import { ArrowUpDown } from "lucide-react";
 
 export const PageColumn: ColumnDef<PageType>[] = [
   {
@@ -40,7 +42,17 @@ export const PageColumn: ColumnDef<PageType>[] = [
     accessorKey: "numberSections"
   },
   {
-    header: "Creata il",
+    header: ({ column }) => {
+      return (
+        <Button
+          variant="ghost"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
+          Creata il
+          <ArrowUpDown className="ml-2 h-4 w-4" />
+        </Button>
+      )
+    },
     accessorKey: "createdAt",
   },
   {

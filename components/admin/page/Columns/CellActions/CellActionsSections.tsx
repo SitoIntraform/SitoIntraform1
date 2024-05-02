@@ -54,6 +54,28 @@ export default function CellActionSection({ SectionId }: { SectionId: string }) 
     }
   }
 
+  const onDuplicate = async () => {
+    setLoading(false);
+
+    try {
+
+      const res = await axios.delete(`/api/sections/${SectionId}`);
+
+      if (res.status === 200) {
+        toast.success("Sezione cancellata con successo");
+        router.refresh();
+        return;
+      }
+
+    } catch (err: any) {
+      console.log(err);
+      toast.error(err.response.data);
+    } finally {
+      setLoading(false);
+      setDeleteModal(false);
+    }
+  }
+
 
   return (
     <>
@@ -68,7 +90,7 @@ export default function CellActionSection({ SectionId }: { SectionId: string }) 
           <MoreVertical className="h-4 w-4 cursor-pointer " />
         </DropdownMenuTrigger>
         <DropdownMenuContent align="end">
-          <DropdownMenuLabel>Actions</DropdownMenuLabel>
+          <DropdownMenuLabel>Azioni</DropdownMenuLabel>
           <DropdownMenuItem
             disabled={loading}
             onClick={() => router.push(`/admin/sezioni/${SectionId}`)}
@@ -76,6 +98,15 @@ export default function CellActionSection({ SectionId }: { SectionId: string }) 
           >
             <Edit className="w-4 h-4 mr-2" />
             Modifica
+          </DropdownMenuItem>
+          <Separator className="my-1" />
+          <DropdownMenuItem
+            disabled={loading}
+            onClick={onDuplicate}
+            className="cursor-pointer"
+          >
+            <Trash className="w-4 h-4 mr-2" />
+            Duplica
           </DropdownMenuItem>
           <Separator className="my-1" />
           <DropdownMenuItem

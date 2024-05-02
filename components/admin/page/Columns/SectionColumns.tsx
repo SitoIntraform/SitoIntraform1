@@ -5,6 +5,8 @@ import { ColumnDef } from "@tanstack/react-table";
 import { SectionColumnType, SectionType } from "@/types";
 import CellActionSection from "./CellActions/CellActionsSections";
 import { pageTypes } from "@/types"
+import { ArrowUpDown, MoreHorizontal } from "lucide-react"
+import { Button } from "@/components/ui/button";
 
 export const SectionColumn: ColumnDef<SectionColumnType>[] = [
   {
@@ -37,8 +39,18 @@ export const SectionColumn: ColumnDef<SectionColumnType>[] = [
     },
   },
   {
-    header: "Creata il",
     accessorKey: "createdAt",
+    header: ({ column }) => {
+      return (
+        <Button
+          variant="ghost"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
+          Creata il
+          <ArrowUpDown className="ml-2 h-4 w-4" />
+        </Button>
+      )
+    },
   },
   {
     header: "Aggiornata il",

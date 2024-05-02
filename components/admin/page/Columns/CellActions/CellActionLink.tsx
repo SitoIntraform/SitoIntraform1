@@ -68,7 +68,7 @@ export default function CellActionLink({ LinkId }: { LinkId: string }) {
           <MoreVertical className="h-4 w-4 cursor-pointer " />
         </DropdownMenuTrigger>
         <DropdownMenuContent align="end">
-          <DropdownMenuLabel>Actions</DropdownMenuLabel>
+          <DropdownMenuLabel>Azioni</DropdownMenuLabel>
           <DropdownMenuItem
             disabled={loading}
             onClick={() => router.push(`/admin/navbar/${LinkId}`)}

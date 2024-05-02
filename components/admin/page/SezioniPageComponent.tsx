@@ -58,7 +58,7 @@ function SezioniPageComponent({
           </Button>
         </HeaderPage>
         <div className="my-[20px]" />
-        <DataTable data={sectionTable} columns={SectionColumn} />
+        <DataTable data={sectionTable} columns={SectionColumn} sort sortLabel="name" />
       </div>
       {allSection?.map((section) => (
         <div className="pt-[20px]" key={section.SectionId}>
