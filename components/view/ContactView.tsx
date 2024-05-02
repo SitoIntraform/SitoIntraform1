@@ -168,7 +168,7 @@ function ContactView({
             : section.data.space + "px",
           paddingTop: section.data.hScreen ? "0px" : section.data.space + "px",
         }}
-        className={`h-full z-30 flex containerDesign  flex-col items-center justify-center ${
+        className={`h-full z-30 flex containerDesign  flex-col items-center justify-center !overflow-hidden ${
           section.data.hScreen ? "py-10 lg:py-0" : "!max-lg:!py-10"
         }`}
       >
@@ -209,7 +209,7 @@ function ContactView({
               </>
             )}
           </div>
-          <div className="w-full flex flex-col lg:flex-row gap-10 mt-8">
+          <div className="w-full flex flex-col lg:flex-row gap-10 mt-8 overflow-hidden">
             {/* FORM */}
             <div className="w-[100%] lg:w-[50%] flex flex-col items-center justify-center z-[20]">
               <div
@@ -305,7 +305,7 @@ function ContactView({
 
             {/* MAP */}
             <div
-              className="lg:h-full h-[300px] w-[100%] lg:w-[50%]"
+              className="lg:h-full h-[300px] w-[100%] lg:w-[50%] overflow-hidden"
             >
               <Map />
             </div>

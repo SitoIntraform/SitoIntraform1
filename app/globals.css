@@ -126,6 +126,9 @@ html {
   overflow-x: hidden;
 } */
 
+
+/* container md:px-10 px-5 */
+
 @layer utilities {
   * {
     @apply border-border font-sans;
