@@ -28,7 +28,7 @@ export async function POST(req: Request, res: NextApiResponse) {
 
     const mailOptions = {
       from: "sitointraform@gmail.com",
-      to: "caneparomattia@gmail.com", // destinatario dell'email
+      to: "postmaster@prova-vercel.cloud", // destinatario dell'email
       subject: `${nome} ti ha contattato dal sito di intraform`, // Oggetto dell'email
       text, // Testo dell'email
     };
