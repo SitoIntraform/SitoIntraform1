@@ -88,47 +88,41 @@ export async function POST(
 
     const sectionIds = sections.map((s: Section) => s.SectionId);
 
-    const result = await prismadb.$transaction(async (prisma) => {
-      try {
-        // Aggiorna prima le sezioni che non sono più collegate a questa pagina
-        await prisma.section.updateMany({
-          where: {
-            PageId: pageId[0],
-            NOT: {
-              SectionId: {
-                in: sectionIds,
-              },
+    await prismadb.$transaction(async (prisma) => {
+      await prisma.section.updateMany({
+        where: {
+          PageId: pageId[0],
+          NOT: {
+            SectionId: {
+              in: sectionIds,
             },
           },
-          data: {
-            PageId: null,
-          },
-        });
-
-        // Utilizza un approccio di batch e gestisci ogni batch sequenzialmente
-        const BATCH_SIZE = 4; // Adatta questa dimensione al tuo contesto
-        for (let i = 0; i < sections.length; i += BATCH_SIZE) {
-          const batch = sections.slice(i, i + BATCH_SIZE);
-          // Assicurati che tutte le operazioni del batch siano completate prima di procedere
-          await Promise.all(
-            batch.map((section: any) =>
-              prisma.section.update({
-                where: {
-                  SectionId: section.SectionId,
-                },
-                data: {
-                  PageId: pageId[0],
-                  data: { ...section.data },
-                },
-              })
-            )
-          );
-        }
-      } catch (error) {
-        console.error("Failed during transaction:", error);
-        throw error; // Rilancia l'errore per assicurare che la transazione venga interrotta
-      }
+        },
+        data: {
+          PageId: null,
+        },
+      });
     });
+
+    const BATCH_SIZE = 4;
+    for (let i = 0; i < sections.length; i += BATCH_SIZE) {
+      const batch = sections.slice(i, i + BATCH_SIZE);
+      await prismadb.$transaction(async (prisma) => {
+        await Promise.all(
+          batch.map((section: any) =>
+            prisma.section.update({
+              where: {
+                SectionId: section.SectionId,
+              },
+              data: {
+                PageId: pageId[0],
+                data: { ...section.data },
+              },
+            })
+          )
+        );
+      });
+    }
 
     const page = await prismadb.page.update({
       data: {
