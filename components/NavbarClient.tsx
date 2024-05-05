@@ -332,7 +332,7 @@ function NavbarClient({
         className="z-[200] block border-l shadow-md lg:hidden fixed max-h-[calc(100%-80px)] h-[calc(100%-70px)] w-[75%] overflow-hidden bg-white top-[80px]"
         variants={menuVariants}
         initial="hidden"
-        animate={isOpen ? "show" : "hidden"}
+        animate={isOpen && mounted ? "show" : "hidden"}
         onClick={() => {
           setDropDownOpen(-1);
         }}
@@ -473,7 +473,7 @@ function NavbarClient({
             className="w-full px-10 absolute bottom-10 h-[60px] flex flex-col justify-center"
             variants={buttonVariants}
             initial="hidden"
-            animate={isOpen ? "show" : "hidden"}
+            animate={isOpen && mounted ? "show" : "hidden"}
           >
             <a
               href={
