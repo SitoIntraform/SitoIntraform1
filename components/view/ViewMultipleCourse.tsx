@@ -81,7 +81,7 @@ function ViewMultipleCourse({
             whileInView={mounted ? "show" : ""}
             className="regular-normal line-clamp-2 lg:line-clamp-4"
           >
-            {description}
+            <div dangerouslySetInnerHTML={{ __html: description }} />
           </motion.div>}
         </div>
 

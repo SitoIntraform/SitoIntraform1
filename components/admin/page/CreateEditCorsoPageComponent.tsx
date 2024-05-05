@@ -300,33 +300,39 @@ function CreateEditCorsoPageComponent({
 
         <WrapConfigurazioni>
           <Input
-            label="Codice"
-            value={code}
-            onValueChange={(e) => setCode(e.target.value)}
+            label="Prezzo"
+            value={price}
+            onValueChange={(e) => setPrice(e.target.value)}
             disabled={loading}
+            textArea
+            rows={5}
           />
           <Input
             label="Durata"
             value={duration}
             onValueChange={(e) => setDuration(e.target.value)}
             disabled={loading}
+            textArea
+            rows={5}
           />
         </WrapConfigurazioni>
-
-        <div className="my-[16px]">
-          <Input
-            label="Prezzo"
-            value={price}
-            onValueChange={(e) => setPrice(e.target.value)}
-            disabled={loading}
-          />
-        </div>
 
         <div className="my-[16px]">
           <Input
             label="Destinatari"
             value={destination}
             onValueChange={(e) => setDestination(e.target.value)}
+            disabled={loading}
+            textArea
+            rows={5}
+          />
+        </div>
+
+        <div className="my-[16px]">
+          <Input
+            label="Codice"
+            value={code}
+            onValueChange={(e) => setCode(e.target.value)}
             disabled={loading}
           />
         </div>

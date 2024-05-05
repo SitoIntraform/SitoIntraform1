@@ -149,7 +149,7 @@ function ViewSingleCourse({
                   <span className="small-medium md:regular-medium !text-primaryDesign">
                     Durata:{" "}
                   </span>
-                  <span className="small-bold md:regular-bold">{duration}</span>
+                  <span className="small-semibold md:regular-semibold" dangerouslySetInnerHTML={{ __html: duration}} />
                 </div>
               )}
               {code && (
@@ -157,7 +157,7 @@ function ViewSingleCourse({
                   <span className="small-medium md:regular-medium !text-primaryDesign">
                     Codice:{" "}
                   </span>
-                  <span className="small-bold md:regular-bold">{code}</span>
+                  <span className="small-semibold md:regular-semibold">{code}</span>
                 </div>
               )}
               {price && (
@@ -165,7 +165,7 @@ function ViewSingleCourse({
                   <span className="small-medium md:regular-medium !text-primaryDesign">
                     Prezzo:{" "}
                   </span>
-                  <span className="small-bold md:regular-bold">€{price}</span>
+                  <span className="small-semibold md:regular-semibold" dangerouslySetInnerHTML={{ __html: price }} />
                 </div>
               )}
               {destination && (
@@ -173,7 +173,7 @@ function ViewSingleCourse({
                   <span className="small-medium md:regular-medium !text-primaryDesign">
                     Destinatari:{" "}
                   </span>
-                  <span className="small-bold md:regular-bold">{destination}</span>
+                  <span className="small-semibold md:regular-semibold" dangerouslySetInnerHTML={{ __html: destination }} />
                 </div>
               )}
             </motion.div>

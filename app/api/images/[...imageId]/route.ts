@@ -52,6 +52,19 @@ export async function DELETE(
       });
     });
 
+    if(!imageInSec){
+      const course = await prismadb.course.findFirst({
+        where: {
+          image: image?.link,
+        },
+      });
+
+      if(course){
+        imageInSec = true;
+        text = `Impossibile cancellare l'immagine poichè essa è usata come immagine nel corso ${course.name}`;
+      }
+    }
+
     if(imageInSec){
       return new NextResponse(text, { status: 400 });
     }

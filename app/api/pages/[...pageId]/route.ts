@@ -173,16 +173,19 @@ export async function DELETE(
     const linksNav = await prismadb.link.findMany({});
 
     let usedInLinks = false;
+    let text = "";
 
     linksNav.forEach((link) => {
       if (link.link === "/" + pageToDelete?.PageId && link.type === "Single") {
         usedInLinks = true;
+        text = `Non puoi cancellare questa pagina poichè è utilizzata nel link della navbar ${link.titolo}`;
       }
 
       if (link.type === "Multiple") {
         link.multipleLink.forEach((single) => {
           if (single.link === "/" + pageToDelete?.PageId) {
             usedInLinks = true;
+            text = `Non puoi cancellare questa pagina poichè è utilizzata nel link della navbar ${link.titolo}`;
           }
         });
       }
@@ -190,7 +193,7 @@ export async function DELETE(
 
     if (usedInLinks) {
       return new NextResponse(
-        "Non puoi cancellare la pagina poichè è collegata ad un link nella navbar, cancella prima di tutto il link",
+        text,
         { status: 400 }
       );
     }
