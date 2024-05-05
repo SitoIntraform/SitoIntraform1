@@ -105,19 +105,21 @@ export async function POST(
       });
 
       // Poi aggiorna le sezioni attualmente collegate a questa pagina
-      for (const section of sections) {
-        await prisma.section.update({
-          where: {
-            SectionId: section.SectionId,
-          },
-          data: {
-            PageId: pageId[0],
+      await Promise.all(
+        sections.map((section: any) => {
+          prisma.section.update({
+            where: {
+              SectionId: section.SectionId,
+            },
             data: {
-              ...section.data,
-            }, // Assicurati che la struttura di `section.data` sia corretta
-          },
-        });
-      }
+              PageId: pageId[0],
+              data: {
+                ...section.data,
+              }, // Assicurati che la struttura di `section.data` sia corretta
+            },
+          });
+        })
+      );
     });
 
     const page = await prismadb.page.update({
@@ -194,10 +196,7 @@ export async function DELETE(
     });
 
     if (usedInLinks) {
-      return new NextResponse(
-        text,
-        { status: 400 }
-      );
+      return new NextResponse(text, { status: 400 });
     }
 
     const sections = await prismadb.section.findMany({});
@@ -234,10 +233,7 @@ export async function DELETE(
     });
 
     if (used) {
-      return new NextResponse(
-        text,
-        { status: 400 }
-      );
+      return new NextResponse(text, { status: 400 });
     }
 
     if (pageToDelete?.defaltPage == true) {
