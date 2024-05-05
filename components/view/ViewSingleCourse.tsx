@@ -186,7 +186,7 @@ function ViewSingleCourse({
               whileInView={mounted ? "show" : ""}
               className="small-normal md:regular-normal"
             >
-              {description}
+              <div dangerouslySetInnerHTML={{ __html: description}} />
             </motion.div>
           )}
         </div>
