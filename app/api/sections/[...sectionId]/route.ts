@@ -150,24 +150,28 @@ export async function DELETE(
       }
     })
 
+    const allPage = await prismadb.page.findMany();
+
     if(section?.PageId != null) {
+      const page = allPage.find((p) => p.PageId == section?.PageId);
+
       return new NextResponse(
-        "Non puoi cancellare la sezione poichè è usata in una pagina",
+        `Non puoi cancellare la sezione poichè è usata nella pagina ${page?.name}`,
         { status: 400 }
       );
     }
 
-    const sectionInPage = await prismadb.page.findMany({
-      where: {
-        sections: {
-          has: sectionId[0]
-        }
-      }
-    });
+    // const sectionInPage = await prismadb.page.findMany({
+    //   where: {
+    //     sections: {
+    //       has: sectionId[0]
+    //     }
+    //   }
+    // });
 
-    if(sectionInPage.length > 0){
-      return new NextResponse("Non puoi cancellare la sezione poichè è usata in una pagina", { status: 400 });
-    }
+    // if(sectionInPage.length > 0){
+    //   return new NextResponse("Non puoi cancellare la sezione poichè è usata in una pagina", { status: 400 });
+    // }
 
     const sectionDelete = await prismadb.section.delete({
       where: {

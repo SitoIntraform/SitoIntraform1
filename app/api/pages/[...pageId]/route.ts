@@ -151,6 +151,8 @@ export async function DELETE(
       return new NextResponse("Unauthorized", { status: 401 });
     }
 
+    const allPage = await prismadb.page.findMany();
+
     const pageToDelete = await prismadb.page.findFirst({
       where: {
         PageId: pageId[0],
@@ -201,23 +203,30 @@ export async function DELETE(
     const sections = await prismadb.section.findMany({});
 
     let used = false;
+
     console.log(pageId);
 
     sections.forEach((sect) => {
       if (sect.PageId != null || sect.PageId != "") {
         if (sect.data.primaryLink === "/" + pageToDelete?.PageId) {
           used = true;
+          const page = allPage.find((p) => p.PageId === sect.PageId);
+          text = `Non puoi cancellare la pagina poichè è utilizzata come link nella sezione ${sect.name} nella pagina ${page?.name}`;
           return;
         }
 
         if (sect.data.secondaryLink === "/" + pageToDelete?.PageId) {
           used = true;
+          const page = allPage.find((p) => p.PageId === sect.PageId);
+          text = `Non puoi cancellare la pagina poichè è utilizzata come link nella sezione ${sect.name} nella pagina ${page?.name}`;
           return;
         }
 
         sect.data.service.forEach((serv) => {
           if (serv.LinkPage === "/" + pageToDelete?.PageId) {
             used = true;
+            const page = allPage.find((p) => p.PageId === sect.PageId);
+            text = `Non puoi cancellare la pagina poichè è utilizzata come link nella sezione ${sect.name} nella pagina ${page?.name}`;
             return;
           }
         });
@@ -226,7 +235,7 @@ export async function DELETE(
 
     if (used) {
       return new NextResponse(
-        "Non puoi cancellare la pagina poichè è usata come link in un'altra pagina, rimuovi prima il link",
+        text,
         { status: 400 }
       );
     }
@@ -238,28 +247,28 @@ export async function DELETE(
       );
     }
 
-    const links = await prismadb.link.findMany({});
+    // const links = await prismadb.link.findMany({});
 
-    used = false;
+    // used = false;
 
-    links.forEach((link) => {
-      if (link.link === "/" + pageToDelete?.PageId) {
-        used = true;
-      }
+    // links.forEach((link) => {
+    //   if (link.link === "/" + pageToDelete?.PageId) {
+    //     used = true;
+    //   }
 
-      link.multipleLink.forEach((mult) => {
-        if (mult.link === "/" + pageToDelete?.PageId) {
-          used = true;
-        }
-      });
-    });
+    //   link.multipleLink.forEach((mult) => {
+    //     if (mult.link === "/" + pageToDelete?.PageId) {
+    //       used = true;
+    //     }
+    //   });
+    // });
 
-    if (used) {
-      return new NextResponse(
-        "Non puoi cancellare la pagina poichè è collegata ad un link nella navbar, cancella prima il link",
-        { status: 400 }
-      );
-    }
+    // if (used) {
+    //   return new NextResponse(
+    //     "Non puoi cancellare la pagina poichè è collegata ad un link nella navbar, cancella prima il link",
+    //     { status: 400 }
+    //   );
+    // }
 
     const page = await prismadb.page.delete({
       where: {
