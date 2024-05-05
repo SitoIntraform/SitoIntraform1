@@ -204,7 +204,6 @@ function TextWithImageView({
                     __html: section.data.description || "",
                   }}
                 />
-                <div className="absolute -bottom-3 -right-3 border-r-primaryDesign border-8 w-[50px] border-b-accentDesign border-t-transparent border-l-transparent h-[50px]" />
               </motion.div>
             )}
             {(section.data.primaryButton || section.data.secondaryButton) && (
@@ -258,7 +257,7 @@ function TextWithImageView({
                 viewport={{ once: true }}
                 initial={section.data.animation ? "hidden" : ""}
                 whileInView={section.data.animation && mounted ? "show" : ""}
-                className="absolute top-0 w-full h-full"
+                className="top-0 w-full h-full relative"
               >
                 {section.data.images.length > 1 ? (
                   <Swiper
@@ -299,6 +298,7 @@ function TextWithImageView({
                     />
                   </div>
                 )}
+                {/* <div className="absolute top-0 left-0 -rotate-180 border-r-primaryDesign border-8 w-[50px] border-b-accentDesign border-t-transparent border-l-transparent h-[50px]" /> */}
               </motion.div>
             )}
           </div>
