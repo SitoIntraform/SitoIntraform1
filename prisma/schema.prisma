@@ -146,13 +146,12 @@ model Course{
   title String?
 
   description String?
-  price Float?
+  price String?
   duration String?
 
-  code String?
+  destination String?
 
-  haveFile Boolean?
-  fileLink String?
+  code String?
 
   image String?
 }

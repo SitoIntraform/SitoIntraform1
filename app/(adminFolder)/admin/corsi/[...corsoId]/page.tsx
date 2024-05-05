@@ -24,13 +24,12 @@ async function page({
     title: "",
 
     description: "",
-    price: 0,
+    price: "",
+    destination: "",
+    
     duration: "",
 
     code: "",
-
-    haveFile: false,
-    fileLink: "",
     image: "",
   };
 

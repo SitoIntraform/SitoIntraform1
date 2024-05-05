@@ -25,20 +25,18 @@ function ViewSingleCourse({
   duration,
   code,
   image,
-  haveFile,
-  fileLink,
+  destination,
   dev,
 }: {
   name?: string;
   link?: string;
   title?: string;
   description?: string;
-  price?: number;
+  price?: string;
   duration?: string;
   code?: string;
   image?: string;
-  haveFile?: boolean;
-  fileLink?: string;
+  destination?: string;
   dev?: boolean;
 }) {
   const privacyModal = usePrivacyModal();
@@ -116,7 +114,7 @@ function ViewSingleCourse({
           />
         </div>
         <div className="w-full flex-col flex gap-3">
-          {duration && (
+          {/* {duration && (
             <motion.div
               viewport={{ once: true }}
               variants={containerAnimation(0, "up")}
@@ -126,7 +124,7 @@ function ViewSingleCourse({
             >
               {duration}
             </motion.div>
-          )}
+          )} */}
           {title && (
             <motion.div
               viewport={{ once: true }}
@@ -138,7 +136,7 @@ function ViewSingleCourse({
               {title}
             </motion.div>
           )}
-          {(code || price) && (
+          {(code || price || destination || duration) && (
             <motion.div
               viewport={{ once: true }}
               variants={containerAnimation(0, "up")}
@@ -146,6 +144,14 @@ function ViewSingleCourse({
               whileInView={mounted ? "show" : ""}
               className="flex flex-col gap-2"
             >
+              {duration && (
+                <div className="">
+                  <span className="small-medium md:regular-medium !text-primaryDesign">
+                    Durata:{" "}
+                  </span>
+                  <span className="small-bold md:regular-bold">{duration}</span>
+                </div>
+              )}
               {code && (
                 <div className="">
                   <span className="small-medium md:regular-medium !text-primaryDesign">
@@ -160,6 +166,14 @@ function ViewSingleCourse({
                     Prezzo:{" "}
                   </span>
                   <span className="small-bold md:regular-bold">€{price}</span>
+                </div>
+              )}
+              {destination && (
+                <div className="">
+                  <span className="small-medium md:regular-medium !text-primaryDesign">
+                    Destinatari:{" "}
+                  </span>
+                  <span className="small-bold md:regular-bold">{destination}</span>
                 </div>
               )}
             </motion.div>

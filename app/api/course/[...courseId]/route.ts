@@ -24,8 +24,7 @@ export async function POST(
       price,
       duration,
       code,
-      haveFile,
-      fileLink,
+      destination,
       image,
     } = body;
 
@@ -90,8 +89,7 @@ export async function POST(
         price,
         duration,
         code,
-        haveFile,
-        fileLink,
+        destination,
         image,
       },
     });

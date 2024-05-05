@@ -69,12 +69,11 @@ function CorsiPageComponent({
                 link={c.link || ""}
                 title={c.title || ""}
                 description={c.description || ""}
-                price={c.price || 0}
+                price={c.price || ""}
                 duration={c.duration || ""}
                 code={c.code || ""}
                 image={c.image || ""}
-                haveFile={c.haveFile || false}
-                fileLink={c.fileLink || ""}
+                destination={c.destination || ""}
                 dev={true}
               />
             </div>

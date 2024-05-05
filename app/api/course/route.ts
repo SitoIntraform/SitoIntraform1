@@ -20,9 +20,8 @@ export async function POST(req: Request) {
       description,
       price,
       duration,
+      destination,
       code,
-      haveFile,
-      fileLink,
       image,
     } = body;
 
@@ -83,9 +82,8 @@ export async function POST(req: Request) {
         description,
         price,
         duration,
+        destination,
         code,
-        haveFile,
-        fileLink,
         image,
       },
     });

@@ -34,11 +34,10 @@ function CreateEditCorsoPageComponent({
   const [link, setLink] = useState(course.link || "");
   const [title, setTitle] = useState(course.title || "");
   const [description, setDescription] = useState(course.description || "");
-  const [price, setPrice] = useState(course.price || 0);
+  const [price, setPrice] = useState(course.price || "");
   const [duration, setDuration] = useState(course.duration || "");
   const [code, setCode] = useState(course.code || "");
-  const [haveFile, setHaveFile] = useState(course.haveFile || false);
-  const [fileLink, setFileLink] = useState(course.fileLink || "");
+  const [destination, setDestination] = useState(course.destination || "");
   const [image, setImage] = useState(course.image || "");
 
   const onChangeName = (value: string) => {
@@ -63,8 +62,7 @@ function CreateEditCorsoPageComponent({
         price,
         duration,
         code,
-        haveFile,
-        fileLink,
+        destination,
         image,
       });
 
@@ -97,8 +95,7 @@ function CreateEditCorsoPageComponent({
         price,
         duration,
         code,
-        haveFile,
-        fileLink,
+        destination,
         image,
       });
 
@@ -320,8 +317,16 @@ function CreateEditCorsoPageComponent({
           <Input
             label="Prezzo"
             value={price}
-            onValueChange={(e) => setPrice(Number(e.target.value))}
-            type="number"
+            onValueChange={(e) => setPrice(e.target.value)}
+            disabled={loading}
+          />
+        </div>
+
+        <div className="my-[16px]">
+          <Input
+            label="Destinatari"
+            value={destination}
+            onValueChange={(e) => setDestination(e.target.value)}
             disabled={loading}
           />
         </div>
@@ -386,8 +391,6 @@ function CreateEditCorsoPageComponent({
             duration={duration}
             code={code}
             image={image}
-            haveFile={haveFile}
-            fileLink={fileLink}
             dev={true}
           />
         </div>
@@ -407,8 +410,7 @@ function CreateEditCorsoPageComponent({
             duration={duration}
             code={code}
             image={image}
-            haveFile={haveFile}
-            fileLink={fileLink}
+            destination={destination}
             dev={true}
           />
         </div>

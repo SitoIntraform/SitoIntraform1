@@ -15,9 +15,8 @@ function ViewMultipleCourse({
   price,
   duration,
   code,
+  destination,
   image,
-  haveFile,
-  fileLink,
   dev,
   right
 }: {
@@ -25,12 +24,11 @@ function ViewMultipleCourse({
   link?: string;
   title?: string;
   description?: string;
-  price?: number;
+  price?: string;
   duration?: string;
   code?: string;
   image?: string;
-  haveFile?: boolean;
-  fileLink?: string;
+  destination?: string;
   dev?: boolean;
   right?: boolean;
 }) {

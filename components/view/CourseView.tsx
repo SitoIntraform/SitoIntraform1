@@ -128,12 +128,11 @@ function CourseView({
                     link={course?.link || ""}
                     title={course?.title || ""}
                     description={course?.description || ""}
-                    price={course?.price || 0}
+                    price={course?.price || ""}
                     duration={course?.duration || ""}
                     code={course?.code || ""}
                     image={course?.image || ""}
-                    haveFile={course?.haveFile || false}
-                    fileLink={course?.fileLink || ""}
+                    destination={course?.destination || ""}
                     dev={dev}
                     right={i % 2 == 0}
                   />
