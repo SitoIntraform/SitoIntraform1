@@ -188,7 +188,7 @@ function TextWithImageView({
             {section.data.description && (
               <motion.div
                 viewport={{ once: true }}
-                variants={containerAnimation(0.1, section.data.animationType)}
+                variants={containerAnimation(0, section.data.animationType)}
                 initial={section.data.animation ? "hidden" : ""}
                 whileInView={section.data.animation && mounted ? "show" : ""}
                 className="tiny-normal md:small-normal relative text-center lg:text-start"
@@ -209,7 +209,7 @@ function TextWithImageView({
             {(section.data.primaryButton || section.data.secondaryButton) && (
               <motion.div
                 viewport={{ once: true }}
-                variants={containerAnimation(0.2, section.data.animationType)}
+                variants={containerAnimation(0, section.data.animationType)}
                 initial={section.data.animation ? "hidden" : ""}
                 whileInView={section.data.animation && mounted ? "show" : ""}
                 className="flex md:flex-row flex-col gap-6 "
