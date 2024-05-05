@@ -119,19 +119,19 @@ function OnlyTextView({
         }`}
       >
         <div
-          className={`mx-auto flex  items-center justify-center gap-10 lg:gap-20 xl:gap-28 ${
+          className={`mx-auto flex w-full  items-center justify-center gap-10 lg:gap-20 xl:gap-28 ${
             section.data.imagesOnLeft
               ? "flex-col lg:flex-row"
               : "flex-col-reverse lg:flex-row-reverse"
           }`}
         >
-          <div className="w-[100%] md:w-[90%] text-start space-y-7 h-full flex flex-col items-center justify-center">
+          <div className="w-[100%] text-start space-y-7 h-full flex flex-col items-center justify-center">
             {(section.data.textBlack || section.data.textBlue || section.data.textGreen) && <motion.div
               viewport={{ once: true }}
               variants={containerAnimation(0, section.data.animationType)}
               initial={section.data.animation ? "hidden" : ""}
               whileInView={section.data.animation && mounted ? "show" : ""}
-              className="h4Mobile md:h4Desktop xl:h3Desktop relative text-center"
+              className="h4Mobile md:h4Desktop xl:h3Desktop text-center w-full"
             >
               {/* Title */}
 
@@ -170,7 +170,7 @@ function OnlyTextView({
                 variants={containerAnimation(0, section.data.animationType)}
                 initial={section.data.animation ? "hidden" : ""}
                 whileInView={section.data.animation && mounted ? "show" : ""}
-                className="small-normal md:regular-normal relative text-center"
+                className="small-normal md:regular-normal relative text-center w-full"
                 style={{
                   color:
                     section.data.backgroundColor === "#3b3b3b"
@@ -190,7 +190,7 @@ function OnlyTextView({
                 variants={containerAnimation(0, section.data.animationType)}
                 initial={section.data.animation ? "hidden" : ""}
                 whileInView={section.data.animation && mounted ? "show" : ""}
-                className="flex md:flex-row flex-col gap-6 justify-center"
+                className="flex md:flex-row flex-col gap-6 justify-center w-full"
               >
                 {section.data.primaryButton && (
                   <a href={dev ? undefined : link1 ? link1 : undefined} className="cursor-pointer">

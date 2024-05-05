@@ -138,7 +138,7 @@ html {
   }
 
   .containerDesign {
-    @apply max-w-[1440px]  mx-auto md:px-10 px-5;
+    @apply max-w-[1600px]  mx-auto md:px-10 px-5;
   }
 
   .h1Desktop {
