@@ -105,21 +105,26 @@ export async function POST(
       });
 
       // Poi aggiorna le sezioni attualmente collegate a questa pagina
-      await Promise.all(
-        sections.map((section: any) => {
-          prisma.section.update({
-            where: {
-              SectionId: section.SectionId,
-            },
-            data: {
-              PageId: pageId[0],
+
+      const BATCH_SIZE = 10; // Ridimensiona a seconda della capacità del tuo DB e del contesto
+      for (let i = 0; i < sections.length; i += BATCH_SIZE) {
+        const batch = sections.slice(i, i + BATCH_SIZE);
+        await Promise.all(
+          batch.map((section: any) =>
+            prisma.section.update({
+              where: {
+                SectionId: section.SectionId,
+              },
               data: {
-                ...section.data,
-              }, // Assicurati che la struttura di `section.data` sia corretta
-            },
-          });
-        })
-      );
+                PageId: pageId[0],
+                data: {
+                  ...section.data,
+                },
+              },
+            })
+          )
+        );
+      }
     });
 
     const page = await prismadb.page.update({
