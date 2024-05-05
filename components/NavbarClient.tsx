@@ -14,55 +14,6 @@ import { PageType } from "@/types";
 
 const AnimatedLink = motion(Link);
 
-const menuVariants: Variants = {
-  hidden: {
-    x: "150%",
-    opacity: 0,
-    transition: {
-      staggerChildren: 0.1,
-      staggerDirection: -1,
-      delay: 0.9,
-      delayChildren: 0.3,
-      duration: 0.7,
-      type: "spring",
-    },
-  },
-  show: {
-    x: "35%",
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.3,
-      duration: 0.7,
-      type: "spring",
-    },
-  },
-};
-
-const linkVariant: Variants = {
-  hidden: {
-    y: "-100%",
-    opacity: 0,
-  },
-  show: {
-    y: "0%",
-    opacity: 1,
-  },
-};
-
-const buttonVariants: Variants = {
-  hidden: {
-    opacity: 0,
-  },
-  show: {
-    opacity: 1,
-    transition: {
-      delay: 1.5,
-      duration: 0.5,
-      type: "spring",
-    },
-  },
-};
-
 function NavbarClient({
   dev,
   allLinks,
@@ -125,6 +76,55 @@ function NavbarClient({
   const page = allPage.find((p) => p.PageId === buttonLink?.split("/").at(1));
   buttonLinkReal = dev ? undefined : page?.link ? "/" + page?.link : undefined;
 
+  const menuVariants: Variants = {
+    hidden: {
+      x: "150%",
+      opacity: 0,
+      transition: {
+        staggerChildren: 0.1,
+        staggerDirection: -1,
+        delay: 0.1 * links.length + 0.4,
+        delayChildren: 0.3,
+        duration: 0.7,
+        type: "spring",
+      },
+    },
+    show: {
+      x: "35%",
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.3,
+        duration: 0.7,
+        type: "spring",
+      },
+    },
+  };
+
+  const linkVariant: Variants = {
+    hidden: {
+      y: "-100%",
+      opacity: 0,
+    },
+    show: {
+      y: "0%",
+      opacity: 1,
+    },
+  };
+
+  const buttonVariants: Variants = {
+    hidden: {
+      opacity: 0,
+    },
+    show: {
+      opacity: 1,
+      transition: {
+        delay: 0.3 * links.length,
+        duration: 0.5,
+        type: "spring",
+      },
+    },
+  };
+
   return (
     <>
       <div
@@ -144,7 +144,6 @@ function NavbarClient({
                 alt="Link Home"
                 width={logoWidth}
                 height={logoHeight}
-                
               />
             )}
           </a>
@@ -360,8 +359,8 @@ function NavbarClient({
               return (
                 <div key={currentLink?.LinkId}>
                   {currentLink?.type === "Single" ? (
-                    <motion.a
-                      href={dev ? undefined : linkReal ? linkReal : undefined}
+                    <motion.div
+                      // href={dev ? undefined : linkReal ? linkReal : undefined}
                       className={`text-center cursor-pointer large-medium group !font-medium z-[100] ${
                         dropDownOpen === index
                           ? "h-auto z-[200]"
@@ -372,6 +371,9 @@ function NavbarClient({
                         e.stopPropagation();
                         if (currentLink?.type === "Single") {
                           setIsOpen(false);
+                          if (!dev && linkReal) {
+                            router.push(linkReal);
+                          }
                         } else {
                           setDropDownOpen((prev) =>
                             prev === index ? -1 : index
@@ -390,7 +392,7 @@ function NavbarClient({
                           {currentLink?.titolo}
                         </div>
                       </div>
-                    </motion.a>
+                    </motion.div>
                   ) : (
                     <motion.div
                       className={`text-center cursor-pointer large-medium group !font-medium z-[100] ${
