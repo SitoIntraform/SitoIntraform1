@@ -70,7 +70,7 @@ function ViewMultipleCourse({
             initial={"hidden"}
             whileInView={mounted ? "show" : ""}
             onClick={() => { if (!dev && l) router.push(l) }}
-            className="h2Desktop !text-accentDesign !leading-[100%] line-clamp-1 lg:line-clamp-2 cursor-pointer hover:underline underline-offset-1"
+            className="h4Mobile md:h4Desktop xl:h3Desktop !text-accentDesign !leading-[100%] line-clamp-1 lg:line-clamp-2 cursor-pointer hover:underline underline-offset-1"
           >
             {title}
           </motion.div>}

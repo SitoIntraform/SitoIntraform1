@@ -102,7 +102,7 @@ function ViewSingleCourse({
   return (
     <div
       key={dev ? name : mounted ? name : undefined}
-      className={`${dev ? "w-full" : "w-[100vw] pt-[90px] containerDesign"}`}
+      className={`${dev ? "w-full" : "w-[100vw] pt-[90px] containerDesign"} h-auto overflow-hidden`}
     >
       <div className="w-full flex flex-col gap-10 items-start">
         <div className="w-full h-[250px] lg:h-[400px] relative">
@@ -150,6 +150,7 @@ function ViewSingleCourse({
                     Durata:{" "}
                   </span>
                   <span className="small-semibold md:regular-semibold" dangerouslySetInnerHTML={{ __html: duration}} />
+                  <br />
                 </div>
               )}
               {code && (
@@ -158,6 +159,7 @@ function ViewSingleCourse({
                     Codice:{" "}
                   </span>
                   <span className="small-semibold md:regular-semibold">{code}</span>
+                  <br />
                 </div>
               )}
               {price && (
@@ -166,6 +168,7 @@ function ViewSingleCourse({
                     Prezzo:{" "}
                   </span>
                   <span className="small-semibold md:regular-semibold" dangerouslySetInnerHTML={{ __html: price }} />
+                  <br />
                 </div>
               )}
               {destination && (
@@ -174,6 +177,7 @@ function ViewSingleCourse({
                     Destinatari:{" "}
                   </span>
                   <span className="small-semibold md:regular-semibold" dangerouslySetInnerHTML={{ __html: destination }} />
+                  <br />
                 </div>
               )}
             </motion.div>
