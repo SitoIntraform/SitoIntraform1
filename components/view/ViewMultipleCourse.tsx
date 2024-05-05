@@ -55,7 +55,7 @@ function ViewMultipleCourse({
       </div>
       <div className="w-full lg:w-[50%] flex flex-col gap-10">
         <div className="flex flex-col gap-2">
-          {duration && <motion.div
+          {/* {duration && <motion.div
             viewport={{ once: true }}
             variants={containerAnimation(0, "up")}
             initial={"hidden"}
@@ -63,7 +63,7 @@ function ViewMultipleCourse({
             className="font-semibold text-[25px] !text-primaryDesign tracking-wider"
           >
             {duration}
-          </motion.div>}
+          </motion.div>} */}
           {title && <motion.div
             viewport={{ once: true }}
             variants={containerAnimation(0, "up")}

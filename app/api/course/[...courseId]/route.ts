@@ -115,12 +115,14 @@ export async function DELETE(
     const sections = await prismadb.section.findMany({});
 
     let canDelte = true;
+    let text = "";
 
     sections.forEach((section) => {
       if (section.data.courseId && section.data.courseId.length > 0) {
         section.data.courseId.forEach((value) => {
           if (value === courseId[0]) {
             canDelte = false;
+            text = `Non puoi eliminare il corso poichè è usato nella sezione ${section.name}`;
           }
         });
       }
@@ -128,7 +130,7 @@ export async function DELETE(
 
     if (!canDelte) {
       return new NextResponse(
-        "Non puoi eliminare questo corso poichè è utilizzato",
+        text,
         {
           status: 400,
         }
