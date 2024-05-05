@@ -148,81 +148,151 @@ function HeroView({
         <div
           className={`containerDesign h-full w-full flex flex-col items-center justify-center`}
         >
-          {(section.data.description || section.data.textBlue || section.data.textGreen || section.data.primaryButton || section.data.secondaryButton) && <motion.div
-            viewport={{ once: true }}
-            variants={containerAnimation(0, section.data.animationType)}
-            initial={section.data.animation ? "hidden" : ""}
-            whileInView={section.data.animation && mounted ? "show" : ""}
-            className="w-full flex flex-col items-center justify-center gap-6 "
-          >
-            <div className="flex flex-col items-center justify-center py-5 gap-6">
-              {(section.data.textBlue || section.data.textGreen) && <motion.h1
-                viewport={{ once: true }}
-                variants={containerAnimation(0, section.data.animationType)}
-                initial={section.data.animation ? "hidden" : ""}
-                whileInView={section.data.animation && mounted ? "show" : ""}
-                className={`${section.data.hScreen ? "h4Mobile lg:h1Desktop max-w-6xl" : "h4Mobile md:h4Desktop xl:h3Desktop max-w-3xl"}  text-center h1Shadow `}
-              >
-                <span className="text-accentDesign">
-                  {section.data.textBlue}
-                </span>
-                <span> </span>
-                {/* <br className="md:hidden inline-block" /> */}
-                <span className="text-primaryDesign">
-                  {section.data.textGreen}
-                </span>
-              </motion.h1>}
-              {section.data.description && (
-                <motion.p
+          {(section.data.description || section.data.textBlue || section.data.textGreen || section.data.primaryButton || section.data.secondaryButton) && (
+            <>
+              {section.data.animation ? (
+                <motion.div
                   viewport={{ once: true }}
-                  variants={containerAnimation(0.1, section.data.animationType)}
+                  variants={containerAnimation(0, section.data.animationType)}
                   initial={section.data.animation ? "hidden" : ""}
                   whileInView={section.data.animation && mounted ? "show" : ""}
-                  className="small-medium md:regular-normal xl:medium-medium !text-white max-w-4xl text-center"
-                  dangerouslySetInnerHTML={{
-                    __html: section.data.description
-                  }}
-                ></motion.p>
+                  className="w-full flex flex-col items-center justify-center gap-6 "
+                >
+                  <div className="flex flex-col items-center justify-center py-5 gap-6">
+                    {(section.data.textBlue || section.data.textGreen) && <motion.h1
+                      viewport={{ once: true }}
+                      variants={containerAnimation(0, section.data.animationType)}
+                      initial={section.data.animation ? "hidden" : ""}
+                      whileInView={section.data.animation && mounted ? "show" : ""}
+                      className={`${section.data.hScreen ? "h4Mobile lg:h1Desktop max-w-6xl" : "h4Mobile md:h4Desktop xl:h3Desktop max-w-3xl"}  text-center h1Shadow `}
+                    >
+                      <span className="text-accentDesign">
+                        {section.data.textBlue}
+                      </span>
+                      <span> </span>
+                      {/* <br className="md:hidden inline-block" /> */}
+                      <span className="text-primaryDesign">
+                        {section.data.textGreen}
+                      </span>
+                    </motion.h1>}
+                    {section.data.description && (
+                      <motion.p
+                        viewport={{ once: true }}
+                        variants={containerAnimation(0.1, section.data.animationType)}
+                        initial={section.data.animation ? "hidden" : ""}
+                        whileInView={section.data.animation && mounted ? "show" : ""}
+                        className="small-medium md:regular-normal xl:medium-medium !text-white max-w-4xl text-center"
+                        dangerouslySetInnerHTML={{
+                          __html: section.data.description
+                        }}
+                      ></motion.p>
+                    )}
+                  </div>
+                  {(section.data.primaryButton || section.data.secondaryButton) && (
+                    <motion.div
+                      viewport={{ once: true }}
+                      variants={containerAnimation(0.2, section.data.animationType)}
+                      initial={section.data.animation ? "hidden" : ""}
+                      whileInView={section.data.animation && mounted ? "show" : ""}
+                      className="flex md:flex-row flex-col gap-6 mt-[10px]"
+                    >
+                      {section.data.primaryButton && (
+                        <a href={dev ? undefined : link1 ? link1 : undefined} className="cursor-pointer">
+                          <Button
+                            width={section.data.widthPrimaryButton || 0}
+                            height={section.data.heightPrimaryButton || 0}
+                            onClick={() => { }}
+                            className="scale-90 md:scale-100 xl:scale-105"
+                            animation
+                          >
+                            <p>{section.data.primaryButtonText}</p>
+                          </Button>
+                        </a>
+                      )}
+                      {section.data.secondaryButton && (
+                        <a href={dev ? undefined : link2 ? link2 : undefined} className="cursor-pointer">
+                          <Button
+                            width={section.data.widthSecondaryButton || 0}
+                            height={section.data.heightSecondaryButton || 0}
+                            onClick={() => { }}
+                            className="scale-90 md:scale-100 xl:scale-105"
+                            secondary
+                            animation
+                          >
+                            <p>{section.data.secondaryButtonText}</p>
+                          </Button>
+                        </a>
+                      )}
+                    </motion.div>
+                  )}
+                </motion.div>
+              ) : (
+                  <div
+                    className="w-full flex flex-col items-center justify-center gap-6 "
+                  >
+                    <div className="flex flex-col items-center justify-center py-5 gap-6">
+                      {(section.data.textBlue || section.data.textGreen) && <motion.h1
+                        viewport={{ once: true }}
+                        variants={containerAnimation(0, section.data.animationType)}
+                        initial={section.data.animation ? "hidden" : ""}
+                        whileInView={section.data.animation && mounted ? "show" : ""}
+                        className={`${section.data.hScreen ? "h4Mobile lg:h1Desktop max-w-6xl" : "h4Mobile md:h4Desktop xl:h3Desktop max-w-3xl"}  text-center h1Shadow `}
+                      >
+                        <span className="text-accentDesign">
+                          {section.data.textBlue}
+                        </span>
+                        <span> </span>
+                        {/* <br className="md:hidden inline-block" /> */}
+                        <span className="text-primaryDesign">
+                          {section.data.textGreen}
+                        </span>
+                      </motion.h1>}
+                      {section.data.description && (
+                        <p
+                          className="small-medium md:regular-normal xl:medium-medium !text-white max-w-4xl text-center"
+                          dangerouslySetInnerHTML={{
+                            __html: section.data.description
+                          }}
+                        ></p>
+                      )}
+                    </div>
+                    {(section.data.primaryButton || section.data.secondaryButton) && (
+                      <div
+                        className="flex md:flex-row flex-col gap-6 mt-[10px]"
+                      >
+                        {section.data.primaryButton && (
+                          <a href={dev ? undefined : link1 ? link1 : undefined} className="cursor-pointer">
+                            <Button
+                              width={section.data.widthPrimaryButton || 0}
+                              height={section.data.heightPrimaryButton || 0}
+                              onClick={() => { }}
+                              className="scale-90 md:scale-100 xl:scale-105"
+                              animation
+                            >
+                              <p>{section.data.primaryButtonText}</p>
+                            </Button>
+                          </a>
+                        )}
+                        {section.data.secondaryButton && (
+                          <a href={dev ? undefined : link2 ? link2 : undefined} className="cursor-pointer">
+                            <Button
+                              width={section.data.widthSecondaryButton || 0}
+                              height={section.data.heightSecondaryButton || 0}
+                              onClick={() => { }}
+                              className="scale-90 md:scale-100 xl:scale-105"
+                              secondary
+                              animation
+                            >
+                              <p>{section.data.secondaryButtonText}</p>
+                            </Button>
+                          </a>
+                        )}
+                      </div>
+                    )}
+                  </div>
               )}
-            </div>
-            {(section.data.primaryButton || section.data.secondaryButton) && (
-              <motion.div
-                viewport={{ once: true }}
-                variants={containerAnimation(0.2, section.data.animationType)}
-                initial={section.data.animation ? "hidden" : ""}
-                whileInView={section.data.animation && mounted ? "show" : ""}
-                className="flex md:flex-row flex-col gap-6 mt-[10px]"
-              >
-                {section.data.primaryButton && (
-                  <a href={dev ? undefined : link1 ? link1 : undefined} className="cursor-pointer">
-                    <Button
-                      width={section.data.widthPrimaryButton || 0}
-                      height={section.data.heightPrimaryButton || 0}
-                      onClick={() => {}}
-                      className="scale-90 md:scale-100 xl:scale-105"
-                      animation
-                    >
-                      <p>{section.data.primaryButtonText}</p>
-                    </Button>
-                  </a>
-                )}
-                {section.data.secondaryButton && (
-                  <a href={dev ? undefined : link2 ? link2 : undefined} className="cursor-pointer">
-                    <Button
-                      width={section.data.widthSecondaryButton || 0}
-                      height={section.data.heightSecondaryButton || 0}
-                      onClick={() => {}}
-                      className="scale-90 md:scale-100 xl:scale-105"
-                      secondary
-                      animation
-                    >
-                      <p>{section.data.secondaryButtonText}</p>
-                    </Button>
-                  </a>
-                )}
-              </motion.div>
-            )}
-          </motion.div>}
+            </>
+          )}
         </div>
       </div>
     </section>

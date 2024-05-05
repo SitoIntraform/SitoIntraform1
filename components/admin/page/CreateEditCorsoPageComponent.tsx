@@ -394,6 +394,7 @@ function CreateEditCorsoPageComponent({
             title={title}
             description={description}
             price={price}
+            destination={destination}
             duration={duration}
             code={code}
             image={image}

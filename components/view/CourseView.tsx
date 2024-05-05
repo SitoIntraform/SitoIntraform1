@@ -46,7 +46,7 @@ function CourseView({
     setMounted(true);
   }, []);
 
-  if(!mounted){
+  if (!mounted) {
     return null;
   }
 
@@ -79,44 +79,85 @@ function CourseView({
         <div
           className={`mx-auto flex flex-col w-[100%] items-center justify-center gap-6`}
         >
-          {(section.data.textBlack || section.data.textBlue || section.data.textGreen) && <motion.div
-            viewport={{ once: true }}
-            variants={containerAnimation(0, section.data.animationType)}
-            initial={section.data.animation ? "hidden" : ""}
-            whileInView={section.data.animation && mounted ? "show" : ""}
-            className="h4Mobile md:h4Desktop xl:h3Desktop relative text-center"
-          >
-            {/* Title */}
+          {(section.data.textBlack ||
+            section.data.textBlue ||
+            section.data.textGreen) && (
+            <>
+              {section.data.animation ? (
+                <motion.div
+                  viewport={{ once: true }}
+                  variants={containerAnimation(0, section.data.animationType)}
+                  initial={section.data.animation ? "hidden" : ""}
+                  whileInView={section.data.animation && mounted ? "show" : ""}
+                  className="h4Mobile md:h4Desktop xl:h3Desktop relative text-center"
+                >
+                  {/* Title */}
 
-            {section.data.textBlue && section.data.textGreen ? (
-              <>
-                <span className="text-accentDesign">
-                  {section.data.textBlue}
-                </span>{" "}
-                <span className="text-primaryDesign">
-                  {section.data.textGreen}
-                </span>
-              </>
-            ) : section.data.textBlue ? (
-              <>
-                <span className="text-accentDesign">
-                  {section.data.textBlue}
-                </span>
-              </>
-            ) : section.data.textGreen ? (
-              <>
-                <span className="text-primaryDesign">
-                  {section.data.textGreen}
-                </span>
-              </>
-            ) : (
-              <>
-                <span className="text-textDesign">
-                  {section.data.textBlack}
-                </span>
-              </>
-            )}
-          </motion.div>}
+                  {section.data.textBlue && section.data.textGreen ? (
+                    <>
+                      <span className="text-accentDesign">
+                        {section.data.textBlue}
+                      </span>{" "}
+                      <span className="text-primaryDesign">
+                        {section.data.textGreen}
+                      </span>
+                    </>
+                  ) : section.data.textBlue ? (
+                    <>
+                      <span className="text-accentDesign">
+                        {section.data.textBlue}
+                      </span>
+                    </>
+                  ) : section.data.textGreen ? (
+                    <>
+                      <span className="text-primaryDesign">
+                        {section.data.textGreen}
+                      </span>
+                    </>
+                  ) : (
+                    <>
+                      <span className="text-textDesign">
+                        {section.data.textBlack}
+                      </span>
+                    </>
+                  )}
+                </motion.div>
+              ) : (
+                <div className="h4Mobile md:h4Desktop xl:h3Desktop relative text-center">
+                  {/* Title */}
+
+                  {section.data.textBlue && section.data.textGreen ? (
+                    <>
+                      <span className="text-accentDesign">
+                        {section.data.textBlue}
+                      </span>{" "}
+                      <span className="text-primaryDesign">
+                        {section.data.textGreen}
+                      </span>
+                    </>
+                  ) : section.data.textBlue ? (
+                    <>
+                      <span className="text-accentDesign">
+                        {section.data.textBlue}
+                      </span>
+                    </>
+                  ) : section.data.textGreen ? (
+                    <>
+                      <span className="text-primaryDesign">
+                        {section.data.textGreen}
+                      </span>
+                    </>
+                  ) : (
+                    <>
+                      <span className="text-textDesign">
+                        {section.data.textBlack}
+                      </span>
+                    </>
+                  )}
+                </div>
+              )}
+            </>
+          )}
           <div className="w-full flex flex-col items-center justify-center mt-[30px] space-y-[16px] z-[20]">
             {section.data.courseId?.map((c, i) => {
               const course = allCourse.find((course) => course.CorsoId === c);

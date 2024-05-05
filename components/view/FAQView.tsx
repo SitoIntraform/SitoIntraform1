@@ -114,7 +114,6 @@ export default function FAQView({
               style={{
                 opacity: section.data.backgroundImageOpacity / 100,
               }}
-              
             />
           </div>
         </div>
@@ -129,44 +128,85 @@ export default function FAQView({
         <div
           className={`mx-auto flex flex-col w-[100%] items-center justify-center gap-6`}
         >
-          {(section.data.textBlack || section.data.textBlue || section.data.textGreen) && <motion.div
-            viewport={{ once: true }}
-            variants={containerAnimation(0, section.data.animationType)}
-            initial={section.data.animation ? "hidden" : ""}
-            whileInView={section.data.animation && mounted ? "show" : ""}
-            className="h4Mobile md:h4Desktop xl:h3Desktop relative text-center"
-          >
-            {/* Title */}
+          {(section.data.textBlack ||
+            section.data.textBlue ||
+            section.data.textGreen) && (
+            <>
+              {section.data.animation ? (
+                <motion.div
+                  viewport={{ once: true }}
+                  variants={containerAnimation(0, section.data.animationType)}
+                  initial={section.data.animation ? "hidden" : ""}
+                  whileInView={section.data.animation && mounted ? "show" : ""}
+                  className="h4Mobile md:h4Desktop xl:h3Desktop relative text-center"
+                >
+                  {/* Title */}
 
-            {section.data.textBlue && section.data.textGreen ? (
-              <>
-                <span className="text-accentDesign">
-                  {section.data.textBlue}
-                </span>{" "}
-                <span className="text-primaryDesign">
-                  {section.data.textGreen}
-                </span>
-              </>
-            ) : section.data.textBlue ? (
-              <>
-                <span className="text-accentDesign">
-                  {section.data.textBlue}
-                </span>
-              </>
-            ) : section.data.textGreen ? (
-              <>
-                <span className="text-primaryDesign">
-                  {section.data.textGreen}
-                </span>
-              </>
-            ) : (
-              <>
-                <span className="text-textDesign">
-                  {section.data.textBlack}
-                </span>
-              </>
-            )}
-          </motion.div>}
+                  {section.data.textBlue && section.data.textGreen ? (
+                    <>
+                      <span className="text-accentDesign">
+                        {section.data.textBlue}
+                      </span>{" "}
+                      <span className="text-primaryDesign">
+                        {section.data.textGreen}
+                      </span>
+                    </>
+                  ) : section.data.textBlue ? (
+                    <>
+                      <span className="text-accentDesign">
+                        {section.data.textBlue}
+                      </span>
+                    </>
+                  ) : section.data.textGreen ? (
+                    <>
+                      <span className="text-primaryDesign">
+                        {section.data.textGreen}
+                      </span>
+                    </>
+                  ) : (
+                    <>
+                      <span className="text-textDesign">
+                        {section.data.textBlack}
+                      </span>
+                    </>
+                  )}
+                </motion.div>
+              ) : (
+                <div className="h4Mobile md:h4Desktop xl:h3Desktop relative text-center">
+                  {/* Title */}
+
+                  {section.data.textBlue && section.data.textGreen ? (
+                    <>
+                      <span className="text-accentDesign">
+                        {section.data.textBlue}
+                      </span>{" "}
+                      <span className="text-primaryDesign">
+                        {section.data.textGreen}
+                      </span>
+                    </>
+                  ) : section.data.textBlue ? (
+                    <>
+                      <span className="text-accentDesign">
+                        {section.data.textBlue}
+                      </span>
+                    </>
+                  ) : section.data.textGreen ? (
+                    <>
+                      <span className="text-primaryDesign">
+                        {section.data.textGreen}
+                      </span>
+                    </>
+                  ) : (
+                    <>
+                      <span className="text-textDesign">
+                        {section.data.textBlack}
+                      </span>
+                    </>
+                  )}
+                </div>
+              )}
+            </>
+          )}
           <div className="flex flex-col items-center justify-center p-5 w-full gap-4 z-[10]">
             {section.data.faq?.map((f, index) => {
               const isActive = faqOpen === index;
@@ -182,101 +222,230 @@ export default function FAQView({
                 }, 550);
               };
               return (
+                <>
+                  {section.data.animation ? (
+                    <motion.div
+                      viewport={{ once: true }}
+                      variants={containerAnimation(
+                        0,
+                        section.data.animationType
+                      )}
+                      initial={section.data.animation ? "hidden" : ""}
+                      whileInView={
+                        section.data.animation && mounted ? "show" : ""
+                      }
+                      key={index}
+                      className={`w-full border-2 outline-none p-5 rounded-2xl cursor-pointer bg-white ${
+                        isActive
+                          ? "border-primaryDesign"
+                          : "border-accentDesign"
+                      } transition-all duration-200 max-w-[900px]`}
+                      onClick={click}
+                    >
+                      <div className="flex flex-row items-center justify-between">
+                        <p className="regular-semibold md:medium-semibold">
+                          {f.domand}
+                        </p>
+                        <div>
+                          <X
+                            className={`w-8 h-8 text-textDesign/70 transition-transform duration-300 ${
+                              isActive
+                                ? "rotate-180 !text-primaryDesign"
+                                : "rotate-45"
+                            }`}
+                          />
+                        </div>
+                      </div>
+                      <div
+                        className="overflow-hidden transition-all duration-700"
+                        style={{
+                          maxHeight: isActive ? "10000px" : "0px",
+                          opacity: isActive ? 1 : 0,
+                        }}
+                      >
+                        <div className="mt-[10px]">
+                          <div
+                            dangerouslySetInnerHTML={{
+                              __html: f.response || "",
+                            }}
+                          />
+                        </div>
+                      </div>
+                    </motion.div>
+                  ) : (
+                    <div
+                      key={index}
+                      className={`w-full border-2 outline-none p-5 rounded-2xl cursor-pointer bg-white ${
+                        isActive
+                          ? "border-primaryDesign"
+                          : "border-accentDesign"
+                      } transition-all duration-200 max-w-[900px]`}
+                      onClick={click}
+                    >
+                      <div className="flex flex-row items-center justify-between">
+                        <p className="regular-semibold md:medium-semibold">
+                          {f.domand}
+                        </p>
+                        <div>
+                          <X
+                            className={`w-8 h-8 text-textDesign/70 transition-transform duration-300 ${
+                              isActive
+                                ? "rotate-180 !text-primaryDesign"
+                                : "rotate-45"
+                            }`}
+                          />
+                        </div>
+                      </div>
+                      <div
+                        className="overflow-hidden transition-all duration-700"
+                        style={{
+                          maxHeight: isActive ? "10000px" : "0px",
+                          opacity: isActive ? 1 : 0,
+                        }}
+                      >
+                        <div className="mt-[10px]">
+                          <div
+                            dangerouslySetInnerHTML={{
+                              __html: f.response || "",
+                            }}
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  )}
+                </>
+              );
+            })}
+          </div>
+          {section.data.description && (
+            <>
+              {section.data.animation ? (
                 <motion.div
                   viewport={{ once: true }}
                   variants={containerAnimation(0, section.data.animationType)}
                   initial={section.data.animation ? "hidden" : ""}
                   whileInView={section.data.animation && mounted ? "show" : ""}
-                  key={index}
-                  className={`w-full border-2 outline-none p-5 rounded-2xl cursor-pointer bg-white ${
-                    isActive ? "border-primaryDesign" : "border-accentDesign"
-                  } transition-all duration-200 max-w-[900px]`}
-                  onClick={click}
+                  className="small-normal md:regular-normal relative text-center"
+                  style={{
+                    color:
+                      section.data.backgroundColor === "#3b3b3b"
+                        ? "white"
+                        : "#3b3b3b",
+                  }}
                 >
-                  <div className="flex flex-row items-center justify-between">
-                    <p className="regular-semibold md:medium-semibold">{f.domand}</p>
-                    <div>
-                      <X
-                        className={`w-8 h-8 text-textDesign/70 transition-transform duration-300 ${isActive
-                            ? "rotate-180 !text-primaryDesign"
-                            : "rotate-45"
-                          }`}
-                      />
-                    </div>
-                  </div>
                   <div
-                    className="overflow-hidden transition-all duration-700"
-                    style={{
-                      maxHeight: isActive ? "10000px" : "0px",
-                      opacity: isActive ? 1 : 0,
+                    dangerouslySetInnerHTML={{
+                      __html: section.data.description || "",
                     }}
-                  >
-                    <div className="mt-[10px]">
-                      <div dangerouslySetInnerHTML={{
-                        __html: f.response || ""
-                      }} />
-                    </div>
-                  </div>
+                  />
                 </motion.div>
-              );
-            })}
-          </div>
-          {section.data.description && (
-            <motion.div
-              viewport={{ once: true }}
-              variants={containerAnimation(0, section.data.animationType)}
-              initial={section.data.animation ? "hidden" : ""}
-              whileInView={section.data.animation && mounted ? "show" : ""}
-              className="small-normal md:regular-normal relative text-center"
-              style={{
-                color:
-                  section.data.backgroundColor === "#3b3b3b"
-                    ? "white"
-                    : "#3b3b3b",
-              }}
-            >
-              <div dangerouslySetInnerHTML={{
-                __html: section.data.description || ""
-              }} />
-            </motion.div>
+              ) : (
+                <div
+                  className="small-normal md:regular-normal relative text-center"
+                  style={{
+                    color:
+                      section.data.backgroundColor === "#3b3b3b"
+                        ? "white"
+                        : "#3b3b3b",
+                  }}
+                >
+                  <div
+                    dangerouslySetInnerHTML={{
+                      __html: section.data.description || "",
+                    }}
+                  />
+                </div>
+              )}
+            </>
           )}
           <div className="w-full flex flex-col items-center justify-center">
             {(section.data.primaryButton || section.data.secondaryButton) && (
-              <motion.div
-                viewport={{ once: true }}
-                variants={containerAnimation(0.2, section.data.animationType)}
-                initial={section.data.animation ? "hidden" : ""}
-                whileInView={section.data.animation && mounted ? "show" : ""}
-                className="flex md:flex-row flex-col gap-3 md:gap-6"
-              >
-                {section.data.primaryButton && (
-                  <a href={dev ? undefined : link1 ? link1 : undefined} className="cursor-pointer">
-                    <Button
-                      width={section.data.widthPrimaryButton || 0}
-                      height={section.data.heightPrimaryButton || 0}
-                      onClick={() => {}}
-                      className="scale-90 md:scale-100 xl:scale-105"
-                      animation
-                    >
-                      <p>{section.data.primaryButtonText}</p>
-                    </Button>
-                  </a>
+              <>
+                {section.data.animation ? (
+                  <motion.div
+                    viewport={{ once: true }}
+                    variants={containerAnimation(
+                      0.2,
+                      section.data.animationType
+                    )}
+                    initial={section.data.animation ? "hidden" : ""}
+                    whileInView={
+                      section.data.animation && mounted ? "show" : ""
+                    }
+                    className="flex md:flex-row flex-col gap-3 md:gap-6"
+                  >
+                    {section.data.primaryButton && (
+                      <a
+                        href={dev ? undefined : link1 ? link1 : undefined}
+                        className="cursor-pointer"
+                      >
+                        <Button
+                          width={section.data.widthPrimaryButton || 0}
+                          height={section.data.heightPrimaryButton || 0}
+                          onClick={() => {}}
+                          className="scale-90 md:scale-100 xl:scale-105"
+                          animation
+                        >
+                          <p>{section.data.primaryButtonText}</p>
+                        </Button>
+                      </a>
+                    )}
+                    {section.data.secondaryButton && (
+                      <a
+                        href={dev ? undefined : link2 ? link2 : undefined}
+                        className="cursor-pointer"
+                      >
+                        <Button
+                          width={section.data.widthSecondaryButton || 0}
+                          height={section.data.heightSecondaryButton || 0}
+                          onClick={() => {}}
+                          className="scale-90 md:scale-100 xl:scale-105"
+                          secondary
+                          animation
+                        >
+                          <p>{section.data.secondaryButtonText}</p>
+                        </Button>
+                      </a>
+                    )}
+                  </motion.div>
+                ) : (
+                  <div className="flex md:flex-row flex-col gap-3 md:gap-6">
+                    {section.data.primaryButton && (
+                      <a
+                        href={dev ? undefined : link1 ? link1 : undefined}
+                        className="cursor-pointer"
+                      >
+                        <Button
+                          width={section.data.widthPrimaryButton || 0}
+                          height={section.data.heightPrimaryButton || 0}
+                          onClick={() => {}}
+                          className="scale-90 md:scale-100 xl:scale-105"
+                          animation
+                        >
+                          <p>{section.data.primaryButtonText}</p>
+                        </Button>
+                      </a>
+                    )}
+                    {section.data.secondaryButton && (
+                      <a
+                        href={dev ? undefined : link2 ? link2 : undefined}
+                        className="cursor-pointer"
+                      >
+                        <Button
+                          width={section.data.widthSecondaryButton || 0}
+                          height={section.data.heightSecondaryButton || 0}
+                          onClick={() => {}}
+                          className="scale-90 md:scale-100 xl:scale-105"
+                          secondary
+                          animation
+                        >
+                          <p>{section.data.secondaryButtonText}</p>
+                        </Button>
+                      </a>
+                    )}
+                  </div>
                 )}
-                {section.data.secondaryButton && (
-                  <a href={dev ? undefined : link2 ? link2 : undefined} className="cursor-pointer">
-                    <Button
-                      width={section.data.widthSecondaryButton || 0}
-                      height={section.data.heightSecondaryButton || 0}
-                      onClick={() => {}}
-                      className="scale-90 md:scale-100 xl:scale-105"
-                      secondary
-                      animation
-                    >
-                      <p>{section.data.secondaryButtonText}</p>
-                    </Button>
-                  </a>
-                )}
-              </motion.div>
+              </>
             )}
           </div>
         </div>

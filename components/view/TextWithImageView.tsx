@@ -406,7 +406,6 @@ function TextWithImageView({
                         />
                       </div>
                     )}
-                    {/* <div className="absolute top-0 left-0 -rotate-180 border-r-primaryDesign border-8 w-[50px] border-b-accentDesign border-t-transparent border-l-transparent h-[50px]" /> */}
                   </motion.div>
                 ) : (
                   <div className="top-0 w-full h-full relative">
@@ -451,7 +450,6 @@ function TextWithImageView({
                         />
                       </div>
                     )}
-                    {/* <div className="absolute top-0 left-0 -rotate-180 border-r-primaryDesign border-8 w-[50px] border-b-accentDesign border-t-transparent border-l-transparent h-[50px]" /> */}
                   </div>
                 )}
               </>

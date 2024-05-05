@@ -102,7 +102,6 @@ function OnlyTextView({
               style={{
                 opacity: section.data.backgroundImageOpacity / 100,
               }}
-              
             />
           </div>
         </div>
@@ -126,100 +125,214 @@ function OnlyTextView({
           }`}
         >
           <div className="w-[100%] text-start space-y-7 h-full flex flex-col items-center justify-center">
-            {(section.data.textBlack || section.data.textBlue || section.data.textGreen) && <motion.div
-              viewport={{ once: true }}
-              variants={containerAnimation(0, section.data.animationType)}
-              initial={section.data.animation ? "hidden" : ""}
-              whileInView={section.data.animation && mounted ? "show" : ""}
-              className="h4Mobile md:h4Desktop xl:h3Desktop text-center w-full"
-            >
-              {/* Title */}
+            {(section.data.textBlack ||
+              section.data.textBlue ||
+              section.data.textGreen) && (
+              <>
+                {section.data.animation ? (
+                  <motion.div
+                    viewport={{ once: true }}
+                    variants={containerAnimation(0, section.data.animationType)}
+                    initial={section.data.animation ? "hidden" : ""}
+                    whileInView={
+                      section.data.animation && mounted ? "show" : ""
+                    }
+                    className="h4Mobile md:h4Desktop xl:h3Desktop text-center w-full"
+                  >
+                    {/* Title */}
 
-              {section.data.textBlue && section.data.textGreen ? (
-                <>
-                  <span className="text-accentDesign">
-                    {section.data.textBlue}
-                  </span>{" "}
-                  <span className="text-primaryDesign">
-                    {section.data.textGreen}
-                  </span>
-                </>
-              ) : section.data.textBlue ? (
-                <>
-                  <span className="text-accentDesign">
-                    {section.data.textBlue}
-                  </span>
-                </>
-              ) : section.data.textGreen ? (
-                <>
-                  <span className="text-primaryDesign">
-                    {section.data.textGreen}
-                  </span>
-                </>
-              ) : (
-                <>
-                  <span className="text-textDesign">
-                    {section.data.textBlack}
-                  </span>
-                </>
-              )}
-            </motion.div>}
+                    {section.data.textBlue && section.data.textGreen ? (
+                      <>
+                        <span className="text-accentDesign">
+                          {section.data.textBlue}
+                        </span>{" "}
+                        <span className="text-primaryDesign">
+                          {section.data.textGreen}
+                        </span>
+                      </>
+                    ) : section.data.textBlue ? (
+                      <>
+                        <span className="text-accentDesign">
+                          {section.data.textBlue}
+                        </span>
+                      </>
+                    ) : section.data.textGreen ? (
+                      <>
+                        <span className="text-primaryDesign">
+                          {section.data.textGreen}
+                        </span>
+                      </>
+                    ) : (
+                      <>
+                        <span className="text-textDesign">
+                          {section.data.textBlack}
+                        </span>
+                      </>
+                    )}
+                  </motion.div>
+                ) : (
+                  <div className="h4Mobile md:h4Desktop xl:h3Desktop text-center w-full">
+                    {/* Title */}
+
+                    {section.data.textBlue && section.data.textGreen ? (
+                      <>
+                        <span className="text-accentDesign">
+                          {section.data.textBlue}
+                        </span>{" "}
+                        <span className="text-primaryDesign">
+                          {section.data.textGreen}
+                        </span>
+                      </>
+                    ) : section.data.textBlue ? (
+                      <>
+                        <span className="text-accentDesign">
+                          {section.data.textBlue}
+                        </span>
+                      </>
+                    ) : section.data.textGreen ? (
+                      <>
+                        <span className="text-primaryDesign">
+                          {section.data.textGreen}
+                        </span>
+                      </>
+                    ) : (
+                      <>
+                        <span className="text-textDesign">
+                          {section.data.textBlack}
+                        </span>
+                      </>
+                    )}
+                  </div>
+                )}
+              </>
+            )}
             {section.data.description && (
-              <motion.div
-                viewport={{ once: true }}
-                variants={containerAnimation(0, section.data.animationType)}
-                initial={section.data.animation ? "hidden" : ""}
-                whileInView={section.data.animation && mounted ? "show" : ""}
-                className="small-normal md:regular-normal relative text-center w-full"
-                style={{
-                  color:
-                    section.data.backgroundColor === "#3b3b3b"
-                      ? "white"
-                      : "#3b3b3b",
-                }}
-              >
-                <div dangerouslySetInnerHTML={{
-                  __html: section.data.description || ""
-                }} />
-                {/* <div className="absolute -bottom-3 -right-3 border-r-primaryDesign border-8 w-[50px] border-b-accentDesign border-t-transparent border-l-transparent h-[50px]" /> */}
-              </motion.div>
+              <>
+                {section.data.animation ? (
+                  <motion.div
+                    viewport={{ once: true }}
+                    variants={containerAnimation(0, section.data.animationType)}
+                    initial={section.data.animation ? "hidden" : ""}
+                    whileInView={
+                      section.data.animation && mounted ? "show" : ""
+                    }
+                    className="small-normal md:regular-normal relative text-center w-full"
+                    style={{
+                      color:
+                        section.data.backgroundColor === "#3b3b3b"
+                          ? "white"
+                          : "#3b3b3b",
+                    }}
+                  >
+                    <div
+                      dangerouslySetInnerHTML={{
+                        __html: section.data.description || "",
+                      }}
+                    />
+                  </motion.div>
+                ) : (
+                  <div
+                    className="small-normal md:regular-normal relative text-center w-full"
+                    style={{
+                      color:
+                        section.data.backgroundColor === "#3b3b3b"
+                          ? "white"
+                          : "#3b3b3b",
+                    }}
+                  >
+                    <div
+                      dangerouslySetInnerHTML={{
+                        __html: section.data.description || "",
+                      }}
+                    />
+                  </div>
+                )}
+              </>
             )}
             {(section.data.primaryButton || section.data.secondaryButton) && (
-              <motion.div
-                viewport={{ once: true }}
-                variants={containerAnimation(0, section.data.animationType)}
-                initial={section.data.animation ? "hidden" : ""}
-                whileInView={section.data.animation && mounted ? "show" : ""}
-                className="flex md:flex-row flex-col gap-6 justify-center w-full"
-              >
-                {section.data.primaryButton && (
-                  <a href={dev ? undefined : link1 ? link1 : undefined} className="cursor-pointer">
-                    <Button
-                      width={section.data.widthPrimaryButton || 0}
-                      height={section.data.heightPrimaryButton || 0}
-                      onClick={() => {}}
-                      className="scale-90 md:scale-100 xl:scale-105"
-                      animation
-                    >
-                      <p>{section.data.primaryButtonText}</p>
-                    </Button>
-                  </a>
+              <>
+                {section.data.animation ? (
+                  <motion.div
+                    viewport={{ once: true }}
+                    variants={containerAnimation(0, section.data.animationType)}
+                    initial={section.data.animation ? "hidden" : ""}
+                    whileInView={
+                      section.data.animation && mounted ? "show" : ""
+                    }
+                    className="flex md:flex-row flex-col gap-6 justify-center w-full"
+                  >
+                    {section.data.primaryButton && (
+                      <a
+                        href={dev ? undefined : link1 ? link1 : undefined}
+                        className="cursor-pointer"
+                      >
+                        <Button
+                          width={section.data.widthPrimaryButton || 0}
+                          height={section.data.heightPrimaryButton || 0}
+                          onClick={() => {}}
+                          className="scale-90 md:scale-100 xl:scale-105"
+                          animation
+                        >
+                          <p>{section.data.primaryButtonText}</p>
+                        </Button>
+                      </a>
+                    )}
+                    {section.data.secondaryButton && (
+                      <a
+                        href={dev ? undefined : link2 ? link2 : undefined}
+                        className="cursor-pointer"
+                      >
+                        <Button
+                          width={section.data.widthSecondaryButton || 0}
+                          height={section.data.heightSecondaryButton || 0}
+                          onClick={() => {}}
+                          className="scale-90 md:scale-100 xl:scale-105"
+                          secondary
+                          animation
+                        >
+                          <p>{section.data.secondaryButtonText}</p>
+                        </Button>
+                      </a>
+                    )}
+                  </motion.div>
+                ) : (
+                  <div className="flex md:flex-row flex-col gap-6 justify-center w-full">
+                    {section.data.primaryButton && (
+                      <a
+                        href={dev ? undefined : link1 ? link1 : undefined}
+                        className="cursor-pointer"
+                      >
+                        <Button
+                          width={section.data.widthPrimaryButton || 0}
+                          height={section.data.heightPrimaryButton || 0}
+                          onClick={() => {}}
+                          className="scale-90 md:scale-100 xl:scale-105"
+                          animation
+                        >
+                          <p>{section.data.primaryButtonText}</p>
+                        </Button>
+                      </a>
+                    )}
+                    {section.data.secondaryButton && (
+                      <a
+                        href={dev ? undefined : link2 ? link2 : undefined}
+                        className="cursor-pointer"
+                      >
+                        <Button
+                          width={section.data.widthSecondaryButton || 0}
+                          height={section.data.heightSecondaryButton || 0}
+                          onClick={() => {}}
+                          className="scale-90 md:scale-100 xl:scale-105"
+                          secondary
+                          animation
+                        >
+                          <p>{section.data.secondaryButtonText}</p>
+                        </Button>
+                      </a>
+                    )}
+                  </div>
                 )}
-                {section.data.secondaryButton && (
-                  <a href={dev ? undefined : link2 ? link2 : undefined} className="cursor-pointer">
-                    <Button
-                      width={section.data.widthSecondaryButton || 0}
-                      height={section.data.heightSecondaryButton || 0}
-                      onClick={() => {}}
-                      className="scale-90 md:scale-100 xl:scale-105"
-                      secondary
-                      animation
-                    >
-                      <p>{section.data.secondaryButtonText}</p>
-                    </Button>
-                  </a>
-                )}
-              </motion.div>
+              </>
             )}
           </div>
         </div>
