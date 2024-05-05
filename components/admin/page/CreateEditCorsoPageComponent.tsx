@@ -191,8 +191,8 @@ function CreateEditCorsoPageComponent({
             title="Corso"
             description={
               course.CorsoId == "new"
-                ? "Crea qui un nuovo link per la navbar"
-                : "Modifica o elimina un link per una navbar"
+                ? "Crea qui un nuovo corso, per mandare a capo ricordati che puoi usare '<br />'"
+                : "Modifica o elimina un corso, per mandare a capo ricordati che puoi usare '<br />'"
             }
           >
             {course.CorsoId == "new" ? (

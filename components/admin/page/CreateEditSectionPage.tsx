@@ -306,8 +306,8 @@ function CreateEditSectionPage({
             title="Sezione"
             description={
               id == "new"
-                ? "Crea qui la nuova sezione del tuo sito"
-                : "Modifica o elimina la sezione del tuo sito"
+                ? "Crea qui la nuova sezione del tuo sito, per mandare a capo ricordati che puoi usare '<br />'"
+                : "Modifica o elimina la sezione del tuo sito, per mandare a capo ricordati che puoi usare '<br />'"
             }
           >
             {id == "new" ? (
