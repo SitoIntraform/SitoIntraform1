@@ -106,7 +106,7 @@ export async function POST(
         });
 
         // Utilizza un approccio di batch e gestisci ogni batch sequenzialmente
-        const BATCH_SIZE = 10; // Adatta questa dimensione al tuo contesto
+        const BATCH_SIZE = 4; // Adatta questa dimensione al tuo contesto
         for (let i = 0; i < sections.length; i += BATCH_SIZE) {
           const batch = sections.slice(i, i + BATCH_SIZE);
           // Assicurati che tutte le operazioni del batch siano completate prima di procedere
