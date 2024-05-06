@@ -1,5 +1,5 @@
 import Image from "next/image";
-import React, { useEffect, useState } from "react";
+import React, { Suspense, useEffect, useState } from "react";
 import Button from "../Button";
 import { containerAnimation } from "@/lib/animation";
 
@@ -42,18 +42,22 @@ function ViewMultipleCourse({
   }, []);
 
   return (
-    <div key={mounted ? name : undefined} className={`w-full flex ${right ? "flex-col-reverse lg:flex-row-reverse" : "flex-col lg:flex-row"} gap-10 items-center justify-center`}>
-      <div onClick={() => { if(!dev && l) router.push(l)}} className="w-full lg:w-[50%] h-[300px] lg:h-[400px] relative cursor-pointer overflow-hidden">
-        <Image
-          src={image || ""}
-          alt="Immagine"
-          fill
-          objectFit="cover"
-          className="hover:scale-110 transition-all duration-200"
-          
-        />
-      </div>
-      <div className="w-full lg:w-[50%] flex flex-col gap-10">
+    <div key={mounted ? name : undefined} className={`w-full flex ${right ? "flex-col-reverse lg:flex-row-reverse" : "flex-col lg:flex-row"} gap-10 items-center justify-center overflow-hidden`}>
+      <motion.div viewport={{ once: true }}
+        variants={containerAnimation(0, "up")}
+        initial={"hidden"}
+        whileInView={mounted ? "show" : ""} onClick={() => { if(!dev && l) router.push(l)}} className="w-full lg:w-[50%] h-[300px] lg:h-[400px] relative cursor-pointer overflow-hidden">
+        <Suspense fallback={<div>Loading...</div>}>
+          <Image
+            src={image || ""}
+            alt="Immagine"
+            fill
+            objectFit="cover"
+            className="hover:scale-110 transition-all duration-200"
+          />
+        </Suspense>
+      </motion.div>
+      <div className="w-full lg:w-[50%] flex flex-col gap-3 lg:gap-10">
         <div className="flex flex-col gap-2">
           {/* {duration && <motion.div
             viewport={{ once: true }}
@@ -70,7 +74,7 @@ function ViewMultipleCourse({
             initial={"hidden"}
             whileInView={mounted ? "show" : ""}
             onClick={() => { if (!dev && l) router.push(l) }}
-            className="h5Mobile md:h5Desktop xl:h4Desktop !text-accentDesign !leading-[100%] line-clamp-1 lg:line-clamp-2 cursor-pointer hover:underline underline-offset-1"
+            className="h6Mobile md:h5Desktop xl:h4Desktop !text-accentDesign !leading-[100%] lg:line-clamp-2 cursor-pointer hover:underline underline-offset-1"
           >
             {title}
           </motion.div>}
@@ -79,7 +83,7 @@ function ViewMultipleCourse({
             variants={containerAnimation(0, "up")}
             initial={"hidden"}
             whileInView={mounted ? "show" : ""}
-            className="regular-normal line-clamp-2 lg:line-clamp-4"
+            className="regular-normal line-clamp-6 lg:line-clamp-4"
           >
             <div dangerouslySetInnerHTML={{ __html: description }} />
           </motion.div>}
@@ -92,12 +96,12 @@ function ViewMultipleCourse({
           whileInView={mounted ? "show" : ""}
           className="flex flex-row gap-4 w-full"
         >
-          <div onClick={() => { if (!dev && l) router.push(l) }}>
+          <div onClick={() => { if (!dev && l) router.push(l) }} className="w-full lg:max-w-[200px]">
             <Button
               onClick={() => { }}
               height={55}
               animation
-              className="lg:w-[200px] w-full"
+              wfull
             >
               Scopri di più
             </Button>
