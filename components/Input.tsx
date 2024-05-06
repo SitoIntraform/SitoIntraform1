@@ -48,7 +48,7 @@ function Input({
           value={value}
           onChange={onValueChange}
           rows={rows}
-          style={{ resize: "none", overflow: "auto" }}
+          style={{ resize: "vertical", overflow: "auto" }}
           onClick={(e) => {
             e.stopPropagation();
           }}
