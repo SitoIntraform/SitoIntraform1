@@ -31,6 +31,14 @@ export const SectionColumn: ColumnDef<SectionColumnType>[] = [
     },
   },
   {
+    header: "Collegata",
+    cell: ({ row }) => {
+      const page = row.original.SectionId;
+
+      return page === undefined || page == null ? "No" : "Si";
+    },
+  },
+  {
     header: "Animazione",
     cell: ({ row }) => {
       const animation = row.original.animation;

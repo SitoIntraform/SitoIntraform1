@@ -22,6 +22,7 @@ async function SezioniPage() {
         updatedAt: `${updatedAt.getUTCDate()}/${
           updatedAt.getUTCMonth() + 1
         }/${updatedAt.getFullYear()}`,
+        PageId: section.PageId || null || undefined,
       };
     }),
   ];

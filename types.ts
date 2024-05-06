@@ -120,6 +120,7 @@ export type SectionColumnType = {
   pageType: string;
   createdAt: string;
   updatedAt: string;
+  PageId?: string;
 };
 
 export type PageType = {
