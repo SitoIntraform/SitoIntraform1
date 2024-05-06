@@ -130,7 +130,7 @@ function ViewSingleCourse({
               viewport={{ once: true }}
               variants={containerAnimation(0, "up")}
               initial={"hidden"}
-              whileInView={mounted ? "show" : ""}
+              whileInView={mounted ? "show" : {}}
               className="h4Mobile md:h4Desktop xl:h3Desktop !text-accentDesign"
             >
               {title}
@@ -141,7 +141,7 @@ function ViewSingleCourse({
               viewport={{ once: true }}
               variants={containerAnimation(0, "up")}
               initial={"hidden"}
-              whileInView={mounted ? "show" : ""}
+              whileInView={mounted ? "show" : {}}
               className="flex flex-col gap-2"
             >
               {duration && (
@@ -187,7 +187,7 @@ function ViewSingleCourse({
               viewport={{ once: true }}
               variants={containerAnimation(0, "up")}
               initial={"hidden"}
-              whileInView={mounted ? "show" : ""}
+              whileInView={mounted ? "show" : {}}
               className="small-normal md:regular-normal"
             >
               <div dangerouslySetInnerHTML={{ __html: description}} />

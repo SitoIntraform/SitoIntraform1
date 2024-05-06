@@ -154,16 +154,16 @@ function HeroView({
                 <motion.div
                   viewport={{ once: true }}
                   variants={containerAnimation(0, section.data.animationType)}
-                  initial={section.data.animation ? "hidden" : ""}
-                  whileInView={section.data.animation && mounted ? "show" : ""}
+                  initial={section.data.animation ? "hidden" : {}}
+                  whileInView={section.data.animation && mounted ? "show" : {}}
                   className="w-full flex flex-col items-center justify-center gap-6 "
                 >
                   <div className="flex flex-col items-center justify-center py-5 gap-6">
                     {(section.data.textBlue || section.data.textGreen) && <motion.h1
                       viewport={{ once: true }}
                       variants={containerAnimation(0, section.data.animationType)}
-                      initial={section.data.animation ? "hidden" : ""}
-                      whileInView={section.data.animation && mounted ? "show" : ""}
+                      initial={section.data.animation ? "hidden" : {}}
+                      whileInView={section.data.animation && mounted ? "show" : {}}
                       className={`${section.data.hScreen ? "h4Mobile lg:h1Desktop max-w-6xl" : "h4Mobile md:h4Desktop xl:h3Desktop max-w-3xl"}  text-center h1Shadow `}
                     >
                       <span className="text-accentDesign">
@@ -179,8 +179,8 @@ function HeroView({
                       <motion.p
                         viewport={{ once: true }}
                         variants={containerAnimation(0.1, section.data.animationType)}
-                        initial={section.data.animation ? "hidden" : ""}
-                        whileInView={section.data.animation && mounted ? "show" : ""}
+                        initial={section.data.animation ? "hidden" : {}}
+                        whileInView={section.data.animation && mounted ? "show" : {}}
                         className="small-medium md:regular-normal xl:medium-medium !text-white max-w-4xl text-center"
                         dangerouslySetInnerHTML={{
                           __html: section.data.description
@@ -192,8 +192,8 @@ function HeroView({
                     <motion.div
                       viewport={{ once: true }}
                       variants={containerAnimation(0.2, section.data.animationType)}
-                      initial={section.data.animation ? "hidden" : ""}
-                      whileInView={section.data.animation && mounted ? "show" : ""}
+                      initial={section.data.animation ? "hidden" : {}}
+                      whileInView={section.data.animation && mounted ? "show" : {}}
                       className="flex md:flex-row flex-col gap-6 mt-[10px]"
                     >
                       {section.data.primaryButton && (
@@ -234,8 +234,8 @@ function HeroView({
                       {(section.data.textBlue || section.data.textGreen) && <motion.h1
                         viewport={{ once: true }}
                         variants={containerAnimation(0, section.data.animationType)}
-                        initial={section.data.animation ? "hidden" : ""}
-                        whileInView={section.data.animation && mounted ? "show" : ""}
+                        initial={section.data.animation ? "hidden" : {}}
+                        whileInView={section.data.animation && mounted ? "show" : {}}
                         className={`${section.data.hScreen ? "h4Mobile lg:h1Desktop max-w-6xl" : "h4Mobile md:h4Desktop xl:h3Desktop max-w-3xl"}  text-center h1Shadow `}
                       >
                         <span className="text-accentDesign">

@@ -6,7 +6,6 @@ export const containerAnimation = (delay: number, direction?: string) => {
         y: direction === "up" ? "100%" : direction === "down" ? "-10%" : "0",
         x:
           direction === "right" ? "-100%" : direction === "left" ? "100%" : "0",
-
         opacity: 0,
         transition: {
           type: "spring",

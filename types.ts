@@ -107,6 +107,10 @@ export const pageTypes: pageType[] = [
     value: "Course",
     name: "Lista corsi",
   },
+  {
+    value: "LoghiView",
+    name: "Loghi",
+  },
 ];
 
 export type SectionColumnType = {

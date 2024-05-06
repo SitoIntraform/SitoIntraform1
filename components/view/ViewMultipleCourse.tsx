@@ -46,7 +46,7 @@ function ViewMultipleCourse({
       <motion.div viewport={{ once: true }}
         variants={containerAnimation(0, "up")}
         initial={"hidden"}
-        whileInView={mounted ? "show" : ""} onClick={() => { if(!dev && l) router.push(l)}} className="w-full lg:w-[50%] h-[300px] lg:h-[400px] relative cursor-pointer overflow-hidden">
+        whileInView={mounted ? "show" : {}} onClick={() => { if(!dev && l) router.push(l)}} className="w-full lg:w-[50%] h-[300px] lg:h-[400px] relative cursor-pointer overflow-hidden">
         <Suspense fallback={<div>Loading...</div>}>
           <Image
             src={image || ""}
@@ -72,7 +72,7 @@ function ViewMultipleCourse({
             viewport={{ once: true }}
             variants={containerAnimation(0, "up")}
             initial={"hidden"}
-            whileInView={mounted ? "show" : ""}
+            whileInView={mounted ? "show" : {}}
             onClick={() => { if (!dev && l) router.push(l) }}
             className="h6Mobile md:h5Desktop xl:h4Desktop !text-accentDesign !leading-[100%] lg:line-clamp-2 cursor-pointer hover:underline underline-offset-1"
           >
@@ -82,7 +82,7 @@ function ViewMultipleCourse({
             viewport={{ once: true }}
             variants={containerAnimation(0, "up")}
             initial={"hidden"}
-            whileInView={mounted ? "show" : ""}
+            whileInView={mounted ? "show" : {}}
             className="regular-normal line-clamp-6 lg:line-clamp-4"
           >
             <div dangerouslySetInnerHTML={{ __html: description }} />
@@ -93,7 +93,7 @@ function ViewMultipleCourse({
           viewport={{ once: true }}
           variants={containerAnimation(0, "up")}
           initial={"hidden"}
-          whileInView={mounted ? "show" : ""}
+          whileInView={mounted ? "show" : {}}
           className="flex flex-row gap-4 w-full"
         >
           <div onClick={() => { if (!dev && l) router.push(l) }} className="w-full lg:max-w-[200px]">

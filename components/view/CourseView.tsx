@@ -87,8 +87,8 @@ function CourseView({
                 <motion.div
                   viewport={{ once: true }}
                   variants={containerAnimation(0, section.data.animationType)}
-                  initial={section.data.animation ? "hidden" : ""}
-                  whileInView={section.data.animation && mounted ? "show" : ""}
+                  initial={section.data.animation ? "hidden" : {}}
+                  whileInView={section.data.animation && mounted ? "show" : {}}
                   className="h4Mobile md:h4Desktop xl:h3Desktop relative text-center"
                 >
                   {/* Title */}

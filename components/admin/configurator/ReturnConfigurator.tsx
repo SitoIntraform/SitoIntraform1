@@ -9,6 +9,7 @@ import FAQConfigurator from "./FAQConfigurator";
 import ServiceConfigurator from "./ServiceConfigurator";
 import CourseConfigurator from "./CourseConfigurator";
 import { Course } from "@prisma/client";
+import LoghiConfigurator from "./LoghiConfigurator";
 
 interface ConfiguratorInterfaceProps {
   animation: boolean;
@@ -151,6 +152,7 @@ function ReturnConfigurator({
   allCourse,
 
 }: ConfiguratorInterfaceProps) {
+
   if (pageType === "Hero") {
     return (
       <HeroConfigurator
@@ -624,7 +626,67 @@ function ReturnConfigurator({
         allCourse={allCourse}
       />
     );
+  } else if (pageType === "LoghiView") {
+    return (
+      <LoghiConfigurator
+        animation={animation}
+        setAnimation={setAnimation}
+        animationType={animationType}
+        setAnimationType={setAnimationType}
+        backgroundImages={backgroundImages}
+        setBackgroundImages={setBackgroundImages}
+        backgroundImageOpacity={backgroundImageOpacity}
+        setBackgroundImageOpacity={setBackgroundImageOpacity}
+        backgroundColor={backgroundColor}
+        setBackgroundColor={setBackgroundColor}
+        images={images}
+        setImages={setImages}
+        imagesOnLeft={imagesOnLeft}
+        setImagesOnLeft={setImagesOnLeft}
+        textBlue={textBlue}
+        setTextBlue={setTextBlue}
+        textGreen={textGreen}
+        setTextGreen={setTextGreen}
+        textBlack={textBlack}
+        setTextBlack={setTextBlack}
+        description={description}
+        setDescription={setDescription}
+        carouselDots={carouselDots}
+        setCarouselDots={setCarouselDots}
+        carouselButtons={carouselButtons}
+        setCarouselButtons={setCarouselButtons}
+        service={service}
+        setService={setService}
+        hScreen={hScreen}
+        setHScreen={setHScreen}
+        space={space}
+        setSpace={setSpace}
+        primaryButton={primaryButton}
+        setPrimaryButton={setPrimaryButton}
+        primaryButtonText={primaryButtonText}
+        setPrimaryButtonText={setPrimaryButtonText}
+        widthPrimaryButton={widthPrimaryButton}
+        setWidthPrimaryButton={setWidthPrimaryButton}
+        heightPrimaryButton={heightPrimaryButton}
+        setHeightPrimaryButton={setHeightPrimaryButton}
+        secondaryButton={secondaryButton}
+        setSecondaryButton={setSecondaryButton}
+        secondaryButtonText={secondaryButtonText}
+        setSecondaryButtonText={setSecondaryButtonText}
+        widthSecondaryButton={widthSecondaryButton}
+        setWidthSecondaryButton={setWidthSecondaryButton}
+        heightSecondaryButton={heightSecondaryButton}
+        setHeightSecondaryButton={setHeightSecondaryButton}
+        faq={faq}
+        setFaq={setFaq}
+        courseId={courseId}
+        setCourseId={setCourseId}
+        disabled={disabled}
+        totalImage={totalImage}
+      />
+    );
   }
+
 }
 
 export default ReturnConfigurator;

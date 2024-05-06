@@ -9,6 +9,7 @@ import ContactView from "./ContactView";
 import FAQView from "./FAQView";
 import ServiceView from "./ServiceView";
 import CourseView from "./CourseView";
+import LoghiView from "./LoghiView";
 
 function ReturnViewComponent({
   pageType,
@@ -41,6 +42,8 @@ function ReturnViewComponent({
     return <ServiceView dev={dev} section={section} allPages={allPages} allSections={allSection} />;
   } else if (pageType === "Course") {
     return <CourseView allCourse={allCourse} dev={dev} section={section} allPages={allPages} allSections={allSection} />;
+  } else if (pageType === "LoghiView") {
+    return <LoghiView dev={dev} section={section} allPages={allPages} allSections={allSection} />;
   }
 }
 

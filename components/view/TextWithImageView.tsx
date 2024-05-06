@@ -150,9 +150,9 @@ function TextWithImageView({
                   <motion.div
                     viewport={{ once: true }}
                     variants={containerAnimation(0, section.data.animationType)}
-                    initial={section.data.animation ? "hidden" : ""}
+                    initial={section.data.animation ? "hidden" : {}}
                     whileInView={
-                      section.data.animation && mounted ? "show" : ""
+                      section.data.animation && mounted ? "show" : {}
                     }
                     className="h4Mobile md:h5Desktop xl:h4Desktop relative text-center lg:text-start"
                   >
@@ -229,9 +229,9 @@ function TextWithImageView({
                   <motion.div
                     viewport={{ once: true }}
                     variants={containerAnimation(0, section.data.animationType)}
-                    initial={section.data.animation ? "hidden" : ""}
+                    initial={section.data.animation ? "hidden" : {}}
                     whileInView={
-                      section.data.animation && mounted ? "show" : ""
+                      section.data.animation && mounted ? "show" : {}
                     }
                     className="tiny-normal md:small-normal relative text-center lg:text-start"
                     style={{
@@ -272,9 +272,9 @@ function TextWithImageView({
                   <motion.div
                     viewport={{ once: true }}
                     variants={containerAnimation(0, section.data.animationType)}
-                    initial={section.data.animation ? "hidden" : ""}
+                    initial={section.data.animation ? "hidden" : {}}
                     whileInView={
-                      section.data.animation && mounted ? "show" : ""
+                      section.data.animation && mounted ? "show" : {}
                     }
                     className="flex md:flex-row flex-col gap-6 "
                   >
@@ -359,9 +359,9 @@ function TextWithImageView({
                   <motion.div
                     variants={containerAnimation(0, section.data.animationType)}
                     viewport={{ once: true }}
-                    initial={section.data.animation ? "hidden" : ""}
+                    initial={section.data.animation ? "hidden" : {}}
                     whileInView={
-                      section.data.animation && mounted ? "show" : ""
+                      section.data.animation && mounted ? "show" : {}
                     }
                     className="top-0 w-full h-full relative"
                   >

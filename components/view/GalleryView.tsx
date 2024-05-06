@@ -141,8 +141,8 @@ function GalleryView({
                 <motion.div
                   viewport={{ once: true }}
                   variants={containerAnimation(0, section.data.animationType)}
-                  initial={section.data.animation ? "hidden" : ""}
-                  whileInView={section.data.animation && mounted ? "show" : ""}
+                  initial={section.data.animation ? "hidden" : {}}
+                  whileInView={section.data.animation && mounted ? "show" : {}}
                   className="h4Mobile md:h4Desktop xl:h3Desktop relative text-center"
                 >
                   {/* Title */}
@@ -218,8 +218,8 @@ function GalleryView({
                 <motion.div
                   variants={containerAnimation(0, section.data.animationType)}
                   viewport={{ once: true }}
-                  initial={section.data.animation ? "hidden" : ""}
-                  whileInView={section.data.animation && mounted ? "show" : ""}
+                  initial={section.data.animation ? "hidden" : {}}
+                  whileInView={section.data.animation && mounted ? "show" : {}}
                   className="w-full h-[350px] md:h-[500px]"
                 >
                   {section.data.images && section.data.images.length > 1 ? (
@@ -336,8 +336,8 @@ function GalleryView({
                 <motion.div
                   viewport={{ once: true }}
                   variants={containerAnimation(0.2, section.data.animationType)}
-                  initial={section.data.animation ? "hidden" : ""}
-                  whileInView={section.data.animation && mounted ? "show" : ""}
+                  initial={section.data.animation ? "hidden" : {}}
+                  whileInView={section.data.animation && mounted ? "show" : {}}
                   className="flex md:flex-row flex-col gap-3 md:gap-6"
                 >
                   {section.data.primaryButton && (
