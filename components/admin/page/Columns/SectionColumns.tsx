@@ -33,9 +33,8 @@ export const SectionColumn: ColumnDef<SectionColumnType>[] = [
   {
     header: "Collegata",
     cell: ({ row }) => {
-      const page = row.original.SectionId;
-
-      return page === undefined || page == null || page == "" ? "No" : "Si";
+      const page = row.original.PageId;
+      return page == undefined || page == null || page == "" ? "No" : "Si";
     },
   },
   {
