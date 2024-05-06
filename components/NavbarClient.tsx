@@ -361,10 +361,10 @@ function NavbarClient({
                   {currentLink?.type === "Single" ? (
                     <motion.div
                       // href={dev ? undefined : linkReal ? linkReal : undefined}
-                      className={`text-center cursor-pointer large-medium group !font-medium z-[100] ${
+                      className={`text-center cursor-pointer large-medium group !font-medium ${
                         dropDownOpen === index
-                          ? "h-auto z-[200]"
-                          : "h-[30px] overflow-hidden z-[100]"
+                          ? "h-auto"
+                          : "h-[30px] overflow-hidden"
                       }`}
                       variants={linkVariant}
                       onClick={(e) => {
@@ -395,9 +395,9 @@ function NavbarClient({
                     </motion.div>
                   ) : (
                     <motion.div
-                      className={`text-center cursor-pointer large-medium group !font-medium z-[100] ${
+                      className={`text-center cursor-pointer large-medium group !font-medium z-[201] ${
                         dropDownOpen === index
-                          ? "h-auto z-[200]"
+                          ? "h-auto"
                           : "h-[30px] overflow-hidden z-[100]"
                       }`}
                       variants={linkVariant}
@@ -417,10 +417,10 @@ function NavbarClient({
                           isActive
                             ? "text-accentDesign"
                             : "group-hover:text-primaryDesign"
-                        } transition-all duration-300 relative flex flex-col items-center `}
+                        } transition-all duration-300 relative flex flex-col items-center z-[-100]`}
                       >
-                        <div className="flex flex-row items-center gap-1">
-                          {currentLink?.titolo}
+                        <div className="flex flex-row items-center gap-1 ">
+                          <div>{currentLink?.titolo}</div>
                           {currentLink?.type === "Multiple" && (
                             <ChevronDown className="w-4 h-4 text-primaryDesign" />
                           )}
@@ -429,10 +429,12 @@ function NavbarClient({
                           <>
                             <div
                               className={`${
-                                dropDownOpen === index ? "h-auto" : "h-0"
-                              } absolute top-[110%] overflow-hidden bg-primaryDesign transition-all duration-200 rounded-sm`}
+                                dropDownOpen === index
+                                  ? "h-auto z-[202]"
+                                  : "h-0"
+                              }  overflow-hidden bg-primaryDesign transition-all duration-200 rounded-sm `}
                             >
-                              <div className="flex flex-col items-center justify-between gap-3 rounded-md px-8 py-5">
+                              <div className="flex flex-col items-center justify-between gap-3 rounded-md px-8 py-5 relative z-[200]">
                                 {currentLink.multipleLink.map((l, index2) => {
                                   let linkReal2 = "";
 
@@ -445,7 +447,7 @@ function NavbarClient({
                                   return (
                                     <a
                                       key={index2}
-                                      className="cursor-pointer text-white group/link"
+                                      className="cursor-pointer text-white group/link z-[203] bg-primaryDesign"
                                       onClick={(e) => {
                                         setIsOpen(false);
                                         e.stopPropagation();
@@ -455,7 +457,7 @@ function NavbarClient({
                                       <p>{l.testo}</p>
                                       <div
                                         className={`h-[1px] w-0 group-hover/link:w-full bg-white
-                                    transition-all duration-300  rounded-full`}
+                                    transition-all duration-300  rounded-full z-[203]`}
                                       />
                                     </a>
                                   );
