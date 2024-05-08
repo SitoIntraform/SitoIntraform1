@@ -48,8 +48,6 @@ export default function FAQView({
 
   const [faqOpen, setFaqOpen] = useState(-1);
 
-  const scrollBar = useScrollBar();
-
   useEffect(() => {
     if (dev) {
       setLink1("");
@@ -217,9 +215,9 @@ export default function FAQView({
                 } else {
                   setFaqOpen(index);
                 }
-                setTimeout(() => {
-                  scrollBar.onSet();
-                }, 550);
+                // setTimeout(() => {
+                //   scrollBar.onSet();
+                // }, 550);
               };
               return (
                 <>
@@ -263,7 +261,7 @@ export default function FAQView({
                           opacity: isActive ? 1 : 0,
                         }}
                       >
-                        <div className="mt-[10px]">
+                        <div className="mt-[10px] text-justify">
                           <div
                             dangerouslySetInnerHTML={{
                               __html: f.response || "",
@@ -303,7 +301,7 @@ export default function FAQView({
                           opacity: isActive ? 1 : 0,
                         }}
                       >
-                        <div className="mt-[10px]">
+                        <div className="mt-[10px] text-justify">
                           <div
                             dangerouslySetInnerHTML={{
                               __html: f.response || "",
@@ -325,7 +323,7 @@ export default function FAQView({
                   variants={containerAnimation(0, section.data.animationType)}
                   initial={section.data.animation ? "hidden" : {}}
                   whileInView={section.data.animation && mounted ? "show" : {}}
-                  className="small-normal md:regular-normal relative text-center"
+                  className="small-normal md:regular-normal relative text-justify"
                   style={{
                     color:
                       section.data.backgroundColor === "#3b3b3b"
@@ -341,7 +339,7 @@ export default function FAQView({
                 </motion.div>
               ) : (
                 <div
-                  className="small-normal md:regular-normal relative text-center"
+                  className="small-normal md:regular-normal relative text-justify"
                   style={{
                     color:
                       section.data.backgroundColor === "#3b3b3b"

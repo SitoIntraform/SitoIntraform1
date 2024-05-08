@@ -16,8 +16,7 @@ const config = {
     },
     extend: {
       fontFamily: {
-        sans: "Montserrat",
-        roboto: "Montserrat",
+        osvald: "Osawlad",
       },
       fontSize: {
         h1DesktopFont: "72px",

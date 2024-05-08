@@ -1,10 +1,9 @@
 import type { Metadata } from "next";
-import { Inter, Montserrat, Open_Sans, Poppins, Roboto } from "next/font/google";
+import { Inter, Montserrat, Oswald,  } from "next/font/google";
 import "./globals.css";
 import ToastProvider from "@/providers/ToastProvider";
 
-const sans = Montserrat({ subsets: ["latin"], weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"] });
-const roboto = Roboto({ subsets: ["latin"], weight: ["100", "300", "400", "500",  "700", "900"] });
+const osvald = Oswald({weight: ["300", "400", "500", "700", "200", "600"], subsets: ["latin"]})
 
 export const metadata: Metadata = {
   title: "Intraform, Pinerolo TO",
@@ -25,7 +24,7 @@ export default function RootLayout({
         <meta name="google" content="notranslate" />
         <link rel="icon" href="/favicon.png" sizes="any" />
       </head>
-      <body className={`${sans.className} ${roboto.className} max-w-[100vw] overflow-x-hidden`}>
+      <body className={`${osvald.className} max-w-[100vw] overflow-x-hidden`}>
         <ToastProvider />
         {children}
       </body>

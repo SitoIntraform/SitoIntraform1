@@ -233,7 +233,7 @@ function TextWithImageView({
                     whileInView={
                       section.data.animation && mounted ? "show" : {}
                     }
-                    className="tiny-normal md:small-normal relative text-center lg:text-start"
+                    className="tiny-normal md:small-normal relative text-justify lg:text-justify"
                     style={{
                       color:
                         section.data.backgroundColor === "#3b3b3b"
@@ -249,7 +249,7 @@ function TextWithImageView({
                   </motion.div>
                 ) : (
                   <div
-                    className="tiny-normal md:small-normal relative text-center lg:text-start"
+                    className="tiny-normal md:small-normal relative text-justify lg:text-justify"
                     style={{
                       color:
                         section.data.backgroundColor === "#3b3b3b"

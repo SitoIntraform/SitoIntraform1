@@ -148,7 +148,7 @@ function NavbarClient({
             )}
           </a>
 
-          <div className="lg:flex hidden flex-row items-center xl:gap-10 lg:gap-5 absolute top-[50%] -translate-y-[50%] left-[50%] -translate-x-[50%]">
+          <div className="lg:flex hidden flex-row items-center xl:gap-10 lg:gap-3 ">
             {links.map((link, index) => {
               const currentLink = allLinks.find((l) => l.LinkId === link);
               const pageId = currentLink?.link?.split("/")[1];
@@ -211,7 +211,7 @@ function NavbarClient({
                                   : "group-hover:text-primaryDesign"
                               }`
                             : ""
-                        } transition-all duration-300 relative flex flex-row items-center gap-1`}
+                        } transition-all duration-300 relative flex flex-row items-center gap-[2px]`}
                       >
                         {currentLink?.titolo}
                         {currentLink?.type === "Multiple" && (
