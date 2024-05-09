@@ -81,6 +81,7 @@ function ShowPageComponent({
                 code={course?.code || ""}
                 image={course?.image || ""}
                 destination={course?.destination || ""}
+                imageBottomDescription={course?.imageBottomDescription || ""}
                 dev={false}
               />
               <div className="mt-[20px]"></div>

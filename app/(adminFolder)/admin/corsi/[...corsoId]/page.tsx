@@ -31,6 +31,7 @@ async function page({
 
     code: "",
     image: "",
+    imageBottomDescription: "",
   };
 
   if (corsoId[0] !== "new") {

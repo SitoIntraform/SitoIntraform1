@@ -26,6 +26,7 @@ export async function POST(
       code,
       destination,
       image,
+      imageBottomDescription
     } = body;
 
     const existingPage = await prismadb.page.findFirst({
@@ -91,6 +92,7 @@ export async function POST(
         code,
         destination,
         image,
+        imageBottomDescription
       },
     });
 

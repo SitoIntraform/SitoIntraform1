@@ -23,6 +23,7 @@ export async function POST(req: Request) {
       destination,
       code,
       image,
+      imageBottomDescription
     } = body;
 
     const existingPage = await prismadb.page.findMany({
@@ -85,6 +86,7 @@ export async function POST(req: Request) {
         destination,
         code,
         image,
+        imageBottomDescription,
       },
     });
 

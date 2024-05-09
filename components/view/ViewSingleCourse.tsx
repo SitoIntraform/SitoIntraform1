@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
@@ -26,6 +26,7 @@ function ViewSingleCourse({
   code,
   image,
   destination,
+  imageBottomDescription,
   dev,
 }: {
   name?: string;
@@ -38,6 +39,7 @@ function ViewSingleCourse({
   image?: string;
   destination?: string;
   dev?: boolean;
+  imageBottomDescription?: string;
 }) {
   const privacyModal = usePrivacyModal();
 
@@ -95,23 +97,20 @@ function ViewSingleCourse({
     setMounted(true);
   }, []);
 
-  if(!mounted){
+  if (!mounted) {
     return null;
   }
 
   return (
     <div
       key={dev ? name : mounted ? name : undefined}
-      className={`${dev ? "w-full" : "w-[100vw] pt-[90px] containerDesign"} h-auto overflow-hidden`}
+      className={`${
+        dev ? "w-full" : "w-[100vw] pt-[90px] containerDesign"
+      } h-auto overflow-hidden`}
     >
       <div className="w-full flex flex-col gap-10 items-start">
         <div className="w-full h-[250px] lg:h-[400px] relative">
-          <Image 
-            src={image || ""}
-            alt="Image"
-            fill
-            objectFit="cover"
-          />
+          <Image src={image || ""} alt="Image" fill objectFit="cover" />
         </div>
         <div className="w-full flex-col flex gap-3">
           {/* {duration && (
@@ -149,7 +148,10 @@ function ViewSingleCourse({
                   <span className="small-medium md:regular-medium !text-primaryDesign">
                     Durata:{" "}
                   </span>
-                  <span className="small-semibold md:regular-semibold" dangerouslySetInnerHTML={{ __html: duration}} />
+                  <span
+                    className="small-semibold md:regular-semibold"
+                    dangerouslySetInnerHTML={{ __html: duration }}
+                  />
                   <br />
                 </div>
               )}
@@ -158,7 +160,9 @@ function ViewSingleCourse({
                   <span className="small-medium md:regular-medium !text-primaryDesign">
                     Codice:{" "}
                   </span>
-                  <span className="small-semibold md:regular-semibold">{code}</span>
+                  <span className="small-semibold md:regular-semibold">
+                    {code}
+                  </span>
                   <br />
                 </div>
               )}
@@ -167,7 +171,10 @@ function ViewSingleCourse({
                   <span className="small-medium md:regular-medium !text-primaryDesign">
                     Prezzo:{" "}
                   </span>
-                  <span className="small-semibold md:regular-semibold" dangerouslySetInnerHTML={{ __html: price }} />
+                  <span
+                    className="small-semibold md:regular-semibold"
+                    dangerouslySetInnerHTML={{ __html: price }}
+                  />
                   <br />
                 </div>
               )}
@@ -176,7 +183,10 @@ function ViewSingleCourse({
                   <span className="small-medium md:regular-medium !text-primaryDesign">
                     Destinatari:{" "}
                   </span>
-                  <span className="small-semibold md:regular-semibold" dangerouslySetInnerHTML={{ __html: destination }} />
+                  <span
+                    className="small-semibold md:regular-semibold"
+                    dangerouslySetInnerHTML={{ __html: destination }}
+                  />
                   <br />
                 </div>
               )}
@@ -190,8 +200,28 @@ function ViewSingleCourse({
               whileInView={mounted ? "show" : {}}
               className="small-normal md:regular-normal"
             >
-              <div dangerouslySetInnerHTML={{ __html: description}} />
+              <div dangerouslySetInnerHTML={{ __html: description }} />
             </motion.div>
+          )}
+          {imageBottomDescription && (
+            <div
+              className={`mx-auto relative h-[200px] w-[100%] overflow-hidden`}
+            >
+              <motion.div
+                viewport={{ once: true }}
+                variants={containerAnimation(0, "up")}
+                initial={"hidden"}
+                whileInView={mounted ? "show" : {}}
+                className="h-full w-full relative"
+              >
+                <Image
+                  src={imageBottomDescription}
+                  alt="Loghi"
+                  fill
+                  className="object-contain"
+                />
+              </motion.div>
+            </div>
           )}
         </div>
       </div>

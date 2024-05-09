@@ -154,4 +154,5 @@ model Course{
   code String?
 
   image String?
+  imageBottomDescription String?
 }

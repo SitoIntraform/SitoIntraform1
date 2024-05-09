@@ -74,6 +74,7 @@ function CorsiPageComponent({
                 code={c.code || ""}
                 image={c.image || ""}
                 destination={c.destination || ""}
+                imageBottomDescription={c.imageBottomDescription || ""}
                 dev={true}
               />
             </div>

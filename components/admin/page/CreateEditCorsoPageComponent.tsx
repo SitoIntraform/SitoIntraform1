@@ -39,6 +39,7 @@ function CreateEditCorsoPageComponent({
   const [code, setCode] = useState(course.code || "");
   const [destination, setDestination] = useState(course.destination || "");
   const [image, setImage] = useState(course.image || "");
+  const [imageBottomDescription, setImageBottomDescription] = useState(course.imageBottomDescription || "");
 
   const onChangeName = (value: string) => {
     setName(value);
@@ -64,6 +65,7 @@ function CreateEditCorsoPageComponent({
         code,
         destination,
         image,
+        imageBottomDescription
       });
 
       if (req.status === 200) {
@@ -97,6 +99,7 @@ function CreateEditCorsoPageComponent({
         code,
         destination,
         image,
+        imageBottomDescription
       });
 
       if (req.status === 200) {
@@ -137,6 +140,9 @@ function CreateEditCorsoPageComponent({
 
   const [selectImageModalOpen, setSelectImageModalOpen] = useState(false);
   const [uploadImageModalOpen, setUploadImageModalOpen] = useState(false);
+
+  const [selectImageOnlyModalOpen, setSelectImageOnlyModalOpen] = useState(false);
+  const [uploadImageOnlyModalOpen, setUploadImageOnlyModalOpen] = useState(false);
 
   const onDelteImage = () => {
     setImage("");
@@ -383,6 +389,77 @@ function CreateEditCorsoPageComponent({
 
       <div className="containerDesign">
         <HeaderPage
+          title={"Immagine sotto descrizione"}
+          description={"Modifica l'immagine sotto la descrizione"}
+        >
+          <Button
+            secondary
+            onClick={() => {
+              setSelectImageOnlyModalOpen(true);
+            }}
+            animation
+            disabled={loading}
+            width={220}
+            height={50}
+          >
+            <div className="flex gap-2 flex-row normal-medium !text-white">
+              <Upload />
+              Seleziona Immagine
+            </div>
+          </Button>
+        </HeaderPage>
+        <div className="my-5 flex items-center gap-4 flex-wrap justify-center">
+          {imageBottomDescription != "" && (
+            <div className="relative w-[250px] h-[250px] rounded-md overflow-hidden group">
+              <Button
+                className="hidden group-hover:flex absolute z-10 right-0 w-full h-full items-center justify-center"
+                onClick={() => {
+                  setImageBottomDescription("");
+                }}
+                rectangle
+                disabled={loading}
+              >
+                <Trash className="h-8 w-8" />
+              </Button>
+
+              <Image
+                src={imageBottomDescription}
+                alt="Image"
+                fill
+                className="object-contain"
+              />
+            </div>
+          )}
+        </div>
+      </div>
+      <UploadImageModal
+        isOpen={uploadImageOnlyModalOpen}
+        onClose={() => {
+          setUploadImageOnlyModalOpen(false);
+        }}
+        onCloseCallback={() => {
+          setSelectImageOnlyModalOpen(true);
+        }}
+      />
+      <SelectMultipleImageModal
+        isOpen={selectImageOnlyModalOpen}
+        onClose={() => {
+          setSelectImageOnlyModalOpen(false);
+        }}
+        onCloseCallback={() => {}}
+        totalImage={totalImage}
+        currentSetImages={(images: string[]) => {
+          setImageBottomDescription(images[0]);
+        }}
+        currentImages={[imageBottomDescription]}
+        multiple={false}
+        openOtherModal={() => {
+          setUploadImageOnlyModalOpen(true);
+        }}
+      />
+
+      <div className="containerDesign">
+        <HeaderPage
           title={"Preview singolo"}
           description={"Visualizza il corso in pagina con forma integrale"}
         />
@@ -398,6 +475,7 @@ function CreateEditCorsoPageComponent({
             duration={duration}
             code={code}
             image={image}
+            imageBottomDescription={imageBottomDescription}
             dev={true}
           />
         </div>
