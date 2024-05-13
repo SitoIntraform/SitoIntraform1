@@ -16,7 +16,7 @@ const config = {
     },
     extend: {
       fontFamily: {
-        osvald: "Osawlad",
+        arimo: "Arimo",
       },
       fontSize: {
         h1DesktopFont: "72px",
