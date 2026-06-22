@@ -2,7 +2,6 @@
 
 import { PageType, SectionType } from "@/types";
 import Image from "next/image";
-import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import Button from "../Button";
 import { containerAnimation } from "@/lib/animation";
@@ -10,11 +9,9 @@ import { containerAnimation } from "@/lib/animation";
 import { motion } from "framer-motion";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination, Autoplay } from "swiper/modules";
-// import Swiper and modules styles
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
-import { useRouter } from "next/navigation";
 
 function GalleryView({
   section,
@@ -27,8 +24,6 @@ function GalleryView({
   allPages: PageType[];
   allSections: SectionType[];
 }) {
-  const router = useRouter();
-
   const [updateCounter, setUpdateCounter] = useState(0);
   const [carouselCounter, setCarouselCounter] = useState(0);
 
@@ -42,27 +37,23 @@ function GalleryView({
     } else {
       const sec = section;
       if (section.data.primaryLink?.at(0) === "/") {
-        //LINK A PAGINA
         const pageId = sec.data.primaryLink?.split("/")[1];
         const page = allPages.find((p) => p.PageId === pageId);
         setLink1("/" + page?.link);
       } else if (section.data.primaryLink?.at(0) === "#") {
-        //LINK AD ANCORA
         const sectionId = sec.data.primaryLink?.split("#")[1];
-        const section = allSections.find((s) => s.SectionId === sectionId);
-        setLink1("#" + section?.name);
+        const s = allSections.find((s) => s.SectionId === sectionId);
+        setLink1("#" + s?.name);
       }
 
       if (section.data.secondaryLink?.at(0) === "/") {
-        //LINK A PAGINA
         const pageId = sec.data.secondaryLink?.split("/")[1];
         const page = allPages.find((p) => p.PageId === pageId);
         setLink2("/" + page?.link);
       } else if (section.data.secondaryLink?.at(0) === "#") {
-        //LINK AD ANCORA
         const sectionId = sec.data.secondaryLink?.split("#")[1];
-        const section = allSections.find((s) => s.SectionId === sectionId);
-        setLink2("#" + section?.name);
+        const s = allSections.find((s) => s.SectionId === sectionId);
+        setLink2("#" + s?.name);
       }
     }
   }, [section, dev, allPages, allSections]);
@@ -72,22 +63,49 @@ function GalleryView({
   }, [section]);
 
   useEffect(() => {
-    const carouselUpdate = () => {
-      setCarouselCounter((prev) => prev + 1);
-    };
-
+    const carouselUpdate = () => setCarouselCounter((prev) => prev + 1);
     window.addEventListener("resize", carouselUpdate);
-
-    return () => {
-      window.removeEventListener("resize", carouselUpdate);
-    };
+    return () => window.removeEventListener("resize", carouselUpdate);
   }, []);
 
   const [mounted, setMounted] = useState(false);
-
   useEffect(() => {
     setMounted(true);
   }, []);
+
+  const anim = section.data.animation;
+  const isDarkBg = section.data.backgroundColor === "#3b3b3b";
+
+  const slides =
+    section.data.images && section.data.images.length > 1 ? (
+      <Swiper
+        spaceBetween={20}
+        slidesPerView={1}
+        autoplay={{ delay: 5000 }}
+        speed={1200}
+        loop={true}
+        className="h-full w-full"
+        modules={[Autoplay, Pagination, Navigation]}
+        pagination={section.data.carouselDots}
+        navigation={section.data.carouselButtons}
+        key={dev ? section.name + carouselCounter : section.name}
+        breakpoints={{
+          640: { slidesPerView: 1 },
+          768: { slidesPerView: 2 },
+          1024: { slidesPerView: 3 },
+        }}
+      >
+        {section.data.images.map((image) => (
+          <SwiperSlide key={image} className="relative rounded-xl overflow-hidden">
+            <Image src={image || ""} alt="" fill className="object-cover" />
+          </SwiperSlide>
+        ))}
+      </Swiper>
+    ) : section.data.images ? (
+      <div className="h-full w-full relative rounded-2xl overflow-hidden ring-1 ring-black/[0.06] shadow-[0_18px_45px_-25px_rgba(0,0,0,0.4)]">
+        <Image src={section.data.images[0]} alt="" fill className="object-cover" />
+      </div>
+    ) : null;
 
   return (
     <section
@@ -98,308 +116,111 @@ function GalleryView({
           : section.data.backgroundColor,
       }}
       className={`${
-        section.data.hScreen
-          ? "lg:h-[calc(100vh-80px)] h-auto py-20 lg:py-0"
-          : ""
+        section.data.hScreen ? "lg:h-[calc(100vh-80px)] h-auto py-20 lg:py-0" : ""
       } w-screen relative lg:overflow-hidden !max-w-[100%] !overflow-x-hidden`}
       key={dev ? updateCounter : mounted ? section.SectionId : undefined}
     >
       {section.data.backgroundImages && section.data.backgroundImageOpacity && (
-        <div className={` h-full w-full absolute inset-0`}>
+        <div className="h-full w-full absolute inset-0">
           <div className="h-full w-full relative">
             <Image
               src={section.data.backgroundImages}
               alt=""
               fill
               className="object-cover"
-              style={{
-                opacity: section.data.backgroundImageOpacity / 100,
-              }}
+              style={{ opacity: section.data.backgroundImageOpacity / 100 }}
             />
           </div>
         </div>
       )}
       <div
         style={{
-          paddingBottom: section.data.hScreen
-            ? "0px"
-            : section.data.space + "px",
+          paddingBottom: section.data.hScreen ? "0px" : section.data.space + "px",
           paddingTop: section.data.hScreen ? "0px" : section.data.space + "px",
         }}
-        className={`h-full z-30 flex containerDesign  flex-col items-center justify-center ${
+        className={`h-full z-30 flex containerDesign flex-col items-center justify-center ${
           section.data.hScreen ? "py-10 lg:py-0" : "!max-lg:!py-10"
         }`}
       >
-        <div
-          className={`mx-auto flex flex-col w-[100%] items-center justify-center gap-12`}
-        >
+        <div className="mx-auto flex flex-col w-full items-center justify-center gap-12">
           {(section.data.textBlack ||
             section.data.textBlue ||
             section.data.textGreen) && (
-            <>
-              {section.data.animation ? (
-                <motion.div
-                  viewport={{ once: true }}
-                  variants={containerAnimation(0, section.data.animationType)}
-                  initial={section.data.animation ? "hidden" : {}}
-                  whileInView={section.data.animation && mounted ? "show" : {}}
-                  className="h4Mobile md:h4Desktop xl:h3Desktop relative text-center"
-                >
-                  {/* Title */}
-
-                  {section.data.textBlue && section.data.textGreen ? (
-                    <>
-                      <span className="text-accentDesign">
-                        {section.data.textBlue}
-                      </span>{" "}
-                      <span className="text-primaryDesign">
-                        {section.data.textGreen}
-                      </span>
-                    </>
-                  ) : section.data.textBlue ? (
-                    <>
-                      <span className="text-accentDesign">
-                        {section.data.textBlue}
-                      </span>
-                    </>
-                  ) : section.data.textGreen ? (
-                    <>
-                      <span className="text-primaryDesign">
-                        {section.data.textGreen}
-                      </span>
-                    </>
-                  ) : (
-                    <>
-                      <span className="text-textDesign">
-                        {section.data.textBlack}
-                      </span>
-                    </>
-                  )}
-                </motion.div>
-              ) : (
-                <div className="h4Mobile md:h4Desktop xl:h3Desktop relative text-center">
-                  {/* Title */}
-
-                  {section.data.textBlue && section.data.textGreen ? (
-                    <>
-                      <span className="text-accentDesign">
-                        {section.data.textBlue}
-                      </span>{" "}
-                      <span className="text-primaryDesign">
-                        {section.data.textGreen}
-                      </span>
-                    </>
-                  ) : section.data.textBlue ? (
-                    <>
-                      <span className="text-accentDesign">
-                        {section.data.textBlue}
-                      </span>
-                    </>
-                  ) : section.data.textGreen ? (
-                    <>
-                      <span className="text-primaryDesign">
-                        {section.data.textGreen}
-                      </span>
-                    </>
-                  ) : (
-                    <>
-                      <span className="text-textDesign">
-                        {section.data.textBlack}
-                      </span>
-                    </>
-                  )}
-                </div>
-              )}
-            </>
+            <motion.div
+              viewport={{ once: true }}
+              variants={containerAnimation(0, section.data.animationType)}
+              initial={anim ? "hidden" : {}}
+              whileInView={anim && mounted ? "show" : {}}
+              className="flex flex-col items-center gap-4 text-center"
+            >
+              <span className="h-[3px] w-16 rounded-full bg-gradient-to-r from-primaryDesign to-accentDesign" />
+              <div className="h4Mobile md:h4Desktop xl:h3Desktop relative">
+                {section.data.textBlue && section.data.textGreen ? (
+                  <>
+                    <span className="text-accentDesign">{section.data.textBlue}</span>{" "}
+                    <span className="text-primaryDesign">{section.data.textGreen}</span>
+                  </>
+                ) : section.data.textBlue ? (
+                  <span className="text-accentDesign">{section.data.textBlue}</span>
+                ) : section.data.textGreen ? (
+                  <span className="text-primaryDesign">{section.data.textGreen}</span>
+                ) : (
+                  <span className={isDarkBg ? "text-white" : "text-textDesign"}>
+                    {section.data.textBlack}
+                  </span>
+                )}
+              </div>
+            </motion.div>
           )}
+
           {section.data.images && (
-            <>
-              {section.data.animation ? (
-                <motion.div
-                  variants={containerAnimation(0, section.data.animationType)}
-                  viewport={{ once: true }}
-                  initial={section.data.animation ? "hidden" : {}}
-                  whileInView={section.data.animation && mounted ? "show" : {}}
-                  className="w-full h-[350px] md:h-[500px]"
-                >
-                  {section.data.images && section.data.images.length > 1 ? (
-                    <Swiper
-                      spaceBetween={20}
-                      slidesPerView={1}
-                      autoplay={{
-                        delay: 5000,
-                      }}
-                      speed={1200}
-                      loop={true}
-                      className="h-[100%] w-full"
-                      modules={[Autoplay, Pagination, Navigation]}
-                      pagination={section.data.carouselDots}
-                      navigation={section.data.carouselButtons}
-                      key={dev ? section.name + carouselCounter : section.name}
-                      breakpoints={{
-                        640: {
-                          slidesPerView: 1,
-                        },
-                        768: {
-                          slidesPerView: 2,
-                        },
-                        1024: {
-                          slidesPerView: 3,
-                        },
-                        //   1300: {
-                        //     slidesPerView: 4,
-                        //   },
-                      }}
-                    >
-                      {section.data.images.map((image) => (
-                        <SwiperSlide key={image} className="relative">
-                          <Image
-                            src={image || ""}
-                            alt=""
-                            fill
-                            className="object-cover"
-                          />
-                        </SwiperSlide>
-                      ))}
-                    </Swiper>
-                  ) : (
-                    <div className="h-[100%] w-full">
-                      <Image
-                        src={section.data.images[0]}
-                        alt=""
-                        fill
-                        className="object-cover"
-                      />
-                    </div>
-                  )}
-                </motion.div>
-              ) : (
-                <div className="w-full h-[350px] md:h-[500px]">
-                  {section.data.images && section.data.images.length > 1 ? (
-                    <Swiper
-                      spaceBetween={20}
-                      slidesPerView={1}
-                      autoplay={{
-                        delay: 5000,
-                      }}
-                      speed={1200}
-                      loop={true}
-                      className="h-[100%] w-full"
-                      modules={[Autoplay, Pagination, Navigation]}
-                      pagination={section.data.carouselDots}
-                      navigation={section.data.carouselButtons}
-                      key={dev ? section.name + carouselCounter : section.name}
-                      breakpoints={{
-                        640: {
-                          slidesPerView: 1,
-                        },
-                        768: {
-                          slidesPerView: 2,
-                        },
-                        1024: {
-                          slidesPerView: 3,
-                        },
-                        //   1300: {
-                        //     slidesPerView: 4,
-                        //   },
-                      }}
-                    >
-                      {section.data.images.map((image) => (
-                        <SwiperSlide key={image} className="relative">
-                          <Image
-                            src={image || ""}
-                            alt=""
-                            fill
-                            className="object-cover"
-                          />
-                        </SwiperSlide>
-                      ))}
-                    </Swiper>
-                  ) : (
-                    <div className="h-[100%] w-full">
-                      <Image
-                        src={section.data.images[0]}
-                        alt=""
-                        fill
-                        className="object-cover"
-                      />
-                    </div>
-                  )}
-                </div>
-              )}
-            </>
+            <motion.div
+              variants={containerAnimation(0, section.data.animationType)}
+              viewport={{ once: true }}
+              initial={anim ? "hidden" : {}}
+              whileInView={anim && mounted ? "show" : {}}
+              className="w-full h-[350px] md:h-[500px]"
+            >
+              {slides}
+            </motion.div>
           )}
 
           {(section.data.primaryButton || section.data.secondaryButton) && (
-            <>
-              {section.data.animation ? (
-                <motion.div
-                  viewport={{ once: true }}
-                  variants={containerAnimation(0.2, section.data.animationType)}
-                  initial={section.data.animation ? "hidden" : {}}
-                  whileInView={section.data.animation && mounted ? "show" : {}}
-                  className="flex md:flex-row flex-col gap-3 md:gap-6"
-                >
-                  {section.data.primaryButton && (
-                    <a href={dev ? undefined : link1 ? link1 : undefined}>
-                      <Button
-                        width={section.data.widthPrimaryButton || 0}
-                        height={section.data.heightPrimaryButton || 0}
-                        onClick={() => {}}
-                        className="scale-90 md:scale-100 xl:scale-105"
-                        animation
-                      >
-                        <p>{section.data.primaryButtonText}</p>
-                      </Button>
-                    </a>
-                  )}
-                  {section.data.secondaryButton && (
-                    <a href={dev ? undefined : link2 ? link2 : undefined}>
-                      <Button
-                        width={section.data.widthSecondaryButton || 0}
-                        height={section.data.heightSecondaryButton || 0}
-                        onClick={() => {}}
-                        className="scale-90 md:scale-100 xl:scale-105"
-                        secondary
-                        animation
-                      >
-                        <p>{section.data.secondaryButtonText}</p>
-                      </Button>
-                    </a>
-                  )}
-                </motion.div>
-              ) : (
-                <div className="flex md:flex-row flex-col gap-3 md:gap-6">
-                  {section.data.primaryButton && (
-                    <a href={dev ? undefined : link1 ? link1 : undefined}>
-                      <Button
-                        width={section.data.widthPrimaryButton || 0}
-                        height={section.data.heightPrimaryButton || 0}
-                        onClick={() => {}}
-                        className="scale-90 md:scale-100 xl:scale-105"
-                        animation
-                      >
-                        <p>{section.data.primaryButtonText}</p>
-                      </Button>
-                    </a>
-                  )}
-                  {section.data.secondaryButton && (
-                    <a href={dev ? undefined : link2 ? link2 : undefined}>
-                      <Button
-                        width={section.data.widthSecondaryButton || 0}
-                        height={section.data.heightSecondaryButton || 0}
-                        onClick={() => {}}
-                        className="scale-90 md:scale-100 xl:scale-105"
-                        secondary
-                        animation
-                      >
-                        <p>{section.data.secondaryButtonText}</p>
-                      </Button>
-                    </a>
-                  )}
-                </div>
+            <motion.div
+              viewport={{ once: true }}
+              variants={containerAnimation(0.2, section.data.animationType)}
+              initial={anim ? "hidden" : {}}
+              whileInView={anim && mounted ? "show" : {}}
+              className="flex md:flex-row flex-col gap-3 md:gap-6"
+            >
+              {section.data.primaryButton && (
+                <a href={dev ? undefined : link1 ? link1 : undefined}>
+                  <Button
+                    width={section.data.widthPrimaryButton || 0}
+                    height={section.data.heightPrimaryButton || 0}
+                    onClick={() => {}}
+                    className="scale-90 md:scale-100 xl:scale-105"
+                    animation
+                  >
+                    <p>{section.data.primaryButtonText}</p>
+                  </Button>
+                </a>
               )}
-            </>
+              {section.data.secondaryButton && (
+                <a href={dev ? undefined : link2 ? link2 : undefined}>
+                  <Button
+                    width={section.data.widthSecondaryButton || 0}
+                    height={section.data.heightSecondaryButton || 0}
+                    onClick={() => {}}
+                    className="scale-90 md:scale-100 xl:scale-105"
+                    secondary
+                    animation
+                  >
+                    <p>{section.data.secondaryButtonText}</p>
+                  </Button>
+                </a>
+              )}
+            </motion.div>
           )}
         </div>
       </div>

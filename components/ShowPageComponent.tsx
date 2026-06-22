@@ -130,39 +130,47 @@ function Footer() {
   const privacy = usePrivacyModal();
 
   return (
-    <div className="bg-primaryDesign md:px-20 px-5 pt-16 !max-w-[100%] !overflow-x-hidden">
-      <div className="containerDesign  !text-white flex md:flex-row flex-col justify-between gap-10 flex-wrap relative">
-        <div className="flex flex-col items-center justify-center gap-2">
-          <p className="large-bold mb-[10px] !text-white">SEDE</p>
-          <p className="regular-medium !text-white">Via E. Bignone 85/12</p>
-          <p className="regular-medium !text-white">10064 Pinerolo (TO)</p>
+    <footer className="bg-primaryDesign !max-w-[100%] !overflow-x-hidden">
+      <div className="max-w-[1100px] mx-auto px-6 md:px-10 pt-16 pb-10 !text-white">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-8 text-center">
+          <div className="flex flex-col items-center gap-2">
+            <p className="large-bold mb-[6px] !text-white">SEDE</p>
+            <p className="regular-medium !text-white">Via E. Bignone 85/12</p>
+            <p className="regular-medium !text-white">10064 Pinerolo (TO)</p>
+          </div>
+          <div className="flex flex-col items-center gap-2">
+            <p className="large-bold mb-[6px] !text-white">ORARI DI SEGRETERIA</p>
+            <div className="regular-medium !text-white flex flex-row justify-between w-[220px]">
+              <span>Lun - Ven</span>
+              <span>09:00 - 13:00</span>
+            </div>
+            <div className="regular-medium !text-white flex flex-row justify-between w-[220px]">
+              <span>Sab - Dom</span>
+              <span>Chiuso</span>
+            </div>
+          </div>
+          <div className="flex flex-col items-center gap-2">
+            <p className="large-bold mb-[6px] !text-white">RECAPITI</p>
+            <p className="regular-medium !text-white">Tel: +39 0121 305343</p>
+            <p className="regular-medium !text-white">Fax: +39 0121 303653</p>
+            <a
+              href="mailto:info@intraform.it"
+              className="regular-medium !text-white underline underline-offset-2 hover:opacity-80 transition-opacity"
+            >
+              info@intraform.it
+            </a>
+          </div>
         </div>
-        <div className="flex flex-col items-center justify-center gap-2 lg:absolute lg:left-[50%] lg:-translate-x-[50%] lg:top-3">
-          <p className="large-bold mb-[10px] !text-white">
-            ORARI DI SEGRETERIA
-          </p>
-          <p className="regular-medium !text-white flex flex-row justify-between w-[220px]">
-            <p className="regular-medium !text-white">Lun - Ven</p>
-            <p className="regular-medium !text-white">09:00 - 13:00</p>
-          </p>
-          <p className="regular-medium !text-white flex flex-row justify-between w-[220px]">
-            <p className="regular-medium !text-white">Sab - Dom</p>
-            <p className="regular-medium !text-white">Chiuso</p>
-          </p>
-        </div>
-        <div className="flex flex-col items-center justify-center gap-2">
-          <p className="large-bold mb-[10px] !text-white">RECAPITI</p>
-          <p className="regular-medium !text-white">Tel: +39 0121 305343</p>
-          <p className="regular-medium !text-white">Fax: +39 0121 303653</p>
-          <p className="regular-medium !text-white underline underline-offset-2">
-            info@intraform.it
-          </p>
+        <div className="pt-5 mt-10 border-t border-white/40 regular-medium !text-white w-full text-center flex sm:flex-row flex-col gap-4 items-center justify-center">
+          <div>P.I. 10284960019</div>
+          <div
+            onClick={privacy.onOpen}
+            className="cursor-pointer underline underline-offset-2 hover:opacity-80 transition-opacity"
+          >
+            Privacy Policy
+          </div>
         </div>
       </div>
-      <div className="pb-16 cursor-pointer pt-4 mt-8 border-t-2 border-white regular-medium !text-white w-full text-center underline underline-offset-1 flex sm:flex-row flex-col gap-4 items-center justify-center">
-        <div>P.I. 10284960019</div>
-        <div onClick={privacy.onOpen}>Privacy Policy</div>
-      </div>
-    </div>
+    </footer>
   );
 }

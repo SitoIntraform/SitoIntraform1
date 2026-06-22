@@ -100,19 +100,25 @@ function NavbarClient({
 
   // Stile bottone outline (CTA)
   const outlineBtn =
-    "inline-flex items-center justify-center rounded-full border-[1.5px] border-accentDesign text-accentDesign font-medium px-6 py-2.5 transition-all duration-300 hover:bg-accentDesign hover:text-white hover:shadow-[0_12px_28px_-12px_rgba(58,86,197,0.55)] active:scale-95";
+    "inline-flex items-center justify-center rounded-full border-[1.5px] border-accentDesign text-accentDesign font-medium px-6 py-2.5 transition-all duration-300 hover:text-white hover:border-transparent hover:bg-gradient-to-r hover:from-primaryDesign hover:to-accentDesign hover:shadow-[0_14px_30px_-14px_rgba(58,86,197,0.55)] active:scale-95";
 
   return (
     <>
       <div
-        className={`z-[200] w-[100vw] h-[80px] transition-all duration-300 ${
+        className={`relative z-[200] w-[100vw] h-[80px] bg-white transition-all duration-300 ${
           dev ? "" : "fixed top-0"
         } ${
           scrolled
-            ? "bg-white/80 supports-[backdrop-filter]:bg-white/70 backdrop-blur-md shadow-[0_8px_30px_-18px_rgba(0,0,0,0.35)] border-b border-black/5"
-            : "bg-white border-b border-black/5"
+            ? "shadow-[0_10px_30px_-18px_rgba(0,0,0,0.35)] border-b border-transparent"
+            : "border-b border-black/5"
         }`}
       >
+        {/* Firma: linea gradiente verde→blu che appare allo scroll */}
+        <div
+          className={`pointer-events-none absolute bottom-0 left-0 right-0 h-[2px] bg-gradient-to-r from-primaryDesign to-accentDesign transition-opacity duration-300 ${
+            scrolled ? "opacity-100" : "opacity-0"
+          }`}
+        />
         <div className="h-full containerDesign flex items-center justify-between relative">
           <a
             href={"/"}
@@ -166,10 +172,8 @@ function NavbarClient({
                         {currentLink?.titolo}
                       </div>
                       <div
-                        className={`h-[2px] mt-0.5 rounded-full transition-all duration-300 ${
-                          isActive
-                            ? "w-full bg-accentDesign"
-                            : "w-0 group-hover:w-full bg-primaryDesign"
+                        className={`h-[2px] mt-0.5 rounded-full transition-all duration-300 bg-gradient-to-r from-primaryDesign to-accentDesign ${
+                          isActive ? "w-full" : "w-0 group-hover:w-full"
                         }`}
                       />
                     </a>
@@ -181,7 +185,7 @@ function NavbarClient({
                           <ChevronDown className="w-4 h-4 transition-transform duration-300 group-hover:rotate-180 text-primaryDesign" />
                         )}
                       </div>
-                      <div className="h-[2px] mt-0.5 rounded-full w-0 group-hover:w-full bg-primaryDesign transition-all duration-300" />
+                      <div className="h-[2px] mt-0.5 rounded-full w-0 group-hover:w-full bg-gradient-to-r from-primaryDesign to-accentDesign transition-all duration-300" />
 
                       {/* Dropdown a scheda bianca */}
                       {currentLink?.type === "Multiple" && (
@@ -270,6 +274,7 @@ function NavbarClient({
         animate={isOpen && mounted ? "show" : "hidden"}
       >
         <div className="h-full w-full flex flex-col">
+          <div className="h-[3px] w-full bg-gradient-to-r from-primaryDesign to-accentDesign shrink-0" />
           <motion.div
             className="flex-1 flex flex-col gap-2 justify-center px-8"
             variants={listVariants}
