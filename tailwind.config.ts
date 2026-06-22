@@ -16,7 +16,8 @@ const config = {
     },
     extend: {
       fontFamily: {
-        arimo: "Arimo",
+        arimo: ["var(--font-inter)", "system-ui", "Arial", "sans-serif"],
+        display: ["var(--font-display)", "var(--font-inter)", "system-ui", "sans-serif"],
       },
       fontSize: {
         h1DesktopFont: "72px",
@@ -45,9 +46,9 @@ const config = {
       },
       colors: {
         textDesign: "#3b3b3b",
-        primaryDesign: "#3FB45D",
-        secondaryDesign: "#97D8A8",
-        accentDesign: "#627FE7",
+        primaryDesign: "#2E9E5B",
+        secondaryDesign: "#A7DDB6",
+        accentDesign: "#3A56C5",
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
