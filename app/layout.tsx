@@ -1,9 +1,20 @@
 import type { Metadata } from "next";
-import { Arimo, Inter, Montserrat, Oswald  } from "next/font/google";
+import { Inter, Sora } from "next/font/google";
 import "./globals.css";
 import ToastProvider from "@/providers/ToastProvider";
 
-const arimo = Arimo({weight: ["400", "500", "700", "600"], subsets: ["latin"]})
+const inter = Inter({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-inter",
+  display: "swap",
+});
+const sora = Sora({
+  subsets: ["latin"],
+  weight: ["500", "600", "700", "800"],
+  variable: "--font-display",
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   title: "Intraform, Pinerolo TO",
@@ -24,7 +35,7 @@ export default function RootLayout({
         <meta name="google" content="notranslate" />
         <link rel="icon" href="/favicon.png" sizes="any" />
       </head>
-      <body className={`${arimo.className} max-w-[100vw] overflow-x-hidden`}>
+      <body className={`${inter.variable} ${sora.variable} font-arimo max-w-[100vw] overflow-x-hidden`}>
         <ToastProvider />
         {children}
       </body>

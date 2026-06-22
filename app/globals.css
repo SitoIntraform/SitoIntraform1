@@ -79,20 +79,25 @@ body.modal-open {
 }
 
 .blueShadowBtn {
-  box-shadow: 2px 2px rgba(73, 101, 203, 0.5);
+  box-shadow: 0 12px 28px -12px rgba(58, 86, 197, 0.55);
 }
 
 .greenShadowBtn {
-  box-shadow: 2px 2px rgba(63, 180, 93, 0.5);
+  box-shadow: 0 12px 28px -12px rgba(46, 158, 91, 0.5);
 }
 
 .h1Shadow {
-  text-shadow: 2px 2px #3b3b3b;
+  text-shadow: 0 2px 18px rgba(0, 0, 0, 0.45);
+}
+
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 /* width */
 ::-webkit-scrollbar {
-  width: 10px;
+  width: 8px;
 }
 
 /* Track */
@@ -102,13 +107,13 @@ body.modal-open {
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: #3fb45d;
+  background: #2E9E5B;
   border-radius: 30px;
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-  background: #36a251;
+  background: #25814a;
   transition: all 0.1s;
   cursor: grab;
 }
@@ -142,41 +147,41 @@ html {
   }
 
   .h1Desktop {
-    @apply text-h1DesktopFont leading-[120%] font-bold text-textDesign font-arimo;
+    @apply text-h1DesktopFont leading-[112%] tracking-[-0.02em] font-bold text-textDesign font-display;
   }
   .h2Desktop {
-    @apply text-h2DesktopFont leading-[120%] font-bold text-textDesign font-arimo;
+    @apply text-h2DesktopFont leading-[112%] tracking-[-0.02em] font-bold text-textDesign font-display;
   }
   .h3Desktop {
-    @apply text-h3DesktopFont leading-[120%] font-bold text-textDesign font-arimo;
+    @apply text-h3DesktopFont leading-[115%] tracking-[-0.02em] font-bold text-textDesign font-display;
   }
   .h4Desktop {
-    @apply text-h4DesktopFont leading-[130%] font-bold text-textDesign font-arimo;
+    @apply text-h4DesktopFont leading-[120%] tracking-[-0.015em] font-bold text-textDesign font-display;
   }
   .h5Desktop {
-    @apply text-h5DesktopFont leading-[140%] font-bold text-textDesign font-arimo;
+    @apply text-h5DesktopFont leading-[125%] tracking-[-0.01em] font-bold text-textDesign font-display;
   }
   .h6Desktop {
-    @apply text-h6DesktopFont leading-[140%] font-bold text-textDesign font-arimo;
+    @apply text-h6DesktopFont leading-[130%] tracking-[-0.01em] font-bold text-textDesign font-display;
   }
 
   .h1Mobile {
-    @apply text-h1MobileFont leading-[120%] font-bold text-textDesign font-arimo;
+    @apply text-h1MobileFont leading-[114%] tracking-[-0.02em] font-bold text-textDesign font-display;
   }
   .h2Mobile {
-    @apply text-h2MobileFont leading-[120%] font-bold text-textDesign font-arimo;
+    @apply text-h2MobileFont leading-[114%] tracking-[-0.02em] font-bold text-textDesign font-display;
   }
   .h3Mobile {
-    @apply text-h3MobileFont leading-[120%] font-bold text-textDesign font-arimo;
+    @apply text-h3MobileFont leading-[116%] tracking-[-0.015em] font-bold text-textDesign font-display;
   }
   .h4Mobile {
-    @apply text-h4MobileFont leading-[140%] font-bold text-textDesign font-arimo;
+    @apply text-h4MobileFont leading-[122%] tracking-[-0.01em] font-bold text-textDesign font-display;
   }
   .h5Mobile {
-    @apply text-h5MobileFont leading-[140%] font-bold text-textDesign font-arimo;
+    @apply text-h5MobileFont leading-[130%] font-bold text-textDesign font-display;
   }
   .h6Mobile {
-    @apply text-h6MobileFont leading-[140%] font-bold text-textDesign font-arimo;
+    @apply text-h6MobileFont leading-[135%] font-bold text-textDesign font-display;
   }
 
   .large-light {
