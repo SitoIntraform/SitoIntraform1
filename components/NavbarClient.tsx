@@ -105,8 +105,8 @@ function NavbarClient({
   return (
     <>
       <div
-        className={`relative z-[200] w-[100vw] h-[80px] bg-white transition-all duration-300 ${
-          dev ? "" : "fixed top-0"
+        className={`z-[200] w-[100vw] h-[80px] bg-white transition-all duration-300 ${
+          dev ? "relative" : "fixed top-0"
         } ${
           scrolled
             ? "shadow-[0_10px_30px_-18px_rgba(0,0,0,0.35)] border-b border-transparent"
