@@ -1,18 +1,13 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import Button from "./Button";
 import { usePathname, useRouter } from "next/navigation";
-import { signOut } from "next-auth/react";
-import Link from "next/link";
 import { ChevronDown } from "lucide-react";
 
 import { motion, Variants } from "framer-motion";
 import Image from "next/image";
 import { Link as LinkSchema } from "@prisma/client";
 import { PageType } from "@/types";
-
-const AnimatedLink = motion(Link);
 
 function NavbarClient({
   dev,
@@ -41,13 +36,11 @@ function NavbarClient({
 }) {
   const [isOpen, setIsOpen] = useState(false);
   const [dropDownOpen, setDropDownOpen] = useState(-1);
-  const [isLoading, setIsLoading] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const router = useRouter();
   const path = usePathname();
 
   const [mounted, setIsMounted] = useState(false);
-
-  const pathName = usePathname();
 
   useEffect(() => {
     if (!isOpen) {
@@ -58,6 +51,15 @@ function NavbarClient({
   useEffect(() => {
     setIsMounted(true);
   }, []);
+
+  // Sfondo "vetro" + ombra quando si scrolla
+  useEffect(() => {
+    if (dev) return;
+    const onScroll = () => setScrolled(window.scrollY > 8);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, [dev]);
 
   useEffect(() => {
     if (isOpen) {
@@ -72,71 +74,50 @@ function NavbarClient({
   }
 
   let buttonLinkReal;
-
   const page = allPage.find((p) => p.PageId === buttonLink?.split("/").at(1));
   buttonLinkReal = dev ? undefined : page?.link ? "/" + page?.link : undefined;
 
-  const menuVariants: Variants = {
+  const drawerVariants: Variants = {
     hidden: {
-      x: "150%",
-      opacity: 0,
-      transition: {
-        staggerChildren: 0.1,
-        staggerDirection: -1,
-        delay: 0.1 * links.length + 0.4,
-        delayChildren: 0.3,
-        duration: 0.7,
-        type: "spring",
-      },
+      x: "100%",
+      transition: { type: "spring", stiffness: 260, damping: 32 },
     },
     show: {
-      x: "35%",
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.3,
-        duration: 0.7,
-        type: "spring",
-      },
+      x: "0%",
+      transition: { type: "spring", stiffness: 260, damping: 32 },
     },
+  };
+
+  const listVariants: Variants = {
+    hidden: {},
+    show: { transition: { staggerChildren: 0.07, delayChildren: 0.12 } },
   };
 
   const linkVariant: Variants = {
-    hidden: {
-      y: "-100%",
-      opacity: 0,
-    },
-    show: {
-      y: "0%",
-      opacity: 1,
-    },
+    hidden: { y: 16, opacity: 0 },
+    show: { y: 0, opacity: 1, transition: { type: "spring", stiffness: 300, damping: 24 } },
   };
 
-  const buttonVariants: Variants = {
-    hidden: {
-      opacity: 0,
-    },
-    show: {
-      opacity: 1,
-      transition: {
-        delay: 0.3 * links.length,
-        duration: 0.5,
-        type: "spring",
-      },
-    },
-  };
+  // Stile bottone outline (CTA)
+  const outlineBtn =
+    "inline-flex items-center justify-center rounded-full border-[1.5px] border-accentDesign text-accentDesign font-medium px-6 py-2.5 transition-all duration-300 hover:bg-accentDesign hover:text-white hover:shadow-[0_12px_28px_-12px_rgba(58,86,197,0.55)] active:scale-95";
 
   return (
     <>
       <div
-        className={`z-[200] w-[100vw] h-[80px] border-b shadow-sm  bg-white ${
+        className={`z-[200] w-[100vw] h-[80px] transition-all duration-300 ${
           dev ? "" : "fixed top-0"
+        } ${
+          scrolled
+            ? "bg-white/80 supports-[backdrop-filter]:bg-white/70 backdrop-blur-md shadow-[0_8px_30px_-18px_rgba(0,0,0,0.35)] border-b border-black/5"
+            : "bg-white border-b border-black/5"
         }`}
       >
         <div className="h-full containerDesign flex items-center justify-between relative">
           <a
             href={"/"}
             aria-label="Logo Home"
-            className="hover:scale-110 transition-all duration-300"
+            className="transition-transform duration-300 hover:scale-105 shrink-0"
           >
             {logo && (
               <Image
@@ -148,119 +129,83 @@ function NavbarClient({
             )}
           </a>
 
-          <div className="lg:flex hidden flex-row items-center xl:gap-10 lg:gap-3 ">
-            {links.map((link, index) => {
+          {/* Link desktop */}
+          <div className="lg:flex hidden flex-row items-center xl:gap-9 lg:gap-6">
+            {links.map((link) => {
               const currentLink = allLinks.find((l) => l.LinkId === link);
               const pageId = currentLink?.link?.split("/")[1];
-
               const currentPage = allPage.find((p) => p.PageId === pageId);
 
               let isActive = currentPage?.link === path.split("/")[1];
-
               if (currentLink?.type != "Single") {
                 isActive = false;
               }
 
               let linkReal = "";
-
               if (currentLink?.type === "Single") {
-                const page = allPage.find(
+                const p = allPage.find(
                   (p) => p.PageId === currentLink?.link?.split("/").at(1)
                 );
-                linkReal = dev ? "" : "/" + page?.link;
+                linkReal = dev ? "" : "/" + p?.link;
               }
 
               return (
-                <div key={currentLink?.LinkId}>
+                <div key={currentLink?.LinkId} className="relative">
                   {currentLink?.type === "Single" ? (
                     <a
                       href={dev ? undefined : linkReal ? linkReal : undefined}
-                      className={`text-center regular-normal group cursor-pointer`}
+                      className="group cursor-pointer text-[15px] font-medium"
                     >
                       <div
                         className={`${
-                          currentLink?.type === "Single"
-                            ? `${
-                                isActive
-                                  ? "text-accentDesign"
-                                  : "group-hover:text-primaryDesign"
-                              }`
-                            : ""
-                        } transition-all duration-300 relative flex flex-row items-center gap-1`}
+                          isActive
+                            ? "text-accentDesign"
+                            : "text-textDesign group-hover:text-primaryDesign"
+                        } transition-colors duration-300 flex flex-row items-center gap-1`}
                       >
                         {currentLink?.titolo}
                       </div>
                       <div
-                        className={`h-[1px] ${
+                        className={`h-[2px] mt-0.5 rounded-full transition-all duration-300 ${
                           isActive
                             ? "w-full bg-accentDesign"
                             : "w-0 group-hover:w-full bg-primaryDesign"
-                        } transition-all duration-300  rounded-full`}
+                        }`}
                       />
                     </a>
                   ) : (
-                    <div
-                      className={`text-center regular-normal group cursor-pointer`}
-                    >
-                      <div
-                        className={`${
-                          currentLink?.type === "Single"
-                            ? `${
-                                isActive
-                                  ? "text-accentDesign"
-                                  : "group-hover:text-primaryDesign"
-                              }`
-                            : ""
-                        } transition-all duration-300 relative flex flex-row items-center gap-[2px]`}
-                      >
+                    <div className="group cursor-pointer text-[15px] font-medium">
+                      <div className="text-textDesign group-hover:text-primaryDesign transition-colors duration-300 flex flex-row items-center gap-1">
                         {currentLink?.titolo}
                         {currentLink?.type === "Multiple" && (
-                          <>
-                            <span>
-                              <ChevronDown className="w-4 h-4 text-primaryDesign" />
-                            </span>
-                            <div className="absolute top-[102%] h-0 overflow-hidden group-hover:h-auto bg-primaryDesign transition-all duration-200 -translate-x-[50%] left-[50%] rounded-sm">
-                              <div className="flex flex-col items-center justify-between gap-3 rounded-md px-8 py-5">
-                                {currentLink.multipleLink.map((l, index2) => {
-                                  let linkReal2 = "";
-
-                                  const page = allPage.find(
-                                    (p) =>
-                                      p.PageId === l?.link?.split("/").at(1)
-                                  );
-                                  linkReal2 = dev ? "" : "/" + page?.link;
-
-                                  // console.log(linkReal2);
-
-                                  return (
-                                    <a
-                                      key={index2}
-                                      className="cursor-pointer text-white group/link"
-                                      href={dev ? undefined : linkReal2}
-                                      onClick={(e) => {
-                                        e.stopPropagation();
-                                      }}
-                                    >
-                                      <p>{l.testo}</p>
-                                      <div
-                                        className={`h-[1px] w-0 group-hover/link:w-full bg-white
-                                    transition-all duration-300  rounded-full`}
-                                      />
-                                    </a>
-                                  );
-                                })}
-                              </div>
-                            </div>
-                          </>
+                          <ChevronDown className="w-4 h-4 transition-transform duration-300 group-hover:rotate-180 text-primaryDesign" />
                         )}
                       </div>
-                      <div
-                        className={`h-[1px] ${
-                          isActive
-                            ? "w-full bg-accentDesign"
-                            : "w-0 group-hover:w-full bg-primaryDesign"
-                        } transition-all duration-300  rounded-full`}
-                      />
+                      <div className="h-[2px] mt-0.5 rounded-full w-0 group-hover:w-full bg-primaryDesign transition-all duration-300" />
+
+                      {/* Dropdown a scheda bianca */}
+                      {currentLink?.type === "Multiple" && (
+                        <div className="absolute top-full left-1/2 -translate-x-1/2 pt-3 invisible opacity-0 translate-y-1 group-hover:visible group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-200 z-[210]">
+                          <div className="min-w-[200px] rounded-xl bg-white border border-black/5 shadow-[0_20px_50px_-24px_rgba(0,0,0,0.45)] p-2 flex flex-col">
+                            {currentLink.multipleLink.map((l, index2) => {
+                              const p = allPage.find(
+                                (p) => p.PageId === l?.link?.split("/").at(1)
+                              );
+                              const linkReal2 = dev ? "" : "/" + p?.link;
+                              return (
+                                <a
+                                  key={index2}
+                                  className="cursor-pointer rounded-lg px-4 py-2.5 text-[15px] text-textDesign hover:bg-secondaryDesign/30 hover:text-primaryDesign transition-colors duration-200"
+                                  href={dev ? undefined : linkReal2}
+                                  onClick={(e) => e.stopPropagation()}
+                                >
+                                  {l.testo}
+                                </a>
+                              );
+                            })}
+                          </div>
+                        </div>
+                      )}
                     </div>
                   )}
                 </div>
@@ -268,236 +213,155 @@ function NavbarClient({
             })}
           </div>
 
+          {/* CTA desktop (outline) + hamburger */}
           <div className="flex flex-row gap-2 items-center">
-            {/* <div className="w-[40px] h-[40px] items-center cursor-pointer rounded-full hover:bg-secondaryDesign group transition-all duration-300  justify-center hidden lg:flex">
-              <History className="group-hover:text-white transition-all duration-300 text-textDesign" />
-              All the recent action
-            </div> */}
             <div className="hidden lg:block">
               <a
-                href={
-                  dev ? undefined : buttonLinkReal ? buttonLinkReal : undefined
-                }
-                className="cursor-pointer"
+                href={dev ? undefined : buttonLinkReal ? buttonLinkReal : undefined}
+                className={outlineBtn}
               >
-                <Button
-                  className="normal-normal !text-white"
-                  onClick={() => {}}
-                  animation
-                  disabled={isLoading}
-                  width={buttonWidth}
-                  height={buttonHeight}
-                >
-                  {buttonText}
-                </Button>
+                {buttonText}
               </a>
             </div>
-          </div>
-          <div
-            onClick={() => {
-              if (!dev) {
-                setIsOpen((prev) => !prev);
-              }
-            }}
-            className={`${
-              isOpen ? "rotate-90" : "rotate-0"
-            } cursor-pointer w-[30px] hover:scale-110 h-[20px] transition-all duration-150 active:scale-90 relative block lg:hidden`}
-          >
-            <div
-              className={`after:absolute after:w-full after:h-[3px] after:bg-textDesign  after:rounded-lg transition-all duration-150 ${
-                isOpen
-                  ? "after:-rotate-45 after:top-[50%] after:-translate-y-[50%]"
-                  : "after:top-0"
-              }`}
-            />
-            <div
-              className={`after:absolute after:w-full after:h-[3px] after:bg-textDesign after:top-[50%] after:-translate-y-[50%] after:rounded-lg ${
-                isOpen
-                  ? "after:hidden"
-                  : "after:top-[50%] after:-translate-y-[50%]"
-              }`}
-            />
-            <div
-              className={`after:absolute after:w-full after:h-[3px] after:bg-textDesign  after:rounded-lg after:transition-all after:duration-150 ${
-                isOpen
-                  ? "after:rotate-45 after:top-[50%] after:-translate-y-[50%]"
-                  : "after:bottom-0"
-              }`}
-            />
+
+            <button
+              type="button"
+              aria-label="Apri menu"
+              onClick={() => {
+                if (!dev) setIsOpen((prev) => !prev);
+              }}
+              className={`${
+                isOpen ? "rotate-90" : "rotate-0"
+              } cursor-pointer w-[30px] h-[20px] transition-transform duration-150 active:scale-90 relative block lg:hidden`}
+            >
+              <span
+                className={`absolute left-0 w-full h-[3px] bg-textDesign rounded-full transition-all duration-200 ${
+                  isOpen ? "top-1/2 -translate-y-1/2 -rotate-45" : "top-0"
+                }`}
+              />
+              <span
+                className={`absolute left-0 w-full h-[3px] bg-textDesign rounded-full top-1/2 -translate-y-1/2 transition-all duration-200 ${
+                  isOpen ? "opacity-0" : "opacity-100"
+                }`}
+              />
+              <span
+                className={`absolute left-0 w-full h-[3px] bg-textDesign rounded-full transition-all duration-200 ${
+                  isOpen ? "top-1/2 -translate-y-1/2 rotate-45" : "bottom-0"
+                }`}
+              />
+            </button>
           </div>
         </div>
       </div>
+
+      {/* Backdrop mobile */}
+      <div
+        onClick={() => setIsOpen(false)}
+        className={`lg:hidden fixed inset-0 top-[80px] z-[190] bg-black/40 transition-opacity duration-300 ${
+          isOpen ? "opacity-100" : "opacity-0 pointer-events-none"
+        }`}
+      />
+
+      {/* Pannello laterale mobile */}
       <motion.div
-        className="z-[200] block border-l shadow-md lg:hidden fixed max-h-[calc(100%-80px)] h-[calc(100%-70px)] w-[75%] overflow-hidden bg-white top-[80px]"
-        variants={menuVariants}
+        className="z-[200] block lg:hidden fixed top-[80px] right-0 h-[calc(100%-80px)] w-[85%] max-w-[360px] bg-white shadow-[-20px_0_50px_-30px_rgba(0,0,0,0.6)] border-l border-black/5"
+        variants={drawerVariants}
         initial="hidden"
         animate={isOpen && mounted ? "show" : "hidden"}
-        onClick={() => {
-          setDropDownOpen(-1);
-        }}
       >
-        <div className="h-full w-full relative">
-          <div className="flex flex-col gap-5 items-center justify-center h-full absolute w-full bottom-20">
-            {links.map((link, index) => {
-              // Capire se il link è attivo
-              const currentLink = allLinks.find((l) => l.LinkId === link);
-              const pageId = currentLink?.link?.split("/")[1];
-
-              const currentPage = allPage.find((p) => p.PageId === pageId);
-
-              const isActive = currentPage?.link === path.split("/")[1];
-
-              let linkReal = "";
-
-              if (currentLink?.type === "Single") {
-                const page = allPage.find(
-                  (p) => p.PageId === currentLink?.link?.split("/").at(1)
-                );
-                linkReal = dev ? "" : "/" + page?.link;
-              }
-
-              return (
-                <div key={currentLink?.LinkId}>
-                  {currentLink?.type === "Single" ? (
-                    <motion.div
-                      // href={dev ? undefined : linkReal ? linkReal : undefined}
-                      className={`text-center cursor-pointer large-medium group !font-medium ${
-                        dropDownOpen === index
-                          ? "h-auto"
-                          : "h-[30px] overflow-hidden"
-                      }`}
-                      variants={linkVariant}
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        if (currentLink?.type === "Single") {
-                          setIsOpen(false);
-                          if (!dev && linkReal) {
-                            router.push(linkReal);
-                          }
-                        } else {
-                          setDropDownOpen((prev) =>
-                            prev === index ? -1 : index
-                          );
-                        }
-                      }}
-                    >
-                      <div
-                        className={`${
-                          isActive
-                            ? "text-accentDesign"
-                            : "group-hover:text-primaryDesign"
-                        } transition-all duration-300 relative flex flex-col items-center `}
-                      >
-                        <div className="flex flex-row items-center gap-1">
-                          {currentLink?.titolo}
-                        </div>
-                      </div>
-                    </motion.div>
-                  ) : (
-                    <motion.div
-                      className={`text-center cursor-pointer large-medium group !font-medium z-[201] ${
-                        dropDownOpen === index
-                          ? "h-auto"
-                          : "h-[30px] overflow-hidden z-[100]"
-                      }`}
-                      variants={linkVariant}
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        if (currentLink?.type === "Single") {
-                          setIsOpen(false);
-                        } else {
-                          setDropDownOpen((prev) =>
-                            prev === index ? -1 : index
-                          );
-                        }
-                      }}
-                    >
-                      <div
-                        className={`${
-                          isActive
-                            ? "text-accentDesign"
-                            : "group-hover:text-primaryDesign"
-                        } transition-all duration-300 relative flex flex-col items-center z-[-100]`}
-                      >
-                        <div className="flex flex-row items-center gap-1 ">
-                          <div>{currentLink?.titolo}</div>
-                          {currentLink?.type === "Multiple" && (
-                            <ChevronDown className="w-4 h-4 text-primaryDesign" />
-                          )}
-                        </div>
-                        {currentLink?.type === "Multiple" && (
-                          <>
-                            <div
-                              className={`${
-                                dropDownOpen === index
-                                  ? "h-auto z-[202]"
-                                  : "h-0"
-                              }  overflow-hidden bg-primaryDesign transition-all duration-200 rounded-sm `}
-                            >
-                              <div className="flex flex-col items-center justify-between gap-3 rounded-md px-8 py-5 relative z-[200]">
-                                {currentLink.multipleLink.map((l, index2) => {
-                                  let linkReal2 = "";
-
-                                  const page = allPage.find(
-                                    (p) =>
-                                      p.PageId === l?.link?.split("/").at(1)
-                                  );
-                                  linkReal2 = dev ? "" : "/" + page?.link;
-
-                                  return (
-                                    <a
-                                      key={index2}
-                                      className="cursor-pointer text-white group/link z-[203] bg-primaryDesign"
-                                      onClick={(e) => {
-                                        setIsOpen(false);
-                                        e.stopPropagation();
-                                      }}
-                                      href={dev ? undefined : linkReal2}
-                                    >
-                                      <p>{l.testo}</p>
-                                      <div
-                                        className={`h-[1px] w-0 group-hover/link:w-full bg-white
-                                    transition-all duration-300  rounded-full z-[203]`}
-                                      />
-                                    </a>
-                                  );
-                                })}
-                              </div>
-                            </div>
-                          </>
-                        )}
-                      </div>
-                    </motion.div>
-                  )}
-                </div>
-              );
-            })}
-          </div>
+        <div className="h-full w-full flex flex-col">
           <motion.div
-            className="w-full px-10 absolute bottom-10 h-[60px] flex flex-col justify-center"
-            variants={buttonVariants}
+            className="flex-1 flex flex-col gap-2 justify-center px-8"
+            variants={listVariants}
             initial="hidden"
             animate={isOpen && mounted ? "show" : "hidden"}
           >
-            <a
-              href={
-                dev ? undefined : buttonLinkReal ? buttonLinkReal : undefined
+            {links.map((link, index) => {
+              const currentLink = allLinks.find((l) => l.LinkId === link);
+              const pageId = currentLink?.link?.split("/")[1];
+              const currentPage = allPage.find((p) => p.PageId === pageId);
+              const isActive = currentPage?.link === path.split("/")[1];
+
+              let linkReal = "";
+              if (currentLink?.type === "Single") {
+                const p = allPage.find(
+                  (p) => p.PageId === currentLink?.link?.split("/").at(1)
+                );
+                linkReal = dev ? "" : "/" + p?.link;
               }
-              className="w-full cursor-pointer"
-            >
-              <Button
-                wfull
-                className="medium-normal !text-white w-full"
-                onClick={() => {}}
-                animation
-                disabled={isLoading}
-                // width={buttonWidth}
-                height={buttonHeight}
-              >
-                {buttonText}
-              </Button>
-            </a>
+
+              return (
+                <motion.div key={currentLink?.LinkId} variants={linkVariant}>
+                  {currentLink?.type === "Single" ? (
+                    <div
+                      className={`cursor-pointer text-[22px] font-semibold font-display tracking-[-0.01em] py-1.5 transition-colors duration-200 ${
+                        isActive ? "text-accentDesign" : "text-textDesign"
+                      }`}
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        setIsOpen(false);
+                        if (!dev && linkReal) router.push(linkReal);
+                      }}
+                    >
+                      {currentLink?.titolo}
+                    </div>
+                  ) : (
+                    <div>
+                      <div
+                        className="cursor-pointer text-[22px] font-semibold font-display tracking-[-0.01em] py-1.5 text-textDesign flex items-center gap-1"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          setDropDownOpen((prev) => (prev === index ? -1 : index));
+                        }}
+                      >
+                        {currentLink?.titolo}
+                        <ChevronDown
+                          className={`w-5 h-5 text-primaryDesign transition-transform duration-300 ${
+                            dropDownOpen === index ? "rotate-180" : ""
+                          }`}
+                        />
+                      </div>
+                      <div
+                        className={`overflow-hidden transition-all duration-300 ${
+                          dropDownOpen === index ? "max-h-[400px]" : "max-h-0"
+                        }`}
+                      >
+                        <div className="flex flex-col gap-1 pl-4 border-l-2 border-secondaryDesign py-1">
+                          {currentLink?.multipleLink?.map((l, index2) => {
+                            const p = allPage.find(
+                              (p) => p.PageId === l?.link?.split("/").at(1)
+                            );
+                            const linkReal2 = dev ? "" : "/" + p?.link;
+                            return (
+                              <a
+                                key={index2}
+                                className="cursor-pointer text-[17px] text-textDesign hover:text-primaryDesign py-1 transition-colors duration-200"
+                                href={dev ? undefined : linkReal2}
+                                onClick={() => setIsOpen(false)}
+                              >
+                                {l.testo}
+                              </a>
+                            );
+                          })}
+                        </div>
+                      </div>
+                    </div>
+                  )}
+                </motion.div>
+              );
+            })}
           </motion.div>
+
+          {/* CTA mobile (outline) */}
+          <div className="px-8 pb-10 pt-2">
+            <a
+              href={dev ? undefined : buttonLinkReal ? buttonLinkReal : undefined}
+              onClick={() => setIsOpen(false)}
+              className={`${outlineBtn} w-full`}
+            >
+              {buttonText}
+            </a>
+          </div>
         </div>
       </motion.div>
     </>
